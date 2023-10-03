@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WeBridge - Organization Sign Up</title>
+        <script src="./js/signup_org.js" defer></script>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Organization Sign Up</h1>
+        </header>
+        <main>
+            <form action="" id="signUp_Form">
+                <label for="txtOrgId">Organization Id</label>
+                <input type="text" id="txtOrgId">
+
+                <label for="txtOrgName">Organization Name</label>
+                <input type="text" id="txtOrgName">
+            
+                <label for="txtEmail">Email</label>
+                <input type="email" id="txtEmail">
+
+                <label for="txtPhoneNumber">Phone Number</label>
+                <input type="number" id="txtPhoneNumber">
+
+                <label for="txtUsername">Create Username</label>
+                <input type="text" id="txtUsername">
+                <label for="txtPassword">Create Password</label>
+                <input type="password" id="txtPassword">
+                <label for="txtConfirmPassword">Confirm Password</label>
+                <input type="password" id="txtConfirmPassword">
+                <div id="msg"></div>
+
+                <label for="txtAddress">Address</label>
+                <input type="text" id="txtAddress">
+                <label for="txtProvince">Province</label>
+                <input type="text" id="txtProvince">
+                <label for="txtCity">City</label>
+                <input type="text" id="txtCity">
+                <label for="txtPostalCode">Postal Code</label>
+                <input type="text" id="txtPostalCode">
+
+                <label for="txtPhotoLink">Select a photo</label>
+                <input type="file" id="txtPhotoLink">
+
+                <label for="txtDescription">Description</label>
+                <textarea id="txtDescription" cols="20" rows="5"></textarea>
+
+                <label for="txtRegNumber">Charitable Registration Number</label>
+                <input type="text" id="txtRegNumber">
+
+                <div id="category_container">
+                    <label>Category</label>
+                    <div id="catgInputGroup">
+                        <input type="text">
+                    </div>
+                    <button id="addNewCatgBtn">Add New</button>
+                </div>
+
+                <label for="txtWebsiteLink">Website</label>
+                <input type="text" id="txtWebsiteLink">
+
+                <input type="submit" value="Sign Up" id="signUpBtn">
+
+            </form>
+        </main>        
+    </body>
+</html>
