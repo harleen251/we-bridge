@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Profile</title>
+    <!-- <script src="./js/profile_info_vol.js" defer></script> -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <h1>BUILD YOUR PROFILE</h1>
+    </header>
+    <main>
+        <form id="profile_Form">
+            <div class="personal_Info">
+                <H2>Personal Information</H2>
+
+                <label for="txtPhotoLink">Select a photo</label>
+                <input type="file" id="txtPhotoLink">
+
+                <label for="txtCity">City</label>
+                <input type="text" id="txtCity">
+                <label for="txtProvince">Province</label>
+                <input type="text" id="txtProvince">
+                <label for="txtPostalCode">Postal Code</label>
+                <input type="text" id="txtPostalCode">
+
+                <label for="txtAge">Age</label>
+                <select id="txtAge">
+                    <option value="Select">Select</option>
+                    <option value="Teenagers (13-17)">Teenagers (13-17)</option>
+                    <option value="Young Adults (18-30)">Young Adults (18-30)</option>
+                    <option value="Middle-aged Adults (31-45)">Middle-aged Adults (31-45)</option>
+                    <option value="Old Adults (Above 45)">Old Adults (Above 45)</option>
+                </select>
+
+                <label for="txtGender">Gender</label>
+                <select id="txtGender">
+                    <option value="Select">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                <label for="txtLanguage">What language do you speak</label>
+                <select id="txtLanguage">
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                    <option value="Mandarin">Mandarin</option>
+                    <option value="Indigenous Languages">Indigenous Languages</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="Tagalog">Tagalog</option>
+                    <option value="Punjabi">Punjabi</option>
+                    <option value="Korean">Korean</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="Vietnamese">Vietnamese</option>
+                    <option value="Russian">Russian</option>
+                </select>
+
+                <label for="txtBio">Bio</label>
+                <textarea id="txtBio" cols="20" rows="5"></textarea>
+
+                <label for="txtPhoneNumber">Phone Number</label>
+                <input type="tel" id="txtPhoneNumber">
+                <button id="next_Info">Next</button>
+            </div>
+            
+
+            
+            <fieldset id="skill">
+                <legend>Skills</legend>
+                <label for="skill1">Option 1</label>
+                <input type="checkbox" id="skill1" value="Option 1">
+                <br>
+                <label for="skill2">Option 2</label>
+                <input type="checkbox" id="skill2" value="Option 2"> 
+                <br>
+                <label for="skill3">Option 3</label>
+                <input type="checkbox" id="skill3" value="Option 3"> 
+                <br>
+                <label for="skill4">Option 4</label>
+                <input type="checkbox" id="skill4" value="Option 4"> 
+                <br>
+            </fieldset>
+        
+            <div id="experience_container">
+                <label>Experience</label>
+                <div id="expInputGroup">
+                    <input type="text">
+                </div>
+                <button id="addNewExpBtn">Add New</button>
+            </div>
+
+            <div id="certificate_container">
+                <label>Professional Certificate</label>
+                <div id="certInputGroup">
+                    <input type="text">
+                </div>
+                <button id="addNewCertBtn">Add New</button>
+            </div>
+
+            <fieldset id="interest">
+                <legend>Interest</legend>
+                <label for="interest1">Option 1</label>
+                <input type="checkbox" id="interest1" value="Option 1">
+                <br>
+                <label for="interest2">Option 2</label>
+                <input type="checkbox" id="interest2" value="Option 2"> 
+                <br>
+                <label for="interest3">Option 3</label>
+                <input type="checkbox" id="interest3" value="Option 3"> 
+                <br>
+                <label for="interest4">Option 4</label>
+                <input type="checkbox" id="interest4" value="Option 4"> 
+                <br>
+            </fieldset>
+
+            <fieldset id="availability">
+                <legend>Availability</legend>
+                <label for="availability1">Sunday</label>
+                <input type="checkbox" id="availability1" value="Sunday">
+                <br>
+                <label for="availability2">Monday</label>
+                <input type="checkbox" id="availability2" value="Monday"> 
+                <br>
+                <label for="availability3">Tuesday</label>
+                <input type="checkbox" id="availability3" value="Tuesday"> 
+                <br>
+                <label for="availability4">Wednesday</label>
+                <input type="checkbox" id="availability4" value="Wednesday"> 
+                <br>
+                <label for="availability5">Thursday</label>
+                <input type="checkbox" id="availability5" value="Thursday"> 
+                <br>
+                <label for="availability6">Friday</label>
+                <input type="checkbox" id="availability6" value="Friday"> 
+                <br>
+                <label for="availability7">Saturday</label>
+                <input type="checkbox" id="availability7" value="Saturday"> 
+                <br>
+            </fieldset>
+            <input type="submit" value="Sign Up" id="signUpBtn">
+        </form>
+    </main>    
+</body>
+</html>

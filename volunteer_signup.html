@@ -12,126 +12,27 @@
         <h1>Volunteer Sign Up</h1>
     </header>
     <main>
-        <form action="" id="signUp_Form">
+        <form id="signUp_Form">
             <label for="txtVolunteerId">Volunteer Id</label>
             <input type="text" id="txtVolunteerId">
 
             <label for="txtFirstName">First Name</label>
-            <input type="text" id="txtFirstName">
+            <input type="text" id="txtFirstName" required>
             <label for="txtLastName">Last Name</label>
-            <input type="text" id="txtLastName">
+            <input type="text" id="txtLastName" required>
+
+            <label for="txtUsername">Username</label>
+            <input type="text" id="txtUsername" required>
 
             <label for="txtEmail">Email</label>
-            <input type="email" id="txtEmail">
+            <input type="email" id="txtEmail" required>
 
-            <label for="txtPhoneNumber">Phone Number</label>
-            <input type="number" id="txtPhoneNumber">
-
-            <label for="txtDob">Date of Birth</label>
-            <input type="date" id="txtDob">
-
-            <label for="txtGender">Gender</label>
-            <select id="txtGender">
-                <option value="Select">Select</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-
-            <label for="txtUsername">Create Username</label>
-            <input type="text" id="txtUsername">
-            <label for="txtPassword">Create Password</label>
-            <input type="password" id="txtPassword">
+            <label for="txtPassword">Password</label>
+            <input type="password" id="txtPassword" required>
             <label for="txtConfirmPassword">Confirm Password</label>
-            <input type="password" id="txtConfirmPassword">
+            <input type="password" id="txtConfirmPassword" required>
             <div id="msg"></div>
 
-            <label for="txtAddress">Address</label>
-            <input type="text" id="txtAddress">
-            <label for="txtProvince">Province</label>
-            <input type="text" id="txtProvince">
-            <label for="txtCity">City</label>
-            <input type="text" id="txtCity">
-            <label for="txtPostalCode">Postal Code</label>
-            <input type="text" id="txtPostalCode">
-
-            <label for="txtPhotoLink">Select a photo</label>
-            <input type="file" id="txtPhotoLink">
-
-            <label for="txtBio">Bio</label>
-            <textarea id="txtBio" cols="20" rows="5"></textarea>
-
-            <fieldset id="skill">
-                <legend>Skills</legend>
-                <label for="skill1">Option 1</label>
-                <input type="checkbox" id="skill1" value="Option 1">
-                <br>
-                <label for="skill2">Option 2</label>
-                <input type="checkbox" id="skill2" value="Option 2"> 
-                <br>
-                <label for="skill3">Option 3</label>
-                <input type="checkbox" id="skill3" value="Option 3"> 
-                <br>
-                <label for="skill4">Option 4</label>
-                <input type="checkbox" id="skill4" value="Option 4"> 
-                <br>
-            </fieldset>
-        
-            <div id="experience_container">
-                <label>Experience</label>
-                <div id="expInputGroup">
-                    <input type="text">
-                </div>
-                <button id="addNewExpBtn">Add New</button>
-            </div>
-
-            <div id="certificate_container">
-                <label>Professional Certificate</label>
-                <div id="certInputGroup">
-                    <input type="text">
-                </div>
-                <button id="addNewCertBtn">Add New</button>
-            </div>
-
-            <fieldset id="interest">
-                <legend>Interest</legend>
-                <label for="interest1">Option 1</label>
-                <input type="checkbox" id="interest1" value="Option 1">
-                <br>
-                <label for="interest2">Option 2</label>
-                <input type="checkbox" id="interest2" value="Option 2"> 
-                <br>
-                <label for="interest3">Option 3</label>
-                <input type="checkbox" id="interest3" value="Option 3"> 
-                <br>
-                <label for="interest4">Option 4</label>
-                <input type="checkbox" id="interest4" value="Option 4"> 
-                <br>
-            </fieldset>
-
-            <fieldset id="availability">
-                <legend>Availability</legend>
-                <label for="availability1">Sunday</label>
-                <input type="checkbox" id="availability1" value="Sunday">
-                <br>
-                <label for="availability2">Monday</label>
-                <input type="checkbox" id="availability2" value="Monday"> 
-                <br>
-                <label for="availability3">Tuesday</label>
-                <input type="checkbox" id="availability3" value="Tuesday"> 
-                <br>
-                <label for="availability4">Wednesday</label>
-                <input type="checkbox" id="availability4" value="Wednesday"> 
-                <br>
-                <label for="availability5">Thursday</label>
-                <input type="checkbox" id="availability5" value="Thursday"> 
-                <br>
-                <label for="availability6">Friday</label>
-                <input type="checkbox" id="availability6" value="Friday"> 
-                <br>
-                <label for="availability7">Saturday</label>
-                <input type="checkbox" id="availability7" value="Saturday"> 
-                <br>
-            </fieldset>
             <input type="submit" value="Sign Up" id="signUpBtn">
         </form>
     </main>    
