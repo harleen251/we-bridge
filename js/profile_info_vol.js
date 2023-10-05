@@ -145,3 +145,11 @@ addNewCertBtn.addEventListener("click", function (event) {
     `;
     (document.getElementById(`inputGroupCert`)).append(div);
 })
+
+next_Info.addEventListener("click", function (event) {
+    event.preventDefault();
+})
+
+next_Qualification.addEventListener("click", function (event) {
+    event.preventDefault();
+})
