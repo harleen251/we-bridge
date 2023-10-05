@@ -17,21 +17,38 @@ class Volunteer {
     }
 }
 
+class Experience {
+    constructor(txtJobTitle,txtCompany,txtLocation,txtStartDate,txtEndDate){
+        this.jobTitle = txtJobTitle;
+        this.company = txtCompany;
+        this.location = txtLocation;
+        this.startDate = txtStartDate;
+        this.endDate = txtEndDate;
+    }
+}
+
+class Certificate {
+    constructor(txtCertifiacteName,txtIssuingOrg,txtDateObtained){
+        this.certificateName = txtCertifiacteName;
+        this.issuingOrg = txtIssuingOrg;
+        this.dateObtained = txtDateObtained;
+    }
+}
+
 const volunteerArray = [];
-let flag = 0;
 
 const form_Profile = document.getElementById("profile_Form")
-form_Profile.addEventListener("submit", function (event){
+saveBtn.addEventListener("click", function (event){
     event.preventDefault();
-    const txtPhotoLink = form_SignUp.querySelector("#txtPhotoLink");
-    const txtProvince = form_SignUp.querySelector("#txtProvince");
-    const txtCity = form_SignUp.querySelector("#txtCity");
-    const txtPostalCode = form_SignUp.querySelector("#txtPostalCode");
-    const txtAge = form_SignUp.querySelector("#txtAge");
-    const txtGender = form_SignUp.querySelector("#txtGender");
-    const txtLanguage = form_SignUp.querySelector("#txtLanguage");
-    const txtBio = form_SignUp.querySelector("#txtBio");
-    const txtPhoneNumber = form_SignUp.querySelector("#txtPhoneNumber");
+    const txtPhotoLink = form_Profile.querySelector("#txtPhotoLink");
+    const txtProvince = form_Profile.querySelector("#txtProvince");
+    const txtCity = form_Profile.querySelector("#txtCity");
+    const txtPostalCode = form_Profile.querySelector("#txtPostalCode");
+    const txtAge = form_Profile.querySelector("#txtAge");
+    const txtGender = form_Profile.querySelector("#txtGender");
+    const txtLanguage = form_Profile.querySelector("#txtLanguage");
+    const txtBio = form_Profile.querySelector("#txtBio");
+    const txtPhoneNumber = form_Profile.querySelector("#txtPhoneNumber");
 
     const skill = document.querySelectorAll("#skill input");
     const skillArray = [];
@@ -40,21 +57,31 @@ form_Profile.addEventListener("submit", function (event){
             skillArray.push(i.value);
         }
     }
-
-    const inputExp = document.querySelectorAll("#experience_container input");
+    
     const expArray = [];
-    for ( i of inputExp) {
-        if( i.value !== "" ) {
-            expArray.push(i.value);
-        }
+    const inputGroup = document.getElementById("inputGroup");
+    const childDivs = inputGroup.querySelectorAll("div");
+    const numberOfDivs = childDivs.length;
+    for(let k = 0; k < numberOfDivs; k++) {
+        let txtJobTitle = document.getElementById(`txtJobTitle${k}`).value;
+        let txtCompany = document.getElementById(`txtCompany${k}`).value;
+        let txtLocation = document.getElementById(`txtLocation${k}`).value;
+        let txtStartDate = document.getElementById(`txtStartDate${k}`).value;
+        let txtEndDate = document.getElementById(`txtEndDate${k}`).value;
+        let experience = new Experience(txtJobTitle,txtCompany,txtLocation,txtStartDate,txtEndDate);
+        expArray.push(experience);
     }
 
-    const inputCert = document.querySelectorAll("#certificate_container input");
     const certArray = [];
-    for ( i of inputCert) {
-        if( i.value !== "" ) {
-            certArray.push(i.value);
-        }
+    const inputGroupCert = document.getElementById("inputGroupCert");
+    const childDivsCert = inputGroupCert.querySelectorAll("div");
+    const numberOfDivsCert = childDivsCert.length;
+    for(let m = 0; m < numberOfDivsCert; m++) {
+        let txtCertifiacteName = document.getElementById(`txtCertifiacteName${m}`).value;
+        let txtIssuingOrg = document.getElementById(`txtIssuingOrg${m}`).value;
+        let txtDateObtained = document.getElementById(`txtDateObtained${m}`).value;
+        let certificate = new Certificate(txtCertifiacteName,txtIssuingOrg,txtDateObtained);
+        certArray.push(certificate);
     }
 
     const interest = document.querySelectorAll("#interest input");
@@ -72,29 +99,49 @@ form_Profile.addEventListener("submit", function (event){
             availabilityArray.push(i.value);
         }
     }
-    if( flag === 1 ) {
-        const volunteer = new Volunteer(txtVolunteerId.value,txtFirstName.value,txtLastName.value,txtEmail.value,txtPhoneNumber.value,txtDob.value,txtGender.value,txtUsername.value,txtPassword.value,txtAddress.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtPhotoLink.value,txtBio.value,skillArray,expArray,certArray,interestArray,availabilityArray);
-        volunteerArray.push(volunteer);
-        console.log(volunteerArray);
-    } else {
-        alert("Passwords do not match. Please try again.");
-    }
-
+    
+    const volunteer = new Volunteer(txtPhotoLink.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtAge.value,txtGender.value,txtLanguage.value,txtBio.value,txtPhoneNumber.value,skillArray,expArray,certArray,interestArray,availabilityArray);
+    volunteerArray.push(volunteer);
+    console.log(volunteerArray);
+   
 })
 
-
+let j = 0;
 const addNewExpBtn = document.getElementById("addNewExpBtn");
 addNewExpBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    const inputExp = document.createElement("input");
-    inputExp.type = "text";
-    (document.getElementById("expInputGroup")).append(inputExp);
+    j += 1;
+    const div = document.createElement("div");
+    div.setAttribute("id", `expInputGroup${j}`);
+    div.innerHTML = `
+    <label for="txtJobTitle${j}">Job Title</label>
+    <input type="text" id="txtJobTitle${j}">
+    <label for="txtCompany${j}">Company Name</label>
+    <input type="text" id="txtCompany${j}">
+    <label for="txtLocation${j}">Location</label>
+    <input type="text" id="txtLocation${j}">
+    <label for="txtStartDate${j}">Start Date</label>
+    <input type="date" id="txtStartDate${j}">
+    <label for="txtEndDate${j}">End Date</label>
+    <input type="date" id="txtEndDate${j}">
+    `;
+    (document.getElementById(`inputGroup`)).append(div);
 })
 
+let l = 0;
 const addNewCertBtn = document.getElementById("addNewCertBtn");
 addNewCertBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    const inputCert = document.createElement("input");
-    inputCert.type = "text";
-    (document.getElementById("certInputGroup")).append(inputCert);
+    l += 1;
+    const div = document.createElement("div");
+    div.setAttribute("id", `certInputGroup${l}`);
+    div.innerHTML = `
+    <label for="txtCertifiacteName${l}">Certificate Name</label>
+    <input type="text" id="txtCertifiacteName${l}">
+    <label for="txtIssuingOrg${l}">Issuing Organization</label>
+    <input type="text" id="txtIssuingOrg${l}">
+    <label for="txtDateObtained${l}">Date Obtained</label>
+    <input type="date" id="txtDateObtained${l}">
+    `;
+    (document.getElementById(`inputGroupCert`)).append(div);
 })
