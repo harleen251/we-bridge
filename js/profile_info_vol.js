@@ -1,20 +1,14 @@
 class Volunteer {
-    constructor(txtVolunteerId,txtFirstName,txtLastName,txtEmail,txtPhoneNumber,txtDob,txtGender,txtUsername,txtPassword,txtAddress,txtProvince,txtCity,txtPostalCode,txtPhotoLink,txtBio,skills,experience,certificate,interest,availability){
-        this.volunteerId = txtVolunteerId;
-        this.firstName = txtFirstName;
-        this.lastName = txtLastName;
-        this.email = txtEmail;
-        this.phoneNumber = txtPhoneNumber;
-        this.dob = txtDob;
-        this.gender = txtGender;
-        this.username = txtUsername;
-        this.password = txtPassword;
-        this.address = txtAddress;
+    constructor(txtPhotoLink,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,skills,experience,certificate,interest,availability){
+        this.photoLink = txtPhotoLink;
         this.province = txtProvince;
         this.city = txtCity;
         this.postalCode = txtPostalCode;
-        this.photoLink = txtPhotoLink;
+        this.age = txtAge;
+        this.gender = txtGender;
+        this.language = txtLanguage;
         this.bio = txtBio;
+        this.phoneNumber = txtPhoneNumber;
         this.skills = skills;
         this.experience = experience;
         this.certificate = certificate;
@@ -26,24 +20,18 @@ class Volunteer {
 const volunteerArray = [];
 let flag = 0;
 
-const form_SignUp = document.getElementById("signUp_Form")
-form_SignUp.addEventListener("submit", function (event){
+const form_Profile = document.getElementById("profile_Form")
+form_Profile.addEventListener("submit", function (event){
     event.preventDefault();
-    const txtVolunteerId = form_SignUp.querySelector("#txtVolunteerId");
-    const txtFirstName = form_SignUp.querySelector("#txtFirstName");
-    const txtLastName = form_SignUp.querySelector("#txtLastName");
-    const txtEmail = form_SignUp.querySelector("#txtEmail");
-    const txtPhoneNumber = form_SignUp.querySelector("#txtPhoneNumber");
-    const txtDob = form_SignUp.querySelector("#txtDob");
-    const txtGender = form_SignUp.querySelector("#txtGender");
-    const txtUsername = form_SignUp.querySelector("#txtUsername");
-    const txtPassword = form_SignUp.querySelector("#txtPassword");
-    const txtAddress = form_SignUp.querySelector("#txtAddress");
+    const txtPhotoLink = form_SignUp.querySelector("#txtPhotoLink");
     const txtProvince = form_SignUp.querySelector("#txtProvince");
     const txtCity = form_SignUp.querySelector("#txtCity");
     const txtPostalCode = form_SignUp.querySelector("#txtPostalCode");
-    const txtPhotoLink = form_SignUp.querySelector("#txtPhotoLink");
+    const txtAge = form_SignUp.querySelector("#txtAge");
+    const txtGender = form_SignUp.querySelector("#txtGender");
+    const txtLanguage = form_SignUp.querySelector("#txtLanguage");
     const txtBio = form_SignUp.querySelector("#txtBio");
+    const txtPhoneNumber = form_SignUp.querySelector("#txtPhoneNumber");
 
     const skill = document.querySelectorAll("#skill input");
     const skillArray = [];
@@ -94,27 +82,6 @@ form_SignUp.addEventListener("submit", function (event){
 
 })
 
-document.getElementById("txtConfirmPassword").addEventListener("keyup", function (event) {
-    event.preventDefault();
-    if(txtPassword.value === txtConfirmPassword.value) {
-        msg.innerHTML = `Passwords match`;
-        flag = 1;
-    } else {
-        msg.innerHTML = `Passwords do not match`;
-        flag = 0;
-    }
-})
-
-document.getElementById("txtPassword").addEventListener("keyup", function (event) {
-    event.preventDefault();
-    if(txtPassword.value === txtConfirmPassword.value) {
-        msg.innerHTML = `Passwords match`;
-        flag = 1;
-    } else {
-        msg.innerHTML = `Passwords do not match`;
-        flag = 0;
-    }
-})
 
 const addNewExpBtn = document.getElementById("addNewExpBtn");
 addNewExpBtn.addEventListener("click", function (event) {
