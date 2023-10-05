@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Profile</title>
+    <script src="./js/profile_info_vol.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <h1>BUILD YOUR PROFILE</h1>
+    </header>
+    <main>
+        <form id="profile_Form">
+            <div class="personal_Info">
+                <h2>Personal Information</h2>
+
+                <label for="txtPhotoLink">Select a photo</label>
+                <input type="file" id="txtPhotoLink">
+
+                <label for="txtCity">City</label>
+                <input type="text" id="txtCity">
+                <label for="txtProvince">Province</label>
+                <input type="text" id="txtProvince">
+                <label for="txtPostalCode">Postal Code</label>
+                <input type="text" id="txtPostalCode">
+
+                <label for="txtAge">Age</label>
+                <select id="txtAge">
+                    <option value="Select">Select</option>
+                    <option value="Teenagers (13-17)">Teenagers (13-17)</option>
+                    <option value="Young Adults (18-30)">Young Adults (18-30)</option>
+                    <option value="Middle-aged Adults (31-45)">Middle-aged Adults (31-45)</option>
+                    <option value="Old Adults (Above 45)">Old Adults (Above 45)</option>
+                </select>
+
+                <label for="txtGender">Gender</label>
+                <select id="txtGender">
+                    <option value="Select">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                <label for="txtLanguage">What language do you speak</label>
+                <select id="txtLanguage">
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                    <option value="Mandarin">Mandarin</option>
+                    <option value="Indigenous Languages">Indigenous Languages</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="Tagalog">Tagalog</option>
+                    <option value="Punjabi">Punjabi</option>
+                    <option value="Korean">Korean</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="Vietnamese">Vietnamese</option>
+                    <option value="Russian">Russian</option>
+                </select>
+
+                <label for="txtBio">Bio</label>
+                <textarea id="txtBio" cols="20" rows="5"></textarea>
+
+                <label for="txtPhoneNumber">Phone Number</label>
+                <input type="tel" id="txtPhoneNumber">
+                <button id="next_Info">Next</button>
+            </div>
+            
+
+            <div class="qualification">
+                <section id="skill">
+                    <h2>Your Skills</h2>
+                    <p>As part of your profile, you can select upto 4 Skills that you want to showcase.</p>
+                    <fieldset>
+                        <legend>Skills</legend>
+                        <label for="skill1">Option 1</label>
+                        <input type="checkbox" id="skill1" value="Option 1">
+                        <br>
+                        <label for="skill2">Option 2</label>
+                        <input type="checkbox" id="skill2" value="Option 2"> 
+                        <br>
+                        <label for="skill3">Option 3</label>
+                        <input type="checkbox" id="skill3" value="Option 3"> 
+                        <br>
+                        <label for="skill4">Option 4</label>
+                        <input type="checkbox" id="skill4" value="Option 4"> 
+                        <br>
+                        <label for="skill5">Option 5</label>
+                        <input type="checkbox" id="skill5" value="Option 5"> 
+                        <br>
+                        <label for="skill6">Option 6</label>
+                        <input type="checkbox" id="skill6" value="Option 6"> 
+                        <br>
+                    </fieldset>
+                </section>
+
+                <section id="experience_container">
+                    <h2>Your Experience</h2>
+                    <p>Share your previous volunteer or work experience that are relevent to your interests in volunteering.</p>
+                    <div id="inputGroup">
+                        <div id="expInputGroup0">
+                            <label for="txtJobTitle0">Job Title</label>
+                            <input type="text" id="txtJobTitle0">
+                            <label for="txtCompany0">Company Name</label>
+                            <input type="text" id="txtCompany0">
+                            <label for="txtLocation0">Location</label>
+                            <input type="text" id="txtLocation0">
+                            <label for="txtStartDate0">Start Date</label>
+                            <input type="date" id="txtStartDate0">
+                            <label for="txtEndDate0">End Date</label>
+                            <input type="date" id="txtEndDate0">
+                        </div>
+                    </div>
+                    <button id="addNewExpBtn">Add New</button>
+                </section>
+
+                <section id="certificate_container">
+                    <h2>Professional Certificate</h2>
+                    <p>Share if you hold any professional certificates that might be relevant to volunteer opportunities.</p>
+                    <div id="inputGroupCert">
+                        <div id="certInputGroup0">
+                            <label for="txtCertifiacteName0">Certificate Name</label>
+                            <input type="text" id="txtCertifiacteName0">
+                            <label for="txtIssuingOrg0">Issuing Organization</label>
+                            <input type="text" id="txtIssuingOrg0">
+                            <label for="txtDateObtained0">Date Obtained</label>
+                            <input type="date" id="txtDateObtained0">
+                        </div>
+                    </div>
+                    <button id="addNewCertBtn">Add New</button>
+                </section>
+                <button id="next_Qualification">Next</button>
+            </div>
+    
+        
+            <div class="involvement">
+                <section id="interest">
+                    <h2>Your Interests</h2>
+                    <p>Share your passions. We will match volunteer opportunities with what you love.</p>
+                    <fieldset>
+                        <legend>Interest</legend>
+                        <label for="interest1">Option 1</label>
+                        <input type="checkbox" id="interest1" value="Option 1">
+                        <br>
+                        <label for="interest2">Option 2</label>
+                        <input type="checkbox" id="interest2" value="Option 2"> 
+                        <br>
+                        <label for="interest3">Option 3</label>
+                        <input type="checkbox" id="interest3" value="Option 3"> 
+                        <br>
+                        <label for="interest4">Option 4</label>
+                        <input type="checkbox" id="interest4" value="Option 4"> 
+                        <br>
+                    </fieldset>
+                </section>
+
+                <section  id="availability">
+                    <h2>Your Availability</h2>
+                    <p>When can you volunteer</p>
+                    <fieldset>
+                        <legend>Availability</legend>
+                        <label for="availability1">Weekdays<p>Monday-Friday</p></label>
+                        <input type="checkbox" id="availability1" value="Weekdays">
+                        <br>
+                        <label for="availability2">Weekends<p>Saturday-Sunday</p></label>
+                        <input type="checkbox" id="availability2" value="Weekends"> 
+                        <br>
+                    </fieldset>
+                </section>
+            </div>
+
+            <input type="submit" value="Save" id="saveBtn">
+        </form>
+    </main>    
+</body>
+</html>
