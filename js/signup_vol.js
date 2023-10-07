@@ -1,5 +1,5 @@
 class Volunteer {
-    constructor(txtVolunteerId,txtFirstName,txtLastName,txtUsername,txtEmail,txtPassword){
+    constructor(txtVolunteerId,txtFirstName,txtLastName,txtEmail,txtPassword){
         this.volunteerId = txtVolunteerId;
         this.firstName = txtFirstName;
         this.lastName = txtLastName;
@@ -18,17 +18,16 @@ form_SignUp.addEventListener("submit", function (event){
     const txtVolunteerId = form_SignUp.querySelector("#txtVolunteerId");
     const txtFirstName = form_SignUp.querySelector("#txtFirstName");
     const txtLastName = form_SignUp.querySelector("#txtLastName");
-    const txtUsername = form_SignUp.querySelector("#txtUsername");
     const txtEmail = form_SignUp.querySelector("#txtEmail");
     const txtPassword = form_SignUp.querySelector("#txtPassword");
 
     if( flag === 1 ) {
-        const volunteer = new Volunteer(txtVolunteerId.value,txtFirstName.value,txtLastName.value,txtUsername.value,txtEmail.value,txtPassword.value);
+        const volunteer = new Volunteer(txtVolunteerId.value,txtFirstName.value,txtLastName.value,txtEmail.value,txtPassword.value);
         volunteerArray.push(volunteer);
         console.log(volunteerArray);
 
-        const pageURL = "volunteer_profile_info.html"
-        window.location.href = pageURL;
+        let welcome = document.getElementById("welcome");
+        welcome.style.display = "block";
 
        
     } else {
@@ -59,4 +58,15 @@ document.getElementById("txtPassword").addEventListener("keyup", function (event
             flag = 0;
         }
     }
+})
+
+document.getElementById("build_profile").addEventListener("click", function (event) {
+    event.preventDefault();
+    const pageURL = "volunteer_build_profile.html"
+    window.location.href = pageURL;
+})
+
+document.getElementById("skip_profile").addEventListener("click", function (event) {
+    event.preventDefault();
+    
 })
