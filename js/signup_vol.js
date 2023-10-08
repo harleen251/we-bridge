@@ -3,7 +3,6 @@ class Volunteer {
         this.volunteerId = txtVolunteerId;
         this.firstName = txtFirstName;
         this.lastName = txtLastName;
-        this.username = txtUsername;
         this.email = txtEmail;
         this.password = txtPassword;
     }
@@ -62,7 +61,7 @@ document.getElementById("txtPassword").addEventListener("keyup", function (event
 
 document.getElementById("build_profile").addEventListener("click", function (event) {
     event.preventDefault();
-    const pageURL = "volunteer_build_profile.html"
+    const pageURL = "volunteer_build_profile.html";
     window.location.href = pageURL;
 })
 
