@@ -1,5 +1,5 @@
 class Volunteer {
-    constructor(txtFirstName,txtLastName,txtPhotoLink,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,skills,experience,certificate,interest,availability){
+    constructor(txtFirstName,txtLastName,txtPhotoLink,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,txtEmail,skills,experience,certificate,interest,availability){
         this.firstName = txtFirstName;
         this.lastName = txtLastName;
         this.photoLink = txtPhotoLink;
@@ -39,6 +39,8 @@ class Certificate {
 }
 
 const volunteerArray = [];
+const skillArray = [];
+const interestArray = [];
 
 const form_Profile = document.getElementById("profile_Form")
 saveBtn.addEventListener("click", function (event){
@@ -55,14 +57,6 @@ saveBtn.addEventListener("click", function (event){
     const txtBio = form_Profile.querySelector("#txtBio");
     const txtPhoneNumber = form_Profile.querySelector("#txtPhoneNumber");
     const txtEmail = form_Profile.querySelector("#txtEmail");
-
-    const skill = document.querySelectorAll("#skill input");
-    const skillArray = [];
-    for ( let i of skill) {
-        if( i.checked === true ) {
-            skillArray.push(i.value);
-        }
-    }
     
     const expArray = [];
     const inputGroup = document.getElementById("inputGroup");
@@ -88,14 +82,6 @@ saveBtn.addEventListener("click", function (event){
         let txtDateObtained = document.getElementById(`txtDateObtained${m}`).value;
         let certificate = new Certificate(txtCertifiacteName,txtIssuingOrg,txtDateObtained);
         certArray.push(certificate);
-    }
-
-    const interest = document.querySelectorAll("#interest input");
-    const interestArray = [];
-    for ( let i of interest) {
-        if( i.checked === true ) {
-            interestArray.push(i.value);
-        }
     }
 
     const availability = document.querySelectorAll("#availability input");
@@ -154,17 +140,33 @@ addNewCertBtn.addEventListener("click", function (event) {
 
 choose_interest.addEventListener("click", function (event) {
     option_interest.style.display = "block";
+    event.preventDefault();
 })
 
 save_interests.addEventListener("click", function (event) {
+    event.preventDefault();
+    const interest = document.querySelectorAll("#interest input");
+    for ( let i of interest) {
+        if( i.checked === true ) {
+            interestArray.push(i.value);
+        }
+    }
     option_interest.style.display = "none";
 })
 
 choose_skill.addEventListener("click", function (event) {
+    event.preventDefault();
     option_skill.style.display = "block";
 })
 
 save_skill.addEventListener("click", function (event) {
+    event.preventDefault();
+    const skill = document.querySelectorAll("#skill input");
+    for ( let i of skill) {
+        if( i.checked === true ) {
+            skillArray.push(i.value);
+        }
+    }
     option_skill.style.display = "none";
 })
 
