@@ -13,37 +13,344 @@
     </header>
     <main>
         <form id="profile_Form">
-            <div class="personal_Info">
+            <div id="personal_Info">
                 <h2>Personal Information</h2>
 
-                <label for="txtPhotoLink">Select a photo</label>
+                <label for="txtPhotoLink">Add a profile picture</label>
                 <input type="file" id="txtPhotoLink">
 
-                <label for="txtCity">City</label>
-                <input type="text" id="txtCity">
-                <label for="txtProvince">Province</label>
-                <input type="text" id="txtProvince">
-                <label for="txtPostalCode">Postal Code</label>
-                <input type="text" id="txtPostalCode">
+                <section>
+                    <h3>About You</h3>
 
-                <label for="txtAge">Age</label>
-                <select id="txtAge">
-                    <option value="Select">Select</option>
-                    <option value="Teenagers (13-17)">Teenagers (13-17)</option>
-                    <option value="Young Adults (18-30)">Young Adults (18-30)</option>
-                    <option value="Middle-aged Adults (31-45)">Middle-aged Adults (31-45)</option>
-                    <option value="Old Adults (Above 45)">Old Adults (Above 45)</option>
-                </select>
+                    <label for="txtFirstName">First Name</label>
+                    <input type="text" id="txtFirstName" >
+                    <label for="txtLastName">Last Name</label>
+                    <input type="text" id="txtLastName">
 
-                <label for="txtGender">Gender</label>
-                <select id="txtGender">
-                    <option value="Select">Select</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
+                    <label for="txtAge">Age</label>
+                    <select id="txtAge">
+                        <option value="Select">Select</option>
+                        <option value="Teenagers (13-17)">Teenagers (13-17)</option>
+                        <option value="Young Adults (18-30)">Young Adults (18-30)</option>
+                        <option value="Middle-aged Adults (31-45)">Middle-aged Adults (31-45)</option>
+                        <option value="Old Adults (Above 45)">Old Adults (Above 45)</option>
+                    </select>
 
-                <label for="txtLanguage">What language do you speak</label>
+                    <label for="txtGender">Gender</label>
+                    <select id="txtGender">
+                        <option value="Select">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+
+                    <label for="txtBio">Bio</label>
+                    <textarea id="txtBio" cols="20" rows="5"></textarea>
+
+                    <label for="txtCity">City</label>
+                    <input type="text" id="txtCity">
+                    <label for="txtProvince">Province</label>
+                    <input type="text" id="txtProvince">
+                    <label for="txtPostalCode">Postal Code</label>
+                    <input type="text" id="txtPostalCode">
+                </section>
+
+               <section>
+                <h3>Contact Information</h3>
+
+                <label for="txtEmail">Email</label>
+                <input type="email" id="txtEmail">
+
+                    <label for="txtPhoneNumber">Phone Number</label>
+                    <input type="tel" id="txtPhoneNumber">
+               </section>
+
+               <button id="next_Info">Next</button>
+               <p><a id="edit_preference_background" href="#preference_background">Edit Preference and Background</a></p>
+            </div>
+            
+
+            <div id="preference_background">
+                <h2>Preference and Background</h2>
+                <p>To connect you with the right opportunities, 
+                we need some additional information from you.</p>
+                
+                <section id="interest">
+                    <h2><span>1</span> Let us know your volunteer interests</h2>
+                    <p>Select up to 5 Interests</p>
+                    <button id="choose_interest">Choose</button>
+
+                    <div id="option_interest">
+                        <section id="wrap_option_interest">
+                            <div class="imgcontainer">
+                                <span onclick="document.getElementById('option_interest').style.display='none'" class="close" title="Close Modal">&times;</span>
+                            </div>
+                            <h3>Select Your Interests</h3>
+                            <p>Please select up to 5 interests</p>
+                            <fieldset>
+                                <label for="interest1">Advocacy and Law</label>
+                                <input type="checkbox" id="interest1" value="Advocacy and Law">
+                                <br>
+                                <label for="interest2">Anti-Racism</label>
+                                <input type="checkbox" id="interest2" value="Anti-Racism"> 
+                                <br>
+                                <label for="interest3">Community Development
+                                </label>
+                                <input type="checkbox" id="interest3" value="Community Development"> 
+                                <br>
+                                <label for="interest4">Disability Services</label>
+                                <input type="checkbox" id="interest4" value="Disability Services"> 
+                                <br>
+                                <label for="interest4">Elections</label>
+                                <input type="checkbox" id="interest4" value="Elections"> 
+                                <br>
+                                <label for="interest4">Food Security</label>
+                                <input type="checkbox" id="interest4" value="Food Security"> 
+                                <br>
+                                <label for="interest4">Indigenous</label>
+                                <input type="checkbox" id="interest4" value="Indigenous"> 
+                                <br>
+                                <label for="interest4">Literacy, Libtaries, Learning</label>
+                                <input type="checkbox" id="interest4" value="Literacy, Libtaries, Learning"> 
+                                <br>
+                                <label for="interest4">Poverty and Homelessness</label>
+                                <input type="checkbox" id="interest4" value="Poverty and Homelessness"> 
+                                <br>
+                                <label for="interest4">Seniors</label>
+                                <input type="checkbox" id="interest4" value="Seniors"> 
+                                <br>
+                                <label for="interest4">Sports and Recreation</label>
+                                <input type="checkbox" id="interest4" value="Sports and Recreation"> 
+                                <br>
+                                <label for="interest4">Agriculture, Horticulture, Gardening</label>
+                                <input type="checkbox" id="interest4" value="Agriculture, Horticulture, Gardening"> 
+                                <br>
+                                <label for="interest4">Arts and Culture</label>
+                                <input type="checkbox" id="interest4" value="Arts and Culture"> 
+                                <br>
+                                <label for="interest4">Computers and IT</label>
+                                <input type="checkbox" id="interest4" value="Computers and IT"> 
+                                <br>
+                                <label for="interest4">Disaster Relief</label>
+                                <input type="checkbox" id="interest4" value="Disaster Relief"> 
+                                <br>
+                                <label for="interest4">Employment and Career Mentorship</label>
+                                <input type="checkbox" id="interest4" value="Employment and Career Mentorship"> 
+                                <br>
+                                <label for="interest4">Gender and Identity</label>
+                                <input type="checkbox" id="interest4" value="Gender and Identity"> 
+                                <br>
+                                <label for="interest4">International Development</label>
+                                <input type="checkbox" id="interest4" value="International Development"> 
+                                <br>
+                                <label for="interest4">Nonprofit Services</label>
+                                <input type="checkbox" id="interest4" value="Nonprofit Services"> 
+                                <br>
+                                <label for="interest4">Professional Associations</label>
+                                <input type="checkbox" id="interest4" value="Professional Associations"> 
+                                <br>
+                                <label for="interest4">Special Events and Festivals</label>
+                                <input type="checkbox" id="interest4" value="Special Events and Festivals"> 
+                                <br>
+                                <label for="interest4">Animal Services</label>
+                                <input type="checkbox" id="interest4" value="Animal Services"> 
+                                <br>
+                                <label for="interest4">Children, Youth, Family</label>
+                                <input type="checkbox" id="interest4" value="Children, Youth, Family"> 
+                                <br>
+                                <label for="interest4">Diversity and Immigration</label>
+                                <input type="checkbox" id="interest4" value="Diversity and Immigration"> 
+                                <br>
+                                <label for="interest4">Environment</label>
+                                <input type="checkbox" id="interest4" value="Environment"> 
+                                <br>
+                                <label for="interest4">Health and Wellness</label>
+                                <input type="checkbox" id="interest4" value="Health and Wellness"> 
+                                <br>
+                                <label for="interest4">LGBTQ+</label>
+                                <input type="checkbox" id="interest4" value="LGBTQ+"> 
+                                <br>
+                                <label for="interest4">Older Adults</label>
+                                <input type="checkbox" id="interest4" value="Older Adults"> 
+                                <br>
+                                <label for="interest4">Refugee and Settlement</label>
+                                <input type="checkbox" id="interest4" value="Refugee and Settlement"> 
+                                <br>
+                                <label for="interest4">Spirituality and Faith</label>
+                                <input type="checkbox" id="interest4" value="Spirituality and Faith"> 
+                                <br>
+                            </fieldset>
+                            <button id="save_interests">Save</button>
+                        </section>
+                    </div>
+                    
+                </section>
+
+                <section  id="availability">
+                    <h2><span>2</span> What is your availability?</h2>
+                    <fieldset>
+                        <label for="availability1">Weekdays<p>Monday-Friday</p></label>
+                        <input type="checkbox" id="availability1" value="Weekdays">
+                        <br>
+                        <label for="availability2">Weekends<p>Saturday-Sunday</p></label>
+                        <input type="checkbox" id="availability2" value="Weekends"> 
+                        <br>
+                    </fieldset>
+                </section>
+
+                <section>
+                    <h2><span>3</span> Add your experience, certificates, and skills </h2>
+                    <div id="experience_container">
+                        <p>Work/ Volunteer Experience</p>
+                        <div id="inputGroup">
+                            <div id="expInputGroup0">
+                                <label for="txtJobTitle0">Job Title</label>
+                                <input type="text" id="txtJobTitle0">
+                                <label for="txtCompany0">Company Name</label>
+                                <input type="text" id="txtCompany0">
+                                <label for="txtLocation0">Location</label>
+                                <input type="text" id="txtLocation0">
+                                <label for="txtStartDate0">Start Date</label>
+                                <input type="date" id="txtStartDate0">
+                                <label for="txtEndDate0">End Date</label>
+                                <input type="date" id="txtEndDate0">
+                            </div>
+                        </div>
+                        <button id="addNewExpBtn">Add New</button>
+                    </div>
+
+                    <div id="certificate_container">
+                        <p>Professional Certificate</p>
+                        <div id="inputGroupCert">
+                            <div id="certInputGroup0">
+                                <label for="txtCertifiacteName0">Certificate Name</label>
+                                <input type="text" id="txtCertifiacteName0">
+                                <label for="txtIssuingOrg0">Issuing Organization</label>
+                                <input type="text" id="txtIssuingOrg0">
+                                <label for="txtDateObtained0">Date Obtained</label>
+                                <input type="date" id="txtDateObtained0">
+                            </div>
+                        </div>
+                        <button id="addNewCertBtn">Add New</button>
+                    </div>
+                </section>
+
+                <div id="skill">
+                    <p>Skills</p>
+                    <p>Select up to 5 Skills</p>
+                    <button id="choose_skill">Choose</button>
+                    <div id="option_skill">
+                        <section id="wrap_skill">
+                            <div class="imgcontainer">
+                                <span onclick="document.getElementById('option_skill').style.display='none'" class="close" title="Close Modal">&times;</span>
+                            </div>
+                            <h3>Select Your Skills</h3>
+                            <p>Please select up to 5 skills</p>
+                            <fieldset>
+                                <p>Accounting</p>
+                                <label for="skill1">Budgeting</label>
+                                <input type="checkbox" id="skill1" value="Budgeting">
+                                <br>
+                                <label for="skill2">Forecasting</label>
+                                <input type="checkbox" id="skill2" value="Forecasting"> 
+                                <br>
+                                <label for="skill3">Invoicing</label>
+                                <input type="checkbox" id="skill3" value="Invoicing"> 
+                            
+                                <p>Administration</p>
+                                <label for="skill4">File Management</label>
+                                <input type="checkbox" id="skill4" value="File Management"> 
+                                <br>
+                                <label for="skill5">Administration</label>
+                                <input type="checkbox" id="skill5" value="Administration"> 
+                                <br>
+                                <label for="skill6">Secretary</label>
+                                <input type="checkbox" id="skill6" value="Secretary"> 
+                                
+                                <p>Caregiving</p>
+                                <label for="skill6">Animal Care</label>
+                                <input type="checkbox" id="skill6" value="Animal Care"> 
+                                <br>
+                                <label for="skill6">Child Care</label>
+                                <input type="checkbox" id="skill6" value="Child Care"> 
+                                <br>
+                                <label for="skill6">Cleaning</label>
+                                <input type="checkbox" id="skill6" value="Cleaning"> 
+                                <br>
+                                <label for="skill6">Cooking</label>
+                                <input type="checkbox" id="skill6" value="Cooking"> 
+                                <br>
+                                <label for="skill6">Elder Care</label>
+                                <input type="checkbox" id="skill6" value="Elder Care"> 
+                                <br>
+                                <label for="skill6">Fitness</label>
+                                <input type="checkbox" id="skill6" value="Fitness"> 
+                                <br>
+                                <label for="skill6">Patient Care</label>
+                                <input type="checkbox" id="skill6" value="Patient Care"> 
+                                
+                                <p>Construction, Transportation, Maintenance</p>
+                                <label for="skill6">Carpentry</label>
+                                <input type="checkbox" id="skill6" value="Carpentry"> 
+                                <br>
+                                <label for="skill6">Delivery</label>
+                                <input type="checkbox" id="skill6" value="Delivery"> 
+                                <br>
+                                <label for="skill6">Driving</label>
+                                <input type="checkbox" id="skill6" value="Driving"> 
+                                
+                                <p>Creative and Art</p>
+                                <label for="skill6">Dance/ Theatre</label>
+                                <input type="checkbox" id="skill6" value="Dance/ Theatre"> 
+                                <br>
+                                <label for="skill6">Music Performance</label>
+                                <input type="checkbox" id="skill6" value="Music Performance"> 
+                                <br>
+                                <label for="skill6">Photography</label>
+                                <input type="checkbox" id="skill6" value="Photography"> 
+                                <br>
+                                <label for="skill6">Visual Arts</label>
+                                <input type="checkbox" id="skill6" value="Visual Arts"> 
+                                
+                                <p>Design and Journalism</p>
+                                <label for="skill6">Copy Writing</label>
+                                <input type="checkbox" id="skill6" value="Copy Writing"> 
+                                <br>
+                                <label for="skill6">Editing</label>
+                                <input type="checkbox" id="skill6" value="Editing"> 
+                                <br>
+                                <label for="skill6">Graphic Design</label>
+                                <input type="checkbox" id="skill6" value="Graphic Design"> 
+                                <br>
+                                <label for="skill6">Video Production</label>
+                                <input type="checkbox" id="skill6" value="Video Production"> 
+                                <br>
+                                <label for="skill6">Website Production</label>
+                                <input type="checkbox" id="skill6" value="Website Production"> 
+                                
+                                <p>Education and Language</p>
+                                <label for="skill6">Bilingual</label>
+                                <input type="checkbox" id="skill6" value="Bilingual"> 
+                                <br>
+                                <label for="skill6">Teaching/ Tutoring</label>
+                                <input type="checkbox" id="skill6" value="Teaching/ Tutoring"> 
+                                
+                                <p>Environmental</p>
+                                <label for="skill6">Agricultural Planning</label>
+                                <input type="checkbox" id="skill6" value="Agricultural Planning"> 
+                                <br>
+                                <label for="skill6">Environmental Planning</label>
+                                <input type="checkbox" id="skill6" value="Environmental Planning"> 
+                                <br>
+                                
+                            </fieldset>
+                            <button id="save_skill">Save</button>
+                        </section>
+                    </div>
+                </div>
+
+                <label for="txtLanguage">Language</label>
                 <select id="txtLanguage">
+                    <option value="0">Select the language you speak</option>
                     <option value="English">English</option>
                     <option value="French">French</option>
                     <option value="Mandarin">Mandarin</option>
@@ -56,119 +363,11 @@
                     <option value="Vietnamese">Vietnamese</option>
                     <option value="Russian">Russian</option>
                 </select>
-
-                <label for="txtBio">Bio</label>
-                <textarea id="txtBio" cols="20" rows="5"></textarea>
-
-                <label for="txtPhoneNumber">Phone Number</label>
-                <input type="tel" id="txtPhoneNumber">
-                <button id="next_Info">Next</button>
-            </div>
             
-
-            <div class="qualification">
-                <section id="skill">
-                    <h2>Your Skills</h2>
-                    <p>As part of your profile, you can select upto 4 Skills that you want to showcase.</p>
-                    <fieldset>
-                        <legend>Skills</legend>
-                        <label for="skill1">Option 1</label>
-                        <input type="checkbox" id="skill1" value="Option 1">
-                        <br>
-                        <label for="skill2">Option 2</label>
-                        <input type="checkbox" id="skill2" value="Option 2"> 
-                        <br>
-                        <label for="skill3">Option 3</label>
-                        <input type="checkbox" id="skill3" value="Option 3"> 
-                        <br>
-                        <label for="skill4">Option 4</label>
-                        <input type="checkbox" id="skill4" value="Option 4"> 
-                        <br>
-                        <label for="skill5">Option 5</label>
-                        <input type="checkbox" id="skill5" value="Option 5"> 
-                        <br>
-                        <label for="skill6">Option 6</label>
-                        <input type="checkbox" id="skill6" value="Option 6"> 
-                        <br>
-                    </fieldset>
-                </section>
-
-                <section id="experience_container">
-                    <h2>Your Experience</h2>
-                    <p>Share your previous volunteer or work experience that are relevent to your interests in volunteering.</p>
-                    <div id="inputGroup">
-                        <div id="expInputGroup0">
-                            <label for="txtJobTitle0">Job Title</label>
-                            <input type="text" id="txtJobTitle0">
-                            <label for="txtCompany0">Company Name</label>
-                            <input type="text" id="txtCompany0">
-                            <label for="txtLocation0">Location</label>
-                            <input type="text" id="txtLocation0">
-                            <label for="txtStartDate0">Start Date</label>
-                            <input type="date" id="txtStartDate0">
-                            <label for="txtEndDate0">End Date</label>
-                            <input type="date" id="txtEndDate0">
-                        </div>
-                    </div>
-                    <button id="addNewExpBtn">Add New</button>
-                </section>
-
-                <section id="certificate_container">
-                    <h2>Professional Certificate</h2>
-                    <p>Share if you hold any professional certificates that might be relevant to volunteer opportunities.</p>
-                    <div id="inputGroupCert">
-                        <div id="certInputGroup0">
-                            <label for="txtCertifiacteName0">Certificate Name</label>
-                            <input type="text" id="txtCertifiacteName0">
-                            <label for="txtIssuingOrg0">Issuing Organization</label>
-                            <input type="text" id="txtIssuingOrg0">
-                            <label for="txtDateObtained0">Date Obtained</label>
-                            <input type="date" id="txtDateObtained0">
-                        </div>
-                    </div>
-                    <button id="addNewCertBtn">Add New</button>
-                </section>
-                <button id="next_Qualification">Next</button>
+            
+                <input type="submit" value="Save Profile" id="saveBtn">
+                <p><a id="edit_personal_Info" href="#personal_Info">Edit Personal Info</a></p>
             </div>
-    
-        
-            <div class="involvement">
-                <section id="interest">
-                    <h2>Your Interests</h2>
-                    <p>Share your passions. We will match volunteer opportunities with what you love.</p>
-                    <fieldset>
-                        <legend>Interest</legend>
-                        <label for="interest1">Option 1</label>
-                        <input type="checkbox" id="interest1" value="Option 1">
-                        <br>
-                        <label for="interest2">Option 2</label>
-                        <input type="checkbox" id="interest2" value="Option 2"> 
-                        <br>
-                        <label for="interest3">Option 3</label>
-                        <input type="checkbox" id="interest3" value="Option 3"> 
-                        <br>
-                        <label for="interest4">Option 4</label>
-                        <input type="checkbox" id="interest4" value="Option 4"> 
-                        <br>
-                    </fieldset>
-                </section>
-
-                <section  id="availability">
-                    <h2>Your Availability</h2>
-                    <p>When can you volunteer</p>
-                    <fieldset>
-                        <legend>Availability</legend>
-                        <label for="availability1">Weekdays<p>Monday-Friday</p></label>
-                        <input type="checkbox" id="availability1" value="Weekdays">
-                        <br>
-                        <label for="availability2">Weekends<p>Saturday-Sunday</p></label>
-                        <input type="checkbox" id="availability2" value="Weekends"> 
-                        <br>
-                    </fieldset>
-                </section>
-            </div>
-
-            <input type="submit" value="Save" id="saveBtn">
         </form>
     </main>    
 </body>

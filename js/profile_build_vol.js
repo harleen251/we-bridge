@@ -1,5 +1,7 @@
 class Volunteer {
-    constructor(txtPhotoLink,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,skills,experience,certificate,interest,availability){
+    constructor(txtFirstName,txtLastName,txtPhotoLink,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,skills,experience,certificate,interest,availability){
+        this.firstName = txtFirstName;
+        this.lastName = txtLastName;
         this.photoLink = txtPhotoLink;
         this.province = txtProvince;
         this.city = txtCity;
@@ -9,6 +11,7 @@ class Volunteer {
         this.language = txtLanguage;
         this.bio = txtBio;
         this.phoneNumber = txtPhoneNumber;
+        this.email = txtEmail;
         this.skills = skills;
         this.experience = experience;
         this.certificate = certificate;
@@ -40,6 +43,8 @@ const volunteerArray = [];
 const form_Profile = document.getElementById("profile_Form")
 saveBtn.addEventListener("click", function (event){
     event.preventDefault();
+    const txtFirstName = form_Profile.querySelector("#txtFirstName");
+    const txtLastName = form_Profile.querySelector("#txtLastName");
     const txtPhotoLink = form_Profile.querySelector("#txtPhotoLink");
     const txtProvince = form_Profile.querySelector("#txtProvince");
     const txtCity = form_Profile.querySelector("#txtCity");
@@ -49,6 +54,7 @@ saveBtn.addEventListener("click", function (event){
     const txtLanguage = form_Profile.querySelector("#txtLanguage");
     const txtBio = form_Profile.querySelector("#txtBio");
     const txtPhoneNumber = form_Profile.querySelector("#txtPhoneNumber");
+    const txtEmail = form_Profile.querySelector("#txtEmail");
 
     const skill = document.querySelectorAll("#skill input");
     const skillArray = [];
@@ -100,7 +106,7 @@ saveBtn.addEventListener("click", function (event){
         }
     }
     
-    const volunteer = new Volunteer(txtPhotoLink.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtAge.value,txtGender.value,txtLanguage.value,txtBio.value,txtPhoneNumber.value,skillArray,expArray,certArray,interestArray,availabilityArray);
+    const volunteer = new Volunteer(txtFirstName.value,txtLastName.value,txtPhotoLink.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtAge.value,txtGender.value,txtLanguage.value,txtBio.value,txtPhoneNumber.value,txtEmail.value,skillArray,expArray,certArray,interestArray,availabilityArray);
     volunteerArray.push(volunteer);
     console.log(volunteerArray);
    
@@ -146,10 +152,36 @@ addNewCertBtn.addEventListener("click", function (event) {
     (document.getElementById(`inputGroupCert`)).append(div);
 })
 
-next_Info.addEventListener("click", function (event) {
-    event.preventDefault();
+choose_interest.addEventListener("click", function (event) {
+    option_interest.style.display = "block";
 })
 
-next_Qualification.addEventListener("click", function (event) {
+save_interests.addEventListener("click", function (event) {
+    option_interest.style.display = "none";
+})
+
+choose_skill.addEventListener("click", function (event) {
+    option_skill.style.display = "block";
+})
+
+save_skill.addEventListener("click", function (event) {
+    option_skill.style.display = "none";
+})
+
+next_Info.addEventListener("click", function (event) {
     event.preventDefault();
+    preference_background.style.display = "block";
+    personal_Info.style.display = "none";
+})
+
+edit_preference_background.addEventListener("click" ,function (event) {
+    event.preventDefault();
+    preference_background.style.display = "block";
+    personal_Info.style.display = "none";
+})
+
+edit_personal_Info.addEventListener("click" ,function (event) {
+    event.preventDefault();
+    preference_background.style.display = "none";
+    personal_Info.style.display = "block";
 })
