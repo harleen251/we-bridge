@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WeBridge - Organization Sign Up</title>
+        <script src="../dist/signup_org.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Make a Difference with <span>WeBridge</span></h1>
+            <p>Join as a Organization</p>
+        </header>
+        <main>
+            <form action="" id="signUp_Form">
+                <label for="txtOrgId">Organization Id</label>
+                <input type="text" id="txtOrgId">
+
+                <label for="txtOrgName">Organization Name</label>
+                <input type="text" id="txtOrgName" required>
+
+                <label for="txtRegNumber">Charitable Registration Number</label>
+                <input type="text" id="txtRegNumber">
+
+                <label for="txtFirstName">First Name</label>
+                <input type="text" id="txtFirstName" required>
+                <label for="txtLastName">Last Name</label>
+                <input type="text" id="txtLastName" required>
+            
+                <label for="txtEmail">Email</label>
+                <input type="email" id="txtEmail" required>
+
+                <label for="txtPassword">Create Password</label>
+                <input type="password" id="txtPassword" required>
+                <label for="txtConfirmPassword">Confirm Password</label>
+                <input type="password" id="txtConfirmPassword" required>
+                <div id="msg"></div>
+
+                <label for="txtcheck">By signing up, you agree our <a href=""> Terms of Use</a> and have read and understood our <a href="">Privacy Policy</a></label>
+                <input type="checkbox" id="txtcheck" required>
+
+
+                <input type="submit" value="Sign Up" id="signUpBtn">
+                <p>Have an account? <a href="index.html">Sign in</a></p>
+
+            </form>
+            <div id="welcome">
+                <div class="wrap_welcome">
+                    <h2>Welcome to WeBridge!</h2>
+                    <p>Let's get stated on your journey to making a difference.</p>
+                    <p>Building your profile helps match the perfect opportunities and increases the chances of your applications being accepted. </p>
+    
+                    <button id="build_profile">Build your profile</button>
+                    <button id="skip_profile">Build it later</button>
+                </div>
+            </div>
+        </main>        
+    </body>
+</html>

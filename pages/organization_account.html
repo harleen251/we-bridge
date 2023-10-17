@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBridge - Organization Account</title>
+    <script src="../dist/account_org.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
+
+</head>
+<body>
+    <header>
+        <h1 id="welcome_tag"></h1>
+    </header>
+    
+    <main>
+        <section>
+            <div id="Profile_info">
+            </div>
+            <button><a href="organization_build_profile.html">Edit Profile</a></button>
+            
+        </section>
+        <section class="posting">
+            <div class="post-tab">
+                <h2>Postings</h2>
+                <button>➤</button> 
+                <div class="wrap-posting">
+                    <select id="postFilter">
+                        <option value="Active">Active</option>
+                    </select>
+                    <div id="post-list">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="applications">
+            <div class="application-tab">
+                <h2>Applications</h2>
+                <button>➤</button> 
+                <div class="wrap-application">
+                    <select id="applicationFilter">
+                        <option value="New">New</option>
+                    </select>
+                    <div id="application-list">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>

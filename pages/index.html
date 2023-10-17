@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeBridge</title>
+    <script src="../dist/index.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <h1>Welcome!</h1>
+  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WeBridge - Home</title>
+        <script src="./js/index.js" defer></script>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <h2>WeBridge - Home Page</h2>
+
+        <button id="btnLogin" onclick="document.getElementById('divLogin').style.display='block'">Login / Sign Up</button>
+
+        <div id="divLogin" class="modal">        
+            <form id="frmLogin" class="modal-content animate">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('divLogin').style.display='none'" class="close" title="Close Modal">&times;</span>
+                </div>
+                <div class="container">
+                    <label for="txtName"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="txtName" required>
+                    <label for="txtPsw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="txtPsw" required>
+                    <div class="radio-container">
+                        <label>
+                            <input type="radio" name="logintype" value="volunteer" required>Volunteer
+                        </label>
+                        <label>
+                            <input type="radio" name="logintype" value="organization">Organization
+                        </label>
+                    </div>                    
+                    <button type="submit">Login</button>                
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                    <!-- <button type="button" onclick="document.getElementById('divLogin').style.display='none'" class="cancelbtn">Cancel</button> -->
+                    <p><span class="psw">Sign Up As <a href="./volunteer_signup.html">Volunteer</a> / <a href="./organization_signup.html">Organization</a></span></p>
+                </div>
+            </form>
+        </div>       
+    </body>
+</html>
