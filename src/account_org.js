@@ -13,6 +13,18 @@
 
 // // Retrieve the user's ID from the cookie
 //   const organizationId = getCookie("organizationIdId");
+
+function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+  }
+
+
 const organizationId = "hNEr10bBz2HUA0QlKkV0";
 
 import { getFirestore, collection, getDoc ,doc , getDocs,
@@ -33,211 +45,246 @@ const firebaseConfig = {
 
 
 initializeApp( firebaseConfig );
-// console.log(test);
-// init services
+
 const db = getFirestore();
 
 const colRef = collection( db, 'organization' );
 
-const docRef = doc(colRef, organizationId);
+async function orgProfileInfo() {
+    const docRef = doc(colRef, organizationId);
 
-let data =[]
-getDoc(docRef)
-    .then((snapshot) => {
-        data = snapshot.data();
-        console.log("Document data:", data);
-        document.getElementById("welcome_tag").innerHTML = `Welcome ${data.name}`;
-        let profile_info = document.getElementById("Profile_info")
-        profile_info.innerHTML = `<h2>${data.name}</h2> 
-                                    <p>${data.city},${data.province}</p>
-                                    <p>${data.description}</p>`;
-                                    for(let i = 0; i < data.serviceField.length; i++) {
-                                        let p = document.createElement("p");
-                                        p.innerHTML = data.serviceField[i];
-                                        profile_info.appendChild(p);
-                                    }
-  })
-  .catch((error) => {
-        console.error("Error getting document:", error);
-});
+    let data =[]
+    await getDoc(docRef)
+        .then((snapshot) => {
+            data = snapshot.data();
+            console.log("Document data:", data);
+            document.getElementById("welcome_tag").innerHTML = `Welcome ${data.name}`;
+            let profile_info = document.getElementById("Profile_info")
+            profile_info.innerHTML = `<h2>${data.name}</h2> 
+                                        <p>${data.city},${data.province}</p>
+                                        <p>${data.description}</p>`;
+                                        for(let i = 0; i < data.serviceField.length; i++) {
+                                            let p = document.createElement("p");
+                                            p.innerHTML = data.serviceField[i];
+                                            profile_info.appendChild(p);
+                                        }
+    })
+    .catch((error) => {
+            console.error("Error getting document:", error);
+    });
+
+}
+
+// Call the function when the window loads
+window.onload = orgProfileInfo();
 
 
 const postsRef = collection(db, 'posts');
 
-const q = query(postsRef, where( "organizationID", "==" , organizationId ));
+async function getPostList() {
+    const q = query(postsRef, where( "organizationID", "==" , organizationId ));
 
-const currentDate = new Date();
+    const currentDate = new Date();
+    
+    await getDocs(q, postsRef)
+        .then((snapshot) => {
+            const filteredPosts = [];
+    
+            snapshot.forEach((doc) => {
+                const post = {...doc.data(), id: doc.id};
+                const expirationDate = post.expireDate.toDate();
+                // console.log(expirationDate);
+            
+                if (expirationDate > currentDate) {
+                    filteredPosts.push(post);
+                }
+            });
+            // console.log(filteredPosts);
+    
+            filteredPosts.forEach((event)=> {
+                const div = document.createElement('div');
+                const postList = document.getElementById("post-list");
+                postList.appendChild(div);
+                const h3 = document.createElement('h3');
+                h3.innerText = event.positionTitle;
+                div.append(h3);
+                const p = document.createElement('p');
+                p.innerText = event.description;
+                div.append(p);
+                const p1 = document.createElement('p');
+                p1.innerText = `Published: ${event.date.toDate().toLocaleDateString()}`;
+                div.append(p1)
+    
+                let postId = event.id;
+    
+                const applicationRef = collection( db, 'application' );
 
-getDocs(q, postsRef)
-    .then((snapshot) => {
-        const filteredPosts = [];
-
-        snapshot.forEach((doc) => {
-            const post = {...doc.data(), id: doc.id};
-            const expirationDate = post.expireDate.toDate();
-            // console.log(expirationDate);
+                async function getAppliedAndApprovedNumber() {
+                    const q = query(applicationRef, where("postsID", "==", postId));
+    
+                    let countApproved = 0;
+                    let applicantsArray = []
+                    await getDocs(q, applicationRef)
+                        .then((snapshot) => {
+                            // console.log(snapshot);
+                            snapshot.docs.forEach(doc => {
+                                applicantsArray.push(doc.data())
+                            })
+                            // console.log(applicantsArray);
+                            const p2 = document.createElement('p');
+                            p2.innerText = `Applicants: ${applicantsArray.length}`;
+                            div.append(p2);
         
-            if (expirationDate > currentDate) {
-                filteredPosts.push(post);
-            }
-        });
-        // console.log(filteredPosts);
+                            for(let i = 0; i < applicantsArray.length; i++) {
+                                if(applicantsArray[i].status === "approved"){
+                                    countApproved++;
+                                }
+                            }
+                            const p3 = document.createElement('p');
+                            p3.innerText = `Approved: ${countApproved}`;
+                            div.append(p3);
+        
+                            const manageButton = document.createElement('button');
+                            manageButton.innerHTML = 'Manage Activity';
+                            div.append(manageButton);
+                        })
+                        .catch(err => {
+                            console.log(err.message)
+                        })
+                }
+                getAppliedAndApprovedNumber();
+    
+                
+            })
+    
+      })
+      .catch((error) => {
+            console.error("Error getting posts:", error);
+      });
 
-        filteredPosts.forEach((event)=> {
-            const div = document.createElement('div');
-            const postList = document.getElementById("post-list");
-            postList.appendChild(div);
-            const h3 = document.createElement('h3');
-            h3.innerText = event.positionTitle;
-            div.append(h3);
-            const p = document.createElement('p');
-            p.innerText = event.description;
-            div.append(p);
-            const p1 = document.createElement('p');
-            p1.innerText = `Published: ${event.date.toDate().toLocaleDateString()}`;
-            div.append(p1)
+}
 
-            let postId = event.id;
+const postTabViewButton = document.getElementById("postTabViewButton")
+postTabViewButton.addEventListener("click", function (event){
+    event.preventDefault();    
+    try {
+        getPostList();
+    } catch (error) {
+        
+    }
+});
 
-            const applicationRef = collection( db, 'application' );
-
-            const q = query(applicationRef, where("postsID", "==", postId));
-
-            let countApproved = 0;
-            let applicantsArray = []
-            getDocs(q, applicationRef)
-                .then((snapshot) => {
-                    // console.log(snapshot);
-                    snapshot.docs.forEach(doc => {
-                        applicantsArray.push(doc.data())
-                    })
-                    // console.log(applicantsArray);
-                    const p2 = document.createElement('p');
-                    p2.innerText = `Applicants: ${applicantsArray.length}`;
-                    div.append(p2);
-
-                    for(let i = 0; i < applicantsArray.length; i++) {
-                        if(applicantsArray[i].status === "approved"){
-                            countApproved++;
-                        }
-                    }
-                    const p3 = document.createElement('p');
-                    p3.innerText = `Approved: ${countApproved}`;
-                    div.append(p3);
-
-                    const manageButton = document.createElement('button');
-                    manageButton.innerHTML = 'Manage Activity';
-                    div.append(manageButton);
-                })
-                .catch(err => {
-                    console.log(err.message)
-                })
-        })
-
-  })
-  .catch((error) => {
-        console.error("Error getting posts:", error);
-  });
 
 
 //   Application Tab
 
 const collectionRef = collection( db, 'application' );
 
-const q2 = query(collectionRef, where( "organizationID", "==" , organizationId ));
+async function getApplicationList() {
+    const q2 = query(collectionRef, where( "organizationID", "==" , organizationId ));
 
-let applicationArray = [];
-getDocs(q2, collectionRef)
-    .then((snapshot) => {
-        // console.log(snapshot);
-        snapshot.docs.forEach(doc => {
-        applicationArray.push(doc.data())
-        })
-        console.log(applicationArray);
-        applicationArray.forEach(event => {    
-            
-            const div = document.createElement('div');
-            const applicationList = document.getElementById("application-list");
-            applicationList.appendChild(div);
+    let applicationArray = [];
+    await getDocs(q2, collectionRef)
+        .then((snapshot) => {
+            console.log(snapshot);
+            snapshot.docs.forEach(doc => {
+            applicationArray.push(doc.data())
+            })
+            console.log(applicationArray);
+            applicationArray.forEach(event => {    
+                
+                const div = document.createElement('div');
+                const applicationList = document.getElementById("application-list");
+                applicationList.appendChild(div);
 
-            const volunteercolRef = collection( db, 'volunteer' );
+                const volunteercolRef = collection( db, 'volunteer' );
 
-            const dRef = doc(volunteercolRef, event.volunteerID);
-            getDoc(dRef)
-                .then((snapshot) => {
-                    data = snapshot.data();
-                    const h3tag = document.createElement('h3');
-                    h3tag.innerText = `${data.firstName} ${data.lastName}`;
-                    div.append(h3tag);
-
-                    const docsRef = doc(postsRef, event.postsID);
-                    getDoc(docsRef)
+                async function getVolunteerDetails() {
+                    const dRef = doc(volunteercolRef, event.volunteerID);
+                    await getDoc(dRef)
                         .then((snapshot) => {
-                            data = snapshot.data();
-                            const p3 = document.createElement('p');
-                            p3.innerText = data.positionTitle;
-                            div.append(p3);
+                            let data = snapshot.data();
+                            const h3tag = document.createElement('h3');
+                            h3tag.innerText = `${data.firstName} ${data.lastName}`;
+                            div.append(h3tag);
+        
+                            const postsRef = collection(db, 'posts');
 
-                            const p5 = document.createElement('p');
-                            p5.innerText = `Submitted On: ${event.dateApplied.toDate().toLocaleDateString()}`;
-                            div.append(p5);
-
-                            const p4 = document.createElement('p');
-                            p4.innerText = `Post Expire On: ${data.expireDate.toDate().toLocaleDateString()}`;
-                            div.append(p4);
-
-                            function setCookie(name, value, days) {
-                                var expires = "";
-                                if (days) {
-                                  var date = new Date();
-                                  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                                  expires = "; expires=" + date.toUTCString();
-                                }
-                                document.cookie = name + "=" + value + expires + "; path=/";
-                              }
+                            async function getPostDetails() {
+                                const docsRef = doc(postsRef, event.postsID);
+                                await getDoc(docsRef)
+                                    .then((snapshot) => {
+                                        data = snapshot.data();
+                                        const p3 = document.createElement('p');
+                                        p3.innerText = data.positionTitle;
+                                        div.append(p3);
+            
+                                        const p5 = document.createElement('p');
+                                        p5.innerText = `Submitted On: ${event.dateApplied.toDate().toLocaleDateString()}`;
+                                        div.append(p5);
+            
+                                        const p4 = document.createElement('p');
+                                        p4.innerText = `Post Expire: ${data.expireDate.toDate().toLocaleDateString()}`;
+                                        div.append(p4);
+            
+                                        const viewButton = document.createElement('button');
+                                        viewButton.setAttribute("class", "viewButton");
+                                        viewButton.setAttribute("data-volunteerID", "event.volunteerID");
+                                        viewButton.setAttribute("data-postID", "event.postsID");
+                                        viewButton.innerHTML = 'View';
+                                        div.append(viewButton);
+                                        console.log("button appened");
+                                    })
+                                    .catch(err => {
+                                        console.log(err.message)
+                                    })
+                            }
+                            getPostDetails();
                             
-                            
-                            setCookie("postsId",event.postsID, 1);
-                            setCookie("volId",event.volunteerID, 1);
-                            console.log(`post:${event.postsID}`);
-                            console.log(`vol:${event.volunteerID}`);
-                            
-
-                            const viewButton = document.createElement('button');
-                            viewButton.innerHTML = 'View';
-                            div.append(viewButton);
                         })
                         .catch(err => {
                             console.log(err.message)
                         })
-                })
-                .catch(err => {
-                    console.log(err.message)
-                })
-
-        });
+                }
+                getVolunteerDetails();
+    
+            });
+            
     })
     .catch(err => {
-        console.log(err.message)
-    })
-    
+            console.log(err.message)
+    })   
+}
+
+const applicationTabViewButton = document.getElementById("applicationTabViewButton")
+applicationTabViewButton.addEventListener("click", async function (event){
+    event.preventDefault();    
+    try { 
+        await getApplicationList();
+        let viewButtonList = document.querySelectorAll('button');
+        console.log(viewButtonList);
+        viewButtonList.forEach((button) => {
+            button.addEventListener('click', handleViewButtonEvent);
+            console.log("test addeventlistener");
+        });  
+    } catch (error) {
+        
+    }
+});
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  function handleViewButtonEvent(event) {
+    // let volunteerId = event.target.getAttribute('data-volunteerID');
+    // let postId = event.target.getAttribute('data-postID');
+  
+    // setCookie('volId', volunteerId, 1); 
+    // setCookie('postsId', postId, 1);
+    // console.log(`post:${postsId}`);
+    // console.log(`vol:${volId}`);
+    console.log("test");
+ }
 
 
