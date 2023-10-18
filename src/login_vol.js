@@ -30,7 +30,7 @@ function setCookie(name, value, days) {
 
 async function signIn() {
 
-  const prevUrl = document.referrer;
+  const prevUrl = document.referrer; // previous page link
   let redirectURL = "volunteer_signup.html"
 
   if (prevUrl !== ""){

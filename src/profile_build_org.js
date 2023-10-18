@@ -160,7 +160,7 @@ async function saveOrganization(){
     const org = new Organization(txtPhotoLink.value,txtOrgName.value,txtRegNumber.value,txtAddress.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtDescription.value,txtWebsiteLink.value,serviceArray,txtFirstName.value,txtLastName.value,txtEmail.value,txtPhoneNumber.value,);
 
     const docRef = doc(organizationCollection, organizationId).withConverter(organizationConverter);
-    await setDoc(docRef, org).then(() => {
+    await setDoc(docRef, org, { merge: true }).then(() => {
         console.log('Organization data saved successfully.');
     })
     .catch((error) => {

@@ -249,7 +249,7 @@ async function saveVolunteer(){
     const volunteer2 = new Volunteer(txtFirstName.value,txtLastName.value,txtPhotoLink.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtAge.value,txtGender.value,txtLanguage.value,txtBio.value,txtPhoneNumber.value,txtEmail.value,skillArray,[1,2,3],[1,2,3],interestArray,availabilityArray);
     
     const docRef = doc(volunteerCollection, volunteerId).withConverter(volunteerConverter);
-    await setDoc(docRef, volunteer2).then(() => {
+    await setDoc(docRef, volunteer2, { merge: true }).then(() => {
         console.log('Volunteer data saved successfully.');
     })
     .catch((error) => {
