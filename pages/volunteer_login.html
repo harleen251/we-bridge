@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBridge - Volunteer Login</title>
+    <script type="module"  src="../dist/login_vol.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script> -->
+</head>
+<body>
+    <h2>Log in to WeBridge to start volunteering</h2>
+    <div id="divLogin">          
+        <div class="container">
+            <label for="txtEmail"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email Address" id="txtEmail" name="txtEmail" size="30" pattern=".+@.+" required>
+            <label for="txtPsw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" id="txtPsw" name="txtPsw" required>                    
+            <button type="submit" id="btnLogin">Login</button>                
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <p>Don't have an account?<span class="psw"><a href="./volunteer_signup.html">Sign Up</a></span></p>
+        </div>
+    </div> 
+</body>
+</html>
