@@ -1,3 +1,18 @@
+// // Function to get the value of a cookie by its name
+// function getCookie(name) {
+//     var nameEQ = name + "=";
+//     var ca = document.cookie.split(';');
+//     for (var i = 0; i < ca.length; i++) {
+//       var c = ca[i];
+//       while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+//       if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+//     }
+//     return null;
+//   }
+
+
+// // Retrieve the user's ID from the cookie
+//   const organizationId = getCookie("organizationIdId");
 const organizationId = "hNEr10bBz2HUA0QlKkV0";
 
 import { getFirestore, collection, getDoc ,doc , getDocs,
@@ -171,6 +186,23 @@ getDocs(q2, collectionRef)
                             p4.innerText = `Post Expire On: ${data.expireDate.toDate().toLocaleDateString()}`;
                             div.append(p4);
 
+                            function setCookie(name, value, days) {
+                                var expires = "";
+                                if (days) {
+                                  var date = new Date();
+                                  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                  expires = "; expires=" + date.toUTCString();
+                                }
+                                document.cookie = name + "=" + value + expires + "; path=/";
+                              }
+                            
+                            
+                            setCookie("postsId",event.postsID, 1);
+                            setCookie("volId",event.volunteerID, 1);
+                            console.log(`post:${event.postsID}`);
+                            console.log(`vol:${event.volunteerID}`);
+                            
+
                             const viewButton = document.createElement('button');
                             viewButton.innerHTML = 'View';
                             div.append(viewButton);
@@ -188,6 +220,7 @@ getDocs(q2, collectionRef)
     .catch(err => {
         console.log(err.message)
     })
+    
 
 
 
