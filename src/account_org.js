@@ -25,7 +25,7 @@ function setCookie(name, value, days) {
   }
 
 
-const organizationId = "hNEr10bBz2HUA0QlKkV0";
+const idOrganization = "hNEr10bBz2HUA0QlKkV0";
 
 import { getFirestore, collection, getDoc ,doc , getDocs,
          query , where
@@ -51,7 +51,7 @@ const db = getFirestore();
 const colRef = collection( db, 'organization' );
 
 async function orgProfileInfo() {
-    const docRef = doc(colRef, organizationId);
+    const docRef = doc(colRef, idOrganization);
 
     let data =[]
     await getDoc(docRef)
@@ -78,14 +78,22 @@ async function orgProfileInfo() {
 // Call the function when the window loads
 window.onload = orgProfileInfo();
 
+function handleManageButtonEvent(event) {
+    let postId = event.target.getAttribute('dataManagePostID');
+    console.log("test manage addeventlistener");
+    console.log(postId);
+  
+    setCookie('idPost', postId, 1);
+ }
+
 
 const postsRef = collection(db, 'posts');
 
 async function getPostList() {
-    const q = query(postsRef, where( "organizationID", "==" , organizationId ));
+    const q = query(postsRef, where( "organizationID", "==" , idOrganization ));
 
     const currentDate = new Date();
-    
+    document.getElementById("post-list").innerHTML = "";
     await getDocs(q, postsRef)
         .then((snapshot) => {
             const filteredPosts = [];
@@ -145,8 +153,13 @@ async function getPostList() {
                             div.append(p3);
         
                             const manageButton = document.createElement('button');
+                            manageButton.setAttribute("class", "manageButton");
+                            manageButton.setAttribute("dataManagePostID", postId);
                             manageButton.innerHTML = 'Manage Activity';
                             div.append(manageButton);
+                            console.log("manage button appened");
+                            manageButton.addEventListener('click', handleManageButtonEvent);  
+
                         })
                         .catch(err => {
                             console.log(err.message)
@@ -175,13 +188,27 @@ postTabViewButton.addEventListener("click", function (event){
 });
 
 
-
 //   Application Tab
+
+function handleViewButtonEvent(event) {
+    let volunteerId = event.target.getAttribute('data-volunteerID');
+    let postId = event.target.getAttribute('data-postID');
+    console.log("test addeventlistener");
+    console.log(volunteerId);
+    console.log(postId);
+  
+    setCookie('idVolunteer', volunteerId, 1); 
+    setCookie('idPost', postId, 1);
+
+    const pageURL = "org_applicant_detail.html";
+    window.location.href = pageURL;
+ }
 
 const collectionRef = collection( db, 'application' );
 
 async function getApplicationList() {
-    const q2 = query(collectionRef, where( "organizationID", "==" , organizationId ));
+    document.getElementById("application-list").innerHTML = "";
+    const q2 = query(collectionRef, where( "organizationID", "==" , idOrganization ));
 
     let applicationArray = [];
     await getDocs(q2, collectionRef)
@@ -229,11 +256,12 @@ async function getApplicationList() {
             
                                         const viewButton = document.createElement('button');
                                         viewButton.setAttribute("class", "viewButton");
-                                        viewButton.setAttribute("data-volunteerID", "event.volunteerID");
-                                        viewButton.setAttribute("data-postID", "event.postsID");
+                                        viewButton.setAttribute("data-volunteerID", event.volunteerID);
+                                        viewButton.setAttribute("data-postID", event.postsID);
                                         viewButton.innerHTML = 'View';
                                         div.append(viewButton);
                                         console.log("button appened");
+                                        viewButton.addEventListener('click', handleViewButtonEvent);                                 
                                     })
                                     .catch(err => {
                                         console.log(err.message)
@@ -261,12 +289,6 @@ applicationTabViewButton.addEventListener("click", async function (event){
     event.preventDefault();    
     try { 
         await getApplicationList();
-        let viewButtonList = document.querySelectorAll('button');
-        console.log(viewButtonList);
-        viewButtonList.forEach((button) => {
-            button.addEventListener('click', handleViewButtonEvent);
-            console.log("test addeventlistener");
-        });  
     } catch (error) {
         
     }
@@ -276,15 +298,6 @@ applicationTabViewButton.addEventListener("click", async function (event){
 
 
 
-  function handleViewButtonEvent(event) {
-    // let volunteerId = event.target.getAttribute('data-volunteerID');
-    // let postId = event.target.getAttribute('data-postID');
   
-    // setCookie('volId', volunteerId, 1); 
-    // setCookie('postsId', postId, 1);
-    // console.log(`post:${postsId}`);
-    // console.log(`vol:${volId}`);
-    console.log("test");
- }
 
 
