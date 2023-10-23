@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBridge - Home Page</title>
+    <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/dropdown.css">
+    <script type="module" src="../js/index.js" defer></script>
+</head>
+<body>
+    <!-- header>nav>.row>.col>.dropdown-container>.dropdown-toggle.click-dropdown>{Log In}^.dropdown-menu>(ul>li>a[href=""]{Menu$})*2 -->
+    <header>
+        <nav>
+            <div class="container">
+                <button class="btn" id="btnLogin">Log In<i class="fa-solid fa-caret-down" id="arrow"></i></button>
+                <div class="dropdown" id="dropdown">
+                    <a href="volunteer_login.html">
+                    <i class="bx bx-plus-circle"></i>
+                    As Volunteer
+                    </a>
+                    <a href="organization_login.html">
+                    <i class="bx bx-book"></i>
+                    As Organization
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>
