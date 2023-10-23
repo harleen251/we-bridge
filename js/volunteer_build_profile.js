@@ -276,6 +276,7 @@ async function saveVolunteer(){
     const docRef = doc(volunteerCollection, volunteerId).withConverter(volunteerConverter);
     await setDoc(docRef, volunteer, { merge: true }).then(() => {
         console.log('Volunteer data saved successfully.');
+        window.location.href = "index.html";
     })
     .catch((error) => {
         console.error('Error saving volunteer data: ', error);
