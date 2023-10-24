@@ -18,7 +18,7 @@ function getCookie(name) {
 //   console.log(idPost);
 //   console.log(idVolunteer);
 
-import { getFirestore, collection, getDoc ,doc , getDocs, setDoc,
+import { getFirestore, collection, getDoc ,doc , getDocs, updateDoc,
     query , where
 } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
@@ -217,15 +217,28 @@ async function getAppliedAndApprovedNumber() {
 }
 
 function handleApproveButtonEvent() {
-    const dataToUpdate = {
-        status: "approved"
-      };
-    const statusRef = doc(applicationRef,where( "volunteerID", "==" , idVolunteer ), where( "postsID", "==" , idPost ));
-    setDoc(statusRef, dataToUpdate, { merge: true }).then(() => {
-        console.log('Data saved successfully.');
+    const q = query(applicationRef, where( "volunteerID", "==" , idVolunteer ), where( "postsID", "==" , idPost ));
+
+    getDocs(q,applicationRef)
+    .then((querySnapshot) => {
+        querySnapshot.forEach((document) => {
+        const documentRef = doc(applicationRef, document.id);
+
+        const dataToUpdate = {
+            status: "approved"
+        };
+
+        updateDoc(documentRef, dataToUpdate)
+            .then(() => {
+            console.log('Document field updated successfully.');
+            })
+            .catch((error) => {
+            console.error('Error updating document field:', error);
+            });
+        });
     })
     .catch((error) => {
-        console.error('Error saving data: ', error);
+        console.error("Error querying for documents:", error);
     });
 }
 
@@ -238,8 +251,6 @@ approveButton.innerHTML = 'Approve';
 button.append(approveButton);
 approveButton.addEventListener('click', handleApproveButtonEvent);
 }
-
-
 
 (async () => {
                 
