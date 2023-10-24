@@ -34,7 +34,8 @@ submitPost.addEventListener("submit", async function (event) {
     const hours = document.getElementById("txtHours").value;
     const location = document.getElementById("txtLocation").value;
     const expireDate = document.getElementById("txtExpireDate").value;
-    const skills = Array.from(document.getElementById("txtSkills").selectedOptions).map(option => option.value);
+    const interests = document.getElementById("interests").value
+    const skills = document.getElementById("txtSkills").value
     const preferredLanguage = document.getElementById("txtPreferredLanguage").value;
     const phoneNumber = document.getElementById("txtPhoneNumber").value;
     const email = document.getElementById("txtEmail").value;
@@ -48,6 +49,7 @@ submitPost.addEventListener("submit", async function (event) {
             hours: hours,
             location: location,
             expireDate: expireDate,
+            interests: interests,
             skills: skills,
             preferredLanguage: preferredLanguage,
             phoneNumber: phoneNumber,
