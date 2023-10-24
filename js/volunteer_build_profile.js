@@ -380,7 +380,7 @@ fileInput.addEventListener("change", function (event) {
     const file = event.target.files[0];
     const fileName = file.name;
 
-    const imageRef = ref(storage, "profile-pictures/" + fileName);
+    const imageRef = ref(storage, "profile-pictures/volunteer/" + fileName);
 
     uploadButton.disabled = true; // Disable the button during upload
 
