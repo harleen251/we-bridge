@@ -56,6 +56,61 @@ getDocs(colRef)
     console.log(err.message)
   })
 
-  
+const search = document.getElementById('search')
+// Search by keywords, interests, skills or combine them.
+  search.addEventListener("click", (e)=>{
+    e.preventDefault();
+    const keyWord = document.getElementById('searchInput').value.toLowerCase()
+    const interests = document.getElementById('interests').value
+    const skills = document.getElementById('skills').value
+    let q;
+    if(interests != "Interests"){
+      if (skills != "Skills") {
+        q = query(colRef, where("skills", "==", skills), where("interests", "==", interests))
+        console.log("1")
+      } else {
+        q = query(colRef, where("interests", "==", interests))
+        console.log("2")
+      }
+    }else{
+      if (skills != "Skills") {
+        q = query(colRef, where("skills", "==", skills))
+        console.log("3")
+      } else {
+        q = colRef
+        console.log("4")
+      }
+    }
+    
+    getDocs(q)
+    .then((snapshot) => {
+    const matchingDocs = snapshot.docs.filter((doc) => {
+      return doc.data().positionTitle.toLowerCase().includes(keyWord);
+    });
+    matchingDocs.forEach(doc => {
+      events.push({ ...doc.data(), id: doc.id })
+    })
+    console.log(events)
+    let output = document.getElementById('eventDetails');
+    events.forEach(event => {      
+      const div = document.createElement('div');
+      div.innerHTML = `<br> Date: ${String(event.date)} <br> Description: ${event.description} <br> Email: ${event.email} <br> Location: ${event.location} <br> Phone Number:${event.phoneNumber} <br> Position Title: ${event.positionTitle}<br> Post Expiry Date: ${event.expireDate} <br> Preferred Language: ${event.preferredLanguage}<br> Skills: ${event.skills}<br> Intererts: ${event.interests}<br> Hours: ${event.hours} <br>`; 
+
+      // Create an "Apply" button for each event
+    const applyButton = document.createElement('button');
+    applyButton.textContent = 'Apply';
+
+    applyButton.addEventListener('click', () => {
+      console.log(`Clicked on Apply for event with description: ${event.description}`);
+      alert("Applied for the opportunity")
+    });
+      output.appendChild(div);
+      output.appendChild(applyButton);
+    });
+  })
+  .catch(err => {
+    console.log(err.message)
+  })
+   })
 
  
