@@ -1,18 +1,19 @@
-// // Function to get the value of a cookie by its name
-// function getCookie(name) {
-//     var nameEQ = name + "=";
-//     var ca = document.cookie.split(';');
-//     for (var i = 0; i < ca.length; i++) {
-//       var c = ca[i];
-//       while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-//       if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-//     }
-//     return null;
-//   }
+// Function to get the value of a cookie by its name
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
 
 
 // // Retrieve the user's ID from the cookie
-//   const organizationId = getCookie("organizationIdId");
+//   const idOrganization = getCookie("organizationIdId");
+const idOrganization = "hNEr10bBz2HUA0QlKkV0";
 
 function setCookie(name, value, days) {
     var expires = "";
@@ -23,9 +24,6 @@ function setCookie(name, value, days) {
     }
     document.cookie = name + "=" + value + expires + "; path=/";
   }
-
-
-const idOrganization = "hNEr10bBz2HUA0QlKkV0";
 
 import { getFirestore, collection, getDoc ,doc , getDocs,
          query , where
