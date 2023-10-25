@@ -147,16 +147,34 @@ async function getApplicantInfo() {
 }
 
 async function getPostDetails() {
+    const idOrganization = getCookie("idOrganization");
+    console.log(idOrganization);
+    const colRefOrg = collection( db, 'organization' );
+    const docRefOrg = doc(colRefOrg, idOrganization);
+    let dataOrg = [];
+    await getDoc(docRefOrg)
+        .then((snapshot) => {
+            console.log(snapshot);
+            dataOrg = snapshot.data();
+            console.log(dataOrg.name);
+        
+
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+
     const colRefPost = collection( db, 'posts' );
     const docRefPost = doc(colRefPost, idPost);
     let dataPost = []
-    getDoc(docRefPost)
+    await getDoc(docRefPost)
         .then((snapshotPost) => {
             dataPost = snapshotPost.data();
-            console.log("Document data:", dataPost);
+            // console.log("Document data:", dataPost);
             document.getElementById("post_info").innerHTML = `<h2>Applied Position:</h2>
             <section>
             <h3>${dataPost.positionTitle}</h3>
+            <p>${dataOrg.name}</p>
             <p>Posted On:${dataPost.date.toDate().toLocaleDateString()}</p>
             <p>Expiry On:${dataPost.expireDate.toDate().toLocaleDateString()}</p>
             <p>${dataPost.date.toDate().toLocaleDateString()}</p>
@@ -216,10 +234,10 @@ async function getAppliedAndApprovedNumber() {
         })
 }
 
-function handleApproveButtonEvent() {
+async function handleApproveButtonEvent() {
     const q = query(applicationRef, where( "volunteerID", "==" , idVolunteer ), where( "postsID", "==" , idPost ));
 
-    getDocs(q,applicationRef)
+    await getDocs(q,applicationRef)
     .then((querySnapshot) => {
         querySnapshot.forEach((document) => {
         const documentRef = doc(applicationRef, document.id);
@@ -242,10 +260,52 @@ function handleApproveButtonEvent() {
     });
 }
 
+async function declineEvent(e) {
+    e.preventDefault();
+    const q = query(applicationRef, where( "volunteerID", "==" , idVolunteer ), where( "postsID", "==" , idPost ));
+
+    await getDocs(q,applicationRef)
+    .then((querySnapshot) => {
+        querySnapshot.forEach((document) => {
+        const documentRef = doc(applicationRef, document.id);
+
+        const updatingData = {
+            declineMessage : msg.value,
+            status: "rejected"
+        }
+        
+
+        updateDoc(documentRef, updatingData)
+            .then(() => {
+            console.log('Document field updated successfully.');
+            })
+            .catch((error) => {
+            console.error('Error updating document field:', error);
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error querying for documents:", error);
+    });
+    section_decline_wrap.style.display = "none";
+}
+
+function cancelEvent(e) {
+    e.preventDefault();
+    section_decline_wrap.style.display = "none";
+}
+
+function handleDeclineButtonEvent() {
+    section_decline_wrap.style.display = "block";
+    decline.addEventListener('click', declineEvent);
+    cancel.addEventListener('click', cancelEvent);
+}
+
 async function displayButtons() {
 const declineButton = document.createElement('button');
 declineButton.innerHTML = 'Decline';
 button.append(declineButton);
+declineButton.addEventListener('click', handleDeclineButtonEvent);
 const approveButton = document.createElement('button');
 approveButton.innerHTML = 'Approve';
 button.append(approveButton);

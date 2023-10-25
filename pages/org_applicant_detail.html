@@ -6,6 +6,7 @@
     <title>WeBridge - Organization</title>
     <script src="../dist/org_applicant_detail.js" defer></script>
     <link rel="stylesheet" href="../css/style.css" />
+   
 </head>
 <body>
     <header>
@@ -26,14 +27,18 @@
 
             </div>
        </div>
-       <div id="decline_wrap">
-        <h2>Declining this applicant</h2>
-
-        <form>
-            <label for="msg">Why do you decline this application</label>
-        </form>
-
+       <div id="section_decline_wrap">
+            <div id="decline_wrap">
+                <h2>Declining this applicant</h2>
+                <form>
+                    <label for="msg">Why do you decline this application?</label>
+                    <textarea id="msg"></textarea>
+                    <button id="decline">Decline</button>
+                    <button id="cancel">Cancel</button>
+                </form>
+        </div>
        </div>
+       
     </main>
 </body>
 </html>
