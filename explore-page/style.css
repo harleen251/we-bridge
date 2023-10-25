@@ -14,13 +14,26 @@ select {
     color: #333;
 }
 
-/* Style for the submit button */
 input[type="submit"] {
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
+
+}
+
+div {
+    display: grid;
+
+}
+
+
+
+#eventDetails{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 15px;
+    margin: 15px;
+    text-align: justify;
 }
