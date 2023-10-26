@@ -382,7 +382,7 @@ fileInput.addEventListener("change", function (event) {
 
     const imageRef = ref(storage, "profile-pictures/volunteer/" + fileName);
 
-    uploadButton.disabled = true; // Disable the button during upload
+    // uploadButton.disabled = true; // Disable the button during upload
 
     uploadBytes(imageRef, file).then((snapshot) => {
         console.log('Uploaded a blob or file!');
@@ -395,7 +395,7 @@ fileInput.addEventListener("change", function (event) {
             .catch((error) => {
                 console.error('Error saving PhotoLink data: ', error);
             });
-            uploadButton.disabled = false; // Re-enable the button after successful upload
+            // uploadButton.disabled = false; // Re-enable the button after successful upload
         });
       });
 

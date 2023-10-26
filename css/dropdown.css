@@ -73,3 +73,58 @@
     transform: rotate(180deg);
     transition: 0.2s ease;
   }
+
+  /* For Card Container */
+
+  #containerOpp, #containerRec {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .card {
+    width: 100%;
+    margin: 1rem;
+    background: white;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, .1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all .2s linear;
+  }
+  
+  .card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
+    transform: translate3D(0, -2px, 0);
+  }
+  img {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 400px;
+    width: 90%;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-style: solid;
+    border-width: 15px;
+    border-top-color: #333333;
+    border-right-color: black;
+    border-bottom-color: #333333;
+    border-left-color: black;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    margin-bottom: 1.5rem;
+  }
+  
+  @media screen and (min-width: 600px) {
+    .card {
+      flex: 1 1 calc(50% - 2rem);
+    }
+  }
+  
+  @media screen and (min-width: 900px) {
+    .card {
+      flex: 1 1 calc(33% - 2rem);
+    }
+  }
