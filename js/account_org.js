@@ -27,7 +27,7 @@ function setCookie(name, value, days) {
   }
 
 import { getFirestore, collection, getDoc ,doc , getDocs,
-         query , where
+         query , where, orderBy
 } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 
@@ -90,6 +90,7 @@ const postsRef = collection(db, 'posts');
 
 async function getPostList() {
     const q = query(postsRef, where( "organizationID", "==" , idOrganization ));
+    const postFilter = document.getElementById("postFilter").value;
 
     const currentDate = new Date();
     document.getElementById("post-list").innerHTML = "";
@@ -99,14 +100,17 @@ async function getPostList() {
     
             snapshot.forEach((doc) => {
                 const post = {...doc.data(), id: doc.id};
-                const expirationDate = post.expireDate.toDate();
-                // console.log(expirationDate);
+                // if(postFilter === "Active") {
+                    const expirationDate = post.expireDate.toDate();
+                    // console.log(expirationDate);
             
-                if (expirationDate > currentDate) {
-                    filteredPosts.push(post);
-                }
+                    if (expirationDate > currentDate) {
+                        filteredPosts.push(post);
+                    }
+                // }
+                
             });
-            // console.log(filteredPosts);
+            console.log(filteredPosts);
     
             filteredPosts.forEach((event)=> {
                 const div = document.createElement('div');
