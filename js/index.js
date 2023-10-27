@@ -35,6 +35,11 @@ const organizationId = getCookie("organizationId");
 console.log("volunteerId :"+volunteerId);
 console.log("organizationId :"+organizationId);
 
+
+if (volunteerId != null) {
+    console.log("Volunteer Logged In!");
+}
+
 const dropdownBtn = document.getElementById("btnLogin");
 const dropdownMenu = document.getElementById("dropdown");
 const toggleArrow = document.getElementById("arrow");
@@ -83,7 +88,7 @@ getDocs(q)
 
     let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
     card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-    txt2Inner += `<p>${doc.id}</p>`;
+    txt2Inner += `<a href="">${doc.id}</p>`;
     txt2Inner += `<p>${post.date.toDate().toLocaleString()}</p>`;
     txt2Inner += `<p>${post.description}</p>`; // add the title             
     card2Div.innerHTML = txt2Inner;

@@ -12,6 +12,10 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
+img {
+    width: 25%;
+}
+
 /* Set a style for all buttons */
 button {
     background-color: #04AA6D;
