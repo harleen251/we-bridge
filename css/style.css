@@ -12,6 +12,10 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
+img {
+    width: 25%;
+}
+
 /* Set a style for all buttons */
 button {
     background-color: #04AA6D;
@@ -148,4 +152,49 @@ input, label {
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
 }
+/* END */
+
+/* Organization Account */
+
+.post-tab, .application-tab{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.post-tab>button, .application-tab>button {
+    width: 50px;
+}
+
+#post-list div, #application-list div{
+    border: 1px solid grey;
+}
+
+#wrap-posting, #wrap-application {
+    display: none;
+}
+/* END */
+
+/* org applicant detail */
+
+#section_decline_wrap {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+    overflow: auto;
+}
+
+#decline_wrap {
+    background-color: #fefefe;
+    padding: 20px;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
 /* END */

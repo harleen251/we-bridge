@@ -276,6 +276,7 @@ async function saveVolunteer(){
     const docRef = doc(volunteerCollection, volunteerId).withConverter(volunteerConverter);
     await setDoc(docRef, volunteer, { merge: true }).then(() => {
         console.log('Volunteer data saved successfully.');
+        window.location.href = "index.html";
     })
     .catch((error) => {
         console.error('Error saving volunteer data: ', error);
@@ -379,9 +380,9 @@ fileInput.addEventListener("change", function (event) {
     const file = event.target.files[0];
     const fileName = file.name;
 
-    const imageRef = ref(storage, "profile-pictures/" + fileName);
+    const imageRef = ref(storage, "profile-pictures/volunteer/" + fileName);
 
-    uploadButton.disabled = true; // Disable the button during upload
+    // uploadButton.disabled = true; // Disable the button during upload
 
     uploadBytes(imageRef, file).then((snapshot) => {
         console.log('Uploaded a blob or file!');
@@ -394,7 +395,7 @@ fileInput.addEventListener("change", function (event) {
             .catch((error) => {
                 console.error('Error saving PhotoLink data: ', error);
             });
-            uploadButton.disabled = false; // Re-enable the button after successful upload
+            // uploadButton.disabled = false; // Re-enable the button after successful upload
         });
       });
 

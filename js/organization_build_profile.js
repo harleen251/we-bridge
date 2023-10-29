@@ -1,5 +1,6 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, doc, getDoc, collection, setDoc} from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js';
 
 const firebassApp = initializeApp({
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
@@ -10,6 +11,8 @@ const firebassApp = initializeApp({
     appId: "1:950961168294:web:1cc48025ccfb341ea93967",
     measurementId: "G-VWM7GNP66X"
   });
+
+const storage = getStorage();
 
   // Function to get the value of a cookie by its name
 function getCookie(name) {
@@ -56,7 +59,6 @@ async function getOrganizationInfo(){
 
 class Organization {
     constructor( 
-        txtPhotoLink,
         txtOrgName,
         txtRegNumber,
         txtAddress,
@@ -71,7 +73,6 @@ class Organization {
         txtEmail,
         txtPhoneNumber
     ){
-        this.photoLink = txtPhotoLink;
         this.orgName = txtOrgName;
         this.regNumber = txtRegNumber;
         this.address = txtAddress;
@@ -91,7 +92,6 @@ class Organization {
 const organizationConverter = {
     toFirestore: function(organization) {
         return {
-            photoLink: organization.photoLink,
             orgName: organization.orgName,
             regNumber: organization.regNumber,
             address: organization.address,
@@ -110,7 +110,6 @@ const organizationConverter = {
     fromFirestore: function(snapshot, options) {
         const data = snapshot.data(options);
         return new Organization(
-            data.photoLink,
             data.orgName,
             data.regNumber,
             data.address,
@@ -143,7 +142,6 @@ form_Profile.addEventListener("submit", function (event){
 });
 
 async function saveOrganization(){
-    const txtPhotoLink = form_Profile.querySelector("#txtPhotoLink");
     const txtOrgName = form_Profile.querySelector("#txtOrgName");
     const txtRegNumber = form_Profile.querySelector("#txtRegNumber");
     const txtAddress = form_Profile.querySelector("#txtAddress");
@@ -157,11 +155,12 @@ async function saveOrganization(){
     const txtEmail = form_Profile.querySelector("#txtEmail");
     const txtPhoneNumber = form_Profile.querySelector("#txtPhoneNumber");
 
-    const org = new Organization(txtPhotoLink.value,txtOrgName.value,txtRegNumber.value,txtAddress.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtDescription.value,txtWebsiteLink.value,serviceArray,txtFirstName.value,txtLastName.value,txtEmail.value,txtPhoneNumber.value,);
+    const org = new Organization(txtOrgName.value,txtRegNumber.value,txtAddress.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtDescription.value,txtWebsiteLink.value,serviceArray,txtFirstName.value,txtLastName.value,txtEmail.value,txtPhoneNumber.value,);
 
     const docRef = doc(organizationCollection, organizationId).withConverter(organizationConverter);
     await setDoc(docRef, org, { merge: true }).then(() => {
         console.log('Organization data saved successfully.');
+        window.location.href = "index.html";
     })
     .catch((error) => {
         console.error('Error saving Organization data: ', error);
@@ -182,4 +181,32 @@ save_service.addEventListener("click", function (event) {
         }
     }
     option_service.style.display = "none";
-})
+});
+
+const fileInput = document.getElementById("txtPhotoLink");
+// const uploadButton = document.getElementById("uploadButton");
+
+
+fileInput.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    const fileName = file.name;
+
+    const imageRef = ref(storage, "profile-pictures/organization/" + fileName);
+
+    // uploadButton.disabled = true; // Disable the button during upload
+
+    uploadBytes(imageRef, file).then((snapshot) => {
+        console.log('Uploaded a blob or file!');
+        getDownloadURL(imageRef).then((downloadURL) => {
+            profilePic.src = downloadURL;
+            const expRef = doc(organizationCollection, organizationId);
+            setDoc(expRef, {photoLink : downloadURL}, { merge: true }).then(() => {
+                console.log('PhotoLink data saved successfully.');
+            })
+            .catch((error) => {
+                console.error('Error saving PhotoLink data: ', error);
+            });
+            // uploadButton.disabled = false; // Re-enable the button after successful upload
+        });
+      });
+});
