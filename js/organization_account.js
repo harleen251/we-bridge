@@ -13,10 +13,11 @@ function getCookie(name) {
 
 // // Retrieve the user's ID from the cookie
 //   const idOrganization = getCookie("organizationId");
-//const organizationId = getCookie("organizationId");
-const idOrganization = "hNEr10bBz2HUA0QlKkV0";
+const idOrganization = getCookie("organizationId");
+//const idOrganization = "hNEr10bBz2HUA0QlKkV0";
+console.log(idOrganization);
 
-setCookie('idOrganization', idOrganization, 1);
+//setCookie('idOrganization', idOrganization, 1);
 
 function setCookie(name, value, days) {
     var expires = "";

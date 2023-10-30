@@ -42,11 +42,29 @@ async function getOrganizationInfo(){
     if (docSnap.exists()) {
         const organizationData = docSnap.data();
         console.log("Document data:", organizationData);
+        document.getElementById("profilePic").src = organizationData.photoLink
+        document.getElementById('txtEmail').value = organizationData.email;
         document.getElementById('txtOrgName').value = organizationData.orgName;
         document.getElementById('txtRegNumber').value = organizationData.regNumber;
-        document.getElementById('txtFirstName').value = organizationData.firstname;
-        document.getElementById('txtLastName').value = organizationData.lastname;
-        document.getElementById('txtEmail').value = organizationData.email;
+        document.getElementById('txtFirstName').value = organizationData.firstName;
+        document.getElementById('txtLastName').value = organizationData.lastName;
+        document.getElementById('txtAddress').value = organizationData.address;
+        document.getElementById('txtProvince').value = organizationData.province;
+        document.getElementById('txtCity').value = organizationData.city;
+        document.getElementById('txtPostalCode').value = organizationData.postalCode;
+        document.getElementById('txtDescription').value = organizationData.description;
+        document.getElementById('txtWebsiteLink').value = organizationData.websiteLink;
+        document.getElementById('txtPhoneNumber').value = organizationData.phoneNumber;
+        let service = organizationData.service;
+        service.forEach(element => {
+            console.log(element);
+            const checkbox = document.querySelector(`input[value="${element}"]`);
+            //serviceArray.push(element);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+        
     } else {
     // docSnap.data() will be undefined in this case
     console.log("No such document!");
@@ -142,6 +160,12 @@ form_Profile.addEventListener("submit", function (event){
 });
 
 async function saveOrganization(){
+    const prevUrl = document.referrer; // previous page link
+    let redirectURL = "volunteer_signup.html"
+
+    if (prevUrl !== ""){
+        redirectURL = document.referrer;
+    }
     const txtOrgName = form_Profile.querySelector("#txtOrgName");
     const txtRegNumber = form_Profile.querySelector("#txtRegNumber");
     const txtAddress = form_Profile.querySelector("#txtAddress");
@@ -155,12 +179,20 @@ async function saveOrganization(){
     const txtEmail = form_Profile.querySelector("#txtEmail");
     const txtPhoneNumber = form_Profile.querySelector("#txtPhoneNumber");
 
+    const service = document.querySelectorAll("#service input");
+    for ( let i of service) {
+        if( i.checked === true ) {
+            serviceArray.push(i.value);
+        }
+    }
+
     const org = new Organization(txtOrgName.value,txtRegNumber.value,txtAddress.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtDescription.value,txtWebsiteLink.value,serviceArray,txtFirstName.value,txtLastName.value,txtEmail.value,txtPhoneNumber.value,);
 
     const docRef = doc(organizationCollection, organizationId).withConverter(organizationConverter);
     await setDoc(docRef, org, { merge: true }).then(() => {
         console.log('Organization data saved successfully.');
-        window.location.href = "index.html";
+        alert(redirectURL);
+        window.location.href = redirectURL;
     })
     .catch((error) => {
         console.error('Error saving Organization data: ', error);
@@ -174,12 +206,12 @@ choose_service.addEventListener("click", function (event) {
 
 save_service.addEventListener("click", function (event) {
     event.preventDefault();
-    const service = document.querySelectorAll("#service input");
-    for ( let i of service) {
-        if( i.checked === true ) {
-            serviceArray.push(i.value);
-        }
-    }
+    // const service = document.querySelectorAll("#service input");
+    // for ( let i of service) {
+    //     if( i.checked === true ) {
+    //         serviceArray.push(i.value);
+    //     }
+    // }
     option_service.style.display = "none";
 });
 
