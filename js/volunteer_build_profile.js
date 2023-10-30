@@ -48,11 +48,70 @@ function getCookie(name) {
           document.getElementById('txtFirstName').value = volunteerData.firstName;
           document.getElementById('txtLastName').value = volunteerData.lastName;
           document.getElementById('txtEmail').value = volunteerData.email;
-      } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
-      }
-  }
+          document.getElementById('profilePic').src = volunteerData.photoLink;
+          document.getElementById('txtBio').value = volunteerData.bio;
+          document.getElementById('txtCity').value = volunteerData.city;
+          document.getElementById('txtProvince').value = volunteerData.province;
+          document.getElementById('txtPostalCode').value = volunteerData.postalCode;
+          document.getElementById('txtPhoneNumber').value = volunteerData.phoneNumber;
+
+          let age = volunteerData.age;
+          const selectAge = document.getElementById("txtAge");
+          for (const option of selectAge.options) {
+            if (option.value === age) {
+                option.selected = true;
+                break; // Exit the loop once the option is found
+            }
+          } 
+          
+          let gender = volunteerData.gender;
+          const selectGender = document.getElementById("txtGender");
+          for (const option of selectGender.options) {
+            if (option.value === gender) {
+                option.selected = true;
+                break; // Exit the loop once the option is found
+            }
+          } 
+
+          let interest = volunteerData.interest;
+          interest.forEach(element => {
+              const checkbox = document.querySelector(`input[value="${element}"]`);
+              if (checkbox) {
+                  checkbox.checked = true;
+              }
+          });
+
+          let availability = volunteerData.availability;
+          availability.forEach(element => {
+              console.log(element);
+              const checkbox = document.querySelector(`input[value="${element}"]`);
+              if (checkbox) {
+                  checkbox.checked = true;
+              }
+          });
+
+          let skills = volunteerData.skills;
+          skills.forEach(element => {
+              const checkbox = document.querySelector(`input[value="${element}"]`);
+              if (checkbox) {
+                  checkbox.checked = true;
+              }
+          });
+
+          let language = volunteerData.language;
+          const selectLanguage = document.getElementById("txtLanguage");
+          for (const option of selectLanguage.options) {
+            if (option.value === language) {
+                option.selected = true;
+                break; // Exit the loop once the option is found
+            }
+          } 
+          
+        } else {
+            // docSnap.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }
   
   // Call the function when the window loads
   window.onload = getVolunteerInfo();
@@ -183,7 +242,7 @@ const skillArray = [];
 const interestArray = [];
 
 const form_Profile = document.getElementById("profile_Form")
-saveBtn.addEventListener("click", function (event){
+document.getElementById("saveBtn").addEventListener("click", function (event){
     event.preventDefault();
     try {
         saveVolunteer();   
@@ -193,6 +252,13 @@ saveBtn.addEventListener("click", function (event){
 });
 
 async function saveVolunteer(){
+    const prevUrl = document.referrer; // previous page link
+    let redirectURL = "index.html"
+
+    if (prevUrl !== ""){
+        redirectURL = document.referrer;
+    }
+
     const txtFirstName = form_Profile.querySelector("#txtFirstName");
     const txtLastName = form_Profile.querySelector("#txtLastName");
     const txtProvince = form_Profile.querySelector("#txtProvince");
@@ -276,7 +342,8 @@ async function saveVolunteer(){
     const docRef = doc(volunteerCollection, volunteerId).withConverter(volunteerConverter);
     await setDoc(docRef, volunteer, { merge: true }).then(() => {
         console.log('Volunteer data saved successfully.');
-        window.location.href = "index.html";
+        alert(redirectURL);
+        window.location.href = redirectURL;
     })
     .catch((error) => {
         console.error('Error saving volunteer data: ', error);

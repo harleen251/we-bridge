@@ -161,7 +161,7 @@ form_Profile.addEventListener("submit", function (event){
 
 async function saveOrganization(){
     const prevUrl = document.referrer; // previous page link
-    let redirectURL = "volunteer_signup.html"
+    let redirectURL = "index.html"
 
     if (prevUrl !== ""){
         redirectURL = document.referrer;
