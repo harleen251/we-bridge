@@ -54,6 +54,7 @@ submitPost.addEventListener("submit", async function (event) {
     const expireDateStr = document.getElementById("txtExpireDate").value;
     const expireDate = Timestamp.fromDate(new Date(expireDateStr));
     const modeOfWork = document.getElementById("mode_of_work").value
+    const availbility = document.getElementById("availbility").value
     const interests = document.getElementById("interests").value
     const skills = document.getElementById("txtSkills").value
     const preferredLanguage = document.getElementById("txtPreferredLanguage").value;
@@ -70,6 +71,7 @@ submitPost.addEventListener("submit", async function (event) {
             location: location,
             expireDate: expireDate,
             mode_of_work: modeOfWork,
+            availbility: availbility,
             interests: interests,
             skills: skills,
             preferredLanguage: preferredLanguage,
