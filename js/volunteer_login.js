@@ -1,5 +1,6 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs  , query, where} from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
+import { setCookie } from "./backend.js"
 
 // Initialize Firebase 
 const firebassApp = initializeApp({
@@ -18,15 +19,15 @@ var db = getFirestore(firebassApp);
 // Reference to the volunteer collection
 var volunteerCollection = collection(db, "volunteer");
 
-function setCookie(name, value, days) {
-  var expires = "";
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + value + expires + "; path=/";
-}
+// function setCookie(name, value, days) {
+//   var expires = "";
+//   if (days) {
+//     var date = new Date();
+//     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+//     expires = "; expires=" + date.toUTCString();
+//   }
+//   document.cookie = name + "=" + value + expires + "; path=/";
+// }
 
 async function signIn() {
 
@@ -50,7 +51,7 @@ async function signIn() {
     alert(volunteerId);
 
     // Save the volunteer ID in a cookie
-    setCookie("volunteerId", volunteerId, 1); // Expires in 7 days
+    await setCookie("volunteerId", volunteerId, 1); // Expires in 7 days
 
     // Successful login, redirect to the login page with the redirect parameter
     window.location.href = redirectURL;

@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, doc, getDoc, collection, setDoc } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js';
-
+import { geocodeAddress, getCookie } from "./backend.js"
 
 const firebassApp = initializeApp({
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
@@ -12,7 +12,7 @@ const firebassApp = initializeApp({
     messagingSenderId: "950961168294",
     appId: "1:950961168294:web:1cc48025ccfb341ea93967",
     measurementId: "G-VWM7GNP66X"
-  });
+});
 
 const storage = getStorage();
 
@@ -26,17 +26,17 @@ await geocodeAddress("1166 West 48th, Vancouver, BC")
     console.error(error); // Handle errors here
   });
 
-  // Function to get the value of a cookie by its name
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }
+//   // Function to get the value of a cookie by its name
+// function getCookie(name) {
+//     var nameEQ = name + "=";
+//     var ca = document.cookie.split(';');
+//     for (var i = 0; i < ca.length; i++) {
+//       var c = ca[i];
+//       while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+//       if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+//     }
+//     return null;
+//   }
   
   // Reference to Firestore
   const db = getFirestore(firebassApp);
@@ -45,7 +45,7 @@ function getCookie(name) {
   const volunteerCollection = collection(db, "volunteer");
   
   // Retrieve the user's ID from the cookie
-  const volunteerId = getCookie("volunteerId");
+  const volunteerId = await getCookie("volunteerId");
   
   
   
