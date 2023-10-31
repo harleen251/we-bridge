@@ -1,3 +1,8 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+import { geocodeAddress } from "./backend.js"
+
 // Function to get the value of a cookie by its name
 function getCookie(name) {
     var nameEQ = name + "=";
@@ -16,9 +21,8 @@ function getCookie(name) {
   console.log(idOrganization);
 
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
-import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -41,6 +45,17 @@ const db = getFirestore();
 const colRef = collection(db, 'posts');
 
 const submitPost = document.getElementById("postForm");
+
+
+
+await geocodeAddress("1166 West 48th, Vancouver, BC")
+  .then((result) => {
+    console.log(result); // Handle successful result here
+  })
+  .catch((error) => {
+    console.error(error); // Handle errors here
+  });
+
 
 // Function to handle form submission
 submitPost.addEventListener("submit", async function (event) {
@@ -77,6 +92,8 @@ submitPost.addEventListener("submit", async function (event) {
             organizationID: idOrganization
         });
 
+      
+
         alert("Post submitted successfully!");
 
         submitPost.reset();
@@ -85,3 +102,6 @@ submitPost.addEventListener("submit", async function (event) {
         alert("An error occurred while submitting the post.");
     }
 });
+
+
+

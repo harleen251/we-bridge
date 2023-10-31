@@ -3,6 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebas
 import { getFirestore, doc, getDoc, collection, setDoc } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js';
 
+
 const firebassApp = initializeApp({
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
     authDomain: "webridge-81f09.firebaseapp.com",
@@ -14,6 +15,16 @@ const firebassApp = initializeApp({
   });
 
 const storage = getStorage();
+
+
+
+await geocodeAddress("1166 West 48th, Vancouver, BC")
+  .then((result) => {
+    console.log(result); // Handle successful result here
+  })
+  .catch((error) => {
+    console.error(error); // Handle errors here
+  });
 
   // Function to get the value of a cookie by its name
 function getCookie(name) {
@@ -120,6 +131,7 @@ class Volunteer {
 constructor(txtFirstName,txtLastName,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,txtEmail,skills,interest,availability){
     this.firstName = txtFirstName;
     this.lastName = txtLastName;
+    
     this.province = txtProvince;
     this.city = txtCity;
     this.postalCode = txtPostalCode;
@@ -241,8 +253,8 @@ const volunteerArray = [];
 const skillArray = [];
 const interestArray = [];
 
-const form_Profile = document.getElementById("profile_Form")
-document.getElementById("saveBtn").addEventListener("click", function (event){
+const form_Profile = document.getElementById("profile_Form");
+saveBtn.addEventListener("click", function (event){
     event.preventDefault();
     try {
         saveVolunteer();   
@@ -482,3 +494,5 @@ fileInput.addEventListener("change", function (event) {
     //     }
     // );
 });
+
+
