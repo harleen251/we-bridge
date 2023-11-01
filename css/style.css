@@ -58,7 +58,7 @@ span.psw {
 
 /* Volunteer and Organization Sign Up */
 /* START */
-input, label {
+input, label, img, span {
     display: block;
 }
 

@@ -1,6 +1,7 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, doc, getDoc, collection, setDoc} from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js';
+import { getCookie } from "./backend.js"
 
 const firebassApp = initializeApp({
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
@@ -14,18 +15,6 @@ const firebassApp = initializeApp({
 
 const storage = getStorage();
 
-  // Function to get the value of a cookie by its name
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-}
-
 // Reference to Firestore
 const db = getFirestore(firebassApp);
 
@@ -33,7 +22,7 @@ const db = getFirestore(firebassApp);
 const organizationCollection = collection(db, "organization");
 
 // Retrieve the user's ID from the cookie
-const organizationId = getCookie("organizationId");
+const organizationId = await getCookie("organizationId");
 
 async function getOrganizationInfo(){
     const docRef = doc(organizationCollection, organizationId);

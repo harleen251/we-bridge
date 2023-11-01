@@ -29,9 +29,7 @@ function setCookie(name, value, days) {
     document.cookie = name + "=" + value + expires + "; path=/";
   }
 
-import { getFirestore, collection, getDoc ,doc , getDocs,
-         query , where, orderBy
-} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, collection, getDoc ,doc , getDocs, query , where, orderBy} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 
 
