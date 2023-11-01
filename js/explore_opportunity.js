@@ -23,28 +23,13 @@ const db = getFirestore();
 
 const colRef = collection(db, 'posts')
 
-let events = [];
-let filteredPosts = [];
-
-//getting recommendations
-getDocs(colRef)
-  .then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-      events.push({ ...doc.data(), id: doc.id })
-    })
-    displayResult(events);
-  })
-  .catch(err => {
-    console.log(err.message)
-  })
-
-
-
 const search = document.getElementById('search');
 const output = document.getElementById('eventDetails');
 const searchInput = document.getElementById('searchInput');
 const interestsSelect = document.getElementById('interests');
 const skillsSelect = document.getElementById('skills');
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+let radius = 10;
 
 search.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -52,18 +37,19 @@ search.addEventListener("click", async (e) => {
   const keyWord = searchInput.value.toLowerCase();
   const interests = interestsSelect.value;
   const skills = skillsSelect.value;
-
-  // Clear input fields and reset dropdown values
-  searchInput.value = '';
-  interestsSelect.value = 'Interests'; // Reset dropdown to default
-  skillsSelect.value = 'Skills'; // Reset dropdown to default
-
+  checkboxes.forEach(function(checkbox) {
+    if (checkbox.checked) {
+      radius = checkbox.id;
+    }
+  });
+  
   let q;
   if (interests != "Interests") {
     if (skills != "Skills") {
       q = query(colRef, where("skills", "==", skills), where("interests", "==", interests));
     } else {
       q = query(colRef, where("interests", "==", interests));
+      console.log(q);
     }
   } else {
     if (skills != "Skills") {
@@ -73,6 +59,7 @@ search.addEventListener("click", async (e) => {
     }
   }
 
+
   try {
     const snapshot = await getDocs(q);
     const matchingDocs = snapshot.docs.filter((doc) => {
@@ -80,84 +67,73 @@ search.addEventListener("click", async (e) => {
     });
 
     matchingDocs.forEach(doc => {
-      const event = { ...doc.data(), id: doc.id };
-      const div = document.createElement('div');
-      div.innerHTML = `Position Title: ${event.positionTitle} 
-      <br> Description: ${event.description} 
-      <br> Date: ${String(event.date)}
-      <br> Location: ${event.location} 
-      <br> Post Expiry Date: ${event.expireDate} 
-      <br> Intererts: ${event.interests}
-      <br> Skills: ${event.skills}
-      <br> Preferred Language: ${event.preferredLanguage}
-      <br> Phone Number:${event.phoneNumber} 
-      <br> Email: ${event.email} 
-      <br> Hours: ${event.hours}`;
-      
-      const applyButton = document.createElement('button');
-      applyButton.textContent = 'Apply';
 
-      applyButton.addEventListener('click', () => {
-        console.log(`Clicked on Apply for event with description: ${event.description}`);
-        alert("Applied for the opportunity");
-      });
-      div.appendChild(applyButton);
-      output.appendChild(div);
+      const event = { ...doc.data(), id: doc.id };        
+        if (filteredPostsWithinRadius(event, radius)) {
+          
+        const div = document.createElement('div');
+        div.innerHTML = `<br> Position Title: ${event.positionTitle} 
+        <br> Description: ${event.description} 
+        <br> Date: ${String(event.date)}
+        <br> Location: ${event.location} 
+        <br> Post Expiry Date: ${event.expireDate} 
+        <br> Interests: ${event.interests}
+        <br> Skills: ${event.skills}
+        <br> Preferred Language: ${event.preferredLanguage}
+        <br> Phone Number:${event.phoneNumber} 
+        <br> Email: ${event.email} 
+        <br> Hours: ${event.hours}`;
+        
+        console.log(event)
+        const applyButton = document.createElement('button');
+        applyButton.textContent = 'Apply';
+  
+        applyButton.addEventListener('click', () => {
+          console.log(`Clicked on Apply for event with description: ${event.description}`);
+          alert("Applied for the opportunity");
+        });
+        div.appendChild(applyButton);
+        output.appendChild(div);}
+        
     });
   } catch (err) {
     console.log(err.message);
   }
+   // Clear input fields and reset dropdown values
+   searchInput.value = '';
+   interestsSelect.value = 'Interests'; // Reset dropdown to default
+   skillsSelect.value = 'Skills'; // Reset dropdown to default
 });
 
-let selectSkillsID = document.getElementById('skills');
-selectSkillsID.addEventListener('change', function(e){
-  e.preventDefault();
-  let selectedSkillToFilter = selectSkillsID.options[selectSkillsID.selectedIndex];
-  fetchData("skills", selectedSkillToFilter.textContent);
-})
 
-let selectInterestsID = document.getElementById('interests');
-selectInterestsID.addEventListener('change', function(e){
-  e.preventDefault();
-  let selectedInterestToFilter = selectInterestsID.options[selectInterestsID.selectedIndex];
-  fetchData("interests", selectedInterestToFilter.textContent);
-})
+// Get the volunteer's latitude and longitude coordinates (assuming you have access to them)
+const volunteerLatitude = 49.22459940676005;
+const volunteerLongitude = -123.10192130145963;
+const filteredPostsWithinRadius = (event, radius) => {
+  if (radius != 0) {
+    let postLatitude = event.locationCoordinates._lat;
+  let postLongitude = event.locationCoordinates._long;
 
-function fetchData(field, value){
-
-  filteredPosts = [];
-
-  const q = query(colRef, where(field, "==", value));
-  onSnapshot(q, (snapshot) => {
-    snapshot.docs.forEach((element) => {
-      filteredPosts.push({ ...element.data(), id: element.id })
-      displayResult(filteredPosts);
-      console.log("my array", filteredPosts);
-
-  });
-})
-}
-
-
-function displayResult(events){
-  let output = document.getElementById('eventDetails');
-    output.innerHTML = " ";
-    events.forEach(event => {      
-      const div = document.createElement('div');
-      div.innerHTML = `<br> Date: ${String(event.date)} <br> Description: ${event.description} <br> Email: ${event.email} <br> Location: ${event.location} <br> Phone Number:${event.phoneNumber} <br> Position Title: ${event.positionTitle}<br> Post Expiry Date: ${event.expireDate} <br> Preferred Language: ${event.preferredLanguage}<br> Skills: ${event.skills}<br>  Hours: ${event.hours} <br>`; 
-
-    // Create an "Apply" button for each event
-    const applyButton = document.createElement('button');
-    applyButton.id = 'applyButton'
-    applyButton.textContent = 'Apply';
-
-    applyButton.addEventListener('click', () => {
-      console.log(`Clicked on Apply for event with description: ${event.description}`);
-      alert("Applied for the opportunity")
-    });
-      div.appendChild(applyButton);
-      output.appendChild(div);
-    });
-}
+    const earthRadius = 6371; // Earth's radius in kilometers
+    // Calculate the distance between the volunteer and the post using Haversine formula
+    //  great-circle distance between two points on a sphere 
+    const dLat = (postLatitude - volunteerLatitude) * (Math.PI / 180);
+    const dLon = (postLongitude - volunteerLongitude) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(volunteerLatitude * (Math.PI / 180)) * Math.cos(postLatitude * (Math.PI / 180)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = earthRadius * c;
+    console.log('distance is', distance);
+    console.log("distance <= radius", distance <= radius);
+    let flag =  distance <= radius; // Check if the post is within the specified radius
+    if (flag) {
+      return flag;
+    }
+    return 0;
+  }
+  
+};
 
  

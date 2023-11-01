@@ -11,6 +11,7 @@
     <script src="../js/explore_opportunity.js" type="module" defer></script>
 </head>
 <body>
+    <div id="horizontal-inputs" style="margin-left: 150px;">
     <input type="text" id="searchInput" placeholder="Search...">
     <label for="interests"></label>
     <select name="interests" id="interests">
@@ -68,7 +69,17 @@
         <option value="Social Care">Social Care</option>
         <option value="Patient Care">Patient Care</option>
     </select>
-    <input type="submit" value="Search" id="search">
+    
+    <input type="submit" value="Search" id="search"><br/>
+    </div>
+    <div id="vertical-inputs">
+    <label for="10">Within 10 Kms</label>
+    <input type="checkbox" id="10" checked/><br/>
+    <label for="20">Within 20 Kms</label>
+    <input type="checkbox" id="20"/><br/>
+    <label for="30">Within 30 Kms</label>
+    <input type="checkbox" id="30"/><br/><br/><br/>
+    </div>
     <div id="eventDetails"></div>
 </body>
 </html>
