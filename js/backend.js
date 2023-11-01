@@ -11,7 +11,7 @@ export function geocodeAddress(address) {
             const location = data.results[0].position;
             const latitude = location.lat;
             const longitude = location.lon;
-            let resultElement = `Coordinates: Latitude ${latitude}, Longitude ${longitude}`;
+            let resultElement = [latitude,longitude]
             resolve(resultElement);
           } else {
             reject('Address not found. Please check the address and try again.');

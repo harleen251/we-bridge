@@ -1,6 +1,5 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getFirestore, doc, getDoc, collection, setDoc } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
+import { getFirestore, doc, getDoc, collection, setDoc, GeoPoint } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js';
 import { geocodeAddress, getCookie } from "./backend.js"
 
@@ -16,122 +15,114 @@ const firebassApp = initializeApp({
 
 const storage = getStorage();
 
+// Reference to Firestore
+const db = getFirestore(firebassApp);
 
+// Reference to the volunteer collection
+const volunteerCollection = collection(db, "volunteer");
 
-await geocodeAddress("1166 West 48th, Vancouver, BC")
-  .then((result) => {
-    console.log(result); // Handle successful result here
-  })
-  .catch((error) => {
-    console.error(error); // Handle errors here
-  });
+// Retrieve the user's ID from the cookie
+const volunteerId = await getCookie("volunteerId");
+  
+  
+async function getVolunteerInfo(){
+    const docRef = doc(volunteerCollection, volunteerId);
+    const docSnap = await getDoc(docRef);
 
-//   // Function to get the value of a cookie by its name
-// function getCookie(name) {
-//     var nameEQ = name + "=";
-//     var ca = document.cookie.split(';');
-//     for (var i = 0; i < ca.length; i++) {
-//       var c = ca[i];
-//       while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-//       if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-//     }
-//     return null;
-//   }
-  
-  // Reference to Firestore
-  const db = getFirestore(firebassApp);
-  
-  // Reference to the volunteer collection
-  const volunteerCollection = collection(db, "volunteer");
-  
-  // Retrieve the user's ID from the cookie
-  const volunteerId = await getCookie("volunteerId");
-  
-  
-  
-  async function getVolunteerInfo(){
-      const docRef = doc(volunteerCollection, volunteerId);
-      const docSnap = await getDoc(docRef);
-  
-      if (docSnap.exists()) {
-          const volunteerData = docSnap.data();
-          console.log("Document data:", volunteerData);
-          document.getElementById('txtFirstName').value = volunteerData.firstName;
-          document.getElementById('txtLastName').value = volunteerData.lastName;
-          document.getElementById('txtEmail').value = volunteerData.email;
-          document.getElementById('profilePic').src = volunteerData.photoLink;
-          document.getElementById('txtBio').value = volunteerData.bio;
-          document.getElementById('txtCity').value = volunteerData.city;
-          document.getElementById('txtProvince').value = volunteerData.province;
-          document.getElementById('txtPostalCode').value = volunteerData.postalCode;
-          document.getElementById('txtPhoneNumber').value = volunteerData.phoneNumber;
+    if (docSnap.exists()) {
+        const volunteerData = docSnap.data();
+        console.log("Document data:", volunteerData);
+        document.getElementById('txtFirstName').value = volunteerData.firstName;
+        document.getElementById('txtLastName').value = volunteerData.lastName;
+        document.getElementById('txtAddress').value = (volunteerData.address == null ? " " : volunteerData.address);
+        document.getElementById('txtEmail').value = volunteerData.email;
+        document.getElementById('profilePic').src = (volunteerData.photoLink == null ? " " : volunteerData.photoLink);
+        document.getElementById('txtBio').value = (volunteerData.bio == null ? " " : volunteerData.bio);
+        document.getElementById('txtCity').value = (volunteerData.city == null ? " " : volunteerData.city);
+        document.getElementById('txtProvince').value = (volunteerData.province == null ? " " : volunteerData.province);
+        document.getElementById('txtPostalCode').value = (volunteerData.postalCode == null ? " " : volunteerData.postalCode );
+        document.getElementById('txtPhoneNumber').value = (volunteerData.phoneNumber == null ? " " : volunteerData.phoneNumber);
 
-          let age = volunteerData.age;
-          const selectAge = document.getElementById("txtAge");
-          for (const option of selectAge.options) {
+        if (volunteerData.age != null) {
+            let age = volunteerData.age;
+            const selectAge = document.getElementById("txtAge");
+            for (const option of selectAge.options) {
             if (option.value === age) {
                 option.selected = true;
                 break; // Exit the loop once the option is found
             }
-          } 
-          
-          let gender = volunteerData.gender;
-          const selectGender = document.getElementById("txtGender");
-          for (const option of selectGender.options) {
-            if (option.value === gender) {
-                option.selected = true;
-                break; // Exit the loop once the option is found
-            }
-          } 
-
-          let interest = volunteerData.interest;
-          interest.forEach(element => {
-              const checkbox = document.querySelector(`input[value="${element}"]`);
-              if (checkbox) {
-                  checkbox.checked = true;
-              }
-          });
-
-          let availability = volunteerData.availability;
-          availability.forEach(element => {
-              console.log(element);
-              const checkbox = document.querySelector(`input[value="${element}"]`);
-              if (checkbox) {
-                  checkbox.checked = true;
-              }
-          });
-
-          let skills = volunteerData.skills;
-          skills.forEach(element => {
-              const checkbox = document.querySelector(`input[value="${element}"]`);
-              if (checkbox) {
-                  checkbox.checked = true;
-              }
-          });
-
-          let language = volunteerData.language;
-          const selectLanguage = document.getElementById("txtLanguage");
-          for (const option of selectLanguage.options) {
-            if (option.value === language) {
-                option.selected = true;
-                break; // Exit the loop once the option is found
-            }
-          } 
-          
-        } else {
-            // docSnap.data() will be undefined in this case
-            console.log("No such document!");
+            } 
         }
+        
+        
+        if (volunteerData.gender != null) {
+            let gender = volunteerData.gender;
+            const selectGender = document.getElementById("txtGender");
+            for (const option of selectGender.options) {
+                if (option.value === gender) {
+                    option.selected = true;
+                    break; // Exit the loop once the option is found
+                }
+            }
+        }
+         
+        
+        if (volunteerData.address != null) {
+            let interest = volunteerData.interest;
+            interest.forEach(element => {
+                const checkbox = document.querySelector(`input[value="${element}"]`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+        }
+
+        if (volunteerData.availability != null) {
+            let availability = volunteerData.availability;
+            availability.forEach(element => {
+                console.log(element);
+                const checkbox = document.querySelector(`input[value="${element}"]`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+        }        
+
+        if (volunteerData.skills != null) {
+            let skills = volunteerData.skills;
+            skills.forEach(element => {
+                const checkbox = document.querySelector(`input[value="${element}"]`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+        }        
+
+        if (volunteerData.language != null) {
+            let language = volunteerData.language;
+            const selectLanguage = document.getElementById("txtLanguage");
+            for (const option of selectLanguage.options) {
+                if (option.value === language) {
+                    option.selected = true;
+                    break; // Exit the loop once the option is found
+                }
+            } 
+        }        
+        
+    } else {
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
     }
+}
   
   // Call the function when the window loads
   window.onload = getVolunteerInfo();
   
 class Volunteer {
-constructor(txtFirstName,txtLastName,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,txtEmail,skills,interest,availability){
+constructor(txtFirstName,txtLastName, txtAddress,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,txtEmail,skills,interest,availability){
     this.firstName = txtFirstName;
     this.lastName = txtLastName;
-    
+    this.address = txtAddress;
     this.province = txtProvince;
     this.city = txtCity;
     this.postalCode = txtPostalCode;
@@ -211,6 +202,7 @@ const volunteerConverter = {
         return {
             firstName: volunteer.firstName,
             lastName: volunteer.lastName,
+            address: volunteer.address,
             province: volunteer.province,
             city: volunteer.city,
             postalCode: volunteer.postalCode,
@@ -230,6 +222,7 @@ const volunteerConverter = {
         return new Volunteer(
             data.firstName,
             data.lastName,
+            data.address,
             data.photoLink,
             data.province,
             data.city,
@@ -248,8 +241,6 @@ const volunteerConverter = {
 };
 
 
-
-const volunteerArray = [];
 const skillArray = [];
 const interestArray = [];
 
@@ -273,6 +264,7 @@ async function saveVolunteer(){
 
     const txtFirstName = form_Profile.querySelector("#txtFirstName");
     const txtLastName = form_Profile.querySelector("#txtLastName");
+    const txtAddress = form_Profile.querySelector("#txtAddress");
     const txtProvince = form_Profile.querySelector("#txtProvince");
     const txtCity = form_Profile.querySelector("#txtCity");
     const txtPostalCode = form_Profile.querySelector("#txtPostalCode");
@@ -333,7 +325,7 @@ async function saveVolunteer(){
         );
     }
     // const certificateRef = doc(volunteerCollection, volunteerId).withConverter(certificateConverter);
-    const certificateRef = doc(volunteerCollection, volunteerId)
+    const certificateRef = doc(volunteerCollection, volunteerId);
     await setDoc(certificateRef, certData , { merge: true }).then(() => {
         console.log('Certificate data saved successfully.');
     })
@@ -348,8 +340,28 @@ async function saveVolunteer(){
             availabilityArray.push(i.value);
         }
     }
+
+    // set Lat and Long
+    if (String(txtAddress.value).trim() !== '') {
+        console.log(txtAddress.value);
+        await geocodeAddress(txtAddress.value)
+        .then((result) => {
+            const geopoint ={ geopoint: new GeoPoint(result[0], result[1]) };
+            const addressRef = doc(volunteerCollection, volunteerId);
+            
+            setDoc(addressRef, geopoint , { merge: true }).then(() => {
+                console.log('Address data saved successfully.');
+            })
+            .catch((error) => {
+                console.error('Error saving Address data: ', error);
+            });
+        })
+        .catch((error) => {
+            console.error(error); // Handle errors here
+        });
+    }
     
-    const volunteer = new Volunteer(txtFirstName.value,txtLastName.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtAge.value,txtGender.value,txtLanguage.value,txtBio.value,txtPhoneNumber.value,txtEmail.value,skillArray,interestArray,availabilityArray);
+    const volunteer = new Volunteer(txtFirstName.value,txtLastName.value,txtAddress.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtAge.value,txtGender.value,txtLanguage.value,txtBio.value,txtPhoneNumber.value,txtEmail.value,skillArray,interestArray,availabilityArray);
     
     const docRef = doc(volunteerCollection, volunteerId).withConverter(volunteerConverter);
     await setDoc(docRef, volunteer, { merge: true }).then(() => {
@@ -360,6 +372,8 @@ async function saveVolunteer(){
     .catch((error) => {
         console.error('Error saving volunteer data: ', error);
     });
+
+        
 }
 
 let j = 0;

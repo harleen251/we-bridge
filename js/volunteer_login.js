@@ -19,16 +19,6 @@ var db = getFirestore(firebassApp);
 // Reference to the volunteer collection
 var volunteerCollection = collection(db, "volunteer");
 
-// function setCookie(name, value, days) {
-//   var expires = "";
-//   if (days) {
-//     var date = new Date();
-//     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-//     expires = "; expires=" + date.toUTCString();
-//   }
-//   document.cookie = name + "=" + value + expires + "; path=/";
-// }
-
 async function signIn() {
 
   const prevUrl = document.referrer; // previous page link
@@ -65,44 +55,3 @@ document.getElementById("btnLogin").addEventListener("click", function (event) {
   event.preventDefault();
   signIn();  
 });
-
-// // Function to get the value of a cookie by its name
-// function getCookie(name) {
-//   var nameEQ = name + "=";
-//   var ca = document.cookie.split(';');
-//   for (var i = 0; i < ca.length; i++) {
-//     var c = ca[i];
-//     while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-//     if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-//   }
-//   return null;
-// }
-
-// // Retrieve the user's ID from the cookie
-// const volunteerId = getCookie("volunteerId");
-
-// class Volunteer {
-//     constructor (name, state, country ) {
-//         this.name = name;
-//         this.state = state;
-//         this.country = country;
-//     }
-//     toString() {
-//         return this.name + ', ' + this.state + ', ' + this.country;
-//     }
-// }
-
-// // Firestore data converter
-// const volunteerObj = {
-//     toFirestore: (Volunteer) => {
-//         return {
-//             name: Volunteer.name,
-//             state: Volunteer.state,
-//             country: Volunteer.country
-//             };
-//     },
-//     fromFirestore: (snapshot, options) => {
-//         const data = snapshot.data(options);
-//         return new Volunteer(data.name, data.state, data.country);
-//     }
-// };

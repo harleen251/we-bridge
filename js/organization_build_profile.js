@@ -42,38 +42,40 @@ async function getOrganizationInfo(){
     if (docSnap.exists()) {
         const organizationData = docSnap.data();
         console.log("Document data:", organizationData);
-        document.getElementById("profilePic").src = organizationData.photoLink
+        document.getElementById("profilePic").src = (organizationData.photoLink == null ? " " : organizationData.photoLink);
         document.getElementById('txtEmail').value = organizationData.email;
-        document.getElementById('txtOrgName').value = organizationData.orgName;
-        document.getElementById('txtRegNumber').value = organizationData.regNumber;
-        document.getElementById('txtFirstName').value = organizationData.firstName;
-        document.getElementById('txtLastName').value = organizationData.lastName;
-        document.getElementById('txtAddress').value = organizationData.address;
-        document.getElementById('txtProvince').value = organizationData.province;
-        document.getElementById('txtCity').value = organizationData.city;
-        document.getElementById('txtPostalCode').value = organizationData.postalCode;
-        document.getElementById('txtDescription').value = organizationData.description;
-        document.getElementById('txtWebsiteLink').value = organizationData.websiteLink;
-        document.getElementById('txtPhoneNumber').value = organizationData.phoneNumber;
-        let service = organizationData.service;
-        service.forEach(element => {
-            console.log(element);
-            const checkbox = document.querySelector(`input[value="${element}"]`);
-            //serviceArray.push(element);
-            if (checkbox) {
-                checkbox.checked = true;
-            }
-        });
+        document.getElementById('txtOrgName').value = (organizationData.orgName == null ? " " : organizationData.orgName);
+        document.getElementById('txtRegNumber').value = (organizationData.regNumber == null ? " " : organizationData.regNumber);
+        document.getElementById('txtFirstName').value = (organizationData.firstName == null ? " " : organizationData.firstName);
+        document.getElementById('txtLastName').value = (organizationData.lastName == null ? " " : organizationData.lastName);
+        document.getElementById('txtAddress').value = (organizationData.address == null ? " " : organizationData.address);
+        document.getElementById('txtProvince').value = (organizationData.province == null ? " " : organizationData.province);
+        document.getElementById('txtCity').value = (organizationData.city == null ? " " : organizationData.city);
+        document.getElementById('txtPostalCode').value = (organizationData.postalCode == null ? " " : organizationData.postalCode);
+        document.getElementById('txtDescription').value = (organizationData.description == null ? " " : organizationData.description);
+        document.getElementById('txtWebsiteLink').value = (organizationData.websiteLink == null ? " " : organizationData.websiteLink);
+        document.getElementById('txtPhoneNumber').value = (organizationData.phoneNumber == null ? " " : organizationData.phoneNumber);
+
+        if (organizationData.service != null) {
+            let service = organizationData.service;
+            service.forEach(element => {
+                console.log(element);
+                const checkbox = document.querySelector(`input[value="${element}"]`);
+                //serviceArray.push(element);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+        }       
         
     } else {
-    // docSnap.data() will be undefined in this case
-    console.log("No such document!");
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
     }
 }
-
   
   // Call the function when the window loads
-  window.onload = getOrganizationInfo();
+window.onload = getOrganizationInfo();
 
 class Organization {
     constructor( 
