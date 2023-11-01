@@ -73,12 +73,14 @@
     <input type="submit" value="Search" id="search"><br/>
     </div>
     <div id="vertical-inputs">
-    <label for="10">Within 10 Kms</label>
-    <input type="checkbox" id="10" checked/><br/>
-    <label for="20">Within 20 Kms</label>
-    <input type="checkbox" id="20"/><br/>
-    <label for="30">Within 30 Kms</label>
-    <input type="checkbox" id="30"/><br/><br/><br/>
+    <input type="radio" name="radius" id="10" value="10" checked>
+    <label for="10">10 km</label><br>
+      
+    <input type="radio" name="radius" id="20" value="20">
+    <label for="20">20 km</label><br>
+      
+    <input type="radio" name="radius" id="30" value="30">
+    <label for="30">30 km</label><br>
     </div>
     <div id="eventDetails"></div>
 </body>
