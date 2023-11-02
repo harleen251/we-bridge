@@ -22,7 +22,7 @@ const db = getFirestore(firebassApp);
 const organizationCollection = collection(db, "organization");
 
 // Retrieve the user's ID from the cookie
-const organizationId = await getCookie("organizationId");
+const organizationId = await getCookie("idOrganization");
 
 async function getOrganizationInfo(){
     const docRef = doc(organizationCollection, organizationId);

@@ -1,37 +1,11 @@
-// Function to get the value of a cookie by its name
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }
-
-
-// // Retrieve the user's ID from the cookie
-//   const idOrganization = getCookie("organizationId");
-const idOrganization = getCookie("idOrganization");
-//const idOrganization = "hNEr10bBz2HUA0QlKkV0";
-console.log(idOrganization);
-
-//setCookie('idOrganization', idOrganization, 1);
-
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + value + expires + "; path=/";
-  }
-
 import { getFirestore, collection, getDoc ,doc , getDocs, query , where, orderBy} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+import { getCookie, setCookie} from "./backend.js"
 
+// // Retrieve the user's ID from the cookie
+const idOrganization = await getCookie("idOrganization");
+//const idOrganization = "hNEr10bBz2HUA0QlKkV0";
+console.log(idOrganization);
 
 const firebaseConfig = {
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
@@ -78,12 +52,12 @@ async function orgProfileInfo() {
 // Call the function when the window loads
 window.onload = orgProfileInfo();
 
-function handleManageButtonEvent(event) {
+async function handleManageButtonEvent(event) {
     let postId = event.target.getAttribute('dataManagePostID');
     console.log("test manage addeventlistener");
     console.log(postId);
   
-    setCookie('idPost', postId, 1);
+    await setCookie('idPost', postId, 1);
     const pageURL = "organization_manage_activity.html";
     window.location.href = pageURL;
  }
@@ -209,17 +183,17 @@ postFilter.addEventListener("change", function(event) {
 
 //   Application Tab
 
-function handleViewButtonEvent(event) {
+async function handleViewButtonEvent(event) {
     let volunteerId = event.target.getAttribute('data-volunteerID');
     let postId = event.target.getAttribute('data-postID');
     console.log("test addeventlistener");
     console.log(volunteerId);
     console.log(postId);
   
-    setCookie('idVolunteer', volunteerId, 1); 
-    setCookie('idPost', postId, 1);
+    await setCookie('idVolunteer', volunteerId, 1); 
+    await setCookie('idPost', postId, 1);
 
-    const pageURL = "org_applicant_detail.html";
+    const pageURL = "organization_applicant_detail.html";
     window.location.href = pageURL;
  }
 

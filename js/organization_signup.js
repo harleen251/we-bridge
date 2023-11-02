@@ -1,5 +1,6 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, query, where, addDoc} from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
+import { setCookie } from "./backend.js"
 
 
 const firebassApp = initializeApp({
@@ -48,16 +49,6 @@ const organizationConverter = {
     }
 };
 
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-      expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + value + expires + "; path=/";
-  }
-
 // Reference to Firestore
 const db = getFirestore(firebassApp);
 
@@ -97,7 +88,7 @@ async function saveOrganization(){
         .then((docRef) => {
             const organizationId =  docRef.id;
             // Save the volunteer ID in a cookie
-            setCookie("organizationId", organizationId, 1); // Expires in 7 days
+            setCookie("idOrganization", organizationId, 1); // Expires in 7 days
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
