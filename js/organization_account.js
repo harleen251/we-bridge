@@ -13,7 +13,7 @@ function getCookie(name) {
 
 // // Retrieve the user's ID from the cookie
 //   const idOrganization = getCookie("organizationId");
-const idOrganization = getCookie("organizationId");
+const idOrganization = getCookie("idOrganization");
 //const idOrganization = "hNEr10bBz2HUA0QlKkV0";
 console.log(idOrganization);
 
@@ -84,6 +84,8 @@ function handleManageButtonEvent(event) {
     console.log(postId);
   
     setCookie('idPost', postId, 1);
+    const pageURL = "organization_manage_activity.html";
+    window.location.href = pageURL;
  }
 
 

@@ -31,11 +31,11 @@ function setCookie(name, value, days) {
 async function signIn() {
 
   const prevUrl = document.referrer;
-  let redirectURL = "organization_signup.html"
+  let redirectURL = "organization_account.html";
 
-  if (prevUrl !== ""){
-    redirectURL = document.referrer;
-  }
+  // if (prevUrl !== ""){
+  //   redirectURL = document.referrer;
+  // }
   
   const email = document.getElementById("txtEmail").value.toLowerCase().trim();
   const password = document.getElementById("txtPsw").value;
@@ -50,7 +50,8 @@ async function signIn() {
     alert(organizationId);
 
     // Save the volunteer ID in a cookie
-    setCookie("organizationId", organizationId, 1); // Expires in 7 days
+    setCookie("idOrganization", organizationId, 1);
+  
 
     // Successful login, redirect to the login page with the redirect parameter
     window.location.href = redirectURL;
