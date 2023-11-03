@@ -55,8 +55,7 @@ export function getCookie(name) {
           resolve(c.substring(nameEQ.length, c.length));
           return; // Exit the loop once the cookie is found
         }
-      }
-  
+      }  
       reject(null); // Reject if the cookie is not found
     });
 }
