@@ -214,6 +214,7 @@ input, label, img, span {
 
 
 /* QR CODE Popup */
+
 #wrap_qrcode {
     display: none;
     position: fixed; /* Stay in place */
@@ -232,7 +233,6 @@ input, label, img, span {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   
     background-color: #fefefe;
     padding: 10px;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */

@@ -17,7 +17,7 @@ const idPost = getCookie("idPost");
 console.log(idPost);
 
 import { getFirestore, collection, getDoc ,doc , getDocs,
-    query , where, orderBy
+    query , where, Timestamp
 } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 
@@ -173,13 +173,15 @@ function generateQRCode(type) {
     
     const post = idPost;
     
-    const currentTime = new Date().toLocaleString();
+    const currentTime = new Date();
+    const date = Timestamp.fromDate(currentTime);
+    console.log(date);
     let text;
 
     if (type === 'checkIn') {
-        text = `Check-In Successful\nPost: ${post}\nCheck-In Time: ${currentTime}`;
+        text = `Check-In Successful\nPost: ${post}\nCheck-In Time: ${date}`;
     } else if (type === 'checkOut') {
-        text = `Work Completed, Thank You\nPost: ${post}\nCheck-Out Time: ${currentTime}`;
+        text = `Work Completed, Thank You\nPost: ${post}\nCheck-Out Time: ${date}`;
     }
 
     // Generate a new QR code
