@@ -125,7 +125,7 @@ let approvedList = [];
                         record.checkOutDate.toDate().getHours().toString().padStart(2, '0')+":"+record.checkOutDate.toDate().getMinutes().toString().padStart(2, '0'):"00:00"; 
                         let hours = record.hours?record.hours:"0";
                         let row = `<tr>
-                                    <td><img src=${data.photoLink} width="150">
+                                    <td><img src=${data.photoLink} width="100">
                                     ${data.firstName}</td>
                                     <td><p>${checkInDate}</p><p>${checkInTime}</p></td>
                                     <td><p>${checkOutDate}</p><p>${checkOutTime}</p></td>
@@ -148,4 +148,46 @@ let approvedList = [];
         .catch((error) => {
             console.error("Error getting document:", error);
         });
+
+
+// QR CODE Related
+
+let qrcodeInstance = null; // Store the current QR code instance
+
+document.getElementById('checkInBtn').addEventListener('click', function() {
+    generateQRCode('checkIn');
+    wrap_qrcode.style.display = "block";
+});
+
+document.getElementById('checkOutBtn').addEventListener('click', function() {
+    generateQRCode('checkOut');
+    wrap_qrcode.style.display = "block";
+});
+
+function generateQRCode(type) {
+
+    const qrcodeContainer = document.getElementById("qrcode");
+    if (qrcodeContainer) {
+        qrcodeContainer.innerHTML = ''; // Clear the previous QR code
+    }
+    
+    const post = idPost;
+    
+    const currentTime = new Date().toLocaleString();
+    let text;
+
+    if (type === 'checkIn') {
+        text = `Check-In Successful\nPost: ${post}\nCheck-In Time: ${currentTime}`;
+    } else if (type === 'checkOut') {
+        text = `Work Completed, Thank You\nPost: ${post}\nCheck-Out Time: ${currentTime}`;
+    }
+
+    // Generate a new QR code
+    const qrcodeElement = document.getElementById('qrcode');
+    qrcodeInstance = new QRCode(qrcodeElement, {
+        text: text,
+        width: 128,
+        height: 128
+    });
+}
 

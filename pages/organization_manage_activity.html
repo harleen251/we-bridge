@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeBridge - Organization</title>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script type="module" src="../js/organization_manage_activity.js" defer></script>
     <link rel="stylesheet" href="../css/style.css" />
 </head>
@@ -27,6 +28,24 @@
                 </table>
             </div>
         </section>
+        <div>
+            <button id="checkInBtn">Generate Check-In QR Code</button>
+            <button id="checkOutBtn">Generate Check-Out QR Code</button>
+
+            <div id="wrap_qrcode">
+                <div id="wrap_close_qrcode">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('wrap_qrcode').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    </div>
+                    
+                    <div id="qrcode"></div> 
+                    
+                </div>
+                
+
+            </div>
+             
+        </div>
     </main>
     
 </body>

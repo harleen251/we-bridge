@@ -211,3 +211,53 @@ input, label, img, span {
   }
 
 /* END */
+
+
+/* QR CODE Popup */
+#wrap_qrcode {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+    overflow: auto;
+  
+}
+#wrap_close_qrcode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    background-color: #fefefe;
+    padding: 10px;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    height: 50%;
+    position: relative;
+}
+
+#qrcode img{
+    
+    width: 50vw;
+    max-width: 200px;
+    height: 50vw;
+    max-height: 200px;
+}
+
+.imgcontainer {
+    position: absolute;
+    right: 10px;
+    top:10px;
+}
+
+.close {
+    font-size: 40px;
+}
+
+/* END */
