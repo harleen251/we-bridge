@@ -52,8 +52,7 @@ async function getVolunteerInfo(){
                 break; // Exit the loop once the option is found
             }
             } 
-        }
-        
+        }        
         
         if (volunteerData.gender != null) {
             let gender = volunteerData.gender;
@@ -64,8 +63,7 @@ async function getVolunteerInfo(){
                     break; // Exit the loop once the option is found
                 }
             }
-        }
-         
+        }         
         
         if (volunteerData.address != null) {
             let interest = volunteerData.interest;
@@ -86,7 +84,23 @@ async function getVolunteerInfo(){
                     checkbox.checked = true;
                 }
             });
-        }        
+        }
+        
+        if (volunteerData.experience != null) {
+            let experience = volunteerData.experience;
+            document.getElementById(`txtJobTitle0`).value = experience[0].jobTitle;
+            document.getElementById(`txtCompany0`).value = experience[0].company;
+            document.getElementById(`txtLocation0`).value = experience[0].location;
+            document.getElementById(`txtStartDate0`).value = experience[0].startDate;
+            document.getElementById(`txtEndDate0`).value = experience[0].endDate;
+        }
+
+        if (volunteerData.certificate != null) {
+            let certificate = volunteerData.certificate;
+            document.getElementById(`txtCertifiacteName0`).value = certificate[0].certificateName;
+            document.getElementById(`txtIssuingOrg0`).value = certificate[0].issuingOrg;
+            document.getElementById(`txtDateObtained0`).value = certificate[0].dateObtained;
+        }
 
         if (volunteerData.skills != null) {
             let skills = volunteerData.skills;
@@ -115,27 +129,27 @@ async function getVolunteerInfo(){
     }
 }
   
-  // Call the function when the window loads
-  window.onload = getVolunteerInfo();
+// Call the function when the window loads
+window.onload = getVolunteerInfo();
   
 class Volunteer {
-constructor(txtFirstName,txtLastName, txtAddress,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,txtEmail,skills,interest,availability){
-    this.firstName = txtFirstName;
-    this.lastName = txtLastName;
-    this.address = txtAddress;
-    this.province = txtProvince;
-    this.city = txtCity;
-    this.postalCode = txtPostalCode;
-    this.age = txtAge;
-    this.gender = txtGender;
-    this.language = txtLanguage;
-    this.bio = txtBio;
-    this.phoneNumber = txtPhoneNumber;
-    this.email = txtEmail;
-    this.skills = skills;
-    this.interest = interest;
-    this.availability = availability;
-}
+    constructor(txtFirstName,txtLastName, txtAddress,txtProvince,txtCity,txtPostalCode,txtAge,txtGender,txtLanguage,txtBio,txtPhoneNumber,txtEmail,skills,interest,availability){
+        this.firstName = txtFirstName;
+        this.lastName = txtLastName;
+        this.address = txtAddress;
+        this.province = txtProvince;
+        this.city = txtCity;
+        this.postalCode = txtPostalCode;
+        this.age = txtAge;
+        this.gender = txtGender;
+        this.language = txtLanguage;
+        this.bio = txtBio;
+        this.phoneNumber = txtPhoneNumber;
+        this.email = txtEmail;
+        this.skills = skills;
+        this.interest = interest;
+        this.availability = availability;
+    }
 }
 
 class Experience {
@@ -155,47 +169,6 @@ class Certificate {
         this.dateObtained = txtDateObtained;
     }
 }
-
-// Firestore data converter
-const experienceConverter = {
-    toFirestore: function(experience) {
-        return {
-            jobTitle: experience.jobTitle,
-            company: experience.company,
-            location: experience.location,
-            startDate: experience.startDate,
-            endDate: experience.endDate
-        };
-    },
-    fromFirestore: function(snapshot, options) {
-        const data = snapshot.data(options);
-        return new Experience(
-            data.jobTitle,
-            data.company,
-            data.location,
-            data.startDate,
-            data.endDate
-        );
-    }
-};
-
-const certificateConverter = {
-    toFirestore: function(certificate) {
-        return {
-            certificateName: certificate.certificateName,
-            issuingOrg: certificate.issuingOrg,
-            dateObtained: certificate.dateObtained
-        };
-    },
-    fromFirestore: function(snapshot, options) {
-        const data = snapshot.data(options);
-        return new Certificate(
-            data.certificateName,
-            data.issuingOrg,
-            data.dateObtained
-        );
-    }
-};
 
 const volunteerConverter = {
     toFirestore: function(volunteer) {
