@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Account Page</title>
+    <script type="module" src="../js/volunteer_account.js" defer></script>
+    <link rel="stylesheet" href="../css/dropdown.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <session>
+        <h1 id="volunteerName">volunteerName</h1>
+        <img id="profilePic" src="" alt="Profile Picture">
+        <span id="txtRecord">52 HOURS VOLUNTEERED</span>
+        <span id="txtFirstName">First Name</span>
+        <span id="txtCity">City</span>
+        <span id="txtProvince">Province</span>
+        <span id="txtBio">Bio</span>
+        <span id="txtSkill">Skill</span>
+        <button id="btnEditProfile">Edit profile</button>
+        <div class="toolbar">           
+            <a class="item" href="#history" >Application History</a>
+            <a class="item" href="#commitment" >Registered Event</a>
+            <a class="item" href="#record" >Volunteer Records</a>
+        </div>
+    </session>
+    <div class="page" id="history">
+        <session>
+            <h2 id="h1Recomm" style="display: none;">Application History</h2><br>
+            <select id="applicationFilter">
+                <option value="approved">Approved</option>
+                <option value="declined">Declined</option>
+                <option value="applied">Applied</option>
+                <option value="all" selected>All</option>
+            </select>            
+            <div id="containerRec">
+                    
+            </div>
+        </session>
+    </div>
+    <div class="page" id="commitment" >
+        <h2>Commitment</h2>
+        <select id="applicationFilter2">
+            <option value="approved">Approved</option>
+            <option value="declined">Declined</option>
+            <option value="applied">Applied</option>
+            <option value="all" selected>All</option>
+        </select>
+    </div>
+    <div class="page" id="record" >
+        <h2>Record</h2>
+    </div>
+    
+    
+    
+</body>
+</html>

@@ -42,7 +42,7 @@ async function signIn() {
 
     // Save the volunteer ID in a cookie
     await setCookie("idOrganization", organizationId, 1);
-  
+    await setCookie("organizationId", organizationId, 1);
 
     // Successful login, redirect to the login page with the redirect parameter
     window.location.href = redirectURL;

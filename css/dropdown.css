@@ -74,7 +74,7 @@
     transition: 0.2s ease;
   }
 
-  /* For Card Container */
+    /* For Card Container */
 
   #containerOpp, #containerRec {
     display: flex;
@@ -128,3 +128,48 @@
       flex: 1 1 calc(33% - 2rem);
     }
   }
+
+  /* For Divs */
+
+  .toolbar {
+    position: sticky;
+    height: var(--header-h);
+    background-color: #999;
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  
+  .toolbar a {
+    background-color: #04AA6D;
+    text-decoration: none;
+    color: white;
+    flex: 0 0 30%;
+    margin: 1rem;
+    line-height: 2.5em;
+    text-align: center;
+    border: 2px solid rgb(250, 248, 246);
+    border-radius: 5px;
+  }
+  
+  .toolbar a:active {
+    background-color: #a50;
+  }
+  
+  div.page {
+    display: none;
+    text-align: center;
+    padding: 0.44em;
+    height: calc(100vh - 5.7em);
+  
+  }
+  
+  body div.page:nth-child(odd) {
+    background-color: beige;
+  }
+  body div.page:nth-child(even) {
+    background-color: bisque;
+  }
+
+  /* End Divs */

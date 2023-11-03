@@ -1,6 +1,6 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, doc, getDoc, query, orderBy, limit, getDocs, where, Timestamp } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
-import { getCookie } from "./backend.js";
+import { getCookie, setCookie } from "./backend.js";
 
 const firebassApp = initializeApp({
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
@@ -19,33 +19,78 @@ const db = getFirestore(firebassApp);
 const postCollection = collection(db, "posts");
 const volunteerCollection = collection(db, "volunteer");
 
-// Retrieve the volunteerId from the cookie
+// Retrieve the volunteerId and OrganizationId from the cookie
 let volunteerId = "";
+let organizationId = "";
+
 getCookie('volunteerId')
   .then((cookieValue) => {
     if (cookieValue !== null) {
       // Cookie found, use cookieValue
-      volunteerId = cookieValue;
-      console.log(`Cookie value: ${cookieValue}`);
-    } else {
-      // Cookie not found
-      console.log('Cookie not found.');
-    }
+      if (cookieValue !== "") {
+        volunteerId = cookieValue;
+        console.log(`volunteerId value: ${cookieValue}`);
+        btnAccount.style.display = "block";
+        btnLogin.style.display = "none";
+        linkAccount.href  = "volunteer_account.html";
+      } else {
+        // Cookie not found
+        getCookie('organizationId')
+          .then((cookieValue) => {
+              if (cookieValue !== null) {
+              // Cookie found, use cookieValue
+                if (cookieValue !== "") {
+                    organizationId = cookieValue;
+                    console.log(`organizationId value: ${cookieValue}`);
+                    btnAccount.style.display = "block";
+                    btnLogin.style.display = "none";
+                    linkAccount.href  = "organization_account.html";
+                   
+                } else {
+                    btnAccount.style.display = "none";
+                    btnLogin.style.display = "block";
+                    console.log('organizationId not found.');
+                    console.log('volunteerId not found.');
+                }              
+              } 
+          })
+          .catch((error) => {
+              btnLogin.style.display = "block";
+              btnAccount.style.display = "none";
+              //console.error('An error occurred while retrieving the cookie:', error);
+          });
+      }      
+    } 
   })
   .catch((error) => {
     //console.error('An error occurred while retrieving the cookie:', error);
   });
 
+
 const dropdownBtn = document.getElementById("btnLogin");
 const dropdownMenu = document.getElementById("dropdown");
 const toggleArrow = document.getElementById("arrow");
 
+const dropdownAcc = document.getElementById("btnAccount");
+const dropdownMenuAcc = document.getElementById("dropdownAcc");
+const toggleArrowAcc = document.getElementById("arrowAcc");
+
 const toggleDropdown = function () {
-    dropdownMenu.classList.toggle("show");
-    toggleArrow.classList.toggle("arrow");
+    if (volunteerId !== "" || organizationId !== ""){
+        dropdownMenuAcc.classList.toggle("show");
+        toggleArrowAcc.classList.toggle("arrow");
+    }else if (volunteerId === "" && organizationId === ""){
+        dropdownMenu.classList.toggle("show");
+        toggleArrow.classList.toggle("arrow");
+    }   
 };
 
 dropdownBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    toggleDropdown();
+});
+
+dropdownAcc.addEventListener("click", function (e) {
     e.stopPropagation();
     toggleDropdown();
 });
@@ -54,11 +99,13 @@ document.documentElement.addEventListener("click", function () {
     if (dropdownMenu.classList.contains("show")) {
         toggleDropdown();
     }
+    if (dropdownMenuAcc.classList.contains("show")) {
+        toggleDropdown();
+    }
 });
 
 const today = Timestamp.now();
 // const expireDate = Timestamp.fromDate(today);
-console.log("Today Date : ", today);
 
 const q = query(postCollection,
     where('expireDate', '>', today),
@@ -71,14 +118,10 @@ await getDocs(q)
 .then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
     const post = doc.data();
-    let txtInner = `<header><h1>${post.positionTitle}</h1></header>`;
-    
+    let txtInner = `<header><h1>${post.positionTitle}</h1></header>`;    
 
     console.log(i);
     i++;
-    console.log(txtInner);
-    console.log(post.description);
-    console.log(post.date);
     let cardDiv = document.createElement("div"); // create new Div, cardDiv to display details data             
     cardDiv.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
     txtInner += `<p>${doc.id}</p>`;
@@ -115,8 +158,7 @@ async function getVolunteerInfo(volunteerId){
                      orderBy('date', 'desc'));       
         }        
 
-        console.log(q);
-        getDocs(q)
+        await getDocs(q)
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
             const post = doc.data();
@@ -148,4 +190,20 @@ if (volunteerId !== "") {
 }else {
     console.log("Volunteer Info Null");
 }
+
+//LogOut
+
+async function logout() {
+    // Clear cookies
+    await setCookie("organizationId", "", 1);
+    await setCookie("volunteerId", "", 1);
+    console.log("organizationId", getCookie("organizationId"));
+    console.log("volunteerId", getCookie("volunteerId"));
+    window.location.href = 'index.html';
+  }
+
+btnLogout.addEventListener('click', function (event) {
+    event.preventDefault();    
+    logout(); 
+});
   
