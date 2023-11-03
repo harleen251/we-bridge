@@ -50,9 +50,19 @@ async function getVolunteerInfo(){
 async function getApplicantInfo() {
     const collectionRef = collection( db, 'volunteer' );
     const colRef = collection( db, 'application' );
-    const q = query(colRef, where( "volunteerID", "==" , volunteerId ));
-    getDocs(q, colRef)
+    let q = query(colRef, where( "volunteerID", "==" , volunteerId ));
+    let applicationFilter = document.getElementById("applicationFilter").value;
+    console.log(applicationFilter);
+    if((applicationFilter === "pending")) {
+        q = query(colRef, where( "volunteerID", "==" , volunteerId ), where("status", "==", "new"));
+    } else if((applicationFilter === "approved")) {
+        q = query(colRef, where( "volunteerID", "==" , volunteerId ), where("status", "==", "approved"));
+    } else if((applicationFilter === "declined")) {
+        q = query(colRef, where( "volunteerID", "==" , volunteerId ), where("status", "==", "declined"));
+    }
+    await getDocs(q, colRef)
             .then((querySnapshot) => {
+                containerRec.innerHTML = "";
                 querySnapshot.forEach((doc) => {
                     const application= doc.data();
                     let txt2Inner = `<header><h3>${application.motive}</h3></header>`;
@@ -93,3 +103,12 @@ async function handleViewButtonEvent(event) {
    await setCookie("vol_applicationId", appId,1);
    await setCookie("vol_postId", postId,1)
 }
+
+applicationFilter.addEventListener("change", async function(event) {
+    event.preventDefault();    
+    try {
+        await getApplicantInfo();
+    } catch (error) {
+        
+    }
+});
