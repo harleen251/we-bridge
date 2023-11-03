@@ -71,16 +71,81 @@ const docRef = doc(colRef, idPost);
             p2.innerText = `${data.location}`;
             post_info.append(p2);
         })
+        .catch((error) => {
+            console.error("Error getting document:", error);
+        });
 
 
-        const applicationRef = collection( db, 'application' );
-        const q = query(applicationRef, where( "postsID", "==" , idPost ), where( "status", "==" , "approved" ));
-    let applicantList = [];
-    getDocs(q, colRef)
-            .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                applicantList= doc.data();
-                console.log(applicantList);
+
+const applicationRef = collection( db, 'application' );
+const q = query(applicationRef, where( "postsID", "==" , idPost ), where( "status", "==" , "approved" ));
+let approvedList = [];
+    getDocs(q, applicationRef)
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                approvedList.push(doc.data());
+            console.log(approvedList);
                 
+            });
+            approvedList.forEach((event) => {
+                const volunteerRef = collection( db, 'volunteer' );
+                const docRef = doc(volunteerRef, event.volunteerID);
+                let data
+                getDoc(docRef)
+                .then((snapshot) => {
+                    data = snapshot.data();
+                    console.log("Document data:", data);
+                    let checkInDate = "";
+                    let checkInTime = "";
+                    let checkOutDate = "";
+                    let checkOutTime = "";
+
+                    async function getVolunteerRecord() {
+                        const volunteerRecordRef = collection( db, 'volunteerRecord' );
+                        const q = query(volunteerRecordRef, where( "postsID", "==" , idPost ), where( "volunteerID", "==" , event.volunteerID ));
+                        let record = [];
+                        await getDocs(q, volunteerRecordRef)
+                            .then((docs) => {
+                                docs.forEach((doc) => {
+                                    record = doc.data();
+                                    console.log("Record data:", record);
+                                   
+                                });
+                            })
+                            .catch((error) => {
+                            console.error("Error getting document:", error);
+                            });
+
+                        checkInDate = record.checkInDate?record.checkInDate:"DD/MM/YY"; 
+                        checkInTime = record.checkInDate?record.checkInDate:"00:00"; 
+                        checkOutDate = record.checkOutDate?record.checkOutDate:"DD/MM/YY"; 
+                        checkOutTime = record.checkOutDate?record.checkOutDate:"00:00"; 
+                        let hours = record.hours?record.hours:"0";
+                        let row = `<tr>
+                                    <td><img src=${data.photoLink} width="150">
+                                    ${data.firstName}</td>
+                                    <td><p>${checkInDate}</p><p>${checkInTime}</p></td>
+                                    <td><p>${checkOutDate}</p><p>${checkOutTime}</p></td>
+                                    <td>${hours}</td>
+                                    </tr>`;
+
+                        tbody.innerHTML += row
+
+                    }
+                    getVolunteerRecord()
+                    
+                   
+                        
+
+
+                })
+                .catch((error) => {
+                    console.error("Error getting document:", error);
                 });
+
             })
+        })
+        .catch((error) => {
+            console.error("Error getting document:", error);
+        });
+
