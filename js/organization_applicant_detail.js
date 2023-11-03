@@ -1,28 +1,15 @@
-// Function to get the value of a cookie by its name
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }
-
-
-// Retrieve the user's ID from the cookie
-  const idPost = getCookie("idPost");
-  const idVolunteer = getCookie("idVolunteer");
-
-//   console.log(idPost);
-//   console.log(idVolunteer);
 
 import { getFirestore, collection, getDoc ,doc , getDocs, updateDoc,
     query , where
 } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+import { getCookie, setCookie} from "./backend.js"
 
+// Retrieve the user's ID from the cookie
+const idPost = await getCookie("idPost");
+const idVolunteer = await getCookie("idVolunteer");
+//   console.log(idPost);
+//   console.log(idVolunteer);
 
 const firebaseConfig = {
 apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
@@ -48,8 +35,7 @@ async function getApplicantInfo() {
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                 filteredApplicant= doc.data();
-                
-                });
+            });
     
                 async function getVolunteerDetails() {
                     const docRef = doc(collectionRef, idVolunteer);
@@ -79,7 +65,7 @@ async function getApplicantInfo() {
                                 
                         
                                 let h3 = document.createElement("h3");
-                                h3.innerHTML = "Experience";
+                                h3.innerHTML = "Work Experience";
                                 applicant_info.append(h3)
                                 data.experience.forEach(function(exp) {
                                     let p = document.createElement("p");
@@ -147,7 +133,7 @@ async function getApplicantInfo() {
 }
 
 async function getPostDetails() {
-    const idOrganization = getCookie("idOrganization");
+    const idOrganization = await getCookie("idOrganization");
     console.log(idOrganization);
     const colRefOrg = collection( db, 'organization' );
     const docRefOrg = doc(colRefOrg, idOrganization);
