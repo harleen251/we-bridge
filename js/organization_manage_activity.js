@@ -54,7 +54,7 @@ const docRef = doc(colRef, idPost);
             p.innerText = date.toLocaleDateString();
             post_info.append(p);
 
-            const hours = date.getHours();
+            const hours = date.getHours().toString().padStart(2, '0');
             let period;
 
             if (hours >= 0 && hours < 12) {
@@ -62,7 +62,7 @@ const docRef = doc(colRef, idPost);
             }  else {
                 period = "PM";
             }
-            const minutes = date.getMinutes();
+            const minutes = date.getMinutes().toString().padStart(2, '0');
             const p1 = document.createElement('p');
             p1.innerText = `${hours}:${minutes} ${period}`;
             post_info.append(p1);
@@ -116,10 +116,13 @@ let approvedList = [];
                             console.error("Error getting document:", error);
                             });
 
-                        checkInDate = record.checkInDate?record.checkInDate:"DD/MM/YY"; 
-                        checkInTime = record.checkInDate?record.checkInDate:"00:00"; 
-                        checkOutDate = record.checkOutDate?record.checkOutDate:"DD/MM/YY"; 
-                        checkOutTime = record.checkOutDate?record.checkOutDate:"00:00"; 
+
+                        checkInDate = record.checkInDate?record.checkInDate.toDate().toLocaleDateString():"DD/MM/YY"; 
+                        checkInTime = record.checkInDate?
+                        record.checkInDate.toDate().getHours().toString().padStart(2, '0')+":"+record.checkInDate.toDate().getMinutes().toString().padStart(2, '0'):"00:00"; 
+                        checkOutDate = record.checkOutDate?record.checkOutDate.toDate().toLocaleDateString():"DD/MM/YY"; 
+                        checkOutTime = record.checkOutDate?
+                        record.checkOutDate.toDate().getHours().toString().padStart(2, '0')+":"+record.checkOutDate.toDate().getMinutes().toString().padStart(2, '0'):"00:00"; 
                         let hours = record.hours?record.hours:"0";
                         let row = `<tr>
                                     <td><img src=${data.photoLink} width="150">
@@ -133,10 +136,7 @@ let approvedList = [];
 
                     }
                     getVolunteerRecord()
-                    
-                   
-                        
-
+                
 
                 })
                 .catch((error) => {
