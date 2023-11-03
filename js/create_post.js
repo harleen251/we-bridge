@@ -60,7 +60,7 @@ submitPost.addEventListener("submit", async function (event) {
     const preferredLanguage = document.getElementById("txtPreferredLanguage").value;
     const phoneNumber = document.getElementById("txtPhoneNumber").value;
     const email = document.getElementById("txtEmail").value;
-    
+    var currentDate = new Date();
    
     try {
         await addDoc(colRef, {
@@ -77,7 +77,8 @@ submitPost.addEventListener("submit", async function (event) {
             preferredLanguage: preferredLanguage,
             phoneNumber: phoneNumber,
             email: email,
-            organizationId: organizationId
+            organizationId: organizationId,
+            posted_on_date: currentDate
         });
 
         alert("Post submitted successfully!");
