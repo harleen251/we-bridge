@@ -44,7 +44,8 @@ async function getApplicantInfo() {
                             .then((snapshot) => {
                                 data = snapshot.data();
                                 // console.log("Document data:", data);
-                                document.getElementById("applicant_info").innerHTML = `<h2>${data.firstName} ${data.lastName}</h2>
+                                document.getElementById("applicant_info").innerHTML = `<img src = "${data.photoLink}" alt = "profile photo">
+                                <h2>${data.firstName} ${data.lastName}</h2>
                                 <p>${data.city}, ${data.province}</p>
                                 <section>
                                 <h3>Bio:</h3>
@@ -142,7 +143,7 @@ async function getPostDetails() {
         .then((snapshot) => {
             console.log(snapshot);
             dataOrg = snapshot.data();
-            console.log(dataOrg.name);
+            console.log(dataOrg.orgName);
         
 
         })
@@ -160,11 +161,11 @@ async function getPostDetails() {
             document.getElementById("post_info").innerHTML = `<h2>Applied Position:</h2>
             <section>
             <h3>${dataPost.positionTitle}</h3>
-            <p>${dataOrg.name}</p>
-            <p>Posted On:${dataPost.date.toDate().toLocaleDateString()}</p>
+            <p>${dataOrg.orgName}</p>
+            <p>Posted On:${dataPost.posted_on_date.toDate().toLocaleDateString()}</p>
             <p>Expiry On:${dataPost.expireDate.toDate().toLocaleDateString()}</p>
             <p>${dataPost.date.toDate().toLocaleDateString()}</p>
-            <p>${dataPost.hours}</p>
+            <p>${dataPost.hours} Hours</p>
             <p>${dataPost.location}</p>
             <p>${dataPost.skills}</p>
             <p>${dataPost.preferredLanguage}</p>
@@ -229,6 +230,7 @@ async function handleApproveButtonEvent() {
         const documentRef = doc(applicationRef, document.id);
 
         const dataToUpdate = {
+            declineMessage : "",
             status: "approved"
         };
 
@@ -257,7 +259,7 @@ async function declineEvent(e) {
 
         const updatingData = {
             declineMessage : msg.value,
-            status: "rejected"
+            status: "declined"
         }
         
 
