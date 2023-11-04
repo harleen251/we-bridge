@@ -32,9 +32,9 @@ async function orgProfileInfo() {
         .then((snapshot) => {
             data = snapshot.data();
             console.log("Document data:", data);
-            document.getElementById("welcome_tag").innerHTML = `Welcome ${data.name}`;
+            document.getElementById("welcome_tag").innerHTML = `Welcome ${data.orgName}`;
             let profile_info = document.getElementById("Profile_info")
-            profile_info.innerHTML = `<h2>${data.name}</h2> 
+            profile_info.innerHTML = `<h2>${data.orgName}</h2> 
                                         <p>${data.city},${data.province}</p>
                                         <p>${data.description}</p>`;
                                         for(let i = 0; i < data.serviceField.length; i++) {
