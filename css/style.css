@@ -156,20 +156,23 @@ input, label, img, span {
 
 /* Organization Account */
 
-.post-tab, .application-tab{
+/* .post-tab, .application-tab{
     display: grid;
     grid-template-columns: 3fr 1fr;
-}
+} */
 
-.post-tab>button, .application-tab>button {
-    width: 50px;
+.nav_tab .item {
+    display: inline-block;
+    padding: 1rem;
+    background-color: #04AA6D;
+    margin: 1rem;
 }
 
 #post-list div, #application-list div{
     border: 1px solid grey;
 }
 
-#wrap-posting, #wrap-application {
+div.page {
     display: none;
 }
 /* END */

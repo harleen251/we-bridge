@@ -34,7 +34,8 @@ async function orgProfileInfo() {
             console.log("Document data:", data);
             document.getElementById("welcome_tag").innerHTML = `Welcome ${data.orgName}`;
             let profile_info = document.getElementById("Profile_info")
-            profile_info.innerHTML = `<h2>${data.orgName}</h2> 
+            profile_info.innerHTML = `  <img src= "${data.photoLink}" alt = "profile image">
+                                        <h2>${data.orgName}</h2> 
                                         <p>${data.city},${data.province}</p>
                                         <p>${data.description}</p>`;
                                         for(let i = 0; i < data.serviceField.length; i++) {
@@ -77,11 +78,11 @@ async function getPostList() {
     
             snapshot.forEach((doc) => {
                 const post = {...doc.data(), id: doc.id};
-                const expirationDate = post.expireDate.toDate();
-                if((postFilter === "Active") && (expirationDate > currentDate)) {
+                const startDate = post.date.toDate();
+                if((postFilter === "Active") && (startDate > currentDate)) {
                     // console.log(expirationDate);
                     filteredPosts.push(post);  
-                } else if((postFilter === "Inactive/Closed") && (expirationDate < currentDate)) {
+                } else if((postFilter === "Inactive/Closed") && (startDate < currentDate)) {
                     filteredPosts.push(post); 
                 } else if( postFilter === "All" ) {
                     filteredPosts.push(post);
@@ -101,7 +102,7 @@ async function getPostList() {
                 p.innerText = event.description;
                 div.append(p);
                 const p1 = document.createElement('p');
-                p1.innerText = `Published: ${event.date.toDate().toLocaleDateString()}`;
+                p1.innerText = `Published: ${event.posted_on_date.toDate().toLocaleDateString()}`;
                 div.append(p1)
     
                 let postId = event.id;
@@ -160,10 +161,10 @@ async function getPostList() {
 
 const postTabViewButton = document.getElementById("postTabViewButton")
 postTabViewButton.addEventListener("click", function (event){
-    event.preventDefault();    
+    // event.preventDefault();    
     try {
-        document.getElementById("wrap-posting").style.display = "block";
-        document.getElementById("wrap-application").style.display = "none";
+        // document.getElementById("wrap-posting").style.display = "block";
+        // document.getElementById("wrap-application").style.display = "none";
         getPostList();
     } catch (error) {
         
@@ -215,7 +216,7 @@ async function getApplicationList() {
                     applicationArray.push(doc.data())
                 } else if((applicationFilter === "Accepted") && (doc.data().status === "approved")) {
                     applicationArray.push(doc.data())
-                } else if((applicationFilter === "Rejected") && (doc.data().status === "rejected")) {
+                } else if((applicationFilter === "Rejected") && (doc.data().status === "declined")) {
                     applicationArray.push(doc.data())
                 } else if(applicationFilter === "All") {
                     applicationArray.push(doc.data())
@@ -237,6 +238,9 @@ async function getApplicationList() {
                     await getDoc(dRef)
                         .then((snapshot) => {
                             let data = snapshot.data();
+                            const img = document.createElement('img');
+                            img.setAttribute("src", data.photoLink);
+                            div.append(img);
                             const h3tag = document.createElement('h3');
                             h3tag.innerText = `${data.firstName} ${data.lastName}`;
                             div.append(h3tag);
@@ -292,10 +296,10 @@ async function getApplicationList() {
 
 const applicationTabViewButton = document.getElementById("applicationTabViewButton")
 applicationTabViewButton.addEventListener("click", async function (event){
-    event.preventDefault();    
+    // event.preventDefault();    
     try { 
-        document.getElementById("wrap-posting").style.display = "none";
-        document.getElementById("wrap-application").style.display = "block";
+        // document.getElementById("wrap-posting").style.display = "none";
+        // document.getElementById("wrap-application").style.display = "block";
         await getApplicationList();
     } catch (error) {
         
@@ -311,6 +315,26 @@ applicationFilter.addEventListener("change", async function(event) {
     }
 });
 
+
+// SPA Related
+const allPages = document.querySelectorAll('div.page');
+allPages[0].style.display = 'block';
+
+function navigateToPage(event) {
+  const pageId = location.hash ? location.hash : '#post';
+  for (let page of allPages) {
+    if (pageId === '#' + page.id) {
+      page.style.display = 'block';
+    } else {
+      page.style.display = 'none';
+    }
+  }
+  return;
+}
+navigateToPage();
+
+//init handler for hash navigation
+window.addEventListener('hashchange', navigateToPage);
 
 
 

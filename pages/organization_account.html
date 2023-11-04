@@ -17,42 +17,50 @@
         <section>
             <div id="Profile_info">
             </div>
-            <button><a href="organization_build_profile.html">Edit Profile</a></button>
+            <!-- <button><a href="organization_build_profile.html">Edit Profile</a></button> -->
         </section>
-        <button id="create-post-button"><a href="posts.html">Create Post</a></button>
-        <section class="posting">
-            <div class="post-tab">
-                <h2>Postings</h2>
-                <button id="postTabViewButton">➤</button> 
-                <div id="wrap-posting">
-                    <select id="postFilter">
-                        <option value="Active">Active</option>
-                        <option value="Inactive/Closed">Inactive/Closed</option>
-                        <option value="All">All</option>
-                    </select>
-                    <div id="post-list">
+        <!-- <button id="create-post-button"><a href="posts.html">Create Post</a></button> -->
 
+        <div class="nav_tab">           
+            <a class="item" href="#post" id="postTabViewButton" >Postings</a>
+            <a class="item" href="#application" id="applicationTabViewButton" >Applications</a>
+        </div>
+
+        <div class="page" id="post">
+            <section class="posting">
+                <div class="post-tab">
+                    <div id="wrap-posting">
+                        <select id="postFilter">
+                            <option value="Active">Active</option>
+                            <option value="Inactive/Closed">Inactive/Closed</option>
+                            <option value="All">All</option>
+                        </select>
+                        <div id="post-list">
+    
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="applications">
-            <div class="application-tab">
-                <h2>Applications</h2>
-                <button id="applicationTabViewButton">➤</button> 
-                <div id="wrap-application">
-                    <select id="applicationFilter">
-                        <option value="New">New</option>
-                        <option value="Accepted">Accepted</option>
-                        <option value="Rejected">Rejected</option>
-                        <option value="All">All</option>
-                    </select>
-                    <div id="application-list">
-
+            </section>
+        </div>
+        
+        <div class="page" id="application">
+            <section class="applications">
+                <div class="application-tab"> 
+                    <div id="wrap-application">
+                        <select id="applicationFilter">
+                            <option value="New">New</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="All">All</option>
+                        </select>
+                        <div id="application-list">
+    
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
+       
     </main>
     
 </body>
