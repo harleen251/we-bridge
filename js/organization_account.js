@@ -99,7 +99,7 @@ async function getPostList() {
                 h3.innerText = event.positionTitle;
                 div.append(h3);
                 const p = document.createElement('p');
-                p.innerText = event.description;
+                p.innerText = event.location;
                 div.append(p);
                 const p1 = document.createElement('p');
                 p1.innerText = `Published: ${event.posted_on_date.toDate().toLocaleDateString()}`;
