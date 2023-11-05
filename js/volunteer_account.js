@@ -48,42 +48,62 @@ async function getVolunteerInfo(){
 }
 
 async function getApplicantInfo() {
-    const collectionRef = collection( db, 'volunteer' );
-    const colRef = collection( db, 'application' );
-    let q = query(colRef, where( "volunteerID", "==" , volunteerId ));
+    const applicationCollection = collection( db, 'application' );
+    let q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ));
     let applicationFilter = document.getElementById("applicationFilter").value;
     console.log(applicationFilter);
     if((applicationFilter === "applied")) {
-        q = query(colRef, where( "volunteerID", "==" , volunteerId ), where("status", "==", "applied"));
+        q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status", "==", "applied"));
     } else if((applicationFilter === "approved")) {
-        q = query(colRef, where( "volunteerID", "==" , volunteerId ), where("status", "==", "approved"));
+        q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status", "==", "approved"));
     } else if((applicationFilter === "declined")) {
-        q = query(colRef, where( "volunteerID", "==" , volunteerId ), where("status", "==", "declined"));
+        q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status", "==", "declined"));
     }
-    await getDocs(q, colRef)
+    await getDocs(q, applicationCollection)
             .then((querySnapshot) => {
-                containerRec.innerHTML = "";
-                querySnapshot.forEach((doc) => {
-                    const application= doc.data();
-                    let txt2Inner = `<header><h3>${application.motive}</h3></header>`;
-                    document.getElementById("h1Recomm").style.display = "block";
-                    let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
-                    card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-                    txt2Inner += `<a href="">${doc.id}</p>`;
-                    txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
-                    txt2Inner += `<p>${application.status}</p>`; // add the title             
-                    card2Div.innerHTML = txt2Inner;
-                    containerRec.appendChild(card2Div); // add cardDiv to orderDiv
-                    const viewButton = document.createElement('button');
-                    viewButton.setAttribute("class", "viewButton");
-                    viewButton.setAttribute("data-appId", doc.id);
-                    viewButton.setAttribute("data-postId", application.postsID);
-                    viewButton.innerHTML = 'Check Details';
-                    card2Div.append(viewButton);
-                    console.log("button appened");
-                    viewButton.addEventListener('click', handleViewButtonEvent); 
-                });
-            });
+                if (!querySnapshot.empty) {                    
+                    containerRec.innerHTML = "";
+                    querySnapshot.forEach((appDoc) => {
+                        const application = appDoc.data();                   
+                        console.log("application.postsID : "+  application.postsID);
+                        const postsCollection = collection( db, 'posts' ); 
+                        const postRef = doc(postsCollection, application.postsID);
+                        getDoc(postRef)
+                            .then((postDoc) => {
+                                if (postDoc.exists) {
+                                const postData = postDoc.data();
+                                console.log('Post Details : ', postData);
+                                let txt2Inner = `<header><h3>${application.motive}</h3></header>`;
+                                document.getElementById("h1Recomm").style.display = "block";  
+                                let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
+                                card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
+                                txt2Inner += `<a href="">${appDoc.id}</p>`;
+                                txt2Inner += `<a href="">${postData.positionTitle}</p>`;
+                                txt2Inner += `<a href="">${postData.location}</p>`;
+                                txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
+                                txt2Inner += `<p>${application.status}</p>`; // add the title             
+                                card2Div.innerHTML = txt2Inner;
+                                containerRec.appendChild(card2Div); // add cardDiv to orderDiv
+                                const viewButton = document.createElement('button');
+                                viewButton.setAttribute("class", "viewButton");
+                                viewButton.setAttribute("data-appId", doc.id);
+                                viewButton.setAttribute("data-postId", application.postsID);
+                                viewButton.innerHTML = 'Check Details';
+                                card2Div.append(viewButton);
+                                console.log("button appened");
+                                viewButton.addEventListener('click', handleViewButtonEvent); 
+                                } else {
+                                console.log('Post with postId not found.');
+                                }})
+                            .catch((error) => {
+                                console.error('Error fetching post details:', error);
+                            });
+                    });                    
+                }                
+            })
+            .catch((error) => {
+                console.error('Error fetching application data:', error);
+            });            
 }
   
   // Call the function when the window loads
@@ -102,7 +122,6 @@ async function handleViewButtonEvent(event) {
     console.log(postId);
    await setCookie("vol_applicationId", appId,1);
    await setCookie("vol_postId", postId,1)
-   application_detail.style.display = "block";
 }
 
 
