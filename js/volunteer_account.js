@@ -78,7 +78,7 @@ async function getApplicantInfo() {
                     viewButton.setAttribute("class", "viewButton");
                     viewButton.setAttribute("data-appId", doc.id);
                     viewButton.setAttribute("data-postId", application.postsID);
-                    viewButton.innerHTML = 'View';
+                    viewButton.innerHTML = 'Check Details';
                     card2Div.append(viewButton);
                     console.log("button appened");
                     viewButton.addEventListener('click', handleViewButtonEvent); 
@@ -102,7 +102,10 @@ async function handleViewButtonEvent(event) {
     console.log(postId);
    await setCookie("vol_applicationId", appId,1);
    await setCookie("vol_postId", postId,1)
+   application_detail.style.display = "block";
 }
+
+
 
 applicationFilter.addEventListener("change", async function(event) {
     event.preventDefault();    
@@ -131,3 +134,5 @@ navigateToPage();
 
 //init handler for hash navigation
 window.addEventListener('hashchange', navigateToPage);
+
+//event.target.parentElement.id
