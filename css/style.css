@@ -1,6 +1,9 @@
 /* Login and Index */
 /* START */
-body {font-family: Arial, Helvetica, sans-serif;}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F5F6F8;
+}
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
@@ -18,7 +21,7 @@ img {
 
 /* Set a style for all buttons */
 button {
-    background-color: #04AA6D;
+    background-color: #4410A5;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -26,6 +29,11 @@ button {
     cursor: pointer;
     width: 30%;
     display: block;
+}
+
+button a {
+    color: white;
+    text-decoration: none;
 }
 
 button:hover {
@@ -156,16 +164,34 @@ input, label, img, span {
 
 /* Organization Account */
 
-/* .post-tab, .application-tab{
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-} */
+#org_profile {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+#edit_profile_button {
+    background-color: #fff;
+    border: 1px solid #888;
+    
+}
+
+#edit_profile_button a {
+    color: #000;
+}
 
 .nav_tab .item {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    color: black;
+    text-decoration: none;
     padding: 1rem;
-    background-color: #04AA6D;
+    background-color: #F5F6F8;
     margin: 1rem;
+    border-bottom: 1px solid #888;
 }
 
 #post-list div, #application-list div{

@@ -171,7 +171,6 @@ postTabViewButton.addEventListener("click", function (event){
     }
 });
 
-
 postFilter.addEventListener("change", function(event) {
     event.preventDefault();    
     try {
@@ -218,7 +217,7 @@ async function getApplicationList() {
                     applicationArray.push(doc.data())
                 } else if((applicationFilter === "Rejected") && (doc.data().status === "declined")) {
                     applicationArray.push(doc.data())
-                } else if(applicationFilter === "All") {
+                } else if((applicationFilter === "All") && (doc.data().status !== "complete")) {
                     applicationArray.push(doc.data())
                 }
                 
@@ -315,21 +314,29 @@ applicationFilter.addEventListener("change", async function(event) {
     }
 });
 
+window.onload = getPostList();
+window.onload = getApplicationList();
 
 // SPA Related
 const allPages = document.querySelectorAll('div.page');
 allPages[0].style.display = 'block';
 
 function navigateToPage(event) {
-  const pageId = location.hash ? location.hash : '#post';
-  for (let page of allPages) {
-    if (pageId === '#' + page.id) {
-      page.style.display = 'block';
-    } else {
-      page.style.display = 'none';
+    let pageId
+    if (window.innerWidth < 800) { 
+        pageId = location.hash ; 
+    }  else {
+        pageId = location.hash ? location.hash : '#post';
     }
-  }
-  return;
+    
+    for (let page of allPages) {
+        if (pageId === '#' + page.id) {
+        page.style.display = 'block';
+        } else {
+        page.style.display = 'none';
+        }
+    }
+    return;
 }
 navigateToPage();
 

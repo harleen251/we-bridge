@@ -15,7 +15,6 @@ const firebassApp = initializeApp({
 
 const storage = getStorage();
 
-// Reference to Firestore
 const db = getFirestore(firebassApp);
 
 // Reference to the volunteer collection
