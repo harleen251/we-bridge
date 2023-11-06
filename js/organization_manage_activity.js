@@ -53,7 +53,7 @@ async function postInfo() {
         
             const date = data.date.toDate();
             const p = document.createElement('p');
-            p.innerText = date.toLocaleDateString();
+            p.innerText = date.toLocaleDateString('en-GB');
             post_info.append(p);
 
             const hours = date.getHours().toString().padStart(2, '0');
@@ -125,10 +125,10 @@ async function getVolunteerList() {
                                     console.error("Error getting document:", error);
                                     });
         
-                                checkInDate = record.checkInDate?record.checkInDate.toDate().toLocaleDateString():"DD/MM/YY"; 
+                                checkInDate = record.checkInDate?record.checkInDate.toDate().toLocaleDateString('en-GB'):"DD/MM/YYYY"; 
                                 checkInTime = record.checkInDate?
                                 record.checkInDate.toDate().getHours().toString().padStart(2, '0')+":"+record.checkInDate.toDate().getMinutes().toString().padStart(2, '0'):"00:00"; 
-                                checkOutDate = record.checkOutDate?record.checkOutDate.toDate().toLocaleDateString():"DD/MM/YY"; 
+                                checkOutDate = record.checkOutDate?record.checkOutDate.toDate().toLocaleDateString('en-GB'):"DD/MM/YYYY"; 
                                 checkOutTime = record.checkOutDate?
                                 record.checkOutDate.toDate().getHours().toString().padStart(2, '0')+":"+record.checkOutDate.toDate().getMinutes().toString().padStart(2, '0'):"00:00"; 
                                 let hours = record.hours?record.hours:"0";
