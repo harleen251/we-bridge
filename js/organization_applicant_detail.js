@@ -164,7 +164,7 @@ async function getPostDetails() {
             <p>${dataOrg.orgName}</p>
             <p>Posted On:${dataPost.posted_on_date.toDate().toLocaleDateString()}</p>
             <p>Expiry On:${dataPost.expireDate.toDate().toLocaleDateString()}</p>
-            <p>${dataPost.date.toDate().toLocaleDateString()}</p>
+            <p>${dataPost.date.toDate().toLocaleDateString('en-GB')}</p>
             <p>${dataPost.hours} Hours</p>
             <p>${dataPost.location}</p>
             <p>${dataPost.skills}</p>

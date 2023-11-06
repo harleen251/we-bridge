@@ -53,7 +53,7 @@ async function postInfo() {
         
             const date = data.date.toDate();
             const p = document.createElement('p');
-            p.innerText = date.toLocaleDateString();
+            p.innerText = date.toLocaleDateString('en-GB');
             post_info.append(p);
 
             const hours = date.getHours().toString().padStart(2, '0');
