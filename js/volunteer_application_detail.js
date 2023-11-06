@@ -36,18 +36,74 @@ async function getVolunteerInfo(){
 
     if (docSnap.exists()) {
         const volunteerData = docSnap.data();
-        console.log("Document data:", volunteerData);
-        document.getElementById('volunteerName').innerHTML = volunteerData.firstName;
-        document.getElementById('txtFirstName').innerHTML =  volunteerData.firstName + " " + volunteerData.lastName;
-        document.getElementById('profilePic').src = (volunteerData.photoLink == null ? " " : volunteerData.photoLink);
-        document.getElementById('txtBio').innerHTML = (volunteerData.bio == null ? " " : volunteerData.bio);
-        document.getElementById('txtCity').innerHTML = (volunteerData.city == null ? " " : volunteerData.city);
-        document.getElementById('txtProvince').innerHTML = (volunteerData.province == null ? " " : volunteerData.province);
-        document.getElementById('txtSkill').innerHTML = (volunteerData.skills == null ? " " : volunteerData.skills.join(',') );
-        document.getElementById('txtEmail').innerHTML = (volunteerData.email == null ? " " : volunteerData.email );
-        document.getElementById('txtPhoneNumber').innerHTML = (volunteerData.phoneNumber == null ? " " : volunteerData.phoneNumber);
-        getApplicantInfo();
-        
+        const applicant_info = document.getElementById("applicant_info");
+        applicant_info.innerHTML = `<img src = "${volunteerData.photoLink}" alt = "profile photo">
+                                <h2>${volunteerData.firstName} ${volunteerData.lastName}</h2>
+                                <p>${volunteerData.city}, ${volunteerData.province}</p>
+                                <section>
+                                <h3>Bio:</h3>
+                                <p>${volunteerData.bio}</p>
+                                </section>
+                                <section>
+                                <h3>Email:</h3>
+                                <p>${volunteerData.email}</p>
+                                </section>
+                                <section>
+                                <h3>Contact Number:</h3>
+                                <p>${volunteerData.phoneNumber}</p>
+                                </section>
+                                <section>
+                                <h3>Introduce yourself and tell us why you want to volunteer for this opportunity?</h3>
+                                <p id="motive"></p>
+                                </section>`;
+                                
+                        
+                                let h3 = document.createElement("h3");
+                                h3.innerHTML = "Work Experience";
+                                applicant_info.append(h3)
+                                volunteerData.experience.forEach(function(exp) {
+                                    let p = document.createElement("p");
+                                    p.innerHTML = `${exp.jobTitle}`
+                                    applicant_info.append(p);
+                                    let p1 = document.createElement("p");
+                                    p1.innerHTML = `${exp.company}`
+                                    applicant_info.append(p1);
+                                    let p2 = document.createElement("p");
+                                    p2.innerHTML = `${exp.startDate} - ${exp.endDate}`
+                                    applicant_info.append(p2);
+                                })
+                    
+                                let h3_1 = document.createElement("h3");
+                                h3_1.innerHTML = "Professional Certificate";
+                                applicant_info.append(h3_1);
+                                volunteerData.certificate.forEach(function(cert) {
+                                    let p3 = document.createElement("p");
+                                    p3.innerHTML = `${cert.certificateName}`
+                                    applicant_info.append(p3);
+                                    let p4 = document.createElement("p");
+                                    p4.innerHTML = `${cert.dateObtained}`
+                                    applicant_info.append(p4);
+                                    let p5 = document.createElement("p");
+                                    p5.innerHTML = `${cert.issuingOrg}`
+                                    applicant_info.append(p5);
+                                })
+                    
+                                let h3_2 = document.createElement("h3");
+                                h3_2.innerHTML = "Skills";
+                                applicant_info.append(h3_2);
+                                volunteerData.skills.forEach(function(skill) {
+                                    let p6 = document.createElement("p");
+                                    p6.innerHTML = `${skill}`
+                                    applicant_info.append(p6);
+                                })
+                    
+                                let h3_3 = document.createElement("h3");
+                                h3_3.innerHTML = "Language";
+                                applicant_info.append(h3_3);
+                                let p7 = document.createElement("p");
+                                p7.innerHTML = `${volunteerData.language}`
+                                applicant_info.append(p7);
+        getApplicantInfo();        
     } else {
         console.log("No such document!");
     }
@@ -69,8 +125,9 @@ async function getApplicantInfo() {
                             const postData = postDoc.data();
                             console.log(postData.positionTitle);
                             appName.innerHTML = "Application for " + postData.positionTitle;
-                            submissionDate.innerHTML = postData.posted_on_date.toDate();
-                            approvedDate.innerHTML = application.dateApplied.toDate();
+                            submissionDate.innerHTML = postData.posted_on_date.toDate().toLocaleDateString();
+                            approvedDate.innerHTML = application.dateApplied.toDate().toLocaleDateString();
+                            motive.innerHTML = application.motive;
                             } else {
                                 console.log('Post with postId not found.');
                             }})
