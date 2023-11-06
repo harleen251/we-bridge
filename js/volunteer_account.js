@@ -86,7 +86,7 @@ async function getApplicantInfo() {
                                 containerRec.appendChild(card2Div); // add cardDiv to orderDiv
                                 const viewButton = document.createElement('button');
                                 viewButton.setAttribute("class", "viewButton");
-                                viewButton.setAttribute("data-appId", doc.id);
+                                viewButton.setAttribute("data-appId", appDoc.id);
                                 viewButton.setAttribute("data-postId", application.postsID);
                                 viewButton.innerHTML = 'Check Details';
                                 card2Div.append(viewButton);
@@ -122,6 +122,7 @@ async function handleViewButtonEvent(event) {
     console.log(postId);
    await setCookie("vol_applicationId", appId,1);
    await setCookie("vol_postId", postId,1)
+   window.location.href = 'volunteer_application_detail.html';
 }
 
 
