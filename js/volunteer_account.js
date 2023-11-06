@@ -55,7 +55,7 @@ async function getApplicantInfo() {
     if((applicationFilter === "applied")) {
         q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status", "==", "applied"));
     } else if((applicationFilter === "approved")) {
-        q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status", "==", "approved"));
+        q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status", "in", ["complete", "approved"]));
     } else if((applicationFilter === "declined")) {
         q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status", "==", "declined"));
     }
@@ -103,6 +103,78 @@ async function getApplicantInfo() {
             })
             .catch((error) => {
                 console.error('Error fetching application data:', error);
+            });
+    getRegisteredInfo();       
+}
+
+async function getRegisteredInfo() {
+    const applicationCollection = collection( db, 'application' );
+    let q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status",  "in", ["approved", "complete"]));
+    let applicationFilter = document.getElementById("applicationFilter2").value;
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set the time to midnight for accurate comparison.
+    console.log(applicationFilter);
+    if((applicationFilter === "active")) {
+        q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status", "==", "approved"));
+    } else if((applicationFilter === "closed")) {
+        q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status", "==", "complete"));
+    } 
+    await getDocs(q, applicationCollection)
+            .then((querySnapshot) => {
+                if (!querySnapshot.empty) {                    
+                    containerRegistered.innerHTML = "";
+                    querySnapshot.forEach((appDoc) => {
+                        const application = appDoc.data();                   
+                        console.log("application.postsID : "+  application.postsID);
+                        const postsCollection = collection( db, 'posts' ); 
+                        const postRef = doc(postsCollection, application.postsID);
+                        getDoc(postRef)
+                            .then((postDoc) => {
+                                if (postDoc.exists) {
+                                const postData = postDoc.data();
+                                console.log('Post Details : ', postData);
+                                let txt2Inner = `<header><h3>${application.motive}</h3></header>`;
+                                document.getElementById("h1Recomm").style.display = "block";  
+                                let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
+                                card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
+                                txt2Inner += `<a href="">${appDoc.id}</p>`;
+                                txt2Inner += `<a href="">${postData.positionTitle}</p>`;
+                                txt2Inner += `<a href="">${postData.location}</p>`;
+                                txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
+                                txt2Inner += `<p>${application.status}</p>`; // add the title             
+                                card2Div.innerHTML = txt2Inner;
+                                containerRegistered.appendChild(card2Div); // add cardDiv to orderDiv
+
+                                console.log(postData.date + currentDate + " :" + postData.date < currentDate);
+                                if (applicationFilter === "active" && postData.date < currentDate) {
+                                    const checkInButton = document.createElement('button');
+                                    checkInButton.setAttribute("class", "checkInButton");
+                                    checkInButton.setAttribute("data-appId", appDoc.id);
+                                    checkInButton.setAttribute("data-postId", application.postsID);
+                                    checkInButton.innerHTML = 'Check In';
+                                    card2Div.append(checkInButton);
+                                    console.log("button checkInButton appened");
+                                    checkInButton.addEventListener('click', handleCheckInButtonEvent); 
+                                }
+                                const viewButton = document.createElement('button');
+                                viewButton.setAttribute("class", "viewButton");
+                                viewButton.setAttribute("data-appId", appDoc.id);
+                                viewButton.setAttribute("data-postId", application.postsID);
+                                viewButton.innerHTML = 'Check Details';
+                                card2Div.append(viewButton);
+                                console.log("button appened");
+                                viewButton.addEventListener('click', handleViewButtonEvent); 
+                                } else {
+                                console.log('Post with postId not found.');
+                                }})
+                            .catch((error) => {
+                                console.error('Error fetching post details:', error);
+                            });
+                    });                    
+                }                
+            })
+            .catch((error) => {
+                console.error('Error fetching application data:', error);
             });            
 }
   
@@ -120,19 +192,34 @@ async function handleViewButtonEvent(event) {
     let postId = event.target.getAttribute('data-postId');
     console.log(appId);
     console.log(postId);
-   await setCookie("vol_applicationId", appId,1);
-   await setCookie("vol_postId", postId,1)
-   window.location.href = 'volunteer_application_detail.html';
+   await setCookie("vol_applicationId", appId, 1);
+   await setCookie("vol_postId", postId, 1)
+   window.location.href = 'post_detail.html';
 }
 
-
+async function handleCheckInButtonEvent(event) {
+    let appId = event.target.getAttribute('data-appId');
+    let postId = event.target.getAttribute('data-postId');
+    console.log(appId);
+    console.log(postId);
+   await setCookie("vol_applicationId", appId, 1);
+   await setCookie("vol_postId", postId, 1)
+   window.location.href = 'post_detail.html';
+}
 
 applicationFilter.addEventListener("change", async function(event) {
     event.preventDefault();    
     try {
         await getApplicantInfo();
-    } catch (error) {
-        
+    } catch (error) {        
+    }
+});
+
+applicationFilter2.addEventListener("change", async function(event) {
+    event.preventDefault();    
+    try {
+        await getRegisteredInfo();
+    } catch (error) {        
     }
 });
 

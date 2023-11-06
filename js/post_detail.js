@@ -1,7 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, onSnapshot, where, query, orderBy, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
-import {createApplyButton, createPopupForApplication, navigateToPostDetailPage} from "./backend.js"
+import {createApplyButton, createPopupForApplication, navigateToPostDetailPage, getCookie} from "./backend.js"
+
 const firebaseConfig = {
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
     authDomain: "webridge-81f09.firebaseapp.com",
@@ -22,7 +23,8 @@ const firebaseConfig = {
   window.addEventListener('load', recommendations);
   
   const urlParams = new URLSearchParams(window.location.search);
-  const postId = urlParams.get('id');
+  const postId = await getCookie("vol_postId");
+  // urlParams.get('id');
   console.log(postId)
   const opportunity_detail = document.getElementById("opportunity_detail")
   const similar_opportunities = document.getElementById("similar_opportunities")

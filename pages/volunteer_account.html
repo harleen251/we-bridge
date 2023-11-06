@@ -7,7 +7,6 @@
     <script type="module" src="../js/volunteer_account.js" defer></script>
     <link rel="stylesheet" href="../css/dropdown.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/volunteer.css">
 </head>
 <body>
     <session>
@@ -44,10 +43,13 @@
     <div class="page" id="commitment" >
         <h2>Commitment</h2>
         <select id="applicationFilter2">
-            <option value="Active">Active</option>
-            <option value="Inactive/Closed">Inactive/Closed</option>
-            <option value="All">All</option>
+            <option value="active">Active</option>
+            <option value="closed">Inactive/Closed</option>
+            <option value="all" selected>All</option>
         </select>
+        <div id="containerRegistered">
+                    
+        </div>
     </div>
     <div class="page" id="record" >
         <h2>Record</h2>
