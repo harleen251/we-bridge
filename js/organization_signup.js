@@ -126,12 +126,14 @@ document.getElementById("txtConfirmPassword").addEventListener("keyup", function
 
 document.getElementById("txtPassword").addEventListener("keyup", function (event) {
     event.preventDefault();
-    if(txtPassword.value === txtConfirmPassword.value) {
+    if((txtPassword.value === txtConfirmPassword.value) && (txtConfirmPassword.value !== "")) {
         msg.innerHTML = `Passwords match`;
         flag = 1;
     } else {
+        if( (txtConfirmPassword.value !== "") ){
         msg.innerHTML = `Passwords do not match`;
         flag = 0;
+        }
     }
 })
 

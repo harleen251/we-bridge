@@ -35,8 +35,8 @@ async function getOrganizationInfo(){
         document.getElementById('txtEmail').value = organizationData.email;
         document.getElementById('txtOrgName').value = (organizationData.orgName == null ? " " : organizationData.orgName);
         document.getElementById('txtRegNumber').value = (organizationData.regNumber == null ? " " : organizationData.regNumber);
-        document.getElementById('txtFirstName').value = (organizationData.firstName == null ? " " : organizationData.firstName);
-        document.getElementById('txtLastName').value = (organizationData.lastName == null ? " " : organizationData.lastName);
+        document.getElementById('txtFirstName').value = (organizationData.firstname == null ? " " : organizationData.firstname);
+        document.getElementById('txtLastName').value = (organizationData.lastname == null ? " " : organizationData.lastname);
         document.getElementById('txtAddress').value = (organizationData.address == null ? " " : organizationData.address);
         document.getElementById('txtProvince').value = (organizationData.province == null ? " " : organizationData.province);
         document.getElementById('txtCity').value = (organizationData.city == null ? " " : organizationData.city);
@@ -110,8 +110,8 @@ const organizationConverter = {
             description: organization.description,
             websiteLink: organization.websiteLink,
             service: organization.service,
-            firstName: organization.firstName,
-            lastName: organization.lastName,
+            firstname: organization.firstName,
+            lastname: organization.lastName,
             email: organization.email,
             phoneNumber: organization.phoneNumber,
         };
@@ -141,10 +141,10 @@ const serviceArray = [];
 let flag = 0;
 
 const form_Profile = document.getElementById("form_Profile")
-form_Profile.addEventListener("submit", function (event){
+form_Profile.addEventListener("submit", async function (event){
     event.preventDefault();    
     try {
-        saveOrganization();
+        await saveOrganization();
     } catch (error) {
         
     }
