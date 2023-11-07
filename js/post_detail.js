@@ -202,11 +202,22 @@ function createPopupForApplication(eventId) {
   submitButton.addEventListener('click', async () => {
   const contactNumber = contactNumberInput.value;
   const applicationReason = applicationReasonInput.value;
-  const volunteerId = getCookie("volunteerId");
-  console.log(volunteerId)
-  // const organizationId = ""; 
+  let volunteerId = ""
+  getCookie('volunteerId')
+  .then((cookieValue) => {
+    if (cookieValue !== null) {
+      // Cookie found, use cookieValue
+      if (cookieValue !== "") {
+        volunteerId = cookieValue;
+        console.log(`volunteerId value: ${cookieValue}`); 
+      }      
+    } 
+  })
+  .catch((error) => {
+    //console.error('An error occurred while retrieving the cookie:', error);
+  });
+
   var currentDate = new Date();
-  console.log(eventId)
   
   let organizationId = ""; 
 
@@ -252,4 +263,6 @@ function createPopupForApplication(eventId) {
   window.location.href = postDetailPageURL
 }
 
+
+    
 
