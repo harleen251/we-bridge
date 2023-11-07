@@ -128,86 +128,7 @@ function filteredPostWithinRadius(event, radius) {
         return 0;
 }}
 
-// function createApplyButton(eventId) {
-//   const applyButton = document.createElement('button');
-//   applyButton.textContent = 'Apply';
-//   applyButton.addEventListener('click', () => {
-//     console.log("Button ID: " + eventId);
-//     createPopupForApplication(eventId);
-//   });
-//   return applyButton;
-// }
 
-function createPopupForApplication(eventId) {
-  // Create and display the application popup.
-  const popupHTML = `
-    <div class="popup">
-      <div class="popup-content">
-        <h3>Apply for this position</h3>
-        <label for="contactNumber">Contact Number:</label>
-        <input type="text" id="contactNumber" required>
-        <br>
-        <label for="applicationReason">Introduce yourself and tell us why you want to volunteer for this opportunity?</label>
-        <textarea id="applicationReason" rows="4" required></textarea>
-        <br>
-        <button id="submitApplication">Submit</button>
-        <button id="closePopup">Close</button>
-      </div>
-    </div>
-  `;
-
-  document.body.insertAdjacentHTML('beforeend', popupHTML);
-  // Get the pop-up interface and related elements
-  const popup = document.querySelector('.popup');
-  const closePopup = document.getElementById('closePopup');
-  const submitButton = document.getElementById('submitApplication');
-  const contactNumberInput = document.getElementById('contactNumber');
-  const applicationReasonInput = document.getElementById('applicationReason');
-
-// Close the pop-up interface
-  closePopup.addEventListener('click', () => {
-    popup.remove();
-  });
-
-// Handle click event of submit button
-  submitButton.addEventListener('click', async () => {
-  const contactNumber = contactNumberInput.value;
-  const applicationReason = applicationReasonInput.value;
-  var currentDate = new Date();
-  const docRef = doc(db, "posts", eventId);
-  getDoc(docRef)
-  .then((doc) => {
-    if (doc.exists()) {
-      // if document exists, then view the field.
-      const organizationId = doc.data().organizationId;
-    } else {
-      console.log("Document does not exist.");
-    }
-  })
-  .catch((error) => {
-    console.error("Error getting document:", error);
-  });
-  try {
-    await addDoc(collection(db, 'application'),{
-      contactNumber : contactNumber,
-      motive : applicationReason,
-      volunteerID : getCookie("volunteerId"),
-      postsID : eventId,
-      status : "applied",
-      organizationId : organizationId,
-      dateApplied : currentDate
-    });
-
-    alert("Application submitted successfully!")
-  } catch (error) {
-    console.error("Error adding document: ", error);
-    alert("An error occurred while submitting the application.");
-  }
-
-
-// Close the pop-up interface
-  popup.remove();
- })}
 
 function navigateToPostDetailPage(eventId){
   const postDetailPageURL = `../pages/post_detail.html?id=${eventId}`
@@ -243,4 +164,5 @@ function resetSearchFields() {
   interestsSelect.value = 'Interests';
   skillsSelect.value = 'Skills';
 }
+
 
