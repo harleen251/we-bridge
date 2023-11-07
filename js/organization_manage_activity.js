@@ -90,7 +90,7 @@ async function postInfo() {
 const applicationRef = collection( db, 'application' );
 
 async function getVolunteerList() {
-    const q = query(applicationRef, where( "postsID", "==" , idPost ), where( "status", "==" , "approved" ));
+    const q = query(applicationRef, where( "postsID", "==" , idPost ), where("status",  "in", ["approved", "complete"]));
     let approvedList = [];
         await getDocs(q, applicationRef)
             .then((querySnapshot) => {

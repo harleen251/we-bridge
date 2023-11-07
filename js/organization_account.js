@@ -133,7 +133,7 @@ async function getPostList() {
                             div.append(p2);
         
                             for(let i = 0; i < applicantsArray.length; i++) {
-                                if(applicantsArray[i].status === "approved"){
+                                if((applicantsArray[i].status === "approved") || (applicantsArray[i].status === "complete")){
                                     countApproved++;
                                 }
                             }
