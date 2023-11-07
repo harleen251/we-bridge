@@ -1,8 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getFirestore, collection, getDocs, onSnapshot, where, query, orderBy, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, onSnapshot, where, query, orderBy, getDoc, doc, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
-import {createApplyButton, createPopupForApplication, navigateToPostDetailPage, getCookie} from "./backend.js"
-
+import {getCookie} from "./backend.js"
 const firebaseConfig = {
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
     authDomain: "webridge-81f09.firebaseapp.com",
@@ -23,8 +22,7 @@ const firebaseConfig = {
   window.addEventListener('load', recommendations);
   
   const urlParams = new URLSearchParams(window.location.search);
-  const postId = await getCookie("vol_postId");
-  // urlParams.get('id');
+  const postId = urlParams.get('id');
   console.log(postId)
   const opportunity_detail = document.getElementById("opportunity_detail")
   const similar_opportunities = document.getElementById("similar_opportunities")
@@ -67,9 +65,9 @@ const firebaseConfig = {
         if (doc.exists) {
           const data = doc.data();
           const interests = data.interests; // Get interests of the current post
-  
+          console.log(typeof(interests))
           // Create a query to find other posts with the same interests
-          const queryRef = query(colRef, where("interests", "==", interests));
+          const queryRef = query(colRef, where("interests", "array-contains-any", interests));
   
           getDocs(queryRef)
             .then((querySnapshot) => {
@@ -156,5 +154,104 @@ function showMoreRecommendations(startIndex) {
         // If there are no more posts to show, hide the "Show more" button
         const showMoreButton = document.querySelector("#showMoreButton");
         showMoreButton.style.display = "none";
+    }
+}
+
+function createApplyButton(eventId) {
+  const applyButton = document.createElement('button');
+  applyButton.textContent = 'Apply';
+  applyButton.addEventListener('click', () => {
+    console.log("Button ID: " + eventId);
+    createPopupForApplication(eventId);
+  });
+  return applyButton;
+}
+
+function createPopupForApplication(eventId) {
+  // Create and display the application popup.
+  const popupHTML = `
+    <div class="popup">
+      <div class="popup-content">
+        <h3>Apply for this position</h3>
+        <label for="contactNumber">Contact Number:</label>
+        <input type="text" id="contactNumber" required>
+        <br>
+        <label for="applicationReason">Introduce yourself and tell us why you want to volunteer for this opportunity?</label>
+        <textarea id="applicationReason" rows="4" required></textarea>
+        <br>
+        <button id="submitApplication">Submit</button>
+        <button id="closePopup">Close</button>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', popupHTML);
+  // Get the pop-up interface and related elements
+  const popup = document.querySelector('.popup');
+  const closePopup = document.getElementById('closePopup');
+  const submitButton = document.getElementById('submitApplication');
+  const contactNumberInput = document.getElementById('contactNumber');
+  const applicationReasonInput = document.getElementById('applicationReason');
+
+// Close the pop-up interface
+  closePopup.addEventListener('click', () => {
+    popup.remove();
+  });
+
+// Handle click event of submit button
+  submitButton.addEventListener('click', async () => {
+  const contactNumber = contactNumberInput.value;
+  const applicationReason = applicationReasonInput.value;
+  const volunteerId = getCookie("volunteerId");
+  console.log(volunteerId)
+  // const organizationId = ""; 
+  var currentDate = new Date();
+  console.log(eventId)
+  
+  let organizationId = ""; 
+
+  const docRef = doc(db, "posts", eventId);
+
+  try {
+    const doc = await getDoc(docRef); 
+
+    if (doc.exists()) {
+      
+      organizationId = doc.data().organizationID;
+      console.log(organizationId);
+    } else {
+      console.log("Document does not exist.");
+    }
+  } catch (error) {
+    console.error("Error getting document:", error);
+  }
+
+  try {
+    await addDoc(collection(db, 'application'), {
+      contactNumber: contactNumber,
+      motive: applicationReason,
+      volunteerID: volunteerId,
+      postsID: eventId,
+      status: "applied",
+      organizationId: organizationId, 
+      dateApplied: currentDate,
+    });
+
+    alert("Application submitted successfully!");
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    alert("An error occurred while submitting the application.");
+  }
+
+  // Close the pop-up interface
+  popup.remove();
+ })}
+
+ function navigateToPostDetailPage(eventId){
+  const postDetailPageURL = `../pages/post_detail.html?id=${eventId}`
+  window.location.href = postDetailPageURL
+}
+
+
     }
 }
