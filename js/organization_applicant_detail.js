@@ -64,52 +64,87 @@ async function getApplicantInfo() {
                                 <p>${filteredApplicant.motive}</p>
                                 </section>`;
                                 
-                        
                                 let h3 = document.createElement("h3");
+                                h3.setAttribute("id", "workExperience")
                                 h3.innerHTML = "Work Experience";
-                                applicant_info.append(h3)
+                                applicant_info.append(h3);
+                                let div1 = document.createElement("div");
+                                div1.setAttribute("id", "wrap_workExperience");
                                 data.experience.forEach(function(exp) {
                                     let p = document.createElement("p");
                                     p.innerHTML = `${exp.jobTitle}`
-                                    applicant_info.append(p);
+                                    div1.append(p);
                                     let p1 = document.createElement("p");
                                     p1.innerHTML = `${exp.company}`
-                                    applicant_info.append(p1);
+                                    div1.append(p1);
                                     let p2 = document.createElement("p");
                                     p2.innerHTML = `${exp.startDate} - ${exp.endDate}`
-                                    applicant_info.append(p2);
+                                    div1.append(p2);
                                 })
+                                applicant_info.append(div1);
+
+                                workExperience.addEventListener("click", function() {
+                                    wrap_workExperience.style.display = "block";
+                                    wrap_professionalCertificate.style.display = "none";
+                                    wrap_applicantSkills.style.display = "none";
+                                });
+                                
                     
                                 let h3_1 = document.createElement("h3");
+                                h3_1.setAttribute("id", "professionalCertificate")
                                 h3_1.innerHTML = "Professional Certificate";
                                 applicant_info.append(h3_1);
+                                let div2 = document.createElement("div");
+                                div2.setAttribute("id", "wrap_professionalCertificate");
                                 data.certificate.forEach(function(cert) {
                                     let p3 = document.createElement("p");
                                     p3.innerHTML = `${cert.certificateName}`
-                                    applicant_info.append(p3);
+                                    div2.append(p3);
                                     let p4 = document.createElement("p");
                                     p4.innerHTML = `${cert.dateObtained}`
-                                    applicant_info.append(p4);
+                                    div2.append(p4);
                                     let p5 = document.createElement("p");
                                     p5.innerHTML = `${cert.issuingOrg}`
-                                    applicant_info.append(p5);
+                                    div2.append(p5);
                                 })
+                                applicant_info.append(div2);
+
+                                professionalCertificate.addEventListener("click", function() {
+                                    wrap_professionalCertificate.style.display = "block";
+                                    wrap_workExperience.style.display = "none";
+                                    wrap_applicantSkills.style.display = "none";
+                                    wrap_appliedPosition.style.display = "none";
+                                });
+
                     
                                 let h3_2 = document.createElement("h3");
+                                h3_2.setAttribute("id", "applicantSkills")
                                 h3_2.innerHTML = "Skills";
                                 applicant_info.append(h3_2);
+                                let div3 = document.createElement("div");
+                                div3.setAttribute("id", "wrap_applicantSkills");
                                 data.skills.forEach(function(skill) {
                                     let p6 = document.createElement("p");
                                     p6.innerHTML = `${skill}`
-                                    applicant_info.append(p6);
+                                    div3.append(p6);
                                 })
                     
                                 let h3_3 = document.createElement("h3");
                                 h3_3.innerHTML = "Language";
-                                applicant_info.append(h3_3);
+                                div3.append(h3_3);
                                 let p7 = document.createElement("p");
                                 p7.innerHTML = `${data.language}`
-                                applicant_info.append(p7);
+                                div3.append(p7);
+                                applicant_info.append(div3);
+
+                                applicantSkills.addEventListener("click", function() {
+                                    wrap_applicantSkills.style.display = "block";
+                                    wrap_workExperience.style.display = "none";
+                                    wrap_professionalCertificate.style.display = "none";
+                                    wrap_appliedPosition.style.display = "none";
+                                });
+
+
                         })
                         .catch((error) => {
                                 console.error("Error getting document:", error);
@@ -158,7 +193,8 @@ async function getPostDetails() {
         .then((snapshotPost) => {
             dataPost = snapshotPost.data();
             // console.log("Document data:", dataPost);
-            document.getElementById("post_info").innerHTML = `<h2>Applied Position:</h2>
+            document.getElementById("post_info").innerHTML = `<h2 id="appliedPosition" >Applied Position</h2>
+            <div id="wrap_appliedPosition">
             <section>
             <h3>${dataPost.positionTitle}</h3>
             <p>${dataOrg.orgName}</p>
@@ -167,7 +203,7 @@ async function getPostDetails() {
             <p>${dataPost.date.toDate().toLocaleDateString('en-GB')}</p>
             <p>${dataPost.hours} Hours</p>
             <p>${dataPost.location}</p>
-            <p>${dataPost.skills}</p>
+            <div id = "skillList" ></div>
             <p>${dataPost.preferredLanguage}</p>
             <p>${dataPost.workMode}</p>
             </section>
@@ -175,7 +211,22 @@ async function getPostDetails() {
             <h3>Descriptions</h3>
             <p>${dataPost.description}</p>
             </section>
+            </div>
             `;
+            
+            dataPost.skills.forEach(function(skill) {
+                let para = document.createElement("p");
+                para.innerHTML = `${skill}`
+                document.getElementById("skillList").append(para);
+            })
+
+            appliedPosition.addEventListener("click", function() {
+                wrap_appliedPosition.style.display = "block";
+                wrap_workExperience.style.display = "none";
+                wrap_professionalCertificate.style.display = "none";
+                wrap_applicantSkills.style.display = "none";
+            });
+
         })
         .catch((error) => {
             console.error("Error:", error);

@@ -15,37 +15,40 @@
             </div>
             <button><a href="">View Post</a></button>
         </section>
-        <section>
-            <h2>VOLUNTEER TRACKING</h2>
+        <div id="volunteerTracking">
+            <section>
+                <h2>VOLUNTEER TRACKING</h2>
+                <div>
+                    <table>
+                        <thead>
+                            <th>Name</th><th>Check-in</th><th>Check-out</th><th>Total Hours</th>
+                        </thead>
+                        <tbody id="tbody">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </section>
             <div>
-                <table>
-                    <thead>
-                        <th>Name</th><th>Check-in</th><th>Check-out</th><th>Total Hours</th>
-                    </thead>
-                    <tbody id="tbody">
+                <button id="checkInBtn">Generate Check-In QR Code</button>
+                <button id="checkOutBtn">Generate Check-Out QR Code</button>
+    
+                <div id="wrap_qrcode">
+                    <div id="wrap_close_qrcode">
+                        <div class="imgcontainer">
+                            <span onclick="document.getElementById('wrap_qrcode').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        </div>
                         
-                    </tbody>
-                </table>
-            </div>
-        </section>
-        <div>
-            <button id="checkInBtn">Generate Check-In QR Code</button>
-            <button id="checkOutBtn">Generate Check-Out QR Code</button>
-
-            <div id="wrap_qrcode">
-                <div id="wrap_close_qrcode">
-                    <div class="imgcontainer">
-                        <span onclick="document.getElementById('wrap_qrcode').style.display='none'" class="close" title="Close Modal">&times;</span>
+                        <div id="qrcode"></div> 
+                        
                     </div>
                     
-                    <div id="qrcode"></div> 
-                    
+    
                 </div>
-                
-
+                 
             </div>
-             
         </div>
+        
     </main>
     
 </body>

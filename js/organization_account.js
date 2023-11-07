@@ -4,8 +4,16 @@ import { getCookie, setCookie} from "./backend.js"
 
 // // Retrieve the user's ID from the cookie
 const idOrganization = await getCookie("idOrganization");
-//const idOrganization = "hNEr10bBz2HUA0QlKkV0";
+// const idOrganization = "hNEr10bBz2HUA0QlKkV0";
 console.log(idOrganization);
+
+// window.addEventListener("pageshow", function(event) {
+//     if (event.persisted) {
+//       const dropdown = document.getElementById("postFilter");
+//       dropdown.selectedIndex = 0;
+//     }
+// });
+  
 
 const firebaseConfig = {
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
@@ -38,9 +46,9 @@ async function orgProfileInfo() {
                                         <h2>${data.orgName}</h2> 
                                         <p>${data.city},${data.province}</p>
                                         <p>${data.description}</p>`;
-                                        for(let i = 0; i < data.serviceField.length; i++) {
+                                        for(let i = 0; i < data.service.length; i++) {
                                             let p = document.createElement("p");
-                                            p.innerHTML = data.serviceField[i];
+                                            p.innerHTML = data.service[i];
                                             profile_info.appendChild(p);
                                         }
     })
@@ -79,8 +87,7 @@ async function getPostList() {
             snapshot.forEach((doc) => {
                 const post = {...doc.data(), id: doc.id};
                 const startDate = post.date.toDate();
-                if((postFilter === "Active") && (startDate > currentDate)) {
-                    // console.log(expirationDate);
+                if((postFilter === "Active") && (startDate >= currentDate)) {
                     filteredPosts.push(post);  
                 } else if((postFilter === "Inactive/Closed") && (startDate < currentDate)) {
                     filteredPosts.push(post); 
@@ -102,7 +109,7 @@ async function getPostList() {
                 p.innerText = event.location;
                 div.append(p);
                 const p1 = document.createElement('p');
-                p1.innerText = `Published: ${event.posted_on_date.toDate().toLocaleDateString()}`;
+                p1.innerText = `Published: ${event.posted_on_date.toDate().toLocaleDateString('en-GB')}`;
                 div.append(p1)
     
                 let postId = event.id;
@@ -186,9 +193,8 @@ postFilter.addEventListener("change", function(event) {
 async function handleViewButtonEvent(event) {
     let volunteerId = event.target.getAttribute('data-volunteerID');
     let postId = event.target.getAttribute('data-postID');
-    console.log("test addeventlistener");
-    console.log(volunteerId);
-    console.log(postId);
+    // console.log(volunteerId);
+    // console.log(postId);
   
     await setCookie('idVolunteer', volunteerId, 1); 
     await setCookie('idPost', postId, 1);
@@ -236,7 +242,21 @@ async function getApplicationList() {
                     const dRef = doc(volunteercolRef, event.volunteerID);
                     await getDoc(dRef)
                         .then((snapshot) => {
+
                             let data = snapshot.data();
+                            let status;
+                            if(event.status == "applied") {
+                                status = "New";
+                            } else if (event.status == "approved") {
+                                status = "Accepted";
+                            } else {
+                                status = "Rejected";
+                            }
+
+                            const statusDiv = document.createElement('div');
+                            statusDiv.setAttribute("class", "statusDiv");
+                            statusDiv.innerHTML = status;
+                            div.append(statusDiv);
                             const img = document.createElement('img');
                             img.setAttribute("src", data.photoLink);
                             div.append(img);
@@ -256,11 +276,11 @@ async function getApplicationList() {
                                         div.append(p3);
             
                                         const p5 = document.createElement('p');
-                                        p5.innerText = `Submitted On: ${event.dateApplied.toDate().toLocaleDateString()}`;
+                                        p5.innerText = `Submitted On: ${event.dateApplied.toDate().toLocaleDateString('en-GB')}`;
                                         div.append(p5);
             
                                         const p4 = document.createElement('p');
-                                        p4.innerText = `Post Expire: ${data.expireDate.toDate().toLocaleDateString()}`;
+                                        p4.innerText = `Post Expiry: ${data.expireDate.toDate().toLocaleDateString('en-GB')}`;
                                         div.append(p4);
             
                                         const viewButton = document.createElement('button');
@@ -295,10 +315,7 @@ async function getApplicationList() {
 
 const applicationTabViewButton = document.getElementById("applicationTabViewButton")
 applicationTabViewButton.addEventListener("click", async function (event){
-    // event.preventDefault();    
     try { 
-        // document.getElementById("wrap-posting").style.display = "none";
-        // document.getElementById("wrap-application").style.display = "block";
         await getApplicationList();
     } catch (error) {
         
