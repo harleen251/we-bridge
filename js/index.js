@@ -138,17 +138,23 @@ await getDocs(q)
 .then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
     const post = doc.data();
-    let txtInner = `<header><h1>${post.positionTitle}</h1></header>`;    
-
+    // let txtInner = `<header><h1>${post.positionTitle}</h1></header>`;    
+    let txtInner = ""; 
     console.log(i);
     i++;
     let cardDiv = document.createElement("div"); // create new Div, cardDiv to display details data             
     cardDiv.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-    txtInner += `<p>${doc.id}</p>`;
-    txtInner += `<p>${post.date.toDate()}</p>`;
-    txtInner += `<p>${"Exp : " + post.expireDate.toDate()}</p>`;
-    txtInner += `<p>${post.description}</p>`; // add the title             
+    
+    const anchor = document.createElement('a');
+    anchor.href = 'post_detail.html';
+    anchor.innerText = post.positionTitle;
+    anchor.setAttribute("data-postId", doc.id);            
+    anchor.addEventListener('click', handleViewButtonEvent);
+    txtInner += `<p>${post.description}</p>`; // add the title   
+    txtInner += `<p>${post.date.toDate().toLocaleDateString()}</p>`;
+    txtInner += `<p>${"Exp : " + post.expireDate.toDate().toLocaleDateString()}</p>`;              
     cardDiv.innerHTML = txtInner;
+    cardDiv.prepend(anchor);   
     containerOpp.appendChild(cardDiv); // add cardDiv to orderDiv   
     });
 })
@@ -181,16 +187,22 @@ async function getVolunteerInfo(volunteerId){
         await getDocs(q)
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-            const post = doc.data();
-            let txt2Inner = `<header><h1>${post.positionTitle}</h1></header>`;
-            document.getElementById("h1Recomm").style.display = "block";
+            const post = doc.data();  
             let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
-            card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-            txt2Inner += `<a href="">${doc.id}</p>`;
-            txt2Inner += `<p>${post.date.toDate()}</p>`;
-            txt2Inner += `<p>${"Exp : " + post.expireDate.toDate()}</p>`;
-            txt2Inner += `<p>${post.description}</p>`; // add the title             
-            card2Div.innerHTML = txt2Inner;
+            card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
+            document.getElementById("h1Recomm").style.display = "block";  
+            // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
+            let txt2Inner = ""; 
+            const anchor = document.createElement('a');
+            anchor.href = 'post_detail.html';
+            anchor.innerText = post.positionTitle;
+            anchor.setAttribute("data-postId", doc.id);            
+            anchor.addEventListener('click', handleViewButtonEvent);
+            txt2Inner += `<p>${post.description}</p>`; // add the title  
+            txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
+            txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
+            card2Div.innerHTML = txt2Inner;         
+            card2Div.prepend(anchor);   
             containerRec.appendChild(card2Div); // add cardDiv to orderDiv
             });
         })
@@ -226,4 +238,10 @@ btnLogout.addEventListener('click', function (event) {
     event.preventDefault();    
     logout(); 
 });
+
+async function handleViewButtonEvent(event) {
+    let postId = event.target.getAttribute('data-postId');
+    console.log(postId);
+   await setCookie("vol_postId", postId, 1);
+}
   

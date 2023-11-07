@@ -123,8 +123,7 @@ async function getRegisteredInfo() {
     } 
     await getDocs(q, applicationCollection)
             .then((querySnapshot) => {
-                if (!querySnapshot.empty) {                    
-                    
+                if (!querySnapshot.empty) {                 
                     querySnapshot.forEach((appDoc) => {
                         const application = appDoc.data();                   
                         console.log("application.postsID : "+  application.postsID);
@@ -133,42 +132,43 @@ async function getRegisteredInfo() {
                         getDoc(postRef)
                             .then((postDoc) => {
                                 if (postDoc.exists) {
-                                const postData = postDoc.data();
-                                console.log('Post Details : ', postData);
-                                let txt2Inner = `<header><h3>${application.motive}</h3></header>`;
-                                document.getElementById("h1Recomm").style.display = "block";  
-                                let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
-                                card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-                                txt2Inner += `<a href="">${appDoc.id}</p>`;
-                                txt2Inner += `<a href="">${postData.positionTitle}</p>`;
-                                txt2Inner += `<a href="">${postData.location}</p>`;
-                                txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
-                                txt2Inner += `<p>${application.status}</p>`; // add the title             
-                                card2Div.innerHTML = txt2Inner;
-                                containerRegistered.appendChild(card2Div); // add cardDiv to orderDiv
+                                    const postData = postDoc.data();
+                                    console.log('Post Details : ', postData);
+                                    let txt2Inner = `<header><h3>${application.motive}</h3></header>`;
+                                    document.getElementById("h1Recomm").style.display = "block";  
+                                    let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
+                                    card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
+                                    txt2Inner += `<a href="">${appDoc.id}</p>`;
+                                    txt2Inner += `<a href="">${postData.positionTitle}</p>`;
+                                    txt2Inner += `<a href="">${postData.location}</p>`;
+                                    txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
+                                    txt2Inner += `<p>${application.status}</p>`; // add the title             
+                                    card2Div.innerHTML = txt2Inner;
+                                    containerRegistered.appendChild(card2Div); // add cardDiv to orderDiv
 
-                                console.log(postData.date + currentDate + " :" + postData.date < currentDate);
-                                if (applicationFilter === "active" && postData.date < currentDate) {
-                                    const checkInButton = document.createElement('button');
-                                    checkInButton.setAttribute("class", "checkInButton");
-                                    checkInButton.setAttribute("data-appId", appDoc.id);
-                                    checkInButton.setAttribute("data-postId", application.postsID);
-                                    checkInButton.innerHTML = 'Check In';
-                                    card2Div.append(checkInButton);
-                                    console.log("button checkInButton appened");
-                                    checkInButton.addEventListener('click', handleCheckInButtonEvent); 
-                                }
-                                const viewButton = document.createElement('button');
-                                viewButton.setAttribute("class", "viewButton");
-                                viewButton.setAttribute("data-appId", appDoc.id);
-                                viewButton.setAttribute("data-postId", application.postsID);
-                                viewButton.innerHTML = 'Check Details';
-                                card2Div.append(viewButton);
-                                console.log("button appened");
-                                viewButton.addEventListener('click', handleViewButtonEvent); 
+                                    console.log(postData.date + currentDate + " :" + postData.date < currentDate);
+                                    if (applicationFilter === "active" && postData.date < currentDate) {
+                                        const checkInButton = document.createElement('button');
+                                        checkInButton.setAttribute("class", "checkInButton");
+                                        checkInButton.setAttribute("data-appId", appDoc.id);
+                                        checkInButton.setAttribute("data-postId", application.postsID);
+                                        checkInButton.innerHTML = 'Check In';
+                                        card2Div.append(checkInButton);
+                                        console.log("button checkInButton appened");
+                                        checkInButton.addEventListener('click', handleCheckInButtonEvent); 
+                                    }
+                                    const viewButton = document.createElement('button');
+                                    viewButton.setAttribute("class", "viewButton");
+                                    viewButton.setAttribute("data-appId", appDoc.id);
+                                    viewButton.setAttribute("data-postId", application.postsID);
+                                    viewButton.innerHTML = 'Check Details';
+                                    card2Div.append(viewButton);
+                                    console.log("button appened");
+                                    viewButton.addEventListener('click', handleViewButtonEvent); 
                                 } else {
-                                console.log('Post with postId not found.');
-                                }})
+                                    console.log('Post with postId not found.');
+                                }
+                            })
                             .catch((error) => {
                                 console.error('Error fetching post details:', error);
                             });
