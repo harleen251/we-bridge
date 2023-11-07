@@ -220,6 +220,10 @@ select {
     text-align: center;
 }
 
+#post-list div {
+    background-color: #fff;
+}
+
 
 /* END */
 
