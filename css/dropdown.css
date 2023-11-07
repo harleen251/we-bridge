@@ -5,7 +5,7 @@
     font-family: "Inter", sans-serif;
     --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
-    --color: #04AA6D;
+    --color: #4410A5;
     --gap: 0.5rem;
     --radius: 5px;
   }
@@ -16,19 +16,24 @@
     font-size: 0.9rem;
     color: black;
   }
+
+  .container {
+    display: flex;
+  }
   
   .btn {
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    column-gap: var(--gap);
-    padding: 0.6rem;
-    cursor: pointer;
-    border-radius: var(--radius);
-    border: none;
-    box-shadow: var(--shadow);
-    position: relative;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: var(--gap);
+      padding: 0.6rem;
+      margin-left: 0.6rem;
+      cursor: pointer;
+      border-radius: var(--radius);
+      border: none;
+      box-shadow: var(--shadow);
+      position: relative;
   }
   
   .bx {
@@ -40,7 +45,7 @@
     width: 250px;
     box-shadow: var(--shadow);
     border-radius: var(--radius);
-    margin-top: 0.3rem;
+    margin-top: 2.2rem;
     background: white;
   
     visibility: hidden;
@@ -97,6 +102,7 @@
     box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
     transform: translate3D(0, -2px, 0);
   }
+
   img {
     top: 0;
     bottom: 0;
@@ -142,7 +148,7 @@
   }
   
   .toolbar a {
-    background-color: #04AA6D;
+    background-color: #4410A5;
     text-decoration: none;
     color: white;
     flex: 0 0 30%;

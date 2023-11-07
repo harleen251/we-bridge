@@ -48,6 +48,7 @@ async function getVolunteerInfo(){
 }
 
 async function getApplicantInfo() {
+    containerRec.innerHTML = "";
     const applicationCollection = collection( db, 'application' );
     let q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ));
     let applicationFilter = document.getElementById("applicationFilter").value;
@@ -62,7 +63,7 @@ async function getApplicantInfo() {
     await getDocs(q, applicationCollection)
             .then((querySnapshot) => {
                 if (!querySnapshot.empty) {                    
-                    containerRec.innerHTML = "";
+                    
                     querySnapshot.forEach((appDoc) => {
                         const application = appDoc.data();                   
                         console.log("application.postsID : "+  application.postsID);
@@ -108,6 +109,7 @@ async function getApplicantInfo() {
 }
 
 async function getRegisteredInfo() {
+    containerRegistered.innerHTML = "";
     const applicationCollection = collection( db, 'application' );
     let q = query(applicationCollection, where( "volunteerID", "==" , volunteerId ), where("status",  "in", ["approved", "complete"]));
     let applicationFilter = document.getElementById("applicationFilter2").value;
@@ -122,7 +124,7 @@ async function getRegisteredInfo() {
     await getDocs(q, applicationCollection)
             .then((querySnapshot) => {
                 if (!querySnapshot.empty) {                    
-                    containerRegistered.innerHTML = "";
+                    
                     querySnapshot.forEach((appDoc) => {
                         const application = appDoc.data();                   
                         console.log("application.postsID : "+  application.postsID);
