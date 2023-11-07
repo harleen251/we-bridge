@@ -36,7 +36,7 @@ getCookie('volunteerId')
         linkAccount.href  = "volunteer_account.html";
       } else {
         // Cookie not found
-        getCookie('organizationId')
+        getCookie('IdOrganization')
           .then((cookieValue) => {
               if (cookieValue !== null) {
               // Cookie found, use cookieValue
