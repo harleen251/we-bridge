@@ -145,9 +145,7 @@ async function getRegisteredInfo() {
                                     txt2Inner += `<p>${application.status}</p>`; // add the title             
                                     card2Div.innerHTML = txt2Inner;
                                     containerRegistered.appendChild(card2Div); // add cardDiv to orderDiv
-
-                                    console.log(postData.date + currentDate + " :" + postData.date < currentDate);
-                                    if (applicationFilter === "active" && postData.date < currentDate) {
+                                    if (application.status === "approved" && postData.date < currentDate) {
                                         const checkInButton = document.createElement('button');
                                         checkInButton.setAttribute("class", "checkInButton");
                                         checkInButton.setAttribute("data-appId", appDoc.id);
@@ -206,7 +204,7 @@ async function handleCheckInButtonEvent(event) {
     console.log(postId);
    await setCookie("vol_applicationId", appId, 1);
    await setCookie("vol_postId", postId, 1)
-   window.location.href = 'post_detail.html';
+//    window.location.href = 'post_detail.html';
 }
 
 applicationFilter.addEventListener("change", async function(event) {
