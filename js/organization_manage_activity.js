@@ -1,25 +1,14 @@
-//Function to get the value of a cookie by its name
-function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }
-
-
-// // Retrieve the user's ID from the cookie
-const idOrganization = getCookie("idOrganization");
-const idPost = getCookie("idPost");
-console.log(idPost);
 
 import { getFirestore, collection, getDoc ,doc , getDocs,
     query , where, Timestamp
 } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+import { getCookie } from "./backend.js";
+
+//  Retrieve the user's ID from the cookie
+const idOrganization = await getCookie("idOrganization");
+const idPost = await getCookie("idPost");
+console.log(idPost);
 
 
 const firebaseConfig = {
@@ -37,17 +26,35 @@ initializeApp( firebaseConfig );
 const db = getFirestore();
 
 const colRef = collection( db, 'posts' );
-
 const docRef = doc(colRef, idPost);
+
+const organizationRef = collection(db, 'organization');
+const orgDocRef = doc(organizationRef, idOrganization);
+
+let org_info = [];
+async function orgInfo() {
+    await getDoc(orgDocRef)
+            .then((docu) => {
+                    org_info = docu.data();
+                    console.log(org_info);
+                    postInfo();     
+            })
+            .catch((error) => {
+                console.error("Error getting document:", error);
+            });
+}
+
+window.onload = orgInfo();
 
 async function postInfo() {
     let data =[]
-    getDoc(docRef)
+    await getDoc(docRef)
         .then((snapshot) => {
             data = snapshot.data();
             console.log("Document data:", data);
+
             let post_info = document.getElementById("Post_info")
-            post_info.innerHTML = `
+            post_info.innerHTML = `<img src = "${org_info.photoLink}" >
                                     <h1>${data.positionTitle}</h1>
                                     <p>${data.description}</p>`
         
@@ -78,10 +85,7 @@ async function postInfo() {
         });
 }
 
-window.onload = postInfo();
    
-
-
 
 const applicationRef = collection( db, 'application' );
 
@@ -95,6 +99,11 @@ async function getVolunteerList() {
                 console.log(approvedList);
                     
                 });
+
+                if(approvedList.length > 0 ) {
+                    document.getElementById("volunteerTracking").style.display = "block";
+                }
+
                 approvedList.forEach((event) => {
                     const volunteerRef = collection( db, 'volunteer' );
 

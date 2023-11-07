@@ -181,11 +181,14 @@ input, label, img, span {
     color: #000;
 }
 
-.nav_tab .item {
+.nav_tab {
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-shrink: 1;
+    flex-direction: row;
+}
+
+.nav_tab .item {
+    text-align: center;
+    flex-grow:  1;
     color: black;
     text-decoration: none;
     padding: 1rem;
@@ -196,11 +199,28 @@ input, label, img, span {
 
 #post-list div, #application-list div{
     border: 1px solid grey;
+    padding: 10px;
+    margin: 10px 0px;
+    border-radius: 10px;
 }
 
 div.page {
     display: none;
 }
+
+select {
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0px;
+}
+
+.statusDiv {
+    width: 80px;
+    background-color: #fff;
+    text-align: center;
+}
+
+
 /* END */
 
 /* org applicant detail */
@@ -224,6 +244,75 @@ div.page {
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+
+#subWrapper_orgApplicantDetail {
+    background-color: #fff;
+    padding: 10px;
+}
+
+#workExperience {
+    cursor: pointer;
+    background-color: #dfe1e5;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #888;
+    
+}
+
+#wrap_workExperience {
+    display: none;
+}
+
+#professionalCertificate {
+    cursor: pointer;
+    background-color: #dfe1e5;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #888;
+}
+
+#wrap_professionalCertificate {
+    display: none;
+}
+
+#applicantSkills {
+    cursor: pointer;
+    background-color: #dfe1e5;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #888;
+}
+
+#wrap_applicantSkills {
+    display: none;
+}
+
+#appliedPosition {
+    cursor: pointer;
+    font-size: 1.2rem;
+    background-color: #dfe1e5;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #888;
+}
+
+#wrap_appliedPosition {
+    display: none;
+}
+
+#total {
+    border: 1px solid #888;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* end */
+
+/* org manage activity */
+#volunteerTracking {
+    display: none;
 }
 
 /*explore pop up application*/
