@@ -57,6 +57,33 @@ function displayAllPosts() {
 
 search.addEventListener("click", performSearch);
 
+// async function performSearch(e) {
+//   e.preventDefault();
+//   output.innerHTML = '';
+//   const keyWord = searchInput.value.toLowerCase();
+//   const interests = interestsSelect.value;
+//   const skills = skillsSelect.value;
+//   radius = getSelectedRadius();
+
+//   const q = createQuery(interests, skills);
+
+//   try {
+//     const snapshot = await getDocs(q);
+//     const matchingDocs = snapshot.docs.filter((doc) => doc.data().positionTitle.toLowerCase().includes(keyWord));
+
+//     matchingDocs.forEach(doc => {
+//       const event = { ...doc.data(), id: doc.id };
+//       if (filteredPostWithinRadius(event, radius)) {
+//         const div = createEventDiv(event);
+//         output.appendChild(div);
+//       }
+//     });
+//   } catch (err) {
+//     console.log(err.message);
+//   }
+
+//   resetSearchFields();
+// }
 async function performSearch(e) {
   e.preventDefault();
   output.innerHTML = '';
@@ -65,25 +92,57 @@ async function performSearch(e) {
   const skills = skillsSelect.value;
   radius = getSelectedRadius();
 
-  const q = createQuery(interests, skills);
+  let matchingDocs = [];
 
-  try {
-    const snapshot = await getDocs(q);
-    const matchingDocs = snapshot.docs.filter((doc) => doc.data().positionTitle.toLowerCase().includes(keyWord));
-
-    matchingDocs.forEach(doc => {
-      const event = { ...doc.data(), id: doc.id };
-      if (filteredPostWithinRadius(event, radius)) {
-        const div = createEventDiv(event);
-        output.appendChild(div);
-      }
-    });
-  } catch (err) {
-    console.log(err.message);
+  if(interests == "Interests" && skills == "Skills"){
+    // Only use keywords
+      const snapshot = await getDocs(colRef);
+      matchingDocs = snapshot.docs.filter((doc) => doc.data().positionTitle.toLowerCase().includes(keyWord));
   }
+
+  if (interests !== "Interests" && skills !== "Skills") { //兴趣和技能都有值
+    // combine interests and skills
+    const interestsQuery = query(colRef, where("interests", "array-contains", interests));
+    const skillsQuery = query(colRef, where("skills", "array-contains", skills));
+
+    const interestsSnapshot = await getDocs(interestsQuery);
+    const skillsSnapshot = await getDocs(skillsQuery);
+
+    const interestsDocs = interestsSnapshot.docs;
+    const skillsDocs = skillsSnapshot.docs;
+
+    matchingDocs = interestsDocs.filter((interestsDoc) => {
+      return skillsDocs.some((skillsDoc) => interestsDoc.id === skillsDoc.id);
+    });
+  }
+
+  if (interests !== "Interests") {
+    // Only use interests
+    const interestsQuery = query(colRef, where("interests", "array-contains", interests));
+    const interestsSnapshot = await getDocs(interestsQuery);
+    matchingDocs = interestsSnapshot.docs;
+  }
+
+  if (skills !== "Skills") { 
+    // Only use skills
+    const skillsQuery = query(colRef, where("skills", "array-contains", skills));
+    const skillsSnapshot = await getDocs(skillsQuery);
+    matchingDocs = skillsSnapshot.docs;
+  }
+
+
+  matchingDocs.forEach(doc => {
+    const event = { ...doc.data(), id: doc.id };
+    if (filteredPostWithinRadius(event, radius)) {
+      const div = createEventDiv(event);
+      output.appendChild(div);
+    }
+  });
 
   resetSearchFields();
 }
+
+
 
 function getSelectedRadius() {
   const selectedRadio = Array.from(radiusRadios).find(radio => radio.checked);
@@ -164,5 +223,4 @@ function resetSearchFields() {
   interestsSelect.value = 'Interests';
   skillsSelect.value = 'Skills';
 }
-
 
