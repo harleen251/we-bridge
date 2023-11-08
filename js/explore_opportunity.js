@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getFirestore, collection, getDocs, onSnapshot, where, query, orderBy, getDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, onSnapshot, where, query, orderBy, getDoc, addDoc, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
 import { getCookie, } from "./backend.js"
 const firebaseConfig = {
@@ -161,15 +161,15 @@ function createQuery(interests, skills) {
   return q;
 }
 // Get the volunteer's latitude and longitude coordinates (assuming you have access to them)
-const volunteerLatitude = 49.22459940676005;
-const volunteerLongitude = -123.10192130145963;
+// const volunteerLatitude = 49.22459940676005;
+// const volunteerLongitude = -123.10192130145963;
 let geopoint = " "
 const volunteerId = await getCookie("volunteerId");
 
 
 
 async function getVolunteerDetails(volunteerId) {
-  const volRef = doc(db, 'volunteer');
+  const volRef = doc(db, 'volunteer', volunteerId);
   const docSnap = await getDoc(volRef);
   if (docSnap.exists()) {
       geopoint = docSnap.data().geopoint;
@@ -180,13 +180,17 @@ async function getVolunteerDetails(volunteerId) {
 }
 
 
-function filteredPostWithinRadius(event, radius) {
+async function filteredPostWithinRadius(event, radius) {
   if (radius != 0) {
-        let volunteerCoordinates = getVolunteerDetails(volunteerId);
+        try {let volunteerCoordinates = getVolunteerDetails(volunteerId);
         let volunteerLatitude = volunteerCoordinates._lat;
         let volunteerLongitude = volunteerCoordinates._long;
         let postLatitude = event.locationCoordinates._lat;
       let postLongitude = event.locationCoordinates._long;
+
+      console.log("postLatitude", postLatitude);
+      console.log("postLongitude", postLongitude);
+
     
         const earthRadius = 6371; // Earth's radius in kilometers
         // Calculate the distance between the volunteer and the post using Haversine formula
@@ -205,7 +209,11 @@ function filteredPostWithinRadius(event, radius) {
         if (flag) {
           return flag;
         }
-        return 0;
+        return 0;}
+        catch(error){
+          console.error(error);
+          return false;
+        }
 }}
 
 

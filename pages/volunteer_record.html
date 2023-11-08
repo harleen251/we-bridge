@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
+    <!-- <style>
         .profile-card {
             display: flex;
             align-items: center;
@@ -49,7 +49,112 @@
       font-size: 16px;
       text-align: center;
     }
+    </style> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .profile-card {
+            display: flex;
+            align-items: center;
+            width: 300px; /* Adjust the width as needed */
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    
+        .profile-pic {
+            width: 80px; /* Adjust the width as needed */
+            height: 80px; /* Adjust the height as needed */
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    
+        .profile-content {
+            flex: 1;
+        }
+    
+        .profile-content h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+    
+        .profile-content p {
+            margin-top: 5px;
+        }
+    
+        .profile-content .buttons {
+            display: flex;
+            margin-top: 10px;
+        }
+    
+        .profile-content .buttons button {
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    
+        .profile-content .buttons button:hover {
+            background-color: #258cd1;
+        }
+    
+        .circle {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #fff;
+            text-align: center;
+        }
+    
+        #sortOrder {
+            margin-top: 10px;
+        }
+    
+        #data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    
+        #data-table th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: bold;
+            text-align: left;
+            padding: 10px;
+        }
+    
+        #data-table tr {
+            border-bottom: 1px solid #ccc;
+        }
+    
+        #data-table td {
+            padding: 10px;
+        }
+    
+        #selectAllCheckbox {
+            margin: 10px;
+        }
     </style>
+    
 </head>
 <body>
    

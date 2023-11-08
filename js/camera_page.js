@@ -94,8 +94,8 @@ const scanner = new Html5QrcodeScanner('reader', {
                     postsID: postIdFromCookie
                 });
         
-                // window.location.href = "/pages/volunteer_account.html#commitment";
-        
+
+                window.location.href = "volunteer_account.html#commitment";
                 // submitPost.reset();
             } catch (error) {
                 console.error("Error adding document: ", error);
@@ -122,9 +122,10 @@ const scanner = new Html5QrcodeScanner('reader', {
                         hours: calculateHours(checkInTime, checkOutTime)
                     };
 
-                    updateDoc(documentRef, dataToUpdate)
+                     updateDoc(documentRef, dataToUpdate)
                         .then(() => {
                         console.log('Document field updated successfully.');
+                        window.location.href = "volunteer_account.html#commitment";
                         })
                         .catch((error) => {
                         console.error('Error updating document field:', error);
@@ -137,11 +138,12 @@ const scanner = new Html5QrcodeScanner('reader', {
                 });
 
         }
+            
             scanner.clear();
             document.getElementById('reader').remove();
         }
 
-        function calculateHours(checkInTime, checkOutTime) {
+         function calculateHours(checkInTime, checkOutTime) {
             const timeDifferenceInSeconds = (checkOutTime/1000) - checkInTime;
             const timeDifferenceInHours = timeDifferenceInSeconds / 3600;
             const roundedHoursDifference = timeDifferenceInHours.toFixed(2); // Round to 2 decimal places
