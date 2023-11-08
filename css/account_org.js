@@ -89,7 +89,7 @@ function handleManageButtonEvent(event) {
 const postsRef = collection(db, 'posts');
 
 async function getPostList() {
-    const q = query(postsRef, where( "organizationID", "==" , idOrganization ), orderBy("date", "desc"));
+    const q = query(postsRef, where( "organizationId", "==" , idOrganization ), orderBy("date", "desc"));
     const postFilter = document.getElementById("postFilter").value;
 
     const currentDate = new Date();
@@ -227,7 +227,7 @@ async function getApplicationList() {
     const applicationFilter = document.getElementById("applicationFilter").value;
 
     document.getElementById("application-list").innerHTML = "";
-    const q2 = query(collectionRef, where( "organizationID", "==" , idOrganization ), orderBy("dateApplied", "desc"));
+    const q2 = query(collectionRef, where( "organizationId", "==" , idOrganization ), orderBy("dateApplied", "desc"));
 
     let applicationArray = [];
     await getDocs(q2, collectionRef)
