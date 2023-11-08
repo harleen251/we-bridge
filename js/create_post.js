@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
-import { getFirestore, collection, getDocs, addDoc, Timestamp, GeoPoint, setDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, addDoc, Timestamp, GeoPoint, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 import { geocodeAddress, getCookie } from "./backend.js"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,10 +18,20 @@ const firebaseConfig = {
 
 
 // Retrieve the users' ID from the cookie
-const volunteerId = getCookie("volunteerId");
-const organizationId = getCookie("organizationId");
-console.log("volunteerId :"+volunteerId);
-console.log("organizationId :"+organizationId);
+let organizationId = ""
+getCookie('organizationId')
+  .then((cookieValue) => {
+    if (cookieValue !== null) {
+      // Cookie found, use cookieValue
+      if (cookieValue !== "") {
+        organizationId = cookieValue;
+        console.log(`organizationId value: ${cookieValue}`); 
+      }      
+    } 
+  })
+  .catch((error) => {
+    //console.error('An error occurred while retrieving the cookie:', error);
+  });
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -54,9 +64,9 @@ submitPost.addEventListener("submit", async function (event) {
     const phoneNumber = document.getElementById("txtPhoneNumber").value;
     const email = document.getElementById("txtEmail").value;
     var currentDate = new Date();
-   
+    let docRef
     try {
-        await addDoc(colRef, {
+         docRef = await addDoc(colRef, {
             positionTitle: positionTitle,
             description: description,
             date: date,
@@ -82,24 +92,24 @@ submitPost.addEventListener("submit", async function (event) {
         alert("An error occurred while submitting the post.");
     }
 
-//     if (location.trim() !== '') {
-//         console.log(location);
-//         await geocodeAddress(location)
-//         .then((result) => {
-//             const geopoint ={ geopoint: new GeoPoint(result[0], result[1]) };
-//             const data = {locationCoordinates: geopoint};
+    if (location.trim() !== '') {
+        console.log(location);
+        await geocodeAddress(location)
+        .then((result) => {
+            const geopoint ={ geopoint: new GeoPoint(result[0], result[1]) };
+            const data = {locationCoordinates: geopoint};
             
-//             setDoc(colRef, date , { merge: true }).then(() => {
-//                 console.log('Address data saved successfully.');
-//             })
-//             .catch((error) => {
-//                 console.error('Error saving Address data: ', error);
-//             });
-//         })
-//         .catch((error) => {
-//             console.error(error); // Handle errors here
-//         });
-//     }
+            setDoc(doc(colRef, docRef.id), data , { merge: true }).then(() => {
+                console.log('Address data saved successfully.');
+            })
+            .catch((error) => {
+                console.error('Error saving Address data: ', error);
+            });
+        })
+        .catch((error) => {
+            console.error(error); // Handle errors here
+        });
+    }
  });
 
 choose_interest.addEventListener("click", function (event) {
