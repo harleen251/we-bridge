@@ -40,6 +40,7 @@ const dataRef = collection(db, 'volunteerRecord');
 
 async function getVolunteerRecordDetails() {
     const q = query(dataRef, where("volunteerID", "==", volunteerId));
+    console.log("volunteerId", volunteerId);
     const volunteerRecords = await getDocs(q);
   
     // Create an array of promises to fetch related data for each record
@@ -50,7 +51,7 @@ async function getVolunteerRecordDetails() {
       const date = timestamp.toLocaleDateString();
 
       const postDetails = await getPostDetails(postId);
-      const orgDetails = await getOrganizationDetails(postDetails.organizationID);
+      const orgDetails = await getOrganizationDetails(postDetails.organizationId);
   
       return new VolunteerEntry(postVolunteerHours, orgDetails.orgName, postDetails.positionTitle, date);
     });
@@ -59,10 +60,11 @@ async function getVolunteerRecordDetails() {
     volunteerEntryArray = await Promise.all(recordPromises);
   }
   async function getPostDetails(postId) {
+    console.log("postId", postId);
     const postRef = doc(db, 'posts', postId);
     const docSnap = await getDoc(postRef);
     if (docSnap.exists()) {
-        console.log(docSnap.data().organizationID);
+        console.log(docSnap.data().organizationId);
       return docSnap.data();
     } else {
       return {};

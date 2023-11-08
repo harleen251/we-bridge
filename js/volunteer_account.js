@@ -175,6 +175,7 @@ async function getRegisteredInfo() {
                                                     card2Div.append(checkInButton);
                                                     console.log("button checkInButton appened");
                                                     checkInButton.addEventListener('click', handleCheckInButtonEvent);
+                                                    
                                                  }
                                             })
                                             .catch((error) => {
@@ -204,14 +205,17 @@ async function getRegisteredInfo() {
             });            
 }
   
-  // Call the function when the window loads
-  window.onload = getVolunteerInfo();
+window.onload = async function () {
+    await getVolunteerInfo(); // Add await here to ensure data is fetched
+};
 
-document.getElementById("btnEditProfile").addEventListener("click", function (event) {
+document.getElementById("btnEditProfile").addEventListener("click", async function (event) {
     event.preventDefault();
     const pageURL = "volunteer_build_profile.html";
     window.location.href = pageURL;
 });
+
+
 
 async function handleViewButtonEvent(event) {
     let appId = event.target.getAttribute('data-appId');
