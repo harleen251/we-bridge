@@ -22,7 +22,9 @@ const firebaseConfig = {
   window.addEventListener('load', recommendations);
   
   const urlParams = new URLSearchParams(window.location.search);
-  const postId = urlParams.get('id');
+  const postId = await getCookie("vol_postId");
+  let organizationId = ""; 
+  // urlParams.get('id');
   console.log(postId)
   const opportunity_detail = document.getElementById("opportunity_detail")
   const similar_opportunities = document.getElementById("similar_opportunities")
@@ -45,6 +47,8 @@ const firebaseConfig = {
                   <br> Preferred Language: ${data.preferredLanguage} Interests: ${data.interests} Mode of work: ${data.mode_of_work}
                   <br> Description: ${data.description}
                   `;
+                  organizationId= data.organizationId;
+                  console.log("org id" , organizationId);
                   const applyButton = createApplyButton(doc.id);
                   opportunity_detail.appendChild(applyButton);
               } else {
@@ -59,13 +63,12 @@ const firebaseConfig = {
   
   function recommendations() {
     similar_opportunities.innerHTML = ""; // Clear previous recommendations
-  
+    
     getDoc(docRef)
       .then((doc) => {
         if (doc.exists) {
           const data = doc.data();
           const interests = data.interests; // Get interests of the current post
-          console.log(typeof(interests))
           // Create a query to find other posts with the same interests
           const queryRef = query(colRef, where("interests", "array-contains-any", interests));
   
@@ -81,16 +84,18 @@ const firebaseConfig = {
               });
   
               if (recommendedPosts.length > 0) {
+                const recommendationDiv = document.createElement("div");
+                recommendationDiv.innerHTML = "<h1>Similar Opportunities</h1>"
                 for (let i = 0; i < Math.min(recommendedPosts.length, 3); i++) {
                   const recommendedData = recommendedPosts[i].data();
                   const date = new Date(recommendedData.date.toDate());
                   console.log(recommendedPostsId[i])
                   // Create a div containing the details
-                  const recommendationDiv = document.createElement("div");
+                 
                   recommendationDiv.addEventListener("click", () => {
                     navigateToPostDetailPage(recommendedPostsId[i]);
                   });
-                  recommendationDiv.innerHTML = `
+                  recommendationDiv.innerHTML += `
                     <p>Position Title: ${recommendedData.positionTitle}</p>
                     <p>Description: ${recommendedData.description}</p>
                     <p>Date: ${date.toLocaleString()}</p>
@@ -219,7 +224,7 @@ function createPopupForApplication(eventId) {
 
   var currentDate = new Date();
   
-  let organizationId = ""; 
+ 
 
   const docRef = doc(db, "posts", eventId);
 
@@ -228,8 +233,8 @@ function createPopupForApplication(eventId) {
 
     if (doc.exists()) {
       
-      organizationId = doc.data().organizationID;
-      console.log(organizationId);
+       organizationId = doc.data().organizationId;
+      console.log("organizationId" , organizationId);
     } else {
       console.log("Document does not exist.");
     }
@@ -249,9 +254,16 @@ function createPopupForApplication(eventId) {
     });
 
     alert("Application submitted successfully!");
+    const prevUrl = document.referrer; 
+    let redirectURL = "index.html"
+
+    if (prevUrl !== ""){
+      redirectURL = document.referrer;
+    }
+    window.location.href = redirectURL;
   } catch (error) {
     console.error("Error adding document: ", error);
-    alert("An error occurred while submitting the application.");
+    // alert("An error occurred while submitting the application.");
   }
 
   // Close the pop-up interface

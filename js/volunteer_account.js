@@ -78,7 +78,7 @@ async function getApplicantInfo() {
                                 document.getElementById("h1Recomm").style.display = "block";  
                                 let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
                                 card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-                                txt2Inner += `<a href="">${appDoc.id}</p>`;
+                                // txt2Inner += `<a href="">${postDoc.id}</p>`;
                                 txt2Inner += `<a href="">${postData.positionTitle}</p>`;
                                 txt2Inner += `<a href="">${postData.location}</p>`;
                                 txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
@@ -138,7 +138,7 @@ async function getRegisteredInfo() {
                                     document.getElementById("h1Recomm").style.display = "block";  
                                     let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
                                     card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-                                    txt2Inner += `<a href="">${appDoc.id}</p>`;
+                                    // txt2Inner += `<a href="">${appDoc.id}</p>`;
                                     txt2Inner += `<a href="">${postData.positionTitle}</p>`;
                                     txt2Inner += `<a href="">${postData.location}</p>`;
                                     txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
@@ -146,14 +146,40 @@ async function getRegisteredInfo() {
                                     card2Div.innerHTML = txt2Inner;
                                     containerRegistered.appendChild(card2Div); // add cardDiv to orderDiv
                                     if (application.status === "approved" && postData.date < currentDate) {
-                                        const checkInButton = document.createElement('button');
-                                        checkInButton.setAttribute("class", "checkInButton");
-                                        checkInButton.setAttribute("data-appId", appDoc.id);
-                                        checkInButton.setAttribute("data-postId", application.postsID);
-                                        checkInButton.innerHTML = 'Check In';
-                                        card2Div.append(checkInButton);
-                                        console.log("button checkInButton appened");
-                                        checkInButton.addEventListener('click', handleCheckInButtonEvent); 
+                                        const volRecordCollection = collection( db, 'volunteerRecord' );
+                                        let volRecordQ = query(volRecordCollection, where( "volunteerID", "==" , volunteerId ), where("postsID",  "==", postDoc.id));
+                                        getDocs(volRecordQ, volRecordCollection)
+                                            .then((volRecordQSnapshot) => {
+                                                if (!volRecordQSnapshot.empty) {  
+                                                    volRecordQSnapshot.forEach((volRecordDoc) => {
+                                                        const volRecord = volRecordDoc.data(); 
+                                                        console.log("checkInDate" ,volRecord.checkInDate);
+                                                        console.log("checkOutDate" ,volRecord.checkOutDate);
+                                                        const checkInButton = document.createElement('button');
+                                                        checkInButton.setAttribute("class", "checkInButton");
+                                                        checkInButton.setAttribute("data-appId", appDoc.id);
+                                                        checkInButton.setAttribute("data-postId", application.postsID);
+                                                        checkInButton.setAttribute("checkedIn", "false");
+                                                        checkInButton.innerHTML = 'Check Out';
+                                                        card2Div.append(checkInButton);
+                                                        console.log("button checkOutButton appened");
+                                                        checkInButton.addEventListener('click', handleCheckInButtonEvent);
+                                                    })                                                    
+                                                 }else{
+                                                    const checkInButton = document.createElement('button');
+                                                    checkInButton.setAttribute("class", "checkInButton");
+                                                    checkInButton.setAttribute("data-appId", appDoc.id);
+                                                    checkInButton.setAttribute("data-postId", application.postsID);
+                                                    checkInButton.setAttribute("checkedIn", "true");
+                                                    checkInButton.innerHTML = 'Check In';
+                                                    card2Div.append(checkInButton);
+                                                    console.log("button checkInButton appened");
+                                                    checkInButton.addEventListener('click', handleCheckInButtonEvent);
+                                                 }
+                                            })
+                                            .catch((error) => {
+                                                console.error('Error fetching application data:', error);
+                                            });  
                                     }
                                     const viewButton = document.createElement('button');
                                     viewButton.setAttribute("class", "viewButton");
@@ -200,12 +226,12 @@ async function handleViewButtonEvent(event) {
 async function handleCheckInButtonEvent(event) {
     let appId = event.target.getAttribute('data-appId');
     let postId = event.target.getAttribute('data-postId');
+    let checkIn = event.target.getAttribute('checkedIn');
     console.log(appId);
     console.log(postId);
    await setCookie("vol_applicationId", appId, 1);
    await setCookie("vol_postId", postId, 1);
-   await setCookie("checkedIn", "true" , 1);
-
+   await setCookie("checkedIn", checkIn , 1);
    window.location.href = 'camera_page.html';
 }
 
@@ -245,3 +271,4 @@ navigateToPage();
 window.addEventListener('hashchange', navigateToPage);
 
 //event.target.parentElement.id
+
