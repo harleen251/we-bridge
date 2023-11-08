@@ -55,7 +55,7 @@ async function getVolunteerRecordDetails() {
       return new VolunteerEntry(postVolunteerHours, orgDetails.orgName, postDetails.positionTitle, date);
     });
   
-    // Wait for all promises to complete and populate volunteerEntryArray
+  
     volunteerEntryArray = await Promise.all(recordPromises);
   }
   async function getPostDetails(postId) {
