@@ -232,7 +232,9 @@ async function saveVolunteer(){
     let redirectURL = "index.html"
 
     if (prevUrl !== ""){
-        redirectURL = document.referrer;
+        if (prevUrl !== "volunteer_signup.html"){
+            redirectURL = document.referrer;
+        }        
     }
 
     const txtFirstName = form_Profile.querySelector("#txtFirstName");
