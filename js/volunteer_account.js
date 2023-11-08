@@ -153,19 +153,23 @@ async function getRegisteredInfo() {
                                                 if (!volRecordQSnapshot.empty) {  
                                                     volRecordQSnapshot.forEach((volRecordDoc) => {
                                                         const volRecord = volRecordDoc.data(); 
-                                                        console.log("checkInDate" ,volRecord.checkInDate);
-                                                        console.log("checkOutDate" ,volRecord.checkOutDate);
-                                                        const checkInButton = document.createElement('button');
-                                                        checkInButton.setAttribute("class", "checkInButton");
-                                                        checkInButton.setAttribute("data-appId", appDoc.id);
-                                                        checkInButton.setAttribute("data-postId", application.postsID);
-                                                        checkInButton.setAttribute("checkedIn", "false");
-                                                        checkInButton.innerHTML = 'Check Out';
-                                                        card2Div.append(checkInButton);
-                                                        console.log("button checkOutButton appened");
-                                                        checkInButton.addEventListener('click', handleCheckInButtonEvent);
+                                                        if(volRecord.checkOutDate == ""){
+                                                            console.log("checkInDate" , volRecord.checkInDate);
+                                                            console.log("checkOutDate" , volRecord.checkOutDate);
+                                                            const checkInButton = document.createElement('button');
+                                                            checkInButton.setAttribute("class", "checkInButton");
+                                                            checkInButton.setAttribute("data-appId", appDoc.id);
+                                                            checkInButton.setAttribute("data-postId", application.postsID);
+                                                            checkInButton.setAttribute("checkedIn", "false");
+                                                            checkInButton.innerHTML = 'Check Out';
+                                                            card2Div.append(checkInButton);
+                                                            console.log("button checkOutButton appened");
+                                                            checkInButton.addEventListener('click', handleCheckInButtonEvent);
+                                                        }
+                                                        
                                                     })                                                    
                                                  }else{
+                                                    
                                                     const checkInButton = document.createElement('button');
                                                     checkInButton.setAttribute("class", "checkInButton");
                                                     checkInButton.setAttribute("data-appId", appDoc.id);
