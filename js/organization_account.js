@@ -77,7 +77,7 @@ const postsRef = collection(db, 'posts');
 async function getPostList() {
     const q = query(postsRef, where( "organizationId", "==" , idOrganization ), orderBy("date", "desc"));
     const postFilter = document.getElementById("postFilter").value;
-
+    console.log(q);
     const currentDate = new Date();
     document.getElementById("post-list").innerHTML = "";
     await getDocs(q, postsRef)
