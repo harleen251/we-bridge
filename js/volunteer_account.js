@@ -194,7 +194,6 @@ async function handleViewButtonEvent(event) {
     console.log(postId);
    await setCookie("vol_applicationId", appId, 1);
    await setCookie("vol_postId", postId, 1);
-   await setCookie("checkedIn", true , 1);
    window.location.href = 'post_detail.html';
 }
 
@@ -204,8 +203,10 @@ async function handleCheckInButtonEvent(event) {
     console.log(appId);
     console.log(postId);
    await setCookie("vol_applicationId", appId, 1);
-   await setCookie("vol_postId", postId, 1)
-//    window.location.href = 'post_detail.html';
+   await setCookie("vol_postId", postId, 1);
+   await setCookie("checkedIn", "true" , 1);
+
+   window.location.href = 'camera_page.html';
 }
 
 applicationFilter.addEventListener("change", async function(event) {

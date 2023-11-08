@@ -17,6 +17,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore();
 const colRef = collection(db, 'posts');
+const volRef = collection(db, 'volunteer');
 
 const search = document.getElementById('search');
 const output = document.getElementById('eventDetails');
@@ -162,8 +163,28 @@ function createQuery(interests, skills) {
 // Get the volunteer's latitude and longitude coordinates (assuming you have access to them)
 const volunteerLatitude = 49.22459940676005;
 const volunteerLongitude = -123.10192130145963;
+let geopoint = " "
+const volunteerId = await getCookie("volunteerId");
+
+
+
+async function getVolunteerDetails(volunteerId) {
+  const volRef = doc(db, 'volunteer');
+  const docSnap = await getDoc(volRef);
+  if (docSnap.exists()) {
+      geopoint = docSnap.data().geopoint;
+      return geopoint;
+  } else {
+    return {};
+  }
+}
+
+
 function filteredPostWithinRadius(event, radius) {
   if (radius != 0) {
+        let volunteerCoordinates = getVolunteerDetails(volunteerId);
+        let volunteerLatitude = volunteerCoordinates._lat;
+        let volunteerLongitude = volunteerCoordinates._long;
         let postLatitude = event.locationCoordinates._lat;
       let postLongitude = event.locationCoordinates._long;
     
