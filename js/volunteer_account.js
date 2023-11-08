@@ -193,7 +193,8 @@ async function handleViewButtonEvent(event) {
     console.log(appId);
     console.log(postId);
    await setCookie("vol_applicationId", appId, 1);
-   await setCookie("vol_postId", postId, 1)
+   await setCookie("vol_postId", postId, 1);
+   await setCookie("checkedIn", true , 1);
    window.location.href = 'post_detail.html';
 }
 
