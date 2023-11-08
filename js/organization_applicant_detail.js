@@ -288,6 +288,7 @@ async function handleApproveButtonEvent() {
         updateDoc(documentRef, dataToUpdate)
             .then(() => {
             console.log('Document field updated successfully.');
+            alert(' Successfully Approved the Applicant');
             })
             .catch((error) => {
             console.error('Error updating document field:', error);
