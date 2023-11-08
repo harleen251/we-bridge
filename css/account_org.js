@@ -8,7 +8,7 @@ function getCookie(name) {
       if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
-  }
+}
 
 
 // // Retrieve the user's ID from the cookie
