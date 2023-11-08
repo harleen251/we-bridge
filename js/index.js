@@ -178,7 +178,7 @@ async function getVolunteerInfo(volunteerId){
             });
             console.log(interestArr);
             q = query(postCollection,
-                     where("interests", "in", interestArr), 
+                     where("interests", "array-contains-any", interestArr), 
                      where('expireDate', '>', today),
                      orderBy('expireDate','desc'),
                      orderBy('date', 'desc'));       
