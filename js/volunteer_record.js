@@ -89,8 +89,8 @@ async function getVolunteerRecordDetails() {
       const circle = document.getElementById("circle");
       const totalHoursVolunteered = volunteerEntryArray.reduce((total, entry) => total + entry.hours, 0);
 
-      const formattedTotalHours = totalHoursVolunteered.toFixed(2);
-      const text = `${formattedTotalHours} <br>Hours<br>volunteered`;
+      // const formattedTotalHours = totalHoursVolunteered.toFixed(2);
+      const text = `${totalHoursVolunteered} <br>Hours<br>volunteered`;
       circle.innerHTML = text;
       const table = document.getElementById("data-table");
 

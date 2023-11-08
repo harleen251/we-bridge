@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, onSnapshot, where, query, orderBy, getDoc, doc, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
-import {getCookie} from "./backend.js"
+import {getCookie, setCookie} from "./backend.js"
 const firebaseConfig = {
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
     authDomain: "webridge-81f09.firebaseapp.com",
@@ -25,7 +25,7 @@ const firebaseConfig = {
   const postId = await getCookie("vol_postId");
   let organizationId = ""; 
   // urlParams.get('id');
-  console.log(postId)
+  console.log("Cookie postID" , postId)
   const opportunity_detail = document.getElementById("opportunity_detail")
   const similar_opportunities = document.getElementById("similar_opportunities")
   const docRef = doc(colRef, postId)
@@ -271,10 +271,11 @@ function createPopupForApplication(eventId) {
  })}
 
  function navigateToPostDetailPage(eventId){
-  const postDetailPageURL = `../pages/post_detail.html?id=${eventId}`
+  setCookie('vol_postId', eventId, 1);
+  const postID = getCookie('vol_postId');
+  const postDetailPageURL = `../pages/post_detail.html`
   window.location.href = postDetailPageURL
 }
-
 
     
 

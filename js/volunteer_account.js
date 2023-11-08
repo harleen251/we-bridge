@@ -80,6 +80,7 @@ async function getApplicantInfo() {
                                 card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
                                 // txt2Inner += `<a href="">${postDoc.id}</p>`;
                                 txt2Inner += `<a href="">${postData.positionTitle}</p>`;
+                                txt2Inner += `<a href="">${postData.positionTitle}</p>`;
                                 txt2Inner += `<a href="">${postData.location}</p>`;
                                 txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
                                 txt2Inner += `<p>${application.status}</p>`; // add the title             
@@ -153,7 +154,7 @@ async function getRegisteredInfo() {
                                                 if (!volRecordQSnapshot.empty) {  
                                                     volRecordQSnapshot.forEach((volRecordDoc) => {
                                                         const volRecord = volRecordDoc.data(); 
-                                                        if(volRecord.checkOutDate == ""){
+                                                        if(!volRecord.checkOutDate == ""){
                                                             console.log("checkInDate" , volRecord.checkInDate);
                                                             console.log("checkOutDate" , volRecord.checkOutDate);
                                                             const checkInButton = document.createElement('button');

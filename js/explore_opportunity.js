@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, getDocs, onSnapshot, where, query, orderBy, getDoc, addDoc, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
-import { getCookie, } from "./backend.js"
+import { getCookie, setCookie} from "./backend.js"
 const firebaseConfig = {
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
     authDomain: "webridge-81f09.firebaseapp.com",
@@ -219,7 +219,10 @@ async function filteredPostWithinRadius(event, radius) {
 
 
 function navigateToPostDetailPage(eventId){
-  const postDetailPageURL = `../pages/post_detail.html?id=${eventId}`
+  setCookie('vol_postId', eventId, 1);
+  const postID = getCookie('vol_postId');
+  alert("new cookie : "+postID);
+  const postDetailPageURL = `../pages/post_detail.html`
   window.location.href = postDetailPageURL
 }
 

@@ -88,8 +88,8 @@ const scanner = new Html5QrcodeScanner('reader', {
                 await addDoc(colRef, {
                     // Store the scanned QR code data
                     checkInDate: checkInDate, 
-                    checkOutDate: " ",
-                    hours: " ",
+                    // checkOutDate: " ",
+                    // hours: " ",
                     volunteerID: volunteerIdFromCookie,
                     postsID: postIdFromCookie
                 });
