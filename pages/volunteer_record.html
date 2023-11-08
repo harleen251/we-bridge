@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .profile-card {
+            display: flex;
+            align-items: center;
+            width: 300px; /* Adjust the width as needed */
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .profile-pic {
+            width: 80px; /* Adjust the width as needed */
+            height: 80px; /* Adjust the height as needed */
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .profile-content {
+            flex: 1;
+        }
+
+        .profile-content h2 {
+            font-size: 20px;
+        }
+
+        .profile-content p {
+            margin-top: 5px;
+        }
+
+        .profile-content .buttons {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .profile-content .buttons button {
+            margin-right: 10px;
+            padding: 5px 10px;
+        }
+        .circle {
+      width: 100px;
+      height: 100px;
+      background-color: gray;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      text-align: center;
+    }
+    </style>
+</head>
+<body>
+   
+    <div class="profile-card">
+        <div class="circle" id="circle">
+            <!-- Data goes here -->
+          </div>
+        <div class="profile-content">
+            <h2>You're Amazing</h2>
+            <p>Thank you for your invaluable contribution.</p>
+            <p>Please keep it up!</p>
+            <div class="buttons">
+                <button>Download Record</button>
+                <button>Share to LInkedin</button>
+            </div>
+        </div>
+    </div>
+    <label for="sortOrder"></label>
+    <select id="sortOrder">
+    <option value="newest">Newest</option>
+    <option value="oldest">Oldest</option>
+</select>
+    <table id="data-table">
+        <tr>
+          <th>Volunteer Position</th>
+          <th>Organization</th>
+          <th>Date</th>
+          <th>Hours</th>
+          <th><input type="checkbox" id="selectAllCheckbox"></th></tr>
+      </table>
+    <script type="module" src="../js/volunteer_record.js" defer></script>
+</body>
+</html>
