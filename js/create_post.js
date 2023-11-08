@@ -96,9 +96,8 @@ submitPost.addEventListener("submit", async function (event) {
         console.log(location);
         await geocodeAddress(location)
         .then((result) => {
-            const geopoint ={ geopoint: new GeoPoint(result[0], result[1]) };
-            const data = {locationCoordinates: geopoint};
-            
+            const data = {locationCoordinates: new GeoPoint(result[0], result[1])};
+  
             setDoc(doc(colRef, docRef.id), data , { merge: true }).then(() => {
                 console.log('Address data saved successfully.');
             })
