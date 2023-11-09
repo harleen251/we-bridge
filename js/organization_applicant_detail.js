@@ -353,6 +353,7 @@ if(currentStatus[0] === "declined") {
     declineButton.innerHTML = 'Declined';
     declineButton.disabled = true;
     declineButton.style.opacity = '.5';
+    declineButton.style.cursor = "default";
 } else {
     declineButton.innerHTML = 'Decline';
 }
@@ -363,6 +364,8 @@ if(currentStatus[0] === "approved") {
     approveButton.innerHTML = 'Approved';
     approveButton.disabled = true;
     approveButton.style.opacity = '.5';
+    approveButton.style.cursor = "default";
+
 } else {
     approveButton.innerHTML = 'Approve';
 }

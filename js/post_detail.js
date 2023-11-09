@@ -22,7 +22,29 @@ const firebaseConfig = {
   window.addEventListener('load', recommendations);
   
   const urlParams = new URLSearchParams(window.location.search);
-  const postId = await getCookie("vol_postId");
+  // const postId = await getCookie("vol_postId");
+
+
+  // Get cookie from organization side for viewing post
+  let org_postId
+  try {
+      org_postId = await getCookie("idPost");
+  }
+  catch (error) {
+      console.error("Error getting cookie:", error);
+  }
+
+  let postId;
+  if (org_postId !== undefined) {
+      postId = org_postId;
+      document.getElementById("similar_opportunities").style.display = "none";
+  } 
+  else {
+      // Get cookie from volunteer side
+      postId = await getCookie("vol_postId");
+  }
+
+
   let organizationId = ""; 
   // urlParams.get('id');
   console.log("Cookie postID" , postId)
@@ -49,8 +71,15 @@ const firebaseConfig = {
                   `;
                   organizationId= data.organizationId;
                   console.log("org id" , organizationId);
-                  const applyButton = createApplyButton(doc.id);
-                  opportunity_detail.appendChild(applyButton);
+
+
+                  // Display the apply button,only if the cookie from organization side for postId is null
+                  if(org_postId === undefined) {
+                    const applyButton = createApplyButton(doc.id);
+                    opportunity_detail.appendChild(applyButton);
+                  }
+
+
               } else {
                   // Document does not exist
                   console.log('Document does not exist.');
