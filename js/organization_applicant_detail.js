@@ -343,16 +343,46 @@ function handleDeclineButtonEvent() {
     cancel.addEventListener('click', cancelEvent);
 }
 
+
+let currentStatus = [];
+
 async function displayButtons() {
 const declineButton = document.createElement('button');
-declineButton.innerHTML = 'Decline';
+console.log("display function working");
+if(currentStatus[0] === "declined") {
+    declineButton.innerHTML = 'Declined';
+    declineButton.disabled = true;
+    declineButton.style.opacity = '1';
+} else {
+    declineButton.innerHTML = 'Decline';
+}
 button.append(declineButton);
 declineButton.addEventListener('click', handleDeclineButtonEvent);
 const approveButton = document.createElement('button');
-approveButton.innerHTML = 'Approve';
+if(currentStatus[0] === "approved") {
+    approveButton.innerHTML = 'Approved';
+    approveButton.disabled = true;
+    approveButton.style.opacity = '1';
+}
 button.append(approveButton);
 approveButton.addEventListener('click', handleApproveButtonEvent);
 }
+
+async function getCurrentStatus() {
+    const qry = query(applicationRef, where( "volunteerID", "==" , idVolunteer ), where( "postsID", "==" , idPost ));
+
+    await getDocs(qry,applicationRef)
+      .then((querySnapshot) => {
+          querySnapshot.docs.forEach((dmt) => {
+          currentStatus.push(dmt.data().status);
+          console.log("Status  " + currentStatus);
+          })
+        //   .catch((error) => {
+        //     console.error("Error querying for documents:", error);
+        // });
+      })
+}
+
 
 (async () => {
                 
@@ -360,10 +390,13 @@ approveButton.addEventListener('click', handleApproveButtonEvent);
       const result = await getApplicantInfo();
       const res = await getPostDetails();
       const res_num = await getAppliedAndApprovedNumber();
+      await getCurrentStatus();
       const res_button = await displayButtons();
     } catch (error) {
       console.error(error);
     }
   })();
 
- 
+
+  
+    
