@@ -289,6 +289,7 @@ async function handleApproveButtonEvent() {
             .then(() => {
             console.log('Document field updated successfully.');
             alert(' Successfully Approved the Applicant');
+            window.location.href = "organization_account.html#application";
             })
             .catch((error) => {
             console.error('Error updating document field:', error);
@@ -318,6 +319,7 @@ async function declineEvent(e) {
         updateDoc(documentRef, updatingData)
             .then(() => {
             console.log('Document field updated successfully.');
+            window.location.href = "organization_account.html#application"
             })
             .catch((error) => {
             console.error('Error updating document field:', error);
