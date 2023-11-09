@@ -18,18 +18,20 @@ const db = getFirestore(firebassApp);
 // Reference to the post collection
 const postCollection = collection(db, "posts");
 const volunteerCollection = collection(db, "volunteer");
+const appCollection = collection(db, "application");
+
 
 // Retrieve the volunteerId and OrganizationId from the cookie
 let volunteerId = "";
-let organizationId = "";
+let organizationId ="";
 
-getCookie('volunteerId')
-  .then((cookieValue) => {
-    if (cookieValue !== null) {
+await getCookie('volunteerId')
+  .then((volcookieValue) => {
+    if (volcookieValue !== null) {
       // Cookie found, use cookieValue
-      if (cookieValue !== "") {
-        volunteerId = cookieValue;
-        console.log(`volunteerId value: ${cookieValue}`);
+      if (volcookieValue !== "") {
+        volunteerId = volcookieValue;
+        console.log(`volunteerId value: ${volcookieValue}`);
         btnAccount.style.display = "block";
         btnLogin.style.display = "none";
         btnSignUp.style.display = "none";
@@ -37,12 +39,12 @@ getCookie('volunteerId')
       } else {
         // Cookie not found
         getCookie('organizationId')
-          .then((cookieValue) => {
-              if (cookieValue !== null) {
+          .then((orgcookieValue) => {
+              if (orgcookieValue !== null) {
               // Cookie found, use cookieValue
-                if (cookieValue !== "") {
-                    organizationId = cookieValue;
-                    console.log(`organizationId value: ${cookieValue}`);
+                if (orgcookieValue !== "") {
+                    organizationId = orgcookieValue;
+                    console.log(`organizationId value: ${orgcookieValue}`);
                     btnAccount.style.display = "block";
                     btnLogin.style.display = "none";
                     btnSignUp.style.display = "none";
@@ -169,7 +171,7 @@ async function getVolunteerInfo(volunteerId){
     if (docSnap.exists()) {
         const volunteerData = docSnap.data();
         console.log("Document data:", volunteerData);
-        let q = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(3)); 
+        let qPost = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(3)); 
         let interestArr = [];
         console.log("Vol Interest Arr : ", volunteerData.interest.length);
         if ( volunteerData.interest.length > 0 ){
@@ -177,38 +179,72 @@ async function getVolunteerInfo(volunteerId){
                 interestArr.push(element);
             });
             console.log(interestArr);
-            q = query(postCollection,
+            qPost = query(postCollection,
                      where("interests", "array-contains-any", interestArr), 
                      where('expireDate', '>', today),
                      orderBy('expireDate','desc'),
                      orderBy('date', 'desc'));       
         }        
 
-        await getDocs(q)
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-            const post = doc.data();  
-            let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
-            card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
-            document.getElementById("h1Recomm").style.display = "block";  
-            // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
-            let txt2Inner = ""; 
-            const anchor = document.createElement('a');
-            anchor.href = 'post_detail.html';
-            anchor.innerText = post.positionTitle;
-            anchor.setAttribute("data-postId", doc.id);            
-            anchor.addEventListener('click', handleViewButtonEvent);
-            txt2Inner += `<p>${post.description}</p>`; // add the title  
-            txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
-            txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
-            card2Div.innerHTML = txt2Inner;         
-            card2Div.prepend(anchor);   
-            containerRec.appendChild(card2Div); // add cardDiv to orderDiv
+        await getDocs(qPost)
+            .then((querySnapshot) => {
+                querySnapshot.forEach((postDoc) => {
+                const post = postDoc.data();
+                console.log("postDoc.id :   " + postDoc.id);
+                console.log("post title :   " + post.positionTitle);
+                let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
+                card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
+                document.getElementById("h1Recomm").style.display = "block";  
+                // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
+                let txt2Inner = ""; 
+                const anchor = document.createElement('a');
+                anchor.href = 'post_detail.html';
+                anchor.innerText = post.positionTitle;
+                anchor.setAttribute("data-postId", postDoc.id);            
+                anchor.addEventListener('click', handleViewButtonEvent);
+                txt2Inner += `<p>${post.description}</p>`; // add the title  
+                txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
+                txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
+                card2Div.innerHTML = txt2Inner;         
+                card2Div.prepend(anchor);   
+                containerRec.appendChild(card2Div); // add cardDiv to orderDiv
+
+                // const qApp = query(appCollection, where ('postsID', '!=', postDoc.id));
+                // getDocs(qApp)
+                //     .then((appSnapshot) =>{
+                //             appSnapshot.forEach((appDoc) => {
+                //             const applicationData = appDoc.data;
+                //             console.log("app id : " + appDoc.id);
+                //             if (applicationData.volunteerId != volunteerId){
+                //                 let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
+                //                 card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
+                //                 document.getElementById("h1Recomm").style.display = "block";  
+                //                 // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
+                //                 let txt2Inner = ""; 
+                //                 const anchor = document.createElement('a');
+                //                 anchor.href = 'post_detail.html';
+                //                 anchor.innerText = post.positionTitle;
+                //                 anchor.setAttribute("data-postId", postDoc.id);            
+                //                 anchor.addEventListener('click', handleViewButtonEvent);
+                //                 txt2Inner += `<p>${post.description}</p>`; // add the title  
+                //                 txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
+                //                 txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
+                //                 card2Div.innerHTML = txt2Inner;         
+                //                 card2Div.prepend(anchor);   
+                //                 containerRec.appendChild(card2Div); // add cardDiv to orderDiv
+                //             }
+                //          });
+                //     })
+                //     .catch((error) => {
+                //         console.error('Error fetching application data:', error);
+                //     });    
+                    
+                    
+                });
+            })
+            .catch((error) => {
+                console.error('Error fetching latest post:', error);
             });
-        })
-        .catch((error) => {
-            console.error('Error fetching latest post:', error);
-        });
     } else {
         // docSnap.data() will be undefined in this case
         console.log("No such document!");

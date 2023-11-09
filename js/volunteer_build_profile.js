@@ -23,6 +23,9 @@ const volunteerCollection = collection(db, "volunteer");
 
 // Retrieve the user's ID from the cookie
 const volunteerId = await getCookie("volunteerId");
+
+let skillArray = [];
+let interestArray = [];
   
   
 async function getVolunteerInfo(){
@@ -65,12 +68,13 @@ async function getVolunteerInfo(){
             }
         }         
         
-        if (volunteerData.address != null) {
+        if (volunteerData.interest != null) {
             let interest = volunteerData.interest;
             interest.forEach(element => {
                 const checkbox = document.querySelector(`input[value="${element}"]`);
                 if (checkbox) {
                     checkbox.checked = true;
+                    interestArray.push(element);
                 }
             });
         }
@@ -108,6 +112,7 @@ async function getVolunteerInfo(){
                 const checkbox = document.querySelector(`input[value="${element}"]`);
                 if (checkbox) {
                     checkbox.checked = true;
+                    skillArray.push(element);
                 }
             });
         }        
@@ -214,8 +219,7 @@ const volunteerConverter = {
 };
 
 
-const skillArray = [];
-const interestArray = [];
+
 
 const form_Profile = document.getElementById("profile_Form");
 saveBtn.addEventListener("click", function (event){
@@ -399,11 +403,13 @@ choose_interest.addEventListener("click", function (event) {
 save_interests.addEventListener("click", function (event) {
     event.preventDefault();
     const interest = document.querySelectorAll("#interest input");
+    let tempInterest = [];
     for ( let i of interest) {
         if( i.checked === true ) {
-            interestArray.push(i.value);
+            tempInterest.push(i.value);
         }
     }
+    interestArray = tempInterest;
     option_interest.style.display = "none";
 })
 
@@ -415,11 +421,13 @@ choose_skill.addEventListener("click", function (event) {
 save_skill.addEventListener("click", function (event) {
     event.preventDefault();
     const skill = document.querySelectorAll("#skill input");
+    let tempSkill = [];
     for ( let i of skill) {
         if( i.checked === true ) {
-            skillArray.push(i.value);
+            tempSkill.push(i.value);
         }
     }
+    skillArray = tempSkill;
     option_skill.style.display = "none";
 })
 

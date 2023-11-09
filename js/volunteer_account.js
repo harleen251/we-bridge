@@ -80,7 +80,6 @@ async function getApplicantInfo() {
                                 card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
                                 // txt2Inner += `<a href="">${postDoc.id}</p>`;
                                 txt2Inner += `<a href="">${postData.positionTitle}</p>`;
-                                txt2Inner += `<a href="">${postData.positionTitle}</p>`;
                                 txt2Inner += `<a href="">${postData.location}</p>`;
                                 txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
                                 txt2Inner += `<p>${application.status}</p>`; // add the title             
@@ -139,7 +138,7 @@ async function getRegisteredInfo() {
                                     document.getElementById("h1Recomm").style.display = "block";  
                                     let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
                                     card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-                                    // txt2Inner += `<a href="">${appDoc.id}</p>`;
+                                    txt2Inner += `<a href="">${appDoc.id}</p>`;
                                     txt2Inner += `<a href="">${postData.positionTitle}</p>`;
                                     txt2Inner += `<a href="">${postData.location}</p>`;
                                     txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
@@ -154,33 +153,32 @@ async function getRegisteredInfo() {
                                                 if (!volRecordQSnapshot.empty) {  
                                                     volRecordQSnapshot.forEach((volRecordDoc) => {
                                                         const volRecord = volRecordDoc.data(); 
-                                                        if(!volRecord.checkOutDate == ""){
+                                                        if(volRecord.checkOutDate == null){
                                                             console.log("checkInDate" , volRecord.checkInDate);
                                                             console.log("checkOutDate" , volRecord.checkOutDate);
                                                             const checkInButton = document.createElement('button');
                                                             checkInButton.setAttribute("class", "checkInButton");
                                                             checkInButton.setAttribute("data-appId", appDoc.id);
                                                             checkInButton.setAttribute("data-postId", application.postsID);
+                                                            console.log("app ID : " + appDoc.id);
                                                             checkInButton.setAttribute("checkedIn", "false");
                                                             checkInButton.innerHTML = 'Check Out';
                                                             card2Div.append(checkInButton);
                                                             console.log("button checkOutButton appened");
                                                             checkInButton.addEventListener('click', handleCheckInButtonEvent);
-                                                        }
-                                                        
+                                                        }                                                        
                                                     })                                                    
-                                                 }else{
-                                                    
+                                                 }else{                                                    
                                                     const checkInButton = document.createElement('button');
                                                     checkInButton.setAttribute("class", "checkInButton");
                                                     checkInButton.setAttribute("data-appId", appDoc.id);
                                                     checkInButton.setAttribute("data-postId", application.postsID);
+                                                    console.log("posts ID :   " + application.postsID);
                                                     checkInButton.setAttribute("checkedIn", "true");
                                                     checkInButton.innerHTML = 'Check In';
                                                     card2Div.append(checkInButton);
                                                     console.log("button checkInButton appened");
-                                                    checkInButton.addEventListener('click', handleCheckInButtonEvent);
-                                                    
+                                                    checkInButton.addEventListener('click', handleCheckInButtonEvent);                                                    
                                                  }
                                             })
                                             .catch((error) => {
