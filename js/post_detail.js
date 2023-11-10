@@ -91,7 +91,7 @@ const firebaseConfig = {
   }
   
   function recommendations() {
-    similar_opportunities.innerHTML = ""; // Clear previous recommendations
+    similar_opportunities.innerHTML = "<h1>Similar Opportunities</h1>"; // Clear previous recommendations
     
     getDoc(docRef)
       .then((doc) => {
@@ -113,9 +113,8 @@ const firebaseConfig = {
               });
   
               if (recommendedPosts.length > 0) {
-                const recommendationDiv = document.createElement("div");
-                recommendationDiv.innerHTML = "<h1>Similar Opportunities</h1>"
                 for (let i = 0; i < Math.min(recommendedPosts.length, 3); i++) {
+                  const recommendationDiv = document.createElement("div");
                   const recommendedData = recommendedPosts[i].data();
                   const date = new Date(recommendedData.date.toDate());
                   console.log(recommendedPostsId[i])
