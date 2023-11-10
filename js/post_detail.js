@@ -73,7 +73,7 @@ const firebaseConfig = {
                   console.log("org id" , organizationId);
 
 
-                  // Display the apply button,only if the cookie from organization side for postId is null
+                  // Display the apply button,only if the cookie from organization side for postId is undefined
                   if(org_postId === undefined) {
                     const applyButton = createApplyButton(doc.id);
                     opportunity_detail.appendChild(applyButton);
