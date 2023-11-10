@@ -352,8 +352,10 @@ console.log("display function working");
 if(currentStatus[0] === "declined") {
     declineButton.innerHTML = 'Declined';
     declineButton.disabled = true;
-    declineButton.style.opacity = '.5';
+    declineButton.style.opacity = '1';
     declineButton.style.cursor = "default";
+    declineButton.style.color = "#666262";
+    declineButton.style.backgroundColor = "#dad8d8";
 } else {
     declineButton.innerHTML = 'Decline';
 }
@@ -363,8 +365,10 @@ const approveButton = document.createElement('button');
 if(currentStatus[0] === "approved") {
     approveButton.innerHTML = 'Approved';
     approveButton.disabled = true;
-    approveButton.style.opacity = '.5';
+    approveButton.style.opacity = '1';
     approveButton.style.cursor = "default";
+    approveButton.style.color = "#666262";
+    approveButton.style.backgroundColor = "#dad8d8";
 
 } else {
     approveButton.innerHTML = 'Approve';
