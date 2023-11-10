@@ -189,55 +189,58 @@ async function getVolunteerInfo(volunteerId){
         await getDocs(qPost)
             .then((querySnapshot) => {
                 querySnapshot.forEach((postDoc) => {
-                const post = postDoc.data();
-                console.log("postDoc.id :   " + postDoc.id);
-                console.log("post title :   " + post.positionTitle);
-                let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
-                card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
-                document.getElementById("h1Recomm").style.display = "block";  
-                // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
-                let txt2Inner = ""; 
-                const anchor = document.createElement('a');
-                anchor.href = 'post_detail.html';
-                anchor.innerText = post.positionTitle;
-                anchor.setAttribute("data-postId", postDoc.id);            
-                anchor.addEventListener('click', handleViewButtonEvent);
-                txt2Inner += `<p>${post.description}</p>`; // add the title  
-                txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
-                txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
-                card2Div.innerHTML = txt2Inner;         
-                card2Div.prepend(anchor);   
-                containerRec.appendChild(card2Div); // add cardDiv to orderDiv
+                    const post = postDoc.data();
 
-                // const qApp = query(appCollection, where ('postsID', '!=', postDoc.id));
-                // getDocs(qApp)
-                //     .then((appSnapshot) =>{
-                //             appSnapshot.forEach((appDoc) => {
-                //             const applicationData = appDoc.data;
-                //             console.log("app id : " + appDoc.id);
-                //             if (applicationData.volunteerId != volunteerId){
-                //                 let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
-                //                 card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
-                //                 document.getElementById("h1Recomm").style.display = "block";  
-                //                 // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
-                //                 let txt2Inner = ""; 
-                //                 const anchor = document.createElement('a');
-                //                 anchor.href = 'post_detail.html';
-                //                 anchor.innerText = post.positionTitle;
-                //                 anchor.setAttribute("data-postId", postDoc.id);            
-                //                 anchor.addEventListener('click', handleViewButtonEvent);
-                //                 txt2Inner += `<p>${post.description}</p>`; // add the title  
-                //                 txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
-                //                 txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
-                //                 card2Div.innerHTML = txt2Inner;         
-                //                 card2Div.prepend(anchor);   
-                //                 containerRec.appendChild(card2Div); // add cardDiv to orderDiv
-                //             }
-                //          });
-                //     })
-                //     .catch((error) => {
-                //         console.error('Error fetching application data:', error);
-                //     });    
+                // console.log("postDoc.id :   " + postDoc.id);
+                // console.log("post title :   " + post.positionTitle);
+                // let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
+                // card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
+                // document.getElementById("h1Recomm").style.display = "block";  
+                // // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
+                // let txt2Inner = ""; 
+                // const anchor = document.createElement('a');
+                // anchor.href = 'post_detail.html';
+                // anchor.innerText = post.positionTitle;
+                // anchor.setAttribute("data-postId", postDoc.id);            
+                // anchor.addEventListener('click', handleViewButtonEvent);
+                // txt2Inner += `<p>${post.description}</p>`; // add the title  
+                // txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
+                // txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
+                // card2Div.innerHTML = txt2Inner;         
+                // card2Div.prepend(anchor);   
+                // containerRec.appendChild(card2Div); // add cardDiv to orderDiv
+
+                
+                let qApp = query(appCollection, where ('postsID', '==', postDoc.id));
+                getDocs(qApp)
+                    .then((appSnapshot) => {
+                            appSnapshot.forEach((appDoc) => {
+                            let appData = appDoc.data();
+                            if (appData.volunteerID != volunteerId){
+                                console.log("NOT volunteerID and " + "postDoc.id : " + postDoc.id);
+
+                                let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
+                                card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
+                                document.getElementById("h1Recomm").style.display = "block";  
+                                // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
+                                let txt2Inner = ""; 
+                                const anchor = document.createElement('a');
+                                anchor.href = 'post_detail.html';
+                                anchor.innerText = post.positionTitle;
+                                anchor.setAttribute("data-postId", postDoc.id);            
+                                anchor.addEventListener('click', handleViewButtonEvent);
+                                txt2Inner += `<p>${post.description}</p>`; // add the title  
+                                txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
+                                txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
+                                card2Div.innerHTML = txt2Inner;         
+                                card2Div.prepend(anchor);   
+                                containerRec.appendChild(card2Div); // add cardDiv to orderDiv
+                            }
+                         });
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching application data:', error);
+                    });    
                     
                     
                 });

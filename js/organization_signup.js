@@ -89,6 +89,7 @@ async function saveOrganization(){
             const organizationId =  docRef.id;
             // Save the volunteer ID in a cookie
             setCookie("idOrganization", organizationId, 1); // Expires in 7 days
+            setCookie("organizationId", organizationId, 1);
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
