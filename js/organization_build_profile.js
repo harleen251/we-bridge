@@ -151,11 +151,13 @@ form_Profile.addEventListener("submit", async function (event){
 });
 
 async function saveOrganization(){
-    const prevUrl = document.referrer; // previous page link
+    let prevUrl = document.referrer; // previous page link
     let redirectURL = "index.html"
-
     if (prevUrl !== ""){
-        redirectURL = document.referrer;
+        prevUrl = prevUrl.substring(prevUrl.lastIndexOf('/') + 1);
+        if (prevUrl !== "organization_signup.html"){                
+            redirectURL = document.referrer;
+        }        
     }
     const txtOrgName = form_Profile.querySelector("#txtOrgName");
     const txtRegNumber = form_Profile.querySelector("#txtRegNumber");

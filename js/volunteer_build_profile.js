@@ -232,12 +232,11 @@ saveBtn.addEventListener("click", function (event){
 });
 
 async function saveVolunteer(){
-    const prevUrl = document.referrer; // previous page link
+    let prevUrl = document.referrer; // previous page link
     let redirectURL = "index.html"
-        console.log(prevUrl);
     if (prevUrl !== ""){
-        if (prevUrl !== "volunteer_signup.html"){
-                alert("here");
+        prevUrl = prevUrl.substring(prevUrl.lastIndexOf('/') + 1);
+        if (prevUrl !== "volunteer_signup.html"){                
             redirectURL = document.referrer;
         }        
     }
@@ -346,7 +345,6 @@ async function saveVolunteer(){
     const docRef = doc(volunteerCollection, volunteerId).withConverter(volunteerConverter);
     await setDoc(docRef, volunteer, { merge: true }).then(() => {
         console.log('Volunteer data saved successfully.');
-        alert(redirectURL);
         window.location.href = redirectURL;
     })
     .catch((error) => {
