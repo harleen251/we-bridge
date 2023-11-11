@@ -49,67 +49,78 @@ const interestArray = [];
 // Function to handle form submission
 submitPost.addEventListener("submit", async function (event) {
     event.preventDefault();
+    let docRef;
 
-    const positionTitle = document.getElementById("txtPositionTitle").value;
-    const description = document.getElementById("txtDescription").value;
-    const dateStr = document.getElementById("txtDate").value;
-    const date = Timestamp.fromDate(new Date(dateStr))
-    const hours = document.getElementById("txtHours").value;
-    const location = document.getElementById("txtLocation").value;
-    const expireDateStr = document.getElementById("txtExpireDate").value;
-    const expireDate = Timestamp.fromDate(new Date(expireDateStr));
-    const modeOfWork = document.getElementById("mode_of_work").value
-    const availbility = document.getElementById("availbility").value
-    const preferredLanguage = document.getElementById("txtPreferredLanguage").value;
-    const phoneNumber = document.getElementById("txtPhoneNumber").value;
-    const email = document.getElementById("txtEmail").value;
-    var currentDate = new Date();
-    let docRef
     try {
-         docRef = await addDoc(colRef, {
-            positionTitle: positionTitle,
-            description: description,
-            date: date,
-            hours: hours,
-            location: location,
-            expireDate: expireDate,
-            mode_of_work: modeOfWork,
-            availbility: availbility,
-            interests: interestArray,
-            skills: skillArray,
-            preferredLanguage: preferredLanguage,
-            phoneNumber: phoneNumber,
-            email: email,
-            organizationId: organizationId,
-            posted_on_date: currentDate
-        });
+        // 获取组织文档
+        const organizationDoc = await getDoc(doc(collection(db, "organization"), organizationId));
 
-        alert("Post submitted successfully!");
+        if (organizationDoc.exists()) {
+            const data1 = organizationDoc.data();
+            const email = data1.email;
+            const phoneNumber = data1.phoneNumber;
 
-        submitPost.reset();
+            // 获取表单数据
+            const positionTitle = document.getElementById("txtPositionTitle").value;
+            const description = document.getElementById("txtDescription").value;
+            const dateStr = document.getElementById("txtDate").value;
+            const date = Timestamp.fromDate(new Date(dateStr));
+            const hours = document.getElementById("txtHours").value;
+            const location = document.getElementById("txtLocation").value;
+            const expireDateStr = document.getElementById("txtExpireDate").value;
+            const expireDate = Timestamp.fromDate(new Date(expireDateStr));
+            const modeOfWork = document.getElementById("mode_of_work").value;
+            const availbility = document.getElementById("availbility").value;
+            const preferredLanguage = document.getElementById("txtPreferredLanguage").value;
+            var currentDate = new Date();
+
+            // 添加文档到 'posts' 集合
+            docRef = await addDoc(colRef, {
+                positionTitle: positionTitle,
+                description: description,
+                date: date,
+                hours: hours,
+                location: location,
+                expireDate: expireDate,
+                mode_of_work: modeOfWork,
+                availbility: availbility,
+                interests: interestArray,
+                skills: skillArray,
+                preferredLanguage: preferredLanguage,
+                phoneNumber: phoneNumber,
+                email: email,
+                organizationId: organizationId,
+                posted_on_date: currentDate
+            });
+
+            alert("Post submitted successfully!");
+
+            // 重置表单
+            submitPost.reset();
+
+            // 如果有位置信息，保存到数据库
+            if (location.trim() !== '') {
+                await geocodeAddress(location)
+                    .then((result) => {
+                        const data2 = { locationCoordinates: new GeoPoint(result[0], result[1]) };
+
+                        setDoc(doc(colRef, docRef.id), data2, { merge: true }).then(() => {
+                            console.log('Address data saved successfully.');
+                        })
+                            .catch((error) => {
+                                console.error('Error saving Address data: ', error);
+                            });
+                    })
+                    .catch((error) => {
+                        console.error(error); // 处理错误
+                    });
+            }
+        }
     } catch (error) {
         console.error("Error adding document: ", error);
         alert("An error occurred while submitting the post.");
     }
-
-    if (location.trim() !== '') {
-        console.log(location);
-        await geocodeAddress(location)
-        .then((result) => {
-            const data = {locationCoordinates: new GeoPoint(result[0], result[1])};
-  
-            setDoc(doc(colRef, docRef.id), data , { merge: true }).then(() => {
-                console.log('Address data saved successfully.');
-            })
-            .catch((error) => {
-                console.error('Error saving Address data: ', error);
-            });
-        })
-        .catch((error) => {
-            console.error(error); // Handle errors here
-        });
-    }
- });
+});
 
 choose_interest.addEventListener("click", function (event) {
     option_interest.style.display = "block";
