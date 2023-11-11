@@ -20,7 +20,7 @@ img {
 }
 
 /* Set a style for all buttons */
-button {
+button, input[type="submit"]{
     background-color: #4410A5;
     color: white;
     padding: 14px 20px;
