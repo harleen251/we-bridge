@@ -76,7 +76,7 @@ const postsRef = collection(db, 'posts');
 
 async function getPostList() {
     
-    const q = query(postsRef, where( "organizationId", "==" , idOrganization ), orderBy("date", "desc"));
+    const q = query(postsRef, where( "organizationId", "==" , idOrganization ), orderBy("date", "asc"));
     const postFilter = document.getElementById("postFilter").value;
     console.log(q);
     const currentDate = new Date();
@@ -109,6 +109,9 @@ async function getPostList() {
                 const p = document.createElement('p');
                 p.innerText = event.location;
                 div.append(p);
+                const p0 = document.createElement('p');
+                p0.innerText = `Event On: ${event.date.toDate().toLocaleDateString('en-GB')}`;
+                div.append(p0)
                 const p1 = document.createElement('p');
                 p1.innerText = `Published: ${event.posted_on_date.toDate().toLocaleDateString('en-GB')}`;
                 div.append(p1)
