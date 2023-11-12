@@ -1,8 +1,30 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, doc, getDocs,getDoc, onSnapshot, where, query, orderBy } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
 import { getCookie } from "./backend.js"
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+async function generateAndDownloadPDF(htmlContent,outputPath) {  
+  const options = {
+    filename: outputPath,
+    margin: 1,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+  };
+
+  // Use html2pdf to generate PDF
+  html2pdf().set(options).from(htmlContent).save();
+}
+
+btnDownload.addEventListener("click", async function (event) {
+  event.preventDefault();
+  const htmlContent = document.documentElement;
+  //const htmlContent = document.querySelector('#data-table');
+  generateAndDownloadPDF(htmlContent, "my-record.pdf");
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 const firebaseConfig = {

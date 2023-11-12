@@ -322,10 +322,11 @@ async function saveVolunteer(){
 
     // set Lat and Long
     if (String(txtAddress.value).trim() !== '') {
-        console.log(txtAddress.value);
-        await geocodeAddress(txtAddress.value)
+        
+        let detailAddress = String(txtAddress.value).trim() + " " + String(txtCity.value).trim() + " " + String(txtProvince.value).trim() + " " + String(txtPostalCode.value).trim();        
+        await geocodeAddress(detailAddress)
         .then((result) => {
-            const geopoint ={ geopoint: new GeoPoint(result[0], result[1]) };
+            const geopoint ={ geopoint: new GeoPoint(result[0], result[1]) };            
             const addressRef = doc(volunteerCollection, volunteerId);
             
             setDoc(addressRef, geopoint , { merge: true }).then(() => {
