@@ -89,10 +89,11 @@ const firebaseConfig = {
               console.error('Error getting document:', error);
           });
   }
-  
+  const recommendedPosts = [];
+  const recommendedPostsId = [];
   function recommendations() {
     similar_opportunities.innerHTML = "<h1>Similar Opportunities</h1>"; // Clear previous recommendations
-    
+      
     getDoc(docRef)
       .then((doc) => {
         if (doc.exists) {
@@ -103,8 +104,6 @@ const firebaseConfig = {
   
           getDocs(queryRef)
             .then((querySnapshot) => {
-              const recommendedPosts = [];
-              const recommendedPostsId = [];
               querySnapshot.forEach((doc) => {
                 if (doc.id !== postId) {
                   recommendedPosts.push(doc);
@@ -139,6 +138,7 @@ const firebaseConfig = {
                   // If there are more posts to show, add "Show more" button
                   const showMoreButton = document.createElement("button");
                   showMoreButton.textContent = "Show more";
+                  showMoreButton.className = "showMoreButton"
                   showMoreButton.addEventListener("click", () => showMoreRecommendations(3));
                   similar_opportunities.appendChild(showMoreButton);
                 }
@@ -183,9 +183,8 @@ function showMoreRecommendations(startIndex) {
         }
     }
   
-    if (startIndex + maxToShow >= recommendedPosts.length) {
-        // If there are no more posts to show, hide the "Show more" button
-        const showMoreButton = document.querySelector("#showMoreButton");
+    const showMoreButton = document.querySelector(".showMoreButton");
+    if (showMoreButton) {
         showMoreButton.style.display = "none";
     }
 }
