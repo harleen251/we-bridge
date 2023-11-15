@@ -173,6 +173,7 @@ async function getVolunteerDetails(volunteerId) {
   const docSnap = await getDoc(volRef);
   if (docSnap.exists()) {
       geopoint = docSnap.data().geopoint;
+      console.log("geopoint", geopoint);
       return geopoint;
   } else {
     return {};
@@ -182,12 +183,15 @@ async function getVolunteerDetails(volunteerId) {
 
 async function filteredPostWithinRadius(event, radius) {
   if (radius != 0) {
-        try {let volunteerCoordinates = getVolunteerDetails(volunteerId);
+        try {let volunteerCoordinates = await getVolunteerDetails(volunteerId);
+          console.log("volunteerCoordinates", volunteerCoordinates);
         let volunteerLatitude = volunteerCoordinates._lat;
         let volunteerLongitude = volunteerCoordinates._long;
         let postLatitude = event.locationCoordinates._lat;
       let postLongitude = event.locationCoordinates._long;
-
+      
+      console.log("volunteerLatitude", volunteerLatitude);
+      console.log("volunteerLongitude", volunteerLongitude);
       console.log("postLatitude", postLatitude);
       console.log("postLongitude", postLongitude);
 
@@ -195,17 +199,37 @@ async function filteredPostWithinRadius(event, radius) {
         const earthRadius = 6371; // Earth's radius in kilometers
         // Calculate the distance between the volunteer and the post using Haversine formula
         //  great-circle distance between two points on a sphere 
-        const dLat = (postLatitude - volunteerLatitude) * (Math.PI / 180);
-        const dLon = (postLongitude - volunteerLongitude) * (Math.PI / 180);
-        const a =
-          Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-          Math.cos(volunteerLatitude * (Math.PI / 180)) * Math.cos(postLatitude * (Math.PI / 180)) *
-          Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        const distance = earthRadius * c;
-        console.log('distance is', distance);
-        console.log("distance <= radius", distance <= radius);
-        let flag =  distance <= radius; // Check if the post is within the specified radius
+        // const dLat = (postLatitude - volunteerLatitude) * (Math.PI / 180);
+        // const dLon = (postLongitude - volunteerLongitude) * (Math.PI / 180);
+        // const a =
+        //   Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        //   Math.cos(volunteerLatitude * (Math.PI / 180)) * Math.cos(postLatitude * (Math.PI / 180)) *
+        //   Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        // const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        // const distance = earthRadius * c;
+        // console.log('distance is', distance);
+        // console.log("distance <= radius", distance <= radius);
+        // let flag =  distance <= radius; // Check if the post is within the specified radius
+
+        const dlat = postLatitude - volunteerLatitude;
+    const dlon = postLongitude - volunteerLongitude;
+    console.log("dlat", dlat);
+    console.log("dlon", dlon);
+
+    const a = Math.sin(dlat / 2) ** 2 + Math.cos(volunteerLatitude) * Math.cos(postLatitude) * Math.sin(dlon / 2) ** 2;
+    console.log("a is", a);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    // Earth's radius in kilometers (mean value)
+    const R = 6371;
+
+    // Calculate the distance
+    const distance = R * c;
+    console.log('distance is', distance);
+    let flag = distance <= radius;
+    
+
+    // return distance;
         if (flag) {
           return flag;
         }

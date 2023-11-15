@@ -308,8 +308,9 @@ function sortDataByDate(data, newestFirst) {
   function populateTable(data) {
     // Clear the table
     const table = document.getElementById("data-table");
-    table.innerHTML = "";
-  
+    const tbody = table.getElementsByTagName("tbody")[0];
+    // Clear the existing rows in the tbody
+    tbody.innerHTML = "";  
     // Re-create the table with sorted data
     data.forEach((item) => {
       const row = document.createElement("tr");
@@ -326,7 +327,7 @@ function sortDataByDate(data, newestFirst) {
       checkboxCell.appendChild(checkbox);
       row.appendChild(checkboxCell);
   
-      table.appendChild(row);
+      tbody.appendChild(row);
     });
   }
   
