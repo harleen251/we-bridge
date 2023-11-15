@@ -254,17 +254,10 @@ function createEventDiv(event) {
   const div = document.createElement('div');
   const date = new Date(event.date.toDate()); 
   const expireDate = new Date(event.expireDate.toDate()); 
-  div.innerHTML = `<br> Position Title: ${event.positionTitle} 
-    <br> Description: ${event.description} 
-    <br> Date: ${date.toLocaleString()}
-    <br> Location: ${event.location} 
-    <br> Post Expiry Date: ${expireDate.toLocaleString()} 
-    <br> Interests: ${event.interests}
-    <br> Skills: ${event.skills}
-    <br> Preferred Language: ${event.preferredLanguage}
-    <br> Phone Number:${event.phoneNumber} 
-    <br> Email: ${event.email} 
-    <br> Hours: ${event.hours}`;
+  div.innerHTML = `<br><h3>${event.positionTitle} </h3>
+    ${event.description} <br>
+    <br>  ${date.toLocaleString()}
+    <br>  ${event.location} `;
     div.addEventListener("click", ()=>{
       navigateToPostDetailPage(event.id);
     })
