@@ -22,7 +22,7 @@ var volunteerCollection = collection(db, "volunteer");
 async function signIn() {
 
   const prevUrl = document.referrer; // previous page link
-  let redirectURL = "volunteer_signup.html"
+  let redirectURL = "index.html"
 
   if (prevUrl !== ""){
     redirectURL = document.referrer;
@@ -38,7 +38,6 @@ async function signIn() {
     // Get the volunteer ID from Firestore 
     
     const volunteerId = querySnapshot.docs[0].id;
-    alert(volunteerId);
 
     // Save the volunteer ID in a cookie
     await setCookie("volunteerId", volunteerId, 1); // Expires in 7 days

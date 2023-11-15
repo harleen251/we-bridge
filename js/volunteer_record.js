@@ -1,6 +1,34 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, doc, getDocs,getDoc, onSnapshot, where, query, orderBy } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js';
 import { getCookie } from "./backend.js"
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
+  authDomain: "webridge-81f09.firebaseapp.com",
+  projectId: "webridge-81f09",
+  storageBucket: "webridge-81f09.appspot.com",
+  messagingSenderId: "950961168294",
+  appId: "1:950961168294:web:1cc48025ccfb341ea93967",
+  measurementId: "G-VWM7GNP66X"
+};
+
+const BASE_URI = "http://localhost:3000/";
+const SHARE_URI = BASE_URI + "share";
+const USERINFO_URI = BASE_URI + "userinfo";
+const GET_AUTH_URI = BASE_URI + "getAuthUri";
+const UPLOAD_FILE_URI = BASE_URI + "uploadFile";
+const EXPORT_URI = BASE_URI + "export";
+
+const MAX_NB_RETRY = 20;
+const RETRY_DELAY_MS = 3000;
+
+const volunteerId = await getCookie("volunteerId");
+// const volunteerId = "kdF4ksCgCLBhKcL6gRaJ"
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore();
+const storage = getStorage();
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -17,33 +45,157 @@ async function generateAndDownloadPDF(htmlContent,outputPath) {
   html2pdf().set(options).from(htmlContent).save();
 }
 
-btnDownload.addEventListener("click", async function (event) {
+document.getElementById('btnDownload').addEventListener("click", async function (event) {
   event.preventDefault();
   const htmlContent = document.documentElement;
   //const htmlContent = document.querySelector('#data-table');
   generateAndDownloadPDF(htmlContent, "my-record.pdf");
+  await shareAsImage();
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+async function getLinkedinAuth() {
+  let ret = false;
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
-    authDomain: "webridge-81f09.firebaseapp.com",
-    projectId: "webridge-81f09",
-    storageBucket: "webridge-81f09.appspot.com",
-    messagingSenderId: "950961168294",
-    appId: "1:950961168294:web:1cc48025ccfb341ea93967",
-    measurementId: "G-VWM7GNP66X"
-  };
+  /**
+   * Attempt to get the user's info first. If we can't get it then
+   * it means authentication is required
+   */
+  let userInfoRes = await fetch("http://localhost:3000/userinfo", {
+    method: "GET",
+  });
+  let resData = await userInfoRes.json();
+  
+  if (resData.error) {
+    /* First get the actual Linkedin auth URI and prompt a new tab */
+    const getAuthUriRes = await fetch("http://localhost:3000/getAuthUri", {
+      method: "GET",
+    });
+    resData = await getAuthUriRes.json();
+    window.open(resData.authUri, "_blank");
+  }
 
+  let retryLeft = MAX_NB_RETRY;
+  while (retryLeft) {
+    userInfoRes = await fetch("http://localhost:3000/userinfo", {
+      method: "GET",
+    });
+    resData = await userInfoRes.json();
+    if (resData.error) {
+      await sleep(RETRY_DELAY_MS);
+      retryLeft -= 1;
+    } else {
+      ret = true;
+      break;
+    }
+  }
 
+  if (!ret) {
+    console.log(`Linkedin auth attempt timed out`);
+  }
 
-const volunteerId = await getCookie("volunteerId");
-// const volunteerId = "kdF4ksCgCLBhKcL6gRaJ"
+  return ret;
+}
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore();
+async function uploadLinkedinFile() {
+  let ret = true;
+  const postData = { fileName: "output.png" };
+  const response = await fetch("http://localhost:3000/uploadFile", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(postData), // body data type must match "Content-Type" header
+  });
+
+  let resData = await response.json();
+  if (resData.error) {
+    console.log(`Failed to upload Linked file`);
+    ret = false;
+  }
+
+  return ret;
+}
+
+async function shareLinkedinPost() {
+  const postData = { shareData: document.getElementById("shareData").value };
+  const response = await fetch("http://localhost:3000/share", {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(postData), // body data type must match "Content-Type" header
+  });
+
+  let resData = await response.json();
+  console.log(resData);
+  document.getElementById("shareData").value = "";
+}
+
+async function shareAsImage() {
+    const elementToCapture = document.documentElement;
+    //const elementToCapture = document.getElementById('contentToShare');    
+
+    // Capture image with html2canvas
+    const canvas = await html2canvas(elementToCapture);
+
+    // Convert the canvas to a data URL
+    const imageDataUrl = canvas.toDataURL('image/png');
+    try {
+      //Send the image data to the server
+      const uploadResponse = await fetch('http://localhost:3000/uploadImage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ imageData: imageDataUrl }),
+      })
+      .then(response => response.text())
+      .then(data => {      
+       console.log(data);
+      })
+      .catch(error => console.error('Error:', error));      
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred. Please try again.');
+    } 
+    
+}
+
+// Call the function when needed, for example, on a button click
+document.getElementById('btnShare').addEventListener('click', async function (event){
+  event.preventDefault();
+  //await handleExport();
+ 
+  await handleLinkedinShare(); 
+
+});
+
+async function handleLinkedinShare() {
+  let oathSuccess = await getLinkedinAuth();
+  if (oathSuccess && (await uploadLinkedinFile())) {
+    await shareLinkedinPost();
+  } else {
+    console.log(`Failed to share to Linkedin`);
+  }
+}
+
+async function handleExport() {
+  const postData = { exportData: "Share from WeBridge" };
+  const response = await fetch(EXPORT_URI, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postData), // body data type must match "Content-Type" header
+  });
+
+  let resData = await response.json();
+  console.log(resData);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 let volunteerEntryArray = []
 
