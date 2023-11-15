@@ -64,10 +64,17 @@ const firebaseConfig = {
                   console.log('Document data:', data);
                   opportunity_detail.innerHTML =
                   `<br> <h1>Position Title: ${data.positionTitle}</h1>
-                  <br> Posted on: ${data.posted_on_data} | Expired on: ${expireDate.toLocaleString()}
-                  <br> Date: ${date.toLocaleString()} Hours: ${data.hours} Location: ${data.location}
-                  <br> Preferred Language: ${data.preferredLanguage} Interests: ${data.interests} Mode of work: ${data.mode_of_work}
+                  <div>
+                  <br> Posted on: ${postOnDate.toLocaleString()} 
+                  <br> Expired on: ${expireDate.toLocaleString()}
+                  <br> Date: ${date.toLocaleString()} 
+                  <br> Hours: ${data.hours} 
+                  <br> Location: ${data.location}
+                  <br> Preferred Language: ${data.preferredLanguage} 
+                  <br> Interests: ${data.interests} 
+                  <br> Mode of work: ${data.mode_of_work}
                   <br> Description: ${data.description}
+                  <br></div>
                   `;
                   organizationId= data.organizationId;
                   console.log("org id" , organizationId);
