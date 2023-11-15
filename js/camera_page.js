@@ -117,9 +117,6 @@ const scanner = new Html5QrcodeScanner('reader', {
     const applicationRef = collection( db, 'application');
 
 
-
-
-
      async function successForCheckin(decodedText) {
         console.log("decoded text is",decodedText);
         
@@ -156,9 +153,9 @@ const scanner = new Html5QrcodeScanner('reader', {
                     alert("An error occurred while submitting the post.");
                 }
             }
-            // else if (!checkInSuccessful) {
-            //     alert('Invalid QR code');
-            // }
+            else if (!checkInSuccessful) {
+                alert('Invalid QR code');
+            }
         }
             else {
                 console.log("here");
