@@ -30,6 +30,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const storage = getStorage();
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function generateAndDownloadPDF(htmlContent,outputPath) {  
@@ -139,7 +140,7 @@ async function shareAsImage() {
 
     // Capture image with html2canvas
     const canvas = await html2canvas(elementToCapture);
-
+    
     // Convert the canvas to a data URL
     const imageDataUrl = canvas.toDataURL('image/png');
     try {

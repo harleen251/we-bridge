@@ -134,12 +134,12 @@ async function getRegisteredInfo() {
                                 if (postDoc.exists) {
                                     const postData = postDoc.data();
                                     console.log('Post Details : ', postData);
-                                    let txt2Inner = `<header><h3>${application.motive}</h3></header>`;
+                                    let txt2Inner = `<header><h3>${postData.positionTitle}</h3></header>`;
                                     document.getElementById("h1Recomm").style.display = "block";  
                                     let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
                                     card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
                                     txt2Inner += `<a href="">${appDoc.id}</p>`;
-                                    txt2Inner += `<a href="">${postData.positionTitle}</p>`;
+                                    // txt2Inner += `<a href="">${postData.positionTitle}</p>`;
                                     txt2Inner += `<a href="">${postData.location}</p>`;
                                     txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
                                     txt2Inner += `<p>${application.status}</p>`; // add the title             
@@ -265,6 +265,9 @@ function navigateToPage(event) {
   const pageId = location.hash ? location.hash : '#history';
   for (let page of allPages) {
     if (pageId === '#' + page.id) {
+        if(pageId === "#record"){
+            window.location.href = 'volunteer_record.html';
+        }
       page.style.display = 'block';
     } else {
       page.style.display = 'none';

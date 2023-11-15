@@ -10,16 +10,6 @@ import * as cheerio from 'cheerio';
 import * as puppeteer from 'puppeteer';
 
 
-// const express = require('express');
-// const axios = require('axios');
-// const querystring = require('querystring');
-// const fs = require('fs').promises;
-// const path = require('path');
-// const bodyParser = require('body-parser');
-// const cors = require('cors');
-// const { AuthClient, RestliClient } = require('linkedin-api-client');
-// const dotenv = require('dotenv');
-
 dotenv.config();
 
 
@@ -49,6 +39,8 @@ const USERINFO_URI = BASE_URI + "userinfo";
 const GET_AUTH_URI = BASE_URI + "getAuthUri";
 const UPLOAD_FILE_URI = BASE_URI + "uploadFile";
 const EXPORT_URI = BASE_URI + "export";
+const d = new Date();
+let record_time = d.getTime();
 
 /* Initialize auth and restli clients */
 if (!(process.env.CLIENT_ID && process.env.CLIENT_SECRET && process.env.OAUTH2_REDIRECT_URL)) {
@@ -101,40 +93,21 @@ async function registerUpload() {
 app.post('/uploadImage', async (req, res) => {
   try {
   const imageData = req.body.imageData;
-
+  record_time = d.getTime();
+  //console.log('public/'+ record_time +'.png');
   // Decode the base64 image data and save it as a file
   const base64Data = imageData.replace(/^data:image\/png;base64,/, '');
-  fsPromises.writeFile('public/output.png', base64Data, 'base64');
+  //fsPromises.writeFile('public/output.png', base64Data, 'base64');
+  fsPromises.writeFile('public/'+ record_time +'.png', base64Data, 'base64');
 
       res.status(200).send('Image saved successfully');
     } catch (error) {
       console.error('Error saving image:', error);
       res.status(500).send('Error saving image');
     }
-  // fsPromises.writeFile('public/output.png', base64Data, 'base64', (err) => {
-  //   if (err) {
-  //     console.error(err);
-  //     res.status(500).send('Error saving image');
-  //   } else {
-  //     res.status(200).send('Image saved successfully');
-  //   }
+  
   });
 
-// app.post('/uploadImage', async (req, res) => {
-//   try {
-//     const imageData = req.body.imageData;
-
-//     // Decode the base64 image data and save it as a file
-//     const base64Data = imageData.replace(/^data:image\/png;base64,/, '');
-//     const imagePath = join(__dirname, 'public', 'output.png'); 
-//     await fsPromises.writeFile(imagePath, base64Data, 'base64');
-
-//     res.status(200).send('Image saved successfully');
-//   } catch (error) {
-//     console.error('Error saving image:', error);
-//     res.status(500).send('Error saving image');
-//   }
-// });
 
 app.post('/export', express.json(), async (req, _res) => {
   //const absFilename = resolve(UPLOAD_FILES_REL_PATH + DEFAULT_EXPORT_PDF_HTML_FILE);
@@ -314,7 +287,8 @@ app.post('/uploadFile', express.json(), async (req, res) => {
    * If file doesn't exist, fallback to the logo file or something else
    */
   const fileName = req.body.fileName;
-  let absFilename = resolve("./public/output.png");
+  //let absFilename = resolve("./public/output.png"); 'public/'+ record_time +'.png'
+  let absFilename = resolve('./public/'+ record_time +'.png');
   // if (!fs.existsSync(resolve(absFilename))) {
   //   absFilename = resolve(UPLOAD_FILES_REL_PATH + DEFAULT_LOGO_FILE);
   // }
@@ -335,140 +309,8 @@ app.post('/uploadFile', express.json(), async (req, res) => {
   }
 });
 
-
-
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
 
-// // Map to store media ID after uploading the image
-// const mediaIdMap = new Map();
-
-// // LinkedIn authentication callback
-// app.get('/auth/linkedin/callback', async (req, res) => {
-//   try {
-//     const { code } = req.query;
-
-//   // Exchange authorization code for access token
-//   const tokenResponse = await axios.post('https://www.linkedin.com/oauth/v2/accessToken', querystring.stringify({
-//     grant_type: 'authorization_code',
-//     code,
-//     redirect_uri: 'http://localhost:3000/oauth', 
-//     client_id: '78gl5t9n4n35le',
-//     client_secret: 'oD0ZC7s0em0Ygnzc', 
-//   }), {
-//     headers: {
-//       'Content-Type': 'application/x-www-form-urlencoded',
-//     },
-//   });
-
-//   const accessToken = tokenResponse.data.access_token;
-
-//   // Fetch user's LinkedIn profile
-//   const profileResponse = await axios.get('https://api.linkedin.com/v2/me', {
-//     headers: {
-//       Authorization: `Bearer ${accessToken}`,
-//     },
-//   });
-
-//   const userProfile = profileResponse.data;
-//   console.log(userProfile);
-
-//     // Upload image to LinkedIn and get media ID
-//     const imagePath = path.join(__dirname, 'public', 'output.png'); 
-//     const mediaId = await uploadImageToLinkedIn(accessToken, imagePath);
-
-//     // Share image on LinkedIn
-//     await shareImageOnLinkedIn(accessToken, mediaId);
-
-//     res.send('LinkedIn authentication and image sharing successful!');
-//   } catch (error) {
-//     console.error('Error during LinkedIn authentication and image sharing:', error);
-//     res.status(500).send('Internal Server Error');
-//   }
-// });
-
-
-
-// // Function to upload image to LinkedIn and get media ID
-// async function uploadImageToLinkedIn(accessToken, imagePath) {
-//   try {
-//     const imageBuffer = await fs.readFile(imagePath);
-//     const imageBase64 = imageBuffer.toString('base64');
-
-//     const uploadResponse = await axios.post(
-//       'https://api.linkedin.com/v2/assets?action=registerUpload',
-//       { registerUploadRequest: { recipes: ['urn:li:digitalmediaRecipe:feedshare-image'], owner: 'urn:li:person:we-bridge-a67758294', 
-//       }},
-//       {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Authorization': `Bearer ${accessToken}`,
-//         },
-//       }
-//     );
-
-//     const uploadUrl = uploadResponse.data.value.uploadMechanism[
-//       'com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest'
-//     ].uploadUrl;
-
-//     await axios.put(uploadUrl, imageBuffer, {
-//       headers: {
-//         'Content-Type': 'image/png',
-//       },
-//     });
-
-//     const mediaId = uploadResponse.data.value.asset;
-//     mediaIdMap.set(mediaId, uploadUrl);
-
-//     console.log('Image uploaded to LinkedIn. Media ID:', mediaId);
-//     return mediaId;
-//   } catch (error) {
-//     console.error('Error uploading image to LinkedIn:', error);
-//     throw error;
-//   }
-// }
-
-// // Function to share image on LinkedIn
-// async function shareImageOnLinkedIn(accessToken, mediaId) {
-//   try {
-//     const shareResponse = await axios.post(
-//       'https://api.linkedin.com/v2/ugcPosts',
-//       {
-//         author: `urn:li:person:we-bridge-a67758294`, 
-//         lifecycleState: 'PUBLISHED',
-//         specificContent: {
-//           'com.linkedin.ugc.ShareContent': {
-//             shareCommentary: {
-//               text: 'Check out this image!',
-//             },
-//             shareMediaCategory: 'IMAGE',
-//             media: [
-//               {
-//                 status: 'READY',
-//                 description: {
-//                   text: 'Image Description',
-//                 },
-//                 media: `urn:li:digitalmediaAsset:${mediaId}`,
-//               },
-//             ],
-//           },
-//         },
-//         visibility: {
-//           'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC',
-//         },
-//       },
-//       {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Authorization': `Bearer ${accessToken}`,
-//         },
-//       }
-//     );
-//     console.log('Image shared on LinkedIn. Post ID:', shareResponse.data.id);
-//   } catch (error) {
-//     console.error('Error sharing image on LinkedIn:', error);
-//     throw error;
-//   }
-// }
 

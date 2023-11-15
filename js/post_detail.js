@@ -61,6 +61,7 @@ const firebaseConfig = {
                   const data = doc.data();
                   const date = new Date(data.date.toDate());
                   const expireDate = new Date(data.expireDate.toDate());
+                  const postOnDate = new Date(data.posted_on_date.toDate());
                   console.log('Document data:', data);
                   opportunity_detail.innerHTML =
                   `<br> <h1>Position Title: ${data.positionTitle}</h1>
