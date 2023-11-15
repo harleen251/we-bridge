@@ -117,9 +117,6 @@ const scanner = new Html5QrcodeScanner('reader', {
     const applicationRef = collection( db, 'application');
 
 
-
-
-
      async function successForCheckin(decodedText) {
         console.log("decoded text is",decodedText);
         
@@ -161,6 +158,7 @@ const scanner = new Html5QrcodeScanner('reader', {
             }
         }
             else {
+                console.log("here");
                 const { workCompleted, postId } = await extractPostIdForCheckout(decodedText);
                 if (workCompleted) {
                 await updateStatusInApplicationCollection();
