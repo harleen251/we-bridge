@@ -44,7 +44,7 @@ async function getApplicantInfo() {
                             .then((snapshot) => {
                                 data = snapshot.data();
                                 // console.log("Document data:", data);
-                                document.getElementById("applicant_info").innerHTML = `<img src = "${data.photoLink}" alt = "profile photo">
+                                document.getElementById("applicant_info").innerHTML = `<img class="profile_pic" src ="${data.photoLink}" alt = "profile photo">
                                 <h2>${data.firstName} ${data.lastName}</h2>
                                 <p>${data.city}, ${data.province}</p>
                                 <section>
@@ -205,7 +205,7 @@ async function getPostDetails() {
             <p>${dataPost.location}</p>
             <div id = "skillList" ></div>
             <p>${dataPost.preferredLanguage}</p>
-            <p>${dataPost.workMode}</p>
+            <p>${dataPost.mode_of_work}</p>
             </section>
             <section>
             <h3>Descriptions</h3>
@@ -289,7 +289,7 @@ async function handleApproveButtonEvent() {
             .then(() => {
             console.log('Document field updated successfully.');
             alert(' Successfully Approved the Applicant');
-            window.location.href = "organization_account.html#application";
+            window.location.href = "organization_account.html";
             })
             .catch((error) => {
             console.error('Error updating document field:', error);
@@ -319,7 +319,7 @@ async function declineEvent(e) {
         updateDoc(documentRef, updatingData)
             .then(() => {
             console.log('Document field updated successfully.');
-            window.location.href = "organization_account.html#application"
+            window.location.href = "organization_account.html"
             })
             .catch((error) => {
             console.error('Error updating document field:', error);

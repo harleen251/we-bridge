@@ -1,6 +1,18 @@
+/* Base Colour Settings: */
+
+:root {
+
+    --grey-text: #888;
+}
+
+
+
+
+
 /* Login and Index */
 /* START */
 body {
+    line-height: 1.5;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #F5F6F8;
 }
@@ -139,6 +151,10 @@ input, label, img, span {
 }
 
 
+
+
+
+
 /* Organization profile build */
 #option_service {
     display: none;
@@ -162,19 +178,62 @@ input, label, img, span {
 }
 /* END */
 
+
+
+
+/* Profile Pic */
+
+.profile_pic {
+    width: 9rem;
+    clip-path: circle(40% at 50% 50%);
+}
+
 /* Organization Account */
 
 #org_profile {
     border: 1px solid grey;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 20px;
+    padding: 20px;
     background-color: #fff;
+    text-align: center;
+}
+
+#org_profile img {
+    margin: auto;
+}
+
+#Profile_info h2 {
+    margin-bottom: 0px;
+}
+
+#Profile_info h2+p{
+ margin-top: 0;
+ color: var(--grey-text);
+
+}
+
+#skillList_Org {
+    margin-bottom: 1.5rem;
+}
+
+#skillList_Org p {
+    display: inline-block;
+    margin: .3rem;
+    background-color: #B2DAD7;
+    padding: 6px 15px;
+    border-radius: 25px;
+}
+
+#edit_profile_button, #create-post-button{
+    width: 80vw;
+    max-width: 250px;
+    margin: 10px auto ;
+   
 }
 
 #edit_profile_button {
     background-color: #fff;
-    border: 1px solid #888;
-    
+    border: 1px solid #888;   
 }
 
 #edit_profile_button a {
@@ -195,6 +254,7 @@ input, label, img, span {
     background-color: #F5F6F8;
     margin: 1rem;
     border-bottom: 1px solid #888;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #post-list div, #application-list div{
@@ -202,6 +262,7 @@ input, label, img, span {
     padding: 10px;
     margin: 10px 0px;
     border-radius: 10px;
+    background-color: #fff;
 }
 
 div.page {
@@ -210,18 +271,19 @@ div.page {
 
 select {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
+    border-radius: 10px;
     margin: 10px 0px;
 }
 
-.statusDiv {
+#application-list .statusDiv {
     width: 80px;
-    background-color: #fff;
+    background-color: #f2efef;
     text-align: center;
 }
 
-#post-list div {
-    background-color: #fff;
+#post-list h3+p {
+    color: var(--grey-text);
 }
 
 
