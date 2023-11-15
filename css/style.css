@@ -483,8 +483,38 @@ button {
 #choose_interest, #choose_skill {
     width: 55%;
 }
+
+/* explore_opportunity */
+#eventDetails div {
+    padding: 0 10px 10px 10px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    width: 300px;
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+
+#searchInput {
+    width: 90%;
+}
+
+#horizontal-inputs select {
+    background-color: #4410A5;
+    color: white;
+    width: 90%;
+    height: 35px;
+    text-align: center;
+}
+
+#search {
+    background-color: #4410A5;
+    color: white;
+    width: 90%;
+    height: 35px;
+    border-radius: 8px;
+}
 @media screen and (min-width: 1100px){
-    
+    /* Creating post */
     #postForm {
         margin: 0 auto;
         width: 60%;
@@ -523,12 +553,40 @@ button {
         padding: .5rem;
     }
 
-}
+    /* post_detail */
+    .post_detail {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
 
-/* post_detail */
-.post_detail {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+    #opportunity_detail {
+        text-align: center; 
+    }
+    
+    #opportunity_detail div {
+        text-align: left;
+        position: relative;
+        left: 32%;
+        margin-bottom: 3rem;
+    }
+
+    /* explore_opportunity */
+    #eventDetails {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #horizontal-inputs {
+        display: flex;
+        align-items: center; 
+        gap: 10px; 
+      }
+    #searchInput {
+        width: 25%;
+    }
+    #horizontal-inputs select, #search {
+        width: 20%;
+    }
 }
 
 /* END */
