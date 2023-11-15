@@ -40,16 +40,17 @@ async function orgProfileInfo() {
         .then((snapshot) => {
             data = snapshot.data();
             console.log("Document data:", data);
-            document.getElementById("welcome_tag").innerHTML = `Welcome ${data.orgName}`;
+            document.getElementById("welcome_tag").innerHTML = `Welcome ${data.orgName}!`;
             let profile_info = document.getElementById("Profile_info")
-            profile_info.innerHTML = `  <img src= "${data.photoLink}" alt = "profile image">
+            profile_info.innerHTML = `  <img class="profile_pic" src= "${data.photoLink}" alt = "profile image">
                                         <h2>${data.orgName}</h2> 
-                                        <p>${data.city},${data.province}</p>
-                                        <p>${data.description}</p>`;
+                                        <p>${data.city}, ${data.province}</p>
+                                        <p>${data.description}</p>
+                                        <div id="skillList_Org"></div>`;
                                         for(let i = 0; i < data.service.length; i++) {
                                             let p = document.createElement("p");
                                             p.innerHTML = data.service[i];
-                                            profile_info.appendChild(p);
+                                            skillList_Org.appendChild(p);
                                         }
     })
     .catch((error) => {
@@ -110,7 +111,7 @@ async function getPostList() {
                 p.innerText = event.location;
                 div.append(p);
                 const p0 = document.createElement('p');
-                p0.innerText = `Event On: ${event.date.toDate().toLocaleDateString('en-GB')}`;
+                p0.innerText = `Event : ${event.date.toDate().toLocaleDateString('en-GB')}`;
                 div.append(p0)
                 const p1 = document.createElement('p');
                 p1.innerText = `Published: ${event.posted_on_date.toDate().toLocaleDateString('en-GB')}`;
