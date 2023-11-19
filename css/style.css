@@ -1,9 +1,54 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* Login and Index */
+/*Color*/
+:root {
+    /*Primary Color Purple*/
+    --purple-lighter: #7952BF;
+    --purple-light: #5E31B1;
+    --purple-primary: #4410A5;
+    --purple-dark: #360B83;
+    --purple-darker: #290766;
+
+    /*Secondary Color Yellow*/
+    --yellow-lighter: #FFD25E;
+    --yellow-light: #FFC533;
+    --yellow-primary: #F2AD00;
+    --yellow-dark: #BF8900;
+
+    /*Accent Color 1 Green*/
+    --green-lighter: #B2DAD7;
+    --green-light: #79B6B2;
+    --green-primary: #4C948F;
+    --green-dark: #589792;
+    --green-darker: #196761;
+
+    /*Accent Color 2 Red*/
+    --red-lighter: #FDCED1;
+    --red-light: #FCA8AC;
+    --red-primary: #ED7A80;
+    --red-dark: #D26E73;
+    --red-darker: #A5292F;
+
+    /*Neutral color*/
+    --black: #212121;
+    --white: #FFFFFF;
+    --grey-lighter: #F5F6F8;
+    --grey-light: #8F8F8F;
+    --grey-middle-placeholdertext: #6A6A6A;
+
+}
+
 /* START */
-body {font-family: Arial, Helvetica, sans-serif;}
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--grey-lighter);
+}
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type=text],
+input[type=password] {
     width: 30%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -14,7 +59,7 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 button {
-    background-color: #04AA6D;
+    background-color: var(--purple-dark);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -41,41 +86,46 @@ span.psw {
 }
 
 /* For Desktop { */
-@media screen and (max-width: 800px){
-    
-}
+@media screen and (max-width: 800px) {}
 
 /* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-   
-}
+@media screen and (max-width: 300px) {}
 
 /* END */
 
 /* Volunteer and Organization Sign Up */
 /* START */
-input, label {
+input,
+label {
     display: block;
 }
 
 .wrap_welcome {
     background-color: #fefefe;
     padding: 20px;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
+    /* Could be more or less, depending on screen size */
 }
 
 /* Hide the welcome popup in signup page */
 #welcome {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
     padding-top: 60px;
 }
 
@@ -86,13 +136,18 @@ input, label {
 
 #option_interest {
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
     padding-top: 60px;
     overflow: auto;
 }
@@ -100,20 +155,27 @@ input, label {
 #wrap_option_interest {
     background-color: #fefefe;
     padding: 20px;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
+    /* Could be more or less, depending on screen size */
 }
 
 #option_skill {
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
     padding-top: 60px;
     overflow: auto;
 }
@@ -121,22 +183,29 @@ input, label {
 #wrap_skill {
     background-color: #fefefe;
     padding: 20px;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
+    /* Could be more or less, depending on screen size */
 }
 
 
 /* Organization profile build */
 #option_service {
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
     padding-top: 60px;
     overflow: auto;
 }
@@ -144,8 +213,11 @@ input, label {
 #wrap_service {
     background-color: #fefefe;
     padding: 20px;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
+    /* Could be more or less, depending on screen size */
 }
+
 /* END */
