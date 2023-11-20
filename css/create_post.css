@@ -1,0 +1,162 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.createPost {
+    background-color: white;
+    margin-top: 80px;
+    font-size: 1.3rem;
+    font-family: "Poppins", sans-serif;
+}
+.createPost h1 {
+    text-align: center;
+}
+
+#postForm {
+    margin: 1rem;
+}
+#postForm h2 {
+    color: white;
+    background-color: #7952BF;
+    padding: .5rem;
+}
+
+#postForm input {
+    width: 94.5%;
+    border-radius: 8px;
+    height: 20px;
+    margin-bottom: 1rem;
+}
+
+#postForm select {
+    width: 96%;
+    border-radius: 8px;
+    height: 30px;
+    margin-bottom: 1rem;
+}
+
+#postForm textarea{
+    width: 95%;
+    border-radius: 8px;
+}
+
+#postForm input[type="date"] {
+    width: 95%;
+    height: 30px;
+}
+
+.createPost button {
+    display: inline-block;
+    width: 39%;
+    height: 35px;
+    margin-right: 10%;
+    border-radius: 8px;
+    background-color: #360B83;
+    color: white;
+    font-weight: bold;
+}
+
+#discord {
+    background-color:white;
+    color: #360B83;
+}
+
+#postForm p {
+    display: inline-block;
+    width: 28%; 
+    text-align: left;
+    margin-right: 2%; 
+    margin-bottom: 1rem;
+}
+#choose_interest, #choose_skill {
+    width: 59%;
+}
+
+/* Interest and Skill pop up */
+#option_interest {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+    overflow: auto;
+}
+
+#wrap_option_interest {
+    background-color: #fefefe;
+    padding: 20px;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+#option_skill {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+    overflow: auto;
+}
+
+#wrap_skill {
+    background-color: #fefefe;
+    padding: 20px;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+@media screen and (min-width: 1100px){
+    /* Creating post */
+    .createPost{
+        margin-top: 0;
+        font-size: 1.5rem;
+    }
+
+    #postForm {
+        margin: 0 auto;
+        width: 60%;
+    }
+    
+    #postForm label{
+        display: inline-block;
+        width: 28%; 
+        text-align: left;
+        margin-right: 2%; 
+        margin-bottom: 1rem;
+    }
+
+    #postForm input {
+        width: 60%;
+        height: 30px;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    #postForm select {
+        width: 61%;
+    }
+
+    #postForm textarea {
+        width: 60%;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    #postForm input[type="date"] {
+        display: inline-block;
+        width: 60.5%;
+        height: 30px;
+        border-radius: 8px;
+    }
+
+    
+}

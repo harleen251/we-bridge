@@ -1,0 +1,230 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,
+      rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+    --color: #4410A5;
+    --gap: 0.5rem;
+    --radius: 20px;
+}
+header {
+  margin-bottom: 40px;
+  font-family: "Poppins", sans-serif;
+}
+
+.hamburger-menu {
+    display: none; /* 初始状态下隐藏 */
+    cursor: pointer;
+  }
+
+.hamburger-menu {
+    display: block;
+    width: 30px; /* 汉堡按钮的宽度 */
+    height: 20px; /* 汉堡按钮的高度 */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.deskTop {
+    display: none;
+}
+
+.menu {
+    display: none; /* 初始状态下隐藏 */
+/* 其他样式，比如定位、背景色等 */
+}
+
+.mobile img {
+  /* 这里可以设置 logo 的样式，例如居中、大小等 */
+  display: inline-block;
+  width: 150px;
+  position: absolute;
+  top: 20px;
+}
+
+header ul  {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+header li {
+    margin-bottom: 5px;
+}
+header a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+header a:hover {
+  background-color: #212121;
+  color: #FFFFFF;
+}
+
+.bar {
+    width: 100%;
+    height: 3px; /* 汉堡按钮中每个条的高度 */
+    background-color: #4410A5; /* 条的颜色 */
+    margin: 5px 0; /* 条之间的间距 */
+    border-radius: 2px;
+    transition: 0.4s; /* 添加过渡效果，使按钮动画更平滑 */
+}
+
+.bar2 {
+    width: 70%;
+}
+
+/* 使用伪类选择器 :not(:last-child) 选择除了最后一个条之外的所有条，为了设置样式 */
+.bar:not(:last-child) {
+    margin-bottom: 4px; /* 控制条与条之间的间距 */
+}
+
+/* 旋转并设置条的样式来形成汉堡按钮的效果 */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.menu.active {
+    display: block;
+    background-color: #4410A5;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    padding: 10px 20px 40px 0;
+    /* ... */
+}
+
+.submenu1, .submenu2, .submenu3 {
+    display: none;
+}
+
+.submenu1.active, .submenu2.active, .submenu3.active {
+    display: block;
+    /* 其他样式 */
+}
+.logout.active {
+    display: block;
+}
+
+@media screen and (min-width: 1100px) {
+    
+      .mobile {
+        display: none;
+      }
+      .deskTop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px; /* 可以根据需要调整 */
+        background-color: white; /* 可以根据需要调整 */
+        position: relative;
+      }
+      
+      header a {
+        color: black;
+        margin-right: 100px;
+        font-size: 1.3rem;
+      }
+
+      .left-section,
+      .right-section {
+        display: flex;
+        margin-right: 100px;
+      }
+      
+      header img {
+        /* 这里可以设置 logo 的样式，例如居中、大小等 */
+        display: inline-block;
+        width: 150px;
+      }
+      .center-section {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      
+      .container {
+        display: flex;
+      }
+      
+      header .btn {
+          background-color: white;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          column-gap: var(--gap);
+          padding: 0.6rem;
+          margin-left: 1.5rem;
+          cursor: pointer;
+          border-radius: var(--radius);
+          border: none;
+          /* box-shadow: var(--shadow); */
+          position: relative;
+          font-size: 1.3rem;
+      }
+      
+      #btnSignUp {
+        background-color: black;
+        color: white;
+      }
+      .bx {
+        font-size: 1.1rem;
+      }
+      
+      .dropdown {
+        position: absolute;
+        top: 20px;
+        width: 250px;
+        height: 130px;
+        box-shadow: var(--shadow);
+        border-radius: var(--radius);
+        margin-top: 2.2rem;
+        background: white;
+      
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(0.5rem);
+        transition: all 0.1s cubic-bezier(0.16, 1, 0.5, 1);
+      }
+      
+      .dropdown a {
+        width: 200px;
+        display: flex;
+        align-items: center;
+        column-gap: var(--gap);
+        padding: 0.8rem 1rem;
+        text-decoration: none;
+        color: black;
+      }
+      
+      header a:hover {
+        background-color: var(--color);
+        color: white;
+      }
+      
+      .show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0rem);
+      }
+      
+      .arrow {
+        transform: rotate(180deg);
+        transition: 0.2s ease;
+      }
+    
+      
+}
