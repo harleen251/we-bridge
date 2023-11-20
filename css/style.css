@@ -224,7 +224,7 @@ input, label, img, span {
     border-radius: 25px;
 }
 
-#edit_profile_button, #create-post-button{
+#edit_profile_button{
     width: 80vw;
     max-width: 250px;
     margin: 10px auto ;
@@ -255,6 +255,10 @@ input, label, img, span {
     margin: 1rem;
     border-bottom: 1px solid #888;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#create-post-button {
+    width: 100%;
 }
 
 #post-list div, #application-list div{
