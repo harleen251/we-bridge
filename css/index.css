@@ -33,6 +33,10 @@ body {
     background: var(--grey-lighter);
 }
 
+button:hover{
+    background-color: var(--yellow-primary);
+}
+
 /* **********************************************
     Main Declarations
 ********************************************** */
@@ -52,9 +56,12 @@ p {
 }
 
 #explore_button {
+    text-align: left;
     height: 64px;
-    width: 305px ;
+    width: 166px ;
     border-radius: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 #explore-arrow{
@@ -80,6 +87,7 @@ p {
 }
 
 #client {
+    margin-top: 56px;
     margin-bottom: 80px;
 }
 
