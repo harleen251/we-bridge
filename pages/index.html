@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeBridge - Home Page</title>
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/dropdown.css">
+    <!-- <link rel="stylesheet" href="../css/dropdown.css"> -->
+    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../css/index.css">
     <script type="module" src="../js/index.js" defer></script>
 </head>
 <body>
@@ -50,15 +52,38 @@
             </div>
         </nav>
     </header>
-    <main><br>
-        <section>
-            <h1>Latest Opportunities</h1><br>
-            <div id="containerOpp">
-                
+
+    <main>
+        <section id="hero">
+            <h1 id="hero_title">Uniting Hearts <img class="hero_icon" src="../images/icons/heart_icon.svg"><br> 
+                and Hands <img class="hero_icon" src="../images/icons/hand_icon.svg"> <br>
+                for Community <br> 
+                Well-Being.
+            </h1>
+            <p id="hero_description">We bridge compassionate organizations with willing volunteers to shape a brighter future for our communities.</p>
+            <button id="explore_button">Explore<br> Opportunities <img id="explore-arrow" src="../images/icons/arrow_left_right.svg" alt="Explore Opportunities"></button>
+        </section>
+        <section id="client">
+            <h5 id="client_h5">a total of 50+ organizations have joined our network</h5>
+            <div id="carousel">
+                <img src="../images/organization logo/unicef.png" alt="" id="carousel_logo1" class="carousel_logo">
+                <img src="../images/organization logo/Canadian_Red_Cross.png" alt="" id="carousel_logo2" class="carousel_logo">
+                <img src="../images/organization logo/Habitat.png" alt="" id="carousel_logo4" class="carousel_logo">
+                <img src="../images/organization logo/wwf.png" alt="" id="carousel_logo5" class="carousel_logo">
+                <img src="../images/organization logo/spca.png" alt="" id="carousel_logo6" class="carousel_logo">
+                <img src="../images/organization logo/City of burnaby.png" alt="" id="carousel_logo6" class="carousel_logo">
             </div>
         </section>
         <section>
-            <h1 id="h1Recomm" style="display: none;">Recommendations For You</h1><br>
+            <h2>Latest Opportunities</h2>
+            <div class="border"></div>
+            <div id="containerOpp">
+              
+            </div>
+        </section>
+        <section id="h1Recomm" style="display: none;">
+            <h2>Recommendations For You</h2>
+            <div class="border"> </div>
             <div id="containerRec"></div>
         </section>
     </main>
