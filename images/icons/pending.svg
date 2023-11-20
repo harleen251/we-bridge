@@ -1,9 +1,18 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M40 0H25V7L7 7V26H0V40C0 44.4183 3.58172 48 8 48H40C44.4183 48 48 44.4183 48 40V8C48 3.58172 44.4183 0 40 0Z" fill="#F2AD00"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M23 10H27V20.5351C28.1956 21.2267 29 22.5194 29 24C29 26.2091 27.2091 28 25 28C23.5194 28 22.2267 27.1956 21.5351 26H13V22H21.5351C21.8864 21.3927 22.3927 20.8864 23 20.5351V10Z" fill="#FFFDF8"/>
-<rect y="10" width="4" height="5" fill="#F2AD00"/>
-<rect y="18" width="4" height="5" fill="#F2AD00"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0V4L4 4V7H0V3H0.0173833C0.00592283 2.91323 0 2.8246 0 2.73444V2C0 0.89543 0.895431 0 2 0H2.50677H7Z" fill="#F2AD00"/>
-<rect x="10" width="5" height="4" fill="#F2AD00"/>
-<rect x="18" width="5" height="4" fill="#F2AD00"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#F2AD00;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st2{fill:#F2AD00;}
+</style>
+<path class="st0" d="M40,0H25v7H7v19H0v14c0,4.4,3.6,8,8,8h32c4.4,0,8-3.6,8-8V8C48,3.6,44.4,0,40,0z"/>
+<path class="st1" d="M23,10h4v10.5c1.2,0.7,2,2,2,3.5c0,2.2-1.8,4-4,4c-1.5,0-2.8-0.8-3.5-2H13v-4h8.5c0.4-0.6,0.9-1.1,1.5-1.5V10z"
+	/>
+<rect y="10" class="st2" width="4" height="5"/>
+<rect y="18" class="st2" width="4" height="5"/>
+<path class="st0" d="M7,0v4H4v3H0V3h0c0-0.1,0-0.2,0-0.3V2c0-1.1,0.9-2,2-2h0.5H7z"/>
+<rect x="10" class="st2" width="5" height="4"/>
+<rect x="18" class="st2" width="5" height="4"/>
 </svg>
