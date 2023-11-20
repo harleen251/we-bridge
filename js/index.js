@@ -154,6 +154,7 @@ await getDocs(q)
     anchor.addEventListener('click', handleViewButtonEvent);
     txtInner += `<p>${post.description}</p>`; // add the title   
     txtInner += `<p>${post.date.toDate().toLocaleDateString()}</p>`;
+    txtInner +=`<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`
     txtInner += `<p>${"Exp : " + post.expireDate.toDate().toLocaleDateString()}</p>`;              
     cardDiv.innerHTML = txtInner;
     cardDiv.prepend(anchor);   
