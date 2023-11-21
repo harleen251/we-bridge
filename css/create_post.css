@@ -2,16 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .createPost {
-    background-color: white;
+    background-color: #F5F6F8;
     margin-top: 80px;
     font-family: "Poppins", sans-serif;
 }
+
+body {
+    margin: 0;
+    padding-bottom: 3rem;
+    background-color: #F5F6F8;
+}
+
 .createPost h1 {
     text-align: center;
 }
 
-#postForm {
-    margin: 1rem;
+#postForm :not(h2){
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 #postForm h2 {
     color: white;
@@ -45,7 +53,7 @@
 
 .createPost button {
     display: inline-block;
-    width: 39%;
+    width: 43%;
     height: 35px;
     margin-right: 10%;
     border-radius: 8px;
@@ -113,7 +121,7 @@
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
-@media screen and (min-width: 800px){
+@media screen and (min-width: 1024px){
     /* Creating post */
     .createPost{
         margin-top: 0;
@@ -133,6 +141,9 @@
         margin-bottom: 1rem;
     }
 
+    #postForm h2 {
+        font-size: 1.7rem;
+    }
     #postForm input {
         width: 60%;
         height: 30px;
