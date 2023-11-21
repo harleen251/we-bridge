@@ -21,13 +21,18 @@ header {
     display: block;
     width: 30px; /* 汉堡按钮的宽度 */
     height: 20px; /* 汉堡按钮的高度 */
-    position: absolute;
-    top: 20px;
-    right: 20px;
+  
 }
 
 .deskTop {
     display: none;
+}
+
+.mobile {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F5F6F8;
 }
 
 .menu {
@@ -40,8 +45,6 @@ header {
   /* 这里可以设置 logo 的样式，例如居中、大小等 */
   display: inline-block;
   width: 150px;
-  position: absolute;
-  top: 20px;
   
 }
 
@@ -97,7 +100,7 @@ header a:hover {
 
 .menu.active {
     display: block;
-    background-color: #7952BF;
+    background-color: #4410A5;
     border: 1px solid #ccc;
     position: absolute;
     top: 50px;
@@ -118,7 +121,7 @@ header a:hover {
     display: block;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1024px) {
     
       .mobile {
         display: none;
@@ -166,7 +169,7 @@ header a:hover {
           align-items: center;
           justify-content: flex-start;
           column-gap: var(--gap);
-          padding: 0.6rem;
+          padding: 0.6rem 1.5rem 0.6rem 1.5rem;
           margin-left: 1.5rem;
           cursor: pointer;
           border-radius: var(--radius);

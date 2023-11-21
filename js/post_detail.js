@@ -64,18 +64,18 @@ const firebaseConfig = {
                   const postOnDate = new Date(data.posted_on_date.toDate());
                   console.log('Document data:', data);
                   opportunity_detail.innerHTML =
-                  `<br> 
+                  ` 
                   <div class="div1">
                   <img src= "${data.photoLink}" alt = "profile image">
-                  <br> <h1> ${data.positionTitle}</h1>
-                  <br> <p>${data.orgName}</p>
+                   <h1> ${data.positionTitle}</h1>
+                   <p>${data.orgName}</p>
                   <div id="postDate">
-                  <br> <p> Posted on: ${postOnDate.toLocaleString('en-US', {
+                   <p> Posted on: ${postOnDate.toLocaleString('en-US', {
                     year: 'numeric',
                     month: '2-digit',
                     day: '2-digit',
                   })} </p>
-                  <br> <p> Expired on: ${expireDate.toLocaleString('en-US', {
+                   <p> Expired on: ${expireDate.toLocaleString('en-US', {
                     year: 'numeric',
                     month: '2-digit',
                     day: '2-digit',
@@ -84,21 +84,21 @@ const firebaseConfig = {
                   </div>
                   <div id="btns"> </div>
                   <div class="div3">
-                  <br> <p> <i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
+                   <p> <i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
                     year: 'numeric',
                     month: '2-digit',
                     day: '2-digit',
                   })} </p>
-                  <br> <p> <i class="fa-solid fa-clock" style="color: #8f8f8f;"></i> ${data.hours} Hours </p>
-                  <br> <p> <i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${data.location} </p>
-                  <br> <p> <i class="fa-solid fa-globe" style="color: #8f8f8f;"></i> ${data.preferredLanguage} </p>
-                  <br> <p> <i class="fa-solid fa-star" style="color: #8f8f8f;"></i> ${data.interests} </p>
-                  <br> <p> <i class="fa-solid fa-desktop" style="color: #8f8f8f;"></i> ${data.mode_of_work} </p>
+                   <p> <i class="fa-solid fa-clock" style="color: #8f8f8f;"></i> ${data.hours} Hours </p>
+                   <p> <i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${data.location} </p>
+                   <p> <i class="fa-solid fa-globe" style="color: #8f8f8f;"></i> ${data.preferredLanguage} </p>
+                   <p> <i class="fa-solid fa-star" style="color: #8f8f8f;"></i> ${data.interests} </p>
+                   <p> <i class="fa-solid fa-desktop" style="color: #8f8f8f;"></i> ${data.mode_of_work} </p>
                   </div>
                   <div class="div4">
-                  <br> <h3>Descriptions</h3>
-                  <br><p> ${data.description} </p></div>
-                  <br></div>
+                   <h3>Descriptions</h3>
+                  <p> ${data.description} </p></div>
+                  </div>
                   `;
                   organizationId= data.organizationId;
                   console.log("org id" , organizationId);
@@ -233,7 +233,7 @@ function showMoreRecommendations(startIndex) {
                     day: '2-digit',
                   })}</p>
                   <p><i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${recommendedData.location}</p>
-                  <br>
+                  
             `;
   
             // Append recommendationDiv to similar_opportunities
@@ -262,7 +262,7 @@ function createPopupForApplication(eventId) {
   const popupHTML = `
     <div class="popup">
       <div class="popup-content">
-        <h3>Apply for this position</h3>
+        <h2>Apply for this position</h2>
         <label for="contactNumber">Contact Number:</label>
         <input type="text" id="contactNumber" required>
         <br>

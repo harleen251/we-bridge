@@ -42,11 +42,17 @@
 .post_detail {
     font-family: "Poppins", sans-serif;
     background-color: var(--white);
-    margin-left: 1rem auto;
+    margin-left: 1rem;
+    margin-right: 1rem;
     padding-top: 60px;
+
 }
 
-.post_detail button {
+body {
+    margin: 0;
+}
+
+.post_detail button, .popup-content button {
     background-color: var(--purple-dark);
     color: white;
     padding: 14px 20px;
@@ -206,8 +212,11 @@
   }
   
 
-@media screen and (min-width: 800px){
+@media screen and (min-width: 1024px){
 /* post_detail */
+body {
+    background-color: var(--grey-lighter);
+}
 .post_detail {
     display: grid;
     grid-template-columns: 5fr 3fr;
@@ -240,6 +249,7 @@
 #postDate {
     display: flex;
     gap: 10px;
+    grid-row: 4;
 }
 
 #postDate p{
@@ -248,9 +258,14 @@
 
 #opportunity_detail .div3 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr  1fr  1fr;
+    column-gap: 10px;
+    border: none;
 }
 
+#opportunity_detail .div3 p {
+    border: none;
+}
 #similar_opportunities img {
     width: 12vw;
     height: 10vw;
