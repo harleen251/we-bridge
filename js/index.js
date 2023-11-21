@@ -150,7 +150,8 @@ await getDocs(q)
     anchor.innerText = post.positionTitle;
     anchor.setAttribute("data-postId", doc.id);            
     anchor.addEventListener('click', handleViewButtonEvent);
-    txtInner += `<p class="post_description_excerpt">${post.description}</p>`; // add the title   
+    txtInner += `<p class="post_description_excerpt">${post.descrip
+        tion}</p>`; // add the title   
     txtInner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
     txtInner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
     cardDiv.innerHTML = txtInner;
@@ -281,4 +282,3 @@ async function handleViewButtonEvent(event) {
     console.log(postId);
    await setCookie("vol_postId", postId, 1);
 }
-  
