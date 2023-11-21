@@ -228,9 +228,12 @@ async function getVolunteerInfo(volunteerId){
                                 anchor.innerText = post.positionTitle;
                                 anchor.setAttribute("data-postId", postDoc.id);            
                                 anchor.addEventListener('click', handleViewButtonEvent);
-                                txt2Inner += `<p>${post.description}</p>`; // add the title  
-                                txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
-                                txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
+                                txt2Inner += `<p class="post_description_excerpt">${post.description}</p>`; // add the title   
+                                txt2Inner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
+                                txt2Inner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
+                                // txt2Inner += `<p>${post.description}</p>`; // add the title  
+                                // txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
+                                // txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
                                 card2Div.innerHTML = txt2Inner;         
                                 card2Div.prepend(anchor);   
                                 containerRec.appendChild(card2Div); // add cardDiv to orderDiv
