@@ -301,7 +301,7 @@ async function getApplicationList() {
                 div.addEventListener('click', handleViewButton); 
 
                 const imgElement = document.createElement('img');
-                imgElement.src = '../image/next_arrow.svg'; 
+                imgElement.src = '../images/icons/black-left-arrow.svg'; 
                 imgElement.width = 20; 
                 div.append(imgElement);
 
@@ -328,7 +328,7 @@ async function getApplicationList() {
                             div.append(statusDiv);
                             const img = document.createElement('img');
                             if(data.photoLink === undefined) {
-                                data.photoLink = '../image/dummy.svg';
+                                data.photoLink = '../images/vol_profilepic_dummy.svg';
                             }
                             console.log("link:" +data.photoLink);
                             img.setAttribute("src", data.photoLink);
