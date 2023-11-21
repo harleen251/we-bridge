@@ -139,7 +139,7 @@ select {
     border: 1px solid var(--grey-border);
     padding: 15px;
     margin: 10px 0px;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: var(--card-background);
     position: relative;
 }
@@ -198,6 +198,10 @@ h3 {
 
 #post-list > div > div  p:nth-of-type(even) {
     color: var(--grey-text);
+}
+
+span {
+    display: none;
 }
 
 #post-list button {
@@ -282,21 +286,146 @@ h3 {
 
 
 
-
-
-
-
-
-
-
-
 /* For Desktop { */
  @media screen and (min-width: 800px) {
+
+    main, header {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    #welcome_tag {
+        text-align: left;
+    }
+
+    #Profile_info {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    .profile_pic {
+        width: 16rem;
+        transform: translateY(20%);
+    }
+
+    #Profile_info div:last-of-type {
+        text-align: left;
+        padding-right: 20px;
+        
+    }
+
+    #Profile_info div:last-of-type h2+p {
+        font-size: 16px;
+    }
+
+    #Profile_info>div:last-of-type h2+p+p {
+        font-size: 12px;
+    }
+
     #org_description, #skillList_Org {
         display: block;
     }
 
     #post-list button {
         display: block;
+    }
+
+    #org_profile {
+        position: relative;
+    }
+
+    #edit_profile_button {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 170px;
+    }
+
+    #edit_profile_button a {
+        font-size: 14px;
+    }
+
+    .nav_tab .item {
+        text-align: left;
+    }
+
+    .posting {
+        position: relative;
+    }
+
+    #create-post-button {
+        width: 200px;
+        position: absolute;
+        right: 0px;
+    }
+
+    select {
+        width: 375px;
+        margin-bottom: 20px;
+    }
+
+    #post-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+
+    #post-list p+div {
+        display: inline-block;
+        text-align: left;
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    #post-list > div > div > div:nth-of-type(-n+2) {
+        border: none;
+    }
+
+    #post-list p+div p {
+        text-align: left;
+        font-size: 20px;
+    }
+
+    #post-list p+div div {
+        display: flex;
+    }
+
+    #post-list > div > div  p:nth-of-type(odd) {
+        font-weight: normal;
+        margin-left: 0;
+    }
+
+    #post-list h3 {
+        font-size: 24px;
+    }
+
+    #post-list h3+p {
+      font-size: 16px;
+    }
+
+    #post-list > div > div  p:nth-of-type(even) {
+        color: var(--black);
+    }
+
+    span {
+        display: inline;
+    }
+
+    #post-list div {
+        position: relative;
+    }
+
+    #post-list button {
+        position: absolute;
+        right: 15px;
+        bottom: 25px;
+        width: 17vw;
+        max-width: 200px;
+    }
+
+    #application-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
     }
 }

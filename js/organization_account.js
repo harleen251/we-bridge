@@ -42,11 +42,15 @@ async function orgProfileInfo() {
             console.log("Document data:", data);
             document.getElementById("welcome_tag").innerHTML = `Welcome ${data.orgName}!`;
             let profile_info = document.getElementById("Profile_info")
-            profile_info.innerHTML = `  <img class="profile_pic" src= "${data.photoLink}" alt = "profile image">
+            profile_info.innerHTML = `  <div>
+                                        <img class="profile_pic" src= "${data.photoLink}" alt = "profile image">
+                                        </div>
+                                        <div>
                                         <h2>${data.orgName}</h2> 
                                         <p>${data.city}, ${data.province}</p>
                                         <p id="org_description">${data.description}</p>
-                                        <div id="skillList_Org"></div>`;
+                                        <div id="skillList_Org"></div>
+                                        </div>`;
                                         for(let i = 0; i < data.service.length; i++) {
                                             let p = document.createElement("p");
                                             p.innerHTML = data.service[i];
@@ -119,7 +123,7 @@ async function getPostList() {
                 div.addEventListener('click', handleManageButton)
 
                 const imgElement = document.createElement('img');
-                imgElement.src = '../image/next_arrow.svg'; 
+                imgElement.src = '../images/next_arrow.svg'; 
                 imgElement.width = 20; 
                 div.append(imgElement);
 
@@ -136,7 +140,7 @@ async function getPostList() {
                 const div_2 = document.createElement('div');
                 div_0.appendChild(div_2);
                 const p0 = document.createElement('p');
-                p0.innerText = `Event`;
+                p0.innerHTML = `Event<span> :<span>`;
                 div_2.append(p0)
                 const p0_1 = document.createElement('p');
                 p0_1.innerText = `${event.date.toDate().toLocaleDateString('en-GB')}`;
@@ -163,7 +167,7 @@ async function getPostList() {
                             const div_1 = document.createElement('div');
                             div_0.appendChild(div_1);
                             const p2 = document.createElement('p');
-                            p2.innerText = `Applicants`;
+                            p2.innerHTML = `Applicants<span> :<span>`;
                             div_1.append(p2);
                             const p2_1 = document.createElement('p');
                             p2_1.innerText = `${applicantsArray.length}`;
@@ -178,7 +182,7 @@ async function getPostList() {
                             const div_2 = document.createElement('div');
                             div_0.appendChild(div_2);
                             const p3 = document.createElement('p');
-                            p3.innerText = `Approved`;
+                            p3.innerHTML = `Approved<span> :<span>`;
                             div_2.append(p3);
                             const p3_1 = document.createElement('p');
                             p3_1.innerText = `${countApproved}`;
