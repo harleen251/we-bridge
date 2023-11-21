@@ -67,7 +67,7 @@ input,
 select,
 #txtBio,
 option,
-h2 {
+.h2_personalInfo {
     width: 100%;
     padding: 12px 10px;
     margin: 6px 0;
@@ -203,6 +203,28 @@ button:hover {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px
 }
+.header2{
+    background-color: var(--purple-primary);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.header3 {
+    display: inline-block;
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Make sure the height is the same as the width */
+    border-radius: 50%;
+    background-color: var(--yellow-light);
+    text-align: center;
+    line-height: 30px;
+    vertical-align: middle; /* Align the circle with the middle of the text */
+    margin-right: 10px; /* Adjust the margin to create a gap */
+    color: var(--black);
+    font-size: 14px;
+  }
+
 @media screen and (min-width: 800px) {
     body{
         margin: auto;
@@ -275,8 +297,6 @@ button:hover {
         grid-gap: 20px
     }
 
-    
-
     #next_Info, #saveBtn {  
         width: 40%;
     }
@@ -285,9 +305,18 @@ button:hover {
         margin: auto;
         text-align: center;
     }
-    #next_Info,  #choose_interest, #choose_skill{
+
+    #next_Info{
         margin: auto;
         width: 50%;
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+    }
+
+    #choose_interest, #choose_skill{
+        margin: auto;
+        width: 50%;
+        margin-bottom: .5rem;
     }
 
     
