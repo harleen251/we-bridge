@@ -18,6 +18,7 @@ const db = getFirestore(firebassApp);
 // Reference to the post collection
 const postCollection = collection(db, "posts");
 const volunteerCollection = collection(db, "volunteer");
+const appCollection = collection(db, "application");
 
 // Retrieve the volunteerId and OrganizationId from the cookie
 let volunteerId = "";
@@ -170,7 +171,7 @@ async function getVolunteerInfo(volunteerId){
     if (docSnap.exists()) {
         const volunteerData = docSnap.data();
         console.log("Document data:", volunteerData);
-        let q = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(3)); 
+        let qPost = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(3)); 
         let interestArr = [];
         console.log("Vol Interest Arr : ", volunteerData.interest.length);
         if ( volunteerData.interest.length > 0 ){
@@ -178,7 +179,7 @@ async function getVolunteerInfo(volunteerId){
                 interestArr.push(element);
             });
             console.log(interestArr);
-            q = query(postCollection,
+            qPost = query(postCollection,
                      where("interests", "array-contains-any", interestArr), 
                      where('expireDate', '>', today),
                      orderBy('expireDate','desc'),

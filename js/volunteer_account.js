@@ -3,6 +3,8 @@ import { getFirestore, collection, doc, getDoc, getDocs, query, where} from 'htt
 import { getStorage } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js';
 import { getCookie, setCookie} from "./backend.js"
 
+// includeHTML();
+
 const firebassApp = initializeApp({
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
     authDomain: "webridge-81f09.firebaseapp.com",
@@ -23,6 +25,10 @@ const volunteerCollection = collection(db, "volunteer");
 
 // Retrieve the user's ID from the cookie
 const volunteerId = await getCookie("volunteerId");
+
+const btnHistory = document.getElementById("btnHistory");
+const btnEvent = document.getElementById("btnEvent");
+const btnRecord = document.getElementById("btnRecord");
 
 console.log(volunteerId);
 
@@ -74,13 +80,13 @@ async function getApplicantInfo() {
                                 if (postDoc.exists) {
                                 const postData = postDoc.data();
                                 console.log('Post Details : ', postData);
-                                let txt2Inner = `<header><h3>${application.motive}</h3></header>`;
+                                let txt2Inner = `<header><h3>${postData.positionTitle}</h3></header>`;
                                 document.getElementById("h1Recomm").style.display = "block";  
                                 let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
                                 card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
                                 // txt2Inner += `<a href="">${postDoc.id}</p>`;
-                                txt2Inner += `<a href="">${postData.positionTitle}</p>`;
-                                txt2Inner += `<a href="">${postData.location}</p>`;
+                                txt2Inner += `<p>${postData.positionTitle}</p>`;
+                                txt2Inner += `<p>${postData.location}</p>`;
                                 txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
                                 txt2Inner += `<p>${application.status}</p>`; // add the title             
                                 card2Div.innerHTML = txt2Inner;
@@ -129,7 +135,7 @@ async function getRegisteredInfo() {
                         console.log("application.postsID : "+  application.postsID);
                         const postsCollection = collection( db, 'posts' ); 
                         const postRef = doc(postsCollection, application.postsID);
-                        getDoc(postRef)
+                        getDoc(postRef) 
                             .then((postDoc) => {
                                 if (postDoc.exists) {
                                     const postData = postDoc.data();
@@ -258,6 +264,49 @@ applicationFilter2.addEventListener("change", async function(event) {
     }
 });
 
+btnHistory.addEventListener("click", async function (event){
+    try { 
+        await getApplicantInfo();
+        btnHistory.style.borderBottom = '2px solid black';
+        btnHistory.style.fontWeight = '600';
+        btnEvent.style.borderBottom = 'none';
+        btnEvent.style.fontWeight = 'normal';
+        btnRecord.style.borderBottom = 'none';
+        btnRecord.style.fontWeight = 'normal';
+
+    } catch (error) {
+        
+    }
+});
+
+btnEvent.addEventListener("click", async function (event){ 
+    try {
+        await getRegisteredInfo();
+        btnEvent.style.borderBottom = '2px solid black';
+        btnEvent.style.fontWeight = '600';
+        btnHistory.style.borderBottom = 'none';
+        btnHistory.style.fontWeight = 'normal';
+        btnRecord.style.borderBottom = 'none';
+        btnRecord.style.fontWeight = 'normal';
+    } catch (error) {
+        
+    }
+});
+
+btnRecord.addEventListener("click", async function (event){ 
+    try {
+        await getRegisteredInfo();
+        btnRecord.style.borderBottom = '2px solid black';
+        btnRecord.style.fontWeight = '600';
+        btnHistory.style.borderBottom = 'none';
+        btnHistory.style.fontWeight = 'normal';
+        btnEvent.style.borderBottom = 'none';
+        btnEvent.style.fontWeight = 'normal';
+    } catch (error) {
+        
+    }
+});
+
 const allPages = document.querySelectorAll('div.page');
 allPages[0].style.display = 'block';
 
@@ -265,8 +314,21 @@ function navigateToPage(event) {
   const pageId = location.hash ? location.hash : '#history';
   for (let page of allPages) {
     if (pageId === '#' + page.id) {
-        if(pageId === "#record"){
-            window.location.href = 'volunteer_record.html';
+        if(pageId === "#history"){
+            btnHistory.style.borderBottom = '2px solid black';
+            btnHistory.style.fontWeight = '600';
+            btnEvent.style.borderBottom = 'none';
+            btnEvent.style.fontWeight = 'normal';
+        } else if(pageId === "#commitment"){
+            btnEvent.style.borderBottom = '2px solid black';
+            btnEvent.style.fontWeight = '600';
+            btnHistory.style.borderBottom = 'none';
+            btnHistory.style.fontWeight = 'normal';
+        } else if(pageId === "#record"){
+            btnEvent.style.borderBottom = '2px solid black';
+            btnEvent.style.fontWeight = '600';
+            btnHistory.style.borderBottom = 'none';
+            btnHistory.style.fontWeight = 'normal';
         }
       page.style.display = 'block';
     } else {
@@ -277,8 +339,8 @@ function navigateToPage(event) {
 }
 navigateToPage();
 
-//init handler for hash navigation
+// init handler for hash navigation
 window.addEventListener('hashchange', navigateToPage);
 
-//event.target.parentElement.id
+// event.target.parentElement.id
 
