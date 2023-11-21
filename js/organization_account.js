@@ -42,11 +42,15 @@ async function orgProfileInfo() {
             console.log("Document data:", data);
             document.getElementById("welcome_tag").innerHTML = `Welcome ${data.orgName}!`;
             let profile_info = document.getElementById("Profile_info")
-            profile_info.innerHTML = `  <img class="profile_pic" src= "${data.photoLink}" alt = "profile image">
+            profile_info.innerHTML = `  <div>
+                                        <img class="profile_pic" src= "${data.photoLink}" alt = "profile image">
+                                        </div>
+                                        <div>
                                         <h2>${data.orgName}</h2> 
                                         <p>${data.city}, ${data.province}</p>
-                                        <p>${data.description}</p>
-                                        <div id="skillList_Org"></div>`;
+                                        <p id="org_description">${data.description}</p>
+                                        <div id="skillList_Org"></div>
+                                        </div>`;
                                         for(let i = 0; i < data.service.length; i++) {
                                             let p = document.createElement("p");
                                             p.innerHTML = data.service[i];
@@ -69,6 +73,17 @@ async function handleManageButtonEvent(event) {
   
     await setCookie('idPost', postId, 1);
     const pageURL = "organization_manage_activity.html";
+    window.location.href = pageURL;
+ }
+
+ async function handleManageButton(event) {
+    let postId = event.currentTarget.getAttribute("id");
+    console.log("test manage addeventlistener");
+    console.log(postId);
+  
+    await setCookie('idPost', postId, 1);
+    const pageURL = "organization_manage_activity.html";
+
     window.location.href = pageURL;
  }
 
@@ -101,7 +116,17 @@ async function getPostList() {
             console.log(filteredPosts);
     
             filteredPosts.forEach((event)=> {
+                let postId = event.id;
+                console.log(postId);
                 const div = document.createElement('div');
+                div.setAttribute("id", postId);
+                div.addEventListener('click', handleManageButton)
+
+                const imgElement = document.createElement('img');
+                imgElement.src = '../images/icons/black-left-arrow.svg'; 
+                imgElement.width = 20; 
+                div.append(imgElement);
+
                 const postList = document.getElementById("post-list");
                 postList.appendChild(div);
                 const h3 = document.createElement('h3');
@@ -110,14 +135,21 @@ async function getPostList() {
                 const p = document.createElement('p');
                 p.innerText = event.location;
                 div.append(p);
+                const div_0 = document.createElement('div');
+                div.appendChild(div_0);
+                const div_2 = document.createElement('div');
+                div_0.appendChild(div_2);
                 const p0 = document.createElement('p');
-                p0.innerText = `Event : ${event.date.toDate().toLocaleDateString('en-GB')}`;
-                div.append(p0)
-                const p1 = document.createElement('p');
-                p1.innerText = `Published: ${event.posted_on_date.toDate().toLocaleDateString('en-GB')}`;
-                div.append(p1)
+                p0.innerHTML = `Event<span> :<span>`;
+                div_2.append(p0)
+                const p0_1 = document.createElement('p');
+                p0_1.innerText = `${event.date.toDate().toLocaleDateString('en-GB')}`;
+                div_2.append(p0_1)
+                // const p1 = document.createElement('p');
+                // p1.innerText = `Published: ${event.posted_on_date.toDate().toLocaleDateString('en-GB')}`;
+                // div.append(p1)
     
-                let postId = event.id;
+                
     
                 const applicationRef = collection( db, 'application' );
 
@@ -128,23 +160,33 @@ async function getPostList() {
                     let applicantsArray = []
                     await getDocs(q, applicationRef)
                         .then((snapshot) => {
-                            // console.log(snapshot);
                             snapshot.docs.forEach(doc => {
                                 applicantsArray.push(doc.data())
                             })
-                            // console.log(applicantsArray);
+                            
+                            const div_1 = document.createElement('div');
+                            div_0.appendChild(div_1);
                             const p2 = document.createElement('p');
-                            p2.innerText = `Applicants: ${applicantsArray.length}`;
-                            div.append(p2);
+                            p2.innerHTML = `Applicants<span> :<span>`;
+                            div_1.append(p2);
+                            const p2_1 = document.createElement('p');
+                            p2_1.innerText = `${applicantsArray.length}`;
+                            div_1.append(p2_1);
         
                             for(let i = 0; i < applicantsArray.length; i++) {
                                 if((applicantsArray[i].status === "approved") || (applicantsArray[i].status === "complete")){
                                     countApproved++;
                                 }
                             }
+
+                            const div_2 = document.createElement('div');
+                            div_0.appendChild(div_2);
                             const p3 = document.createElement('p');
-                            p3.innerText = `Approved: ${countApproved}`;
-                            div.append(p3);
+                            p3.innerHTML = `Approved<span> :<span>`;
+                            div_2.append(p3);
+                            const p3_1 = document.createElement('p');
+                            p3_1.innerText = `${countApproved}`;
+                            div_2.append(p3_1);
         
                             const manageButton = document.createElement('button');
                             manageButton.setAttribute("class", "manageButton");
@@ -153,6 +195,8 @@ async function getPostList() {
                             div.append(manageButton);
                             console.log("manage button appened");
                             manageButton.addEventListener('click', handleManageButtonEvent);  
+
+                            
 
                         })
                         .catch(err => {
@@ -172,12 +216,13 @@ async function getPostList() {
 }
 
 const postTabViewButton = document.getElementById("postTabViewButton")
-postTabViewButton.addEventListener("click", function (event){
-    // event.preventDefault();    
+postTabViewButton.addEventListener("click", function (event){ 
     try {
-        // document.getElementById("wrap-posting").style.display = "block";
-        // document.getElementById("wrap-application").style.display = "none";
         getPostList();
+        postTabViewButton.style.borderBottom = '2px solid black';
+        postTabViewButton.style.fontWeight = '600';
+        applicationTabViewButton.style.borderBottom = 'none';
+        applicationTabViewButton.style.fontWeight = 'normal';
     } catch (error) {
         
     }
@@ -200,7 +245,18 @@ async function handleViewButtonEvent(event) {
     let postId = event.target.getAttribute('data-postID');
     // console.log(volunteerId);
     // console.log(postId);
-  
+    await setCookie('idVolunteer', volunteerId, 1); 
+    await setCookie('idPost', postId, 1);
+
+    const pageURL = "organization_applicant_detail.html";
+    window.location.href = pageURL;
+ }
+
+ async function handleViewButton(event) {
+    let volunteerId = event.currentTarget.getAttribute('data-volunteerID');
+    let postId = event.currentTarget.getAttribute('data-postID');
+    // console.log(volunteerId);
+    // console.log(postId);
     await setCookie('idVolunteer', volunteerId, 1); 
     await setCookie('idPost', postId, 1);
 
@@ -240,6 +296,14 @@ async function getApplicationList() {
                 const div = document.createElement('div');
                 const applicationList = document.getElementById("application-list");
                 applicationList.appendChild(div);
+                div.setAttribute("data-volunteerID", event.volunteerID);
+                div.setAttribute("data-postID", event.postsID);
+                div.addEventListener('click', handleViewButton); 
+
+                const imgElement = document.createElement('img');
+                imgElement.src = '../images/icons/black-left-arrow.svg'; 
+                imgElement.width = 20; 
+                div.append(imgElement);
 
                 const volunteercolRef = collection( db, 'volunteer' );
 
@@ -263,6 +327,10 @@ async function getApplicationList() {
                             statusDiv.innerHTML = status;
                             div.append(statusDiv);
                             const img = document.createElement('img');
+                            if(data.photoLink === undefined) {
+                                data.photoLink = '../images/vol_profilepic_dummy.svg';
+                            }
+                            console.log("link:" +data.photoLink);
                             img.setAttribute("src", data.photoLink);
                             div.append(img);
                             const h3tag = document.createElement('h3');
@@ -279,14 +347,27 @@ async function getApplicationList() {
                                         const p3 = document.createElement('p');
                                         p3.innerText = data.positionTitle;
                                         div.append(p3);
+
+                                        const div_p0 = document.createElement('div');
+                                        div.append(div_p0);
+                                        const div_p = document.createElement('div');
+                                        div_p0.append(div_p);
             
                                         const p5 = document.createElement('p');
-                                        p5.innerText = `Submitted On: ${event.dateApplied.toDate().toLocaleDateString('en-GB')}`;
-                                        div.append(p5);
-            
+                                        p5.innerText = `Submitted On`;
+                                        div_p.append(p5);
+                                        const p5_1 = document.createElement('p');
+                                        p5_1.innerText = `${event.dateApplied.toDate().toLocaleDateString('en-GB')}`;
+                                        div_p.append(p5_1);
+
+                                        const div_p1 = document.createElement('div');
+                                        div_p0.append(div_p1);
                                         const p4 = document.createElement('p');
-                                        p4.innerText = `Post Expiry: ${data.expireDate.toDate().toLocaleDateString('en-GB')}`;
-                                        div.append(p4);
+                                        p4.innerText = `Post Expiry`;
+                                        div_p1.append(p4);
+                                        const p4_1 = document.createElement('p');
+                                        p4_1.innerText = `${data.expireDate.toDate().toLocaleDateString('en-GB')}`;
+                                        div_p1.append(p4_1);
             
                                         const viewButton = document.createElement('button');
                                         viewButton.setAttribute("class", "viewButton");
@@ -322,6 +403,11 @@ const applicationTabViewButton = document.getElementById("applicationTabViewButt
 applicationTabViewButton.addEventListener("click", async function (event){
     try { 
         await getApplicationList();
+        applicationTabViewButton.style.borderBottom = '2px solid black';
+        applicationTabViewButton.style.fontWeight = '600';
+        postTabViewButton.style.borderBottom = 'none';
+        postTabViewButton.style.fontWeight = 'normal';
+
     } catch (error) {
         
     }
@@ -345,11 +431,8 @@ allPages[0].style.display = 'block';
 
 function navigateToPage(event) {
     let pageId
-    if (window.innerWidth < 800) { 
-        pageId = location.hash ; 
-    }  else {
-        pageId = location.hash ? location.hash : '#post';
-    }
+   
+    pageId = location.hash ? location.hash : '#post';
     
     for (let page of allPages) {
         if (pageId === '#' + page.id) {
