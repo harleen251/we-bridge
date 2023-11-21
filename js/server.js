@@ -109,54 +109,54 @@ app.post('/uploadImage', async (req, res) => {
   });
 
 
-app.post('/export', express.json(), async (req, _res) => {
-  //const absFilename = resolve(UPLOAD_FILES_REL_PATH + DEFAULT_EXPORT_PDF_HTML_FILE);
-  const absFilename = resolve("./public/export_template.html");
+// app.post('/export', express.json(), async (req, _res) => {
+//   //const absFilename = resolve(UPLOAD_FILES_REL_PATH + DEFAULT_EXPORT_PDF_HTML_FILE);
+//   const absFilename = resolve("./public/export_template.html");
 
-  /**
-   * First open the HTML template file then use cheerio lib to modify
-   * the HTML as we need. This will leave us the whole new HTML stored
-   * in a string (accessible via $.html())
-   *
-   * @FIXME Populate correct data here to the correct HTML template
-   */
-  const html = fs.readFileSync(absFilename, 'utf-8');
-  let $ = cheerio.load(html);
-  $('.fillData').text(req.body.exportData);
-  $('.logoPlaceholder').text(
-    `<img src="data:image/jpeg;base64,${fs
-      .readFileSync(resolve(UPLOAD_FILES_REL_PATH ))
-      .toString('base64')}"/>`
-  );
-  const htmlString = unescapeHTML($.html());
+//   /**
+//    * First open the HTML template file then use cheerio lib to modify
+//    * the HTML as we need. This will leave us the whole new HTML stored
+//    * in a string (accessible via $.html())
+//    *
+//    * @FIXME Populate correct data here to the correct HTML template
+//    */
+//   const html = fs.readFileSync(absFilename, 'utf-8');
+//   let $ = cheerio.load(html);
+//   $('.fillData').text(req.body.exportData);
+//   $('.logoPlaceholder').text(
+//     `<img src="data:image/jpeg;base64,${fs
+//       .readFileSync(resolve(UPLOAD_FILES_REL_PATH ))
+//       .toString('base64')}"/>`
+//   );
+//   const htmlString = unescapeHTML($.html());
 
-  /**
-   * Once the HTML template is properly filled, we use the puppeteer lib
-   * to export it to a PDF
-   */
-  const browser = await puppeteer.launch({ headless: 'new' });
-  const page = await browser.newPage();
-  await page.setContent(htmlString, { waitUntil: 'domcontentloaded' });
-  await page.emulateMediaType('screen');
-  await page.pdf({
-    path: resolve(UPLOAD_FILES_REL_PATH + DEFAULT_EXPORT_PDF_FILE),
-    margin: { top: '100px', right: '50px', bottom: '100px', left: '50px' },
-    printBackground: true,
-    format: 'A4'
-  });
-  await browser.close();
+//   /**
+//    * Once the HTML template is properly filled, we use the puppeteer lib
+//    * to export it to a PDF
+//    */
+//   const browser = await puppeteer.launch({ headless: 'new' });
+//   const page = await browser.newPage();
+//   await page.setContent(htmlString, { waitUntil: 'domcontentloaded' });
+//   await page.emulateMediaType('screen');
+//   await page.pdf({
+//     path: resolve(UPLOAD_FILES_REL_PATH + DEFAULT_EXPORT_PDF_FILE),
+//     margin: { top: '100px', right: '50px', bottom: '100px', left: '50px' },
+//     printBackground: true,
+//     format: 'A4'
+//   });
+//   await browser.close();
 
-  /* Convert the PDF's first page to PNG as well */
-  await pdfToPng(
-    resolve(UPLOAD_FILES_REL_PATH + DEFAULT_EXPORT_PDF_FILE), // The function accepts PDF file path or a Buffer
-    {
-      useSystemFonts: true, // When `true`, fonts that aren't embedded in the PDF document will fallback to a system font. Default value is false.
-      outputFolder: resolve(UPLOAD_FILES_REL_PATH), // Folder to write output PNG files. If not specified, PNG output will be available only as a Buffer content, without saving to a file.
-      outputFileMask: 'export', // Output filename mask. Default value is 'buffer'.
-      pagesToProcess: [1] // Subset of pages to convert (first page = 1), other pages will be skipped if specified.
-    }
-  );
-});
+//   /* Convert the PDF's first page to PNG as well */
+//   await pdfToPng(
+//     resolve(UPLOAD_FILES_REL_PATH + DEFAULT_EXPORT_PDF_FILE), // The function accepts PDF file path or a Buffer
+//     {
+//       useSystemFonts: true, // When `true`, fonts that aren't embedded in the PDF document will fallback to a system font. Default value is false.
+//       outputFolder: resolve(UPLOAD_FILES_REL_PATH), // Folder to write output PNG files. If not specified, PNG output will be available only as a Buffer content, without saving to a file.
+//       outputFileMask: 'export', // Output filename mask. Default value is 'buffer'.
+//       pagesToProcess: [1] // Subset of pages to convert (first page = 1), other pages will be skipped if specified.
+//     }
+//   );
+// });
 
 /**
  * Endpoint to get the auth URI. Auth URI is generated using the

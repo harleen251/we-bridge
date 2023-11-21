@@ -6,7 +6,7 @@
     <title>WeBridge - Home Page</title>
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="../css/dropdown.css"> -->
-    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/index.css">
     <script type="module" src="../js/index.js" defer></script>
     <script type="module" src="../js/header.js" defer></script>
@@ -102,13 +102,24 @@
 
     <main>
         <section id="hero">
-            <h1 id="hero_title">Uniting Hearts <img class="hero_icon" src="../images/icons/heart_icon.svg"><br> 
-                and Hands <img class="hero_icon" src="../images/icons/hand_icon.svg"> <br>
-                for Community <br> 
-                Well-Being.
-            </h1>
+            <div id="hero_container">
+            <div class="hero_title_container">
+                <h1 id="hero_title">Uniting Hearts <img class="hero_icon" src="../images/icons/heart_icon.svg"><br> 
+                    and Hands <img class="hero_icon" src="../images/icons/hand_icon.svg"> <br>
+                    for Community <br> 
+                    Well-Being.
+                </h1>
             <p id="hero_description">We bridge compassionate organizations with willing volunteers to shape a brighter future for our communities.</p>
-            <button id="explore_button">Explore<br> Opportunities <img id="explore-arrow" src="../images/icons/arrow_left_right.svg" alt="Explore Opportunities"></button>
+            </div>
+            <div class="hero_img_container">
+                <img id="hero_img" src="../images/photo/pexels-rodolfo-quirós-2219024.jpg" alt="volunteering">
+                <!-- Photo by Rodolfo Quirós: https://www.pexels.com/photo/selective-focus-photography-cement-2219024/ -->
+                <div id="hero_rect"></div>
+            </div>
+            <div id="explore_button_container">
+                <a href="explore_opportunity.html"><button id="explore_button">Explore Opportunities <img id="explore-arrow" src="../images/icons/arrow_right_white.svg" alt="Explore Opportunities"></button></a>
+            </div>
+            </div>
         </section>
         <section id="client">
             <h5 id="client_h5">a total of 50+ organizations have joined our network</h5>
@@ -121,17 +132,24 @@
                 <img src="../images/organization logo/City of burnaby.png" alt="" id="carousel_logo6" class="carousel_logo">
             </div>
         </section>
-        <section>
+        <section id="Latest">
             <h2>Latest Opportunities</h2>
             <div class="border"></div>
             <div id="containerOpp">
-              
             </div>
+            <div class="arrow_button_container">
+                <img class="arrow_button" id="left-arrow" src="../images/icons/circle-arrow-left(outline).svg" alt="Go Back">
+                <img class="arrow_button" id="right-arrow" src="../images/icons/circle-arrow-right(purple_filled).svg" alt="Go Next">
+             </div>
         </section>
         <section id="h1Recomm" style="display: none;">
             <h2>Recommendations For You</h2>
             <div class="border"> </div>
             <div id="containerRec"></div>
+            <div class="arrow_button_container">
+                <img class="arrow_button" id="left-arrow" src="../images/icons/circle-arrow-left(outline).svg" alt="Go Back">
+                <img class="arrow_button" id="right-arrow" src="../images/icons/circle-arrow-right(purple_filled).svg" alt="Go Next">
+             </div>
         </section>
     </main>
 </body>
