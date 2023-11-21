@@ -64,27 +64,54 @@ const firebaseConfig = {
                   const postOnDate = new Date(data.posted_on_date.toDate());
                   console.log('Document data:', data);
                   opportunity_detail.innerHTML =
-                  `<br> <h1>Position Title: ${data.positionTitle}</h1>
-                  <div>
-                  <br> Posted on: ${postOnDate.toLocaleString()} 
-                  <br> Expired on: ${expireDate.toLocaleString()}
-                  <br> Date: ${date.toLocaleString()} 
-                  <br> Hours: ${data.hours} 
-                  <br> Location: ${data.location}
-                  <br> Preferred Language: ${data.preferredLanguage} 
-                  <br> Interests: ${data.interests} 
-                  <br> Mode of work: ${data.mode_of_work}
-                  <br> Description: ${data.description}
+                  `<br> 
+                  <div class="div1">
+                  <img src= "${data.photoLink}" alt = "profile image">
+                  <br> <h1> ${data.positionTitle}</h1>
+                  <br> <p>${data.orgName}</p>
+                  <div id="postDate">
+                  <br> <p> Posted on: ${postOnDate.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  })} </p>
+                  <br> <p> Expired on: ${expireDate.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  })} </p>
+                  </div class="div2">
+                  </div>
+                  <div id="btns"> </div>
+                  <div class="div3">
+                  <br> <p> <i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  })} </p>
+                  <br> <p> <i class="fa-solid fa-clock" style="color: #8f8f8f;"></i> ${data.hours} Hours </p>
+                  <br> <p> <i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${data.location} </p>
+                  <br> <p> <i class="fa-solid fa-globe" style="color: #8f8f8f;"></i> ${data.preferredLanguage} </p>
+                  <br> <p> <i class="fa-solid fa-star" style="color: #8f8f8f;"></i> ${data.interests} </p>
+                  <br> <p> <i class="fa-solid fa-desktop" style="color: #8f8f8f;"></i> ${data.mode_of_work} </p>
+                  </div>
+                  <div class="div4">
+                  <br> <h3>Descriptions</h3>
+                  <br><p> ${data.description} </p></div>
                   <br></div>
                   `;
                   organizationId= data.organizationId;
                   console.log("org id" , organizationId);
-
-
+                  const postDate = document.getElementById('postDate');
+                  const btns = document.getElementById('btns');
                   // Display the apply button,only if the cookie from organization side for postId is undefined
                   if(org_postId === undefined) {
                     const applyButton = createApplyButton(doc.id);
-                    opportunity_detail.appendChild(applyButton);
+                    const orgPro = document.createElement('button');
+                    orgPro.textContent = 'Organization Profile'
+                    orgPro.className = 'proBtn'
+                    btns.appendChild( orgPro);
+                    btns.appendChild( applyButton);
                   }
 
 
@@ -124,6 +151,12 @@ const firebaseConfig = {
                   const recommendationDiv = document.createElement("div");
                   const recommendedData = recommendedPosts[i].data();
                   const date = new Date(recommendedData.date.toDate());
+                  let description = recommendedData.description
+                  if (recommendedData.description.length > 30) {
+                    description = recommendedData.description.slice(0, 30) + '...';
+                } else {
+                    description = recommendedData.description;
+                }
                   console.log(recommendedPostsId[i])
                   // Create a div containing the details
                  
@@ -131,10 +164,16 @@ const firebaseConfig = {
                     navigateToPostDetailPage(recommendedPostsId[i]);
                   });
                   recommendationDiv.innerHTML += `
-                    <p>Position Title: ${recommendedData.positionTitle}</p>
-                    <p>Description: ${recommendedData.description}</p>
-                    <p>Date: ${date.toLocaleString()}</p>
-                    <p>Location: ${recommendedData.location}</p>
+                    <img src= "${recommendedData.photoLink}" alt = "profile image">
+                    <p class="orgName">${recommendedData.orgName}</p>
+                    <h2>${recommendedData.positionTitle}</h2>
+                    <p>${description}</p>
+                    <p><i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit',
+                    })}</p>
+                    <p><i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${recommendedData.location}</p>
                     <br>
                   `;
   
@@ -172,18 +211,29 @@ function showMoreRecommendations(startIndex) {
         if (i < recommendedPosts.length) {
             const recommendedData = recommendedPosts[i].data();
             const date = new Date(recommendedData.date.toDate());
-  
+            let description = recommendedData.description
+                  if (recommendedData.description.length > 30) {
+                    description = recommendedData.description.slice(0, 30) + '...';
+                } else {
+                    description = recommendedData.description;
+                }
             // Create a div containing the details
             const recommendationDiv = document.createElement("div");
             recommendationDiv.addEventListener("click", () => {
                 navigateToPostDetailPage(recommendedPostsId[i]);
             });
             recommendationDiv.innerHTML = `
-                <p>Position Title: ${recommendedData.positionTitle}</p>
-                <p>Description: ${recommendedData.description}</p>
-                <p>Date: ${date.toLocaleString()}</p>
-                <p>Location: ${recommendedData.location}</p>
-                <br>
+                  <img src= "${recommendedData.photoLink}" alt = "profile image">
+                  <p class="orgName">${recommendedData.orgName}</p>
+                  <h2>${recommendedData.positionTitle}</h2>
+                  <p>${description}</p>
+                  <p><i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  })}</p>
+                  <p><i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${recommendedData.location}</p>
+                  <br>
             `;
   
             // Append recommendationDiv to similar_opportunities
@@ -219,8 +269,10 @@ function createPopupForApplication(eventId) {
         <label for="applicationReason">Introduce yourself and tell us why you want to volunteer for this opportunity?</label>
         <textarea id="applicationReason" rows="4" required></textarea>
         <br>
+        <div class="button-container">
         <button id="submitApplication">Submit</button>
         <button id="closePopup">Close</button>
+        </div>
       </div>
     </div>
   `;

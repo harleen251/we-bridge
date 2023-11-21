@@ -4,7 +4,6 @@
 .createPost {
     background-color: white;
     margin-top: 80px;
-    font-size: 1.3rem;
     font-family: "Poppins", sans-serif;
 }
 .createPost h1 {
@@ -68,7 +67,7 @@
     margin-bottom: 1rem;
 }
 #choose_interest, #choose_skill {
-    width: 59%;
+    width: 58%;
 }
 
 /* Interest and Skill pop up */
@@ -114,7 +113,7 @@
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
-@media screen and (min-width: 1100px){
+@media screen and (min-width: 800px){
     /* Creating post */
     .createPost{
         margin-top: 0;

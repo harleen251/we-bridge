@@ -9,7 +9,6 @@
     --radius: 20px;
 }
 header {
-  margin-bottom: 40px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -36,12 +35,14 @@ header {
 /* 其他样式，比如定位、背景色等 */
 }
 
+
 .mobile img {
   /* 这里可以设置 logo 的样式，例如居中、大小等 */
   display: inline-block;
   width: 150px;
   position: absolute;
   top: 20px;
+  
 }
 
 header ul  {
@@ -61,7 +62,6 @@ header a {
 
 header a:hover {
   background-color: #212121;
-  color: #FFFFFF;
 }
 
 .bar {
@@ -97,7 +97,7 @@ header a:hover {
 
 .menu.active {
     display: block;
-    background-color: #4410A5;
+    background-color: #7952BF;
     border: 1px solid #ccc;
     position: absolute;
     top: 50px;
@@ -118,7 +118,7 @@ header a:hover {
     display: block;
 }
 
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 800px) {
     
       .mobile {
         display: none;
@@ -128,7 +128,7 @@ header a:hover {
         justify-content: space-between;
         align-items: center;
         padding: 10px 20px; /* 可以根据需要调整 */
-        background-color: white; /* 可以根据需要调整 */
+        background-color: #F5F6F8; /* 可以根据需要调整 */
         position: relative;
       }
       

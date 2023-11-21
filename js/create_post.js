@@ -59,6 +59,8 @@ submitPost.addEventListener("submit", async function (event) {
             const data1 = organizationDoc.data();
             const email = data1.email;
             const phoneNumber = data1.phoneNumber;
+            const photoLink = data1.photoLink
+            const orgName = data1.orgName
 
             // 获取表单数据
             const positionTitle = document.getElementById("txtPositionTitle").value;
@@ -90,7 +92,9 @@ submitPost.addEventListener("submit", async function (event) {
                 phoneNumber: phoneNumber,
                 email: email,
                 organizationId: organizationId,
-                posted_on_date: currentDate
+                posted_on_date: currentDate,
+                photoLink: photoLink,
+                orgName: orgName
             });
 
             alert("Post submitted successfully!");
