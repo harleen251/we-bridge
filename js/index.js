@@ -18,20 +18,18 @@ const db = getFirestore(firebassApp);
 // Reference to the post collection
 const postCollection = collection(db, "posts");
 const volunteerCollection = collection(db, "volunteer");
-const appCollection = collection(db, "application");
-
 
 // Retrieve the volunteerId and OrganizationId from the cookie
 let volunteerId = "";
-let organizationId ="";
+let organizationId = "";
 
-await getCookie('volunteerId')
-  .then((volcookieValue) => {
-    if (volcookieValue !== null) {
+getCookie('volunteerId')
+  .then((cookieValue) => {
+    if (cookieValue !== null) {
       // Cookie found, use cookieValue
-      if (volcookieValue !== "") {
-        volunteerId = volcookieValue;
-        console.log(`volunteerId value: ${volcookieValue}`);
+      if (cookieValue !== "") {
+        volunteerId = cookieValue;
+        console.log(`volunteerId value: ${cookieValue}`);
         btnAccount.style.display = "block";
         btnLogin.style.display = "none";
         btnSignUp.style.display = "none";
@@ -39,12 +37,12 @@ await getCookie('volunteerId')
       } else {
         // Cookie not found
         getCookie('organizationId')
-          .then((orgcookieValue) => {
-              if (orgcookieValue !== null) {
+          .then((cookieValue) => {
+              if (cookieValue !== null) {
               // Cookie found, use cookieValue
-                if (orgcookieValue !== "") {
-                    organizationId = orgcookieValue;
-                    console.log(`organizationId value: ${orgcookieValue}`);
+                if (cookieValue !== "") {
+                    organizationId = cookieValue;
+                    console.log(`organizationId value: ${cookieValue}`);
                     btnAccount.style.display = "block";
                     btnLogin.style.display = "none";
                     btnSignUp.style.display = "none";
@@ -171,7 +169,7 @@ async function getVolunteerInfo(volunteerId){
     if (docSnap.exists()) {
         const volunteerData = docSnap.data();
         console.log("Document data:", volunteerData);
-        let qPost = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(3)); 
+        let q = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(3)); 
         let interestArr = [];
         console.log("Vol Interest Arr : ", volunteerData.interest.length);
         if ( volunteerData.interest.length > 0 ){
@@ -179,7 +177,7 @@ async function getVolunteerInfo(volunteerId){
                 interestArr.push(element);
             });
             console.log(interestArr);
-            qPost = query(postCollection,
+            q = query(postCollection,
                      where("interests", "array-contains-any", interestArr), 
                      where('expireDate', '>', today),
                      orderBy('expireDate','desc'),
@@ -221,7 +219,7 @@ async function getVolunteerInfo(volunteerId){
 
                                 let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
                                 card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
-                                document.getElementById("Recomm").style.display = "block";  
+                                document.getElementById("h1Recomm").style.display = "block";  
                                 // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
                                 let txt2Inner = ""; 
                                 const anchor = document.createElement('a');
