@@ -13,12 +13,13 @@ h4,
 p {
     color: var(--black);
     text-align: left;
+    font-family: "Poppins", sans-serif;
 }
 
 h1{
-    font-size: 36px; 
+    font-size: 2.5rem; /* or 9vw or 36px */
     font-weight: 700;
-    line-height: 46px;
+    line-height: 1.3;
  }
  
 h2 {
@@ -42,9 +43,15 @@ button:hover{
 ********************************************** */
 
 /* Hero Section  */
+#hero_title{
+    margin-bottom: 24px;
+    max-width: 90%;
+}
+
 #hero_description {
     font-size: 14px;
-    line-height: 18px;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 p {
@@ -55,20 +62,63 @@ p {
     height: 30px;
 }
 
+#hero_img{
+    height: 132px;
+    width: 240px;
+    border-radius: 20px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.hero_img_container {
+    position: relative;
+    margin-top: 44px;
+}
+
+#hero_rect{
+    height: 132px;
+    width: 240px;
+    background-color: var(--purple-primary); 
+    border-radius: 20px; 
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: -1;
+
+}
+
 #explore_button {
+    /* button text */
     text-align: left;
-    height: 64px;
-    width: 166px ;
-    border-radius: 30px;
+    font-family: "Poppins", sans-serif;
+    line-height: 1.3;
+    font-size: 14px;
+    font-weight: 500;
+    /* button shape */
+    height: 68px;
+    width: 170px ;
+    border-radius: 35px;
+    /* alignment */
     display: flex;
     justify-content: center;
+    align-items: center;
+    /* position */
+    position: absolute;
+    top: 20px;
+    left: 200px;
 }
 
 #explore-arrow{
     height: 16px;
+    margin-left: 12px;
 }
 
 /* Client Section */
+#client {
+    margin-top: 72px;
+    margin-bottom: 76px;
+}
+
 #client_h5 {
     font-size: 14px;
     font-weight: 500;
@@ -77,19 +127,16 @@ p {
 }
 
 #carousel {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
+    display: flex;
+    gap:10%;
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel_logo{
     height: 50px;
 }
 
-#client {
-    margin-top: 56px;
-    margin-bottom: 80px;
-}
 
 /* Recommendation Section */
 .border{
@@ -106,5 +153,30 @@ p {
     background-color: var(--white);
     padding:16px; 
     margin-bottom: 12px;
+    height: 180px;
 }
 
+.post_description_excerpt, 
+.post_date,
+.post_location {
+    font-size: 12px;
+    color: var(--grey-middle-placeholdertext);
+}
+
+.post_description_excerpt{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.card_icons{
+    width: 14px;
+}
+
+/* #card_date_container{
+    display: inline-block;
+}
+
+#card_location_container{
+    display: inline-block;
+} */

@@ -152,10 +152,9 @@ await getDocs(q)
     anchor.innerText = post.positionTitle;
     anchor.setAttribute("data-postId", doc.id);            
     anchor.addEventListener('click', handleViewButtonEvent);
-    txtInner += `<p>${post.description}</p>`; // add the title   
-    txtInner += `<p>${post.date.toDate().toLocaleDateString()}</p>`;
-    txtInner +=`<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`
-    txtInner += `<p>${"Exp : " + post.expireDate.toDate().toLocaleDateString()}</p>`;              
+    txtInner += `<p class="post_description_excerpt">${post.description}</p>`; // add the title   
+    txtInner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
+    txtInner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
     cardDiv.innerHTML = txtInner;
     cardDiv.prepend(anchor);   
     containerOpp.appendChild(cardDiv); // add cardDiv to orderDiv   
@@ -222,7 +221,7 @@ async function getVolunteerInfo(volunteerId){
 
                                 let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
                                 card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
-                                document.getElementById("h1Recomm").style.display = "block";  
+                                document.getElementById("Recomm").style.display = "block";  
                                 // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
                                 let txt2Inner = ""; 
                                 const anchor = document.createElement('a');
