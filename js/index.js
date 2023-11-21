@@ -28,12 +28,12 @@ getCookie('volunteerId')
     if (cookieValue !== null) {
       // Cookie found, use cookieValue
       if (cookieValue !== "") {
-        volunteerId = cookieValue;
-        console.log(`volunteerId value: ${cookieValue}`);
-        btnAccount.style.display = "block";
-        btnLogin.style.display = "none";
-        btnSignUp.style.display = "none";
-        linkAccount.href  = "volunteer_account.html";
+        // volunteerId = cookieValue;
+        // console.log(`volunteerId value: ${cookieValue}`);
+        // btnAccount.style.display = "block";
+        // btnLogin.style.display = "none";
+        // btnSignUp.style.display = "none";
+        // linkAccount.href  = "volunteer_account.html";
       } else {
         // Cookie not found
         getCookie('organizationId')
@@ -41,26 +41,26 @@ getCookie('volunteerId')
               if (cookieValue !== null) {
               // Cookie found, use cookieValue
                 if (cookieValue !== "") {
-                    organizationId = cookieValue;
-                    console.log(`organizationId value: ${cookieValue}`);
-                    btnAccount.style.display = "block";
-                    btnLogin.style.display = "none";
-                    btnSignUp.style.display = "none";
-                    linkAccount.href  = "organization_account.html";
+                    // organizationId = cookieValue;
+                    // console.log(`organizationId value: ${cookieValue}`);
+                    // btnAccount.style.display = "block";
+                    // btnLogin.style.display = "none";
+                    // btnSignUp.style.display = "none";
+                    // linkAccount.href  = "organization_account.html";
                    
                 } else {
-                    btnAccount.style.display = "none";
-                    btnSignUp.style.display = "block";
-                    btnLogin.style.display = "block";
-                    console.log('organizationId not found.');
-                    console.log('volunteerId not found.');
+                    // btnAccount.style.display = "none";
+                    // btnSignUp.style.display = "block";
+                    // btnLogin.style.display = "block";
+                    // console.log('organizationId not found.');
+                    // console.log('volunteerId not found.');
                 }              
               } 
           })
           .catch((error) => {
-              btnLogin.style.display = "block";
-              btnSignUp.style.display = "block";
-              btnAccount.style.display = "none";
+            //   btnLogin.style.display = "block";
+            //   btnSignUp.style.display = "block";
+            //   btnAccount.style.display = "none";
               //console.error('An error occurred while retrieving the cookie:', error);
           });
       }      
@@ -71,58 +71,58 @@ getCookie('volunteerId')
   });
 
 
-const dropdownBtn = document.getElementById("btnLogin");
-const dropdownMenu = document.getElementById("dropdown");
-const toggleArrow = document.getElementById("arrow");
+// const dropdownBtn = document.getElementById("btnLogin");
+// const dropdownMenu = document.getElementById("dropdown");
+// const toggleArrow = document.getElementById("arrow");
 
-const dropdownSignUp = document.getElementById("btnSignUp");
-const dropdownMenuSignUp = document.getElementById("dropdownSignUp");
-const toggleArrowSignUp = document.getElementById("arrowSignup");
+// const dropdownSignUp = document.getElementById("btnSignUp");
+// const dropdownMenuSignUp = document.getElementById("dropdownSignUp");
+// const toggleArrowSignUp = document.getElementById("arrowSignup");
 
-const dropdownAcc = document.getElementById("btnAccount");
-const dropdownMenuAcc = document.getElementById("dropdownAcc");
-const toggleArrowAcc = document.getElementById("arrowAcc");
+// const dropdownAcc = document.getElementById("btnAccount");
+// const dropdownMenuAcc = document.getElementById("dropdownAcc");
+// const toggleArrowAcc = document.getElementById("arrowAcc");
 
-const toggleDropdown = function () {
-    if (volunteerId !== "" || organizationId !== ""){
-        dropdownMenuAcc.classList.toggle("show");
-        toggleArrowAcc.classList.toggle("arrow");
-    }else if (volunteerId === "" && organizationId === ""){
-        dropdownMenu.classList.toggle("show");
-        toggleArrow.classList.toggle("arrow");
-    }   
-};
+// const toggleDropdown = function () {
+//     if (volunteerId !== "" || organizationId !== ""){
+//         dropdownMenuAcc.classList.toggle("show");
+//         toggleArrowAcc.classList.toggle("arrow");
+//     }else if (volunteerId === "" && organizationId === ""){
+//         dropdownMenu.classList.toggle("show");
+//         toggleArrow.classList.toggle("arrow");
+//     }   
+// };
 
-const toggleDropdownSignUp = function () {
-    if (volunteerId === "" && organizationId === ""){
-        dropdownMenuSignUp.classList.toggle("show");
-        toggleArrowSignUp.classList.toggle("arrow");
-    }   
-};
+// const toggleDropdownSignUp = function () {
+//     if (volunteerId === "" && organizationId === ""){
+//         dropdownMenuSignUp.classList.toggle("show");
+//         toggleArrowSignUp.classList.toggle("arrow");
+//     }   
+// };
 
-dropdownBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    toggleDropdown();
-});
+// dropdownBtn.addEventListener("click", function (e) {
+//     e.stopPropagation();
+//     toggleDropdown();
+// });
 
-dropdownSignUp.addEventListener("click", function (e) {
-    e.stopPropagation();
-    toggleDropdownSignUp();
-});
+// dropdownSignUp.addEventListener("click", function (e) {
+//     e.stopPropagation();
+//     toggleDropdownSignUp();
+// });
 
-dropdownAcc.addEventListener("click", function (e) {
-    e.stopPropagation();
-    toggleDropdown();
-});
+// dropdownAcc.addEventListener("click", function (e) {
+//     e.stopPropagation();
+//     toggleDropdown();
+// });
 
-document.documentElement.addEventListener("click", function () {
-    if (dropdownMenu.classList.contains("show")) {
-        toggleDropdown();
-    }
-    if (dropdownMenuAcc.classList.contains("show")) {
-        toggleDropdown();
-    }
-});
+// document.documentElement.addEventListener("click", function () {
+//     if (dropdownMenu.classList.contains("show")) {
+//         toggleDropdown();
+//     }
+//     if (dropdownMenuAcc.classList.contains("show")) {
+//         toggleDropdown();
+//     }
+// });
 
 const today = Timestamp.now();
 // const expireDate = Timestamp.fromDate(today);
@@ -226,19 +226,19 @@ if (volunteerId !== "") {
 
 //LogOut
 
-async function logout() {
-    // Clear cookies
-    await setCookie("organizationId", "", 1);
-    await setCookie("volunteerId", "", 1);
-    console.log("organizationId", getCookie("organizationId"));
-    console.log("volunteerId", getCookie("volunteerId"));
-    window.location.href = 'index.html';
-  }
+// async function logout() {
+//     // Clear cookies
+//     await setCookie("organizationId", "", 1);
+//     await setCookie("volunteerId", "", 1);
+//     console.log("organizationId", getCookie("organizationId"));
+//     console.log("volunteerId", getCookie("volunteerId"));
+//     window.location.href = 'index.html';
+//   }
 
-btnLogout.addEventListener('click', function (event) {
-    event.preventDefault();    
-    logout(); 
-});
+// btnLogout.addEventListener('click', function (event) {
+//     event.preventDefault();    
+//     logout(); 
+// });
 
 async function handleViewButtonEvent(event) {
     let postId = event.target.getAttribute('data-postId');

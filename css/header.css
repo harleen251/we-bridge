@@ -13,7 +13,7 @@ header {
 }
 
 .hamburger-menu {
-    display: none; /* 初始状态下隐藏 */
+    display: none; 
     cursor: pointer;
   }
 
@@ -69,23 +69,23 @@ header a:hover {
 
 .bar {
     width: 100%;
-    height: 3px; /* 汉堡按钮中每个条的高度 */
-    background-color: #4410A5; /* 条的颜色 */
-    margin: 5px 0; /* 条之间的间距 */
+    height: 3px; /* The height of each bar in the hamburger button */
+    background-color: #4410A5; /* bar color */
+    margin: 5px 0; /* Spacing between bars */
     border-radius: 2px;
-    transition: 0.4s; /* 添加过渡效果，使按钮动画更平滑 */
+    transition: 0.4s; /* Add transitions to make button animations smoother */
 }
 
 .bar2 {
     width: 70%;
 }
 
-/* 使用伪类选择器 :not(:last-child) 选择除了最后一个条之外的所有条，为了设置样式 */
+/* Use the pseudo-class selector :not(:last-child) to select all bars except the last one, in order to style */
 .bar:not(:last-child) {
-    margin-bottom: 4px; /* 控制条与条之间的间距 */
+    margin-bottom: 4px; /* Spacing between bars */
 }
 
-/* 旋转并设置条的样式来形成汉堡按钮的效果 */
+/* Rotate and style the bar to create the effect of a hamburger button */
 .hamburger-menu.active .bar:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
 }
@@ -115,7 +115,7 @@ header a:hover {
 
 .submenu1.active, .submenu2.active, .submenu3.active {
     display: block;
-    /* 其他样式 */
+    
 }
 .logout.active {
     display: block;
@@ -130,8 +130,8 @@ header a:hover {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px; /* 可以根据需要调整 */
-        background-color: #F5F6F8; /* 可以根据需要调整 */
+        padding: 10px 20px; 
+        background-color: #F5F6F8; 
         position: relative;
       }
       
@@ -148,10 +148,10 @@ header a:hover {
       }
       
       header img {
-        /* 这里可以设置 logo 的样式，例如居中、大小等 */
         display: inline-block;
         width: 150px;
       }
+
       .center-section {
         position: absolute;
         left: 50%;

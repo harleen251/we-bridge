@@ -58,33 +58,7 @@ function displayAllPosts() {
 
 search.addEventListener("click", performSearch);
 
-// async function performSearch(e) {
-//   e.preventDefault();
-//   output.innerHTML = '';
-//   const keyWord = searchInput.value.toLowerCase();
-//   const interests = interestsSelect.value;
-//   const skills = skillsSelect.value;
-//   radius = getSelectedRadius();
 
-//   const q = createQuery(interests, skills);
-
-//   try {
-//     const snapshot = await getDocs(q);
-//     const matchingDocs = snapshot.docs.filter((doc) => doc.data().positionTitle.toLowerCase().includes(keyWord));
-
-//     matchingDocs.forEach(doc => {
-//       const event = { ...doc.data(), id: doc.id };
-//       if (filteredPostWithinRadius(event, radius)) {
-//         const div = createEventDiv(event);
-//         output.appendChild(div);
-//       }
-//     });
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-
-//   resetSearchFields();
-// }
 async function performSearch(e) {
   e.preventDefault();
   output.innerHTML = '';
@@ -115,20 +89,21 @@ async function performSearch(e) {
     matchingDocs = interestsDocs.filter((interestsDoc) => {
       return skillsDocs.some((skillsDoc) => interestsDoc.id === skillsDoc.id);
     });
+    matchingDocs = matchingDocs.filter((doc) => doc.data().positionTitle.toLowerCase().includes(keyWord));
   }
 
   if (interests !== "Interests") {
     // Only use interests
     const interestsQuery = query(colRef, where("interests", "array-contains", interests));
     const interestsSnapshot = await getDocs(interestsQuery);
-    matchingDocs = interestsSnapshot.docs;
+    matchingDocs = interestsSnapshot.docs.filter((doc) => doc.data().positionTitle.toLowerCase().includes(keyWord));;
   }
 
   if (skills !== "Skills") { 
     // Only use skills
     const skillsQuery = query(colRef, where("skills", "array-contains", skills));
     const skillsSnapshot = await getDocs(skillsQuery);
-    matchingDocs = skillsSnapshot.docs;
+    matchingDocs = skillsSnapshot.docs.filter((doc) => doc.data().positionTitle.toLowerCase().includes(keyWord));;
   }
 
 
