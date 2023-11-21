@@ -1,0 +1,130 @@
+@import url('/css/style.css');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#vol_profile {    
+    margin: 10px;
+    border: 1px solid var(--grey-light);
+    border-radius: 15px;
+    padding: 20px;
+    background-color: var(--white);
+    text-align: center;
+    box-shadow: 1px 3px 5px  rgba(0, 0, 0, 0.4); 
+}
+
+#volunteerName {
+    font-size: 16px;
+    text-align: center;
+}
+
+#profilePic {
+    position: relative;
+    width: 9rem;
+    clip-path: circle(40% at 50% 50%);
+}
+
+#btnEditProfile {
+    width: 80vw;
+    max-width: 250px;
+    margin: 10px auto ;
+    background-color: var(--white);
+    border: 2px solid var(--black); 
+    border-radius: 8px;
+    color: var(--black);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+div .page {
+    display: none;
+    /* text-align: center;*/
+    padding: 0.44em; 
+    height: calc(200vh - 5.7em);  
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    margin: 5px 0px;
+}
+
+/* body div.page:nth-child(odd) {
+    background-color: beige;
+}
+
+body div.page:nth-child(even) {
+    background-color: bisque;
+} */
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid var(--grey-light);
+    margin-bottom: 2rem;
+}
+
+.toolbar .item {
+    text-align: center;
+    flex-grow:  1;
+    color: black;
+    text-decoration: none;
+    padding: 1rem 0rem .8rem 0rem;
+    background-color: var(--lighter-grey);
+    margin: 1rem 0rem 0rem 0rem;
+    
+}
+
+#btnHistory {
+    border-bottom: 2px solid var(--black);
+    font-weight: 600;
+}
+
+/* #containerRec {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+} */
+
+  /* Card Settings */
+.card {
+    border: 1px solid var(--grey-light); 
+    border-radius: 15px;
+    background-color: var(--white);
+    padding:16px; 
+    margin-bottom: 12px;
+    width: 95%;
+    transition: all .2s linear;
+    overflow: hidden;
+    margin: 1rem;
+    box-sizing: border-box;
+    /* display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    text-align: center;*/
+}
+  
+.card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
+    transform: translate3D(0, -2px, 0);
+} 
+
+.card a {
+    text-decoration: none;
+}
+
+@media screen and (min-width: 600px) {
+    .card {
+        flex: 1 1 calc(50% - 2rem);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .card {
+        flex: 1 1 calc(33% - 2rem);
+    }
+}

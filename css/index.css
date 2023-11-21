@@ -153,30 +153,5 @@ p {
     background-color: var(--white);
     padding:16px; 
     margin-bottom: 12px;
-    height: 180px;
 }
 
-.post_description_excerpt, 
-.post_date,
-.post_location {
-    font-size: 12px;
-    color: var(--grey-middle-placeholdertext);
-}
-
-.post_description_excerpt{
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
-}
-
-.card_icons{
-    width: 14px;
-}
-
-/* #card_date_container{
-    display: inline-block;
-}
-
-#card_location_container{
-    display: inline-block;
-} */
