@@ -1,7 +1,7 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
 import { getFirestore, collection, doc, getDoc, getDocs, query, where} from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js';
 import { getStorage } from 'https://www.gstatic.com/firebasejs/10.5.0/firebase-storage.js';
-import { getCookie, setCookie, includeHTML} from "./backend.js"
+import { getCookie, setCookie} from "./backend.js"
 
 // includeHTML();
 
