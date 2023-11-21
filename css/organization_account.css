@@ -1,0 +1,431 @@
+@import url('/css/style.css');
+
+:root {
+    --grey-text: var(--grey-middle-placeholdertext);
+    --grey-border: var( --grey-light);
+    --skill-background: var( --green-lighter);
+    --card-background: var( --white);
+    --primary-button: var( --purple-primary);
+    --status-backgroud: var( --purple-primary);
+}
+
+body {
+    padding: 15px;
+}
+
+/* img {
+     width: 9rem;
+    clip-path: circle(40% at 50% 50%);
+} */
+
+#welcome_tag {
+    font-size: 16px;
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+}
+
+.profile_pic {
+    width: 9rem;
+    clip-path: circle(40% at 50% 50%);
+}
+
+#org_profile img {
+    margin: auto;
+}
+
+#org_profile {
+    border: 1px solid var(--grey-border);
+    border-radius: 15px;
+    padding: 20px;
+    background-color: var(--card-background);
+    text-align: center;
+    box-shadow: 1px 3px 5px  rgba(0, 0, 0, 0.4);
+}
+
+#Profile_info h2 {
+    margin-bottom: 0px;
+}
+
+#Profile_info h2+p{
+ margin-top: 0;
+ color: var(--grey-text);
+}
+
+#skillList_Org {
+    margin-bottom: 1.5rem;
+}
+
+#org_description, #skillList_Org {
+    display: none;
+}
+
+#skillList_Org p {
+    display: inline-block;
+    margin: .3rem;
+    background-color: var(--skill-background);
+    padding: 6px 15px;
+    border-radius: 25px;
+}
+
+#edit_profile_button {
+    width: 80vw;
+    max-width: 250px;
+    margin: 10px auto ;
+}
+
+#edit_profile_button {
+    background-color: var(--white);
+    border: 2px solid var(--black); 
+    border-radius: 8px;
+}
+
+#edit_profile_button a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.nav_tab {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid var(--grey-border);
+    margin-bottom: 2rem;
+}
+
+.nav_tab .item {
+    text-align: center;
+    flex-grow:  1;
+    color: black;
+    text-decoration: none;
+    padding: 1rem 0rem .8rem 0rem;
+    background-color: var(--lighter-grey);
+    margin: 1rem 0rem 0rem 0rem;
+    
+}
+
+#create-post-button {
+    width: 100%;
+    background-color: var(--primary-button);
+    border-radius: 8px;
+}
+
+#create-post-button a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#postTabViewButton {
+    border-bottom: 2px solid var(--black);
+    font-weight: 600;
+}
+
+div.page {
+    display: none;
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    margin: 5px 0px;
+}
+
+#post-list div, #application-list div{
+    border: 1px solid var(--grey-border);
+    padding: 15px;
+    margin: 10px 0px;
+    border-radius: 15px;
+    background-color: var(--card-background);
+    position: relative;
+}
+
+#post-list img {
+    position: absolute;
+    right: 50px;
+    top: 25px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: .5rem;
+    margin-bottom: .2rem;
+}
+
+#post-list p {
+    margin-top: .3rem;
+    margin-bottom: .5rem;
+}
+
+#post-list h3+p {
+    color: var(--grey-text);
+    margin-top: .3rem;
+    margin-bottom: 1rem;
+}
+
+#post-list>div>div{
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    margin: .8rem ;
+    padding: 0;
+    border: none;
+}
+
+#post-list > div > div > div:nth-of-type(-n+2) {
+    border-right: 1px solid var(--grey-border);
+}
+
+#post-list>div>div>div {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+}
+
+#post-list div div p{
+    margin: 0rem .7rem;
+    text-align: center;
+}
+
+#post-list > div > div  p:nth-of-type(odd) {
+    font-weight: 600;
+}
+
+#post-list > div > div  p:nth-of-type(even) {
+    color: var(--grey-text);
+}
+
+span {
+    display: none;
+}
+
+#post-list button {
+    display: none;
+    margin: auto;
+    border-radius: 8px;
+    background-color: var(--primary-button);
+    width: 40vw;
+    max-width: 200px
+}
+
+#application-list img:nth-of-type(odd) {
+    position: absolute;
+    right: 50px;
+    top: 25px;
+}
+
+
+#application-list .statusDiv {
+    width: 80px;
+    background-color: var(--status-backgroud);
+    text-align: center;
+    color: var(--white);
+    border-radius: 20px;
+    padding: .3rem 1rem;
+    margin-bottom: 0;
+}
+
+#application-list img:nth-of-type(even){
+    width: 5rem;
+    clip-path: circle(40% at 50% 50%);
+}
+
+#application-list button {
+    display: none;
+}
+
+#application-list div > h3 {
+    position: absolute;
+    top: 65px;
+    left: 120px;
+}
+
+ #application-list div> h3+p:first-of-type {
+    position: absolute;
+    top: 90px;
+    left: 120px;
+    font-weight: 500;
+}
+
+#application-list div div { 
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    justify-content: space-between;
+    margin: .8rem ;
+    padding: 0;
+    border: none;
+
+ } 
+
+ #application-list>div>div>div {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    display: block;
+}
+
+#application-list>div>div>div p {
+    margin-bottom: 0;
+    margin-top: 0.3rem;
+}
+
+#application-list>div div {
+    margin: 0 1rem 0 0;
+}
+
+#application-list > div > div  p:nth-of-type(odd) {
+    font-weight: 600;
+}
+
+
+
+/* For Desktop { */
+ @media screen and (min-width: 800px) {
+
+    main, header {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    #welcome_tag {
+        text-align: left;
+    }
+
+    #Profile_info {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    .profile_pic {
+        width: 16rem;
+        transform: translateY(20%);
+    }
+
+    #Profile_info div:last-of-type {
+        text-align: left;
+        padding-right: 20px;
+        
+    }
+
+    #Profile_info div:last-of-type h2+p {
+        font-size: 16px;
+    }
+
+    #Profile_info>div:last-of-type h2+p+p {
+        font-size: 12px;
+    }
+
+    #org_description, #skillList_Org {
+        display: block;
+    }
+
+    #post-list button {
+        display: block;
+    }
+
+    #org_profile {
+        position: relative;
+    }
+
+    #edit_profile_button {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        width: 170px;
+    }
+
+    #edit_profile_button a {
+        font-size: 14px;
+    }
+
+    .nav_tab .item {
+        text-align: left;
+    }
+
+    .posting {
+        position: relative;
+    }
+
+    #create-post-button {
+        width: 200px;
+        position: absolute;
+        right: 0px;
+    }
+
+    select {
+        width: 375px;
+        margin-bottom: 20px;
+    }
+
+    #post-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+
+    #post-list p+div {
+        display: inline-block;
+        text-align: left;
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    #post-list > div > div > div:nth-of-type(-n+2) {
+        border: none;
+    }
+
+    #post-list p+div p {
+        text-align: left;
+        font-size: 20px;
+    }
+
+    #post-list p+div div {
+        display: flex;
+    }
+
+    #post-list > div > div  p:nth-of-type(odd) {
+        font-weight: normal;
+        margin-left: 0;
+    }
+
+    #post-list h3 {
+        font-size: 24px;
+    }
+
+    #post-list h3+p {
+      font-size: 16px;
+    }
+
+    #post-list > div > div  p:nth-of-type(even) {
+        color: var(--black);
+    }
+
+    span {
+        display: inline;
+    }
+
+    #post-list div {
+        position: relative;
+    }
+
+    #post-list button {
+        position: absolute;
+        right: 15px;
+        bottom: 25px;
+        width: 17vw;
+        max-width: 200px;
+    }
+
+    #application-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+}
