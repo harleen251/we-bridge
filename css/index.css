@@ -169,10 +169,17 @@ p {
     background-color: var(--white);
     padding:16px; 
     margin-bottom: 12px;
-    height: 180px;
 }
 
-.post_description_excerpt, 
+<<<<<<< HEAD
+.card a{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    text-decoration: none;
+}
+
+.post_description_excerpt,
 .post_date,
 .post_location {
     font-size: 12px;
@@ -180,19 +187,182 @@ p {
 }
 
 .post_description_excerpt{
-    white-space: nowrap; 
+    /* white-space: nowrap; 
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;  */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-top: 8px;
 }
 
 .card_icons{
     width: 14px;
 }
 
-/* #card_date_container{
-    display: inline-block;
+#card_date_container{
+    display:flex;
+    gap: 8px;
+    align-items: center;
 }
 
 #card_location_container{
-    display: inline-block;
-} */
+    display:flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.post_date{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.post_location{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+/* Button Settings */
+.arrow_button_container {
+    margin-top: 24px;
+    margin-bottom: 84px;
+    text-align: center;
+
+}
+
+.arrow_button{
+    margin-left: 4px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+/* **********************************************
+    Desktop View
+********************************************** */
+
+/************* Hero Section ********************/
+@media screen and (min-width: 1000px){
+    main{
+        width: 90%;
+        margin: auto;
+    }
+    #hero_title{
+        font-size: 66px;
+        margin-bottom: 40px;
+        line-height: 1.2;
+    }
+
+    .hero_icon {
+        height: 50px;
+    }
+
+    #hero_description {
+        font-size: 16px;
+    }
+    
+    #hero_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 28px;
+        align-items:start;
+    }
+
+    #hero_img{
+        width: 660px;
+        height: 526px;
+        border-radius: 50px;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    #hero_rect{
+        width: 660px;
+        height: 526px;
+        border-radius: 50px; 
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        z-index: -1;
+    }
+    
+    .hero_title_container{
+        grid-column: 1/2;
+    }
+    .hero_img_container{
+        margin: 0;
+        grid-column: 2/3;
+        grid-row: 1/3;
+    }
+
+    #explore_button_container{
+        grid-row: 2/3;
+        margin: 0;
+    }
+
+    #explore_button_container a{
+        text-decoration: none;
+    }
+
+
+    #explore_button {
+        font-size: 18px;
+        width: 305px;
+        border-radius: 35px;
+        gap: 12px;
+        position:static;
+    }
+    #explore-arrow{
+        height: 22px;
+    }
+
+    /*************** Client Section **************/
+    #client {
+        margin-top: 104px;
+        margin-bottom: 92px;
+    }
+
+    #client_h5 {
+        font-size: 20px;
+    }
+
+    /*** Latest Opportunity and Recommendation Section ***/
+    .card {
+        padding: 28px;
+        margin: 0;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    .card a{
+        font-size: 20px;
+    }
+
+    .post_description_excerpt,
+    .post_date,
+    .post_location{
+        font-size: 14px;
+    }
+
+    #Latest,
+    #h1Recomm {
+        width: 90%;
+        margin: auto;
+    }
+
+    .border{
+        border-bottom: 8px solid var(--purple-primary);
+        margin-bottom: 44px;
+    }
+
+    #containerOpp {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+}
+=======
+>>>>>>> 5f9f486d846eb6ad65aaf2cb37172acd1034efb0
