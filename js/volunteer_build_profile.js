@@ -259,7 +259,7 @@ async function saveVolunteer(){
     const childDivs = inputGroup.querySelectorAll("div");
     const numberOfDivs = childDivs.length;
     const expData = {experience : []};
-    for(let k = 0; k < numberOfDivs; k++) {
+    for(let k = 0; k < 1; k++) {
         let txtJobTitle = document.getElementById(`txtJobTitle${k}`).value;
         let txtCompany = document.getElementById(`txtCompany${k}`).value;
         let txtLocation = document.getElementById(`txtLocation${k}`).value;
@@ -289,7 +289,7 @@ async function saveVolunteer(){
     const childDivsCert = inputGroupCert.querySelectorAll("div");
     const numberOfDivsCert = childDivsCert.length;
     const certData = {certificate : []};
-    for(let m = 0; m < numberOfDivsCert; m++) {
+    for(let m = 0; m < 1; m++) {
         let txtCertifiacteName = document.getElementById(`txtCertifiacteName${m}`).value;
         let txtIssuingOrg = document.getElementById(`txtIssuingOrg${m}`).value;
         let txtDateObtained = document.getElementById(`txtDateObtained${m}`).value;
