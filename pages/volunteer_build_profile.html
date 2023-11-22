@@ -13,111 +13,116 @@
     <div id="header">
         <header>
             <a href="index.html" style="text-align: right; display: block;">Home</a>
-
         </header>
         <main>
             <div id="personal_Info">
-            <div id="header1">
-                <h1>BUILD YOUR PROFILE</h1>
+                <div id="header1">
+                    <h1>BUILD YOUR PROFILE</h1>
 
-                <form id="profile_Form">
-                    <div class="right">
-                        <h2 class="h2_personalInfo">Personal Information</h2>
+                    <form id="profile_Form">
+                        <div class="right">
+                            <h2 class="h2_personalInfo">Personal Information</h2>
+                        </div>
+                </div>
+                <div id="photoContainer">
+                    <img id="profilePic" src="" alt="Profile Picture">
+                    <label for="txtPhotoLink">Add a profile picture</label>
+                    <input type="file" id="txtPhotoLink">
+                </div>
+                <!-- <button id="uploadButton">Upload Image</button> -->
+
+
+                <section>
+                    <h3>About You</h3>
+                    <div id="line1">
+                        <div class="firstname-and-label">
+                            <label for="txtFirstName">First Name</label>
+                            <input type="text" id="txtFirstName">
+                        </div>
+                        <div class="lastname-and-label">
+                            <label for="txtLastName">Last Name</label>
+                            <input type="text" id="txtLastName">
+                        </div>
                     </div>
+
+                    <div id="line2">
+                        <div class="age1">
+                            <label for="txtAge">Age</label>
+                            <select id="txtAge">
+                                <option value="Select">Select</option>
+                                <option value="Teenagers (13-17)">Teenagers (13-17)</option>
+                                <option value="Young Adults (18-30)">Young Adults (18-30)</option>
+                                <option value="Middle-aged Adults (31-45)">Middle-aged Adults (31-45)</option>
+                                <option value="Old Adults (Above 45)">Old Adults (Above 45)</option>
+                            </select>
+                        </div>
+                        <div class="gender1">
+                            <label for="txtGender">Gender</label>
+                            <select id="txtGender">
+                                <option value="Select">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label for="txtBio">Bio</label>
+                    <textarea id="txtBio" cols="20" rows="5"></textarea>
+
+                    <div id="line3">
+                        <div class="address1">
+                            <label for="txtAddress">Address</label>
+                            <input type="text" id="txtAddress">
+                        </div>
+                        <div class="city1">
+                            <label for="txtCity">City</label>
+                            <input type="text" id="txtCity">
+                        </div>
+                    </div>
+
+                    <div id="line4">
+                        <div class="province1">
+                            <label for="txtProvince">Province</label>
+                            <input type="text" id="txtProvince">
+                        </div>
+                        <div class="postal1">
+                            <label for="txtPostalCode">Postal Code</label>
+                            <input type="text" id="txtPostalCode">
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Contact Information</h3>
+                    <div id="line5">
+                        <div class="email1">
+                            <label for="txtEmail">Email</label>
+                            <input type="email" id="txtEmail">
+                        </div>
+                        <div class="number1">
+                            <label for="txtPhoneNumber">Phone Number</label>
+                            <input type="tel" id="txtPhoneNumber">
+                        </div>
+                    </div>
+                </section>
+
+                <div id="button1">
+                    <button id="next_Info">Next</button>
+                </div>
+                <p><a id="edit_preference_background" href="#preference_background">Edit Preference and Background</a>
+                </p>
             </div>
-            <div id="photoContainer">
-                <img id="profilePic" src="" alt="Profile Picture">
-                <label for="txtPhotoLink">Add a profile picture</label>
-                <input type="file" id="txtPhotoLink">
-            </div>
-            <!-- <button id="uploadButton">Upload Image</button> -->
-
-
-            <section>
-                <h3>About You</h3>
-                <div id="line1">
-                    <div class="firstname-and-label">
-                        <label for="txtFirstName">First Name</label>
-                        <input type="text" id="txtFirstName">
-                    </div>
-                    <div class="lastname-and-label">
-                        <label for="txtLastName">Last Name</label>
-                        <input type="text" id="txtLastName">
-                    </div>
-                </div>
-
-                <div id="line2">
-                    <div class="age1">
-                        <label for="txtAge">Age</label>
-                        <select id="txtAge">
-                            <option value="Select">Select</option>
-                            <option value="Teenagers (13-17)">Teenagers (13-17)</option>
-                            <option value="Young Adults (18-30)">Young Adults (18-30)</option>
-                            <option value="Middle-aged Adults (31-45)">Middle-aged Adults (31-45)</option>
-                            <option value="Old Adults (Above 45)">Old Adults (Above 45)</option>
-                        </select>
-                    </div>
-                    <div class="gender1">
-                        <label for="txtGender">Gender</label>
-                        <select id="txtGender">
-                            <option value="Select">Select</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                </div>
-
-                <label for="txtBio">Bio</label>
-                <textarea id="txtBio" cols="20" rows="5"></textarea>
-
-                <div id="line3">
-                    <div class="address1">
-                        <label for="txtAddress">Address</label>
-                        <input type="text" id="txtAddress">
-                    </div>
-                    <div class="city1">
-                        <label for="txtCity">City</label>
-                        <input type="text" id="txtCity">
-                    </div>
-                </div>
-
-                <div id="line4">
-                    <div class="province1">
-                        <label for="txtProvince">Province</label>
-                        <input type="text" id="txtProvince">
-                    </div>
-                    <div class="postal1">
-                        <label for="txtPostalCode">Postal Code</label>
-                        <input type="text" id="txtPostalCode">
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h3>Contact Information</h3>
-                <div id="line5">
-                    <div class="email1">
-                        <label for="txtEmail">Email</label>
-                        <input type="email" id="txtEmail">
-                    </div>
-                    <div class="number1">
-                        <label for="txtPhoneNumber">Phone Number</label>
-                        <input type="tel" id="txtPhoneNumber">
-                    </div>
-                </div>
-            </section>
-
-            <div id="button1">
-                <button id="next_Info">Next</button>
-            </div>
-            <p><a id="edit_preference_background" href="#preference_background">Edit Preference and Background</a>
-            </p>
-        </div>
     </div>
 
 
     <div id="preference_background">
-        <h2 class="h2_personalInfo">Preference and Background</h2>
+        <div id="header4">
+            <h1>BUILD YOUR PROFILE</h1>
+            <div class="right1">
+                <h2 class="h2_personalInfo">Preference and Background</h2>
+            </div>
+        </div>
+
         <p>To connect you with the right opportunities,
             we need some additional information from you.</p>
 
@@ -235,14 +240,18 @@
 
         <section id="availability">
             <h2 class="header2"><span class="header3">2</span> What is your availability?</h2>
-            <fieldset>
-                <label for="availability1">Weekdays<p>Monday-Friday</p></label>
-                <input type="checkbox" id="availability1" value="Weekdays">
-                <br>
-                <label for="availability2">Weekends<p>Saturday-Sunday</p></label>
-                <input type="checkbox" id="availability2" value="Weekends">
-                <br>
-            </fieldset>
+            <div id="line9">
+                <div class="day1">
+                    <label for="availability1">Weekdays<p>Monday-Friday</p></label>
+                    <input type="checkbox" id="availability1" value="Weekdays">
+                    <br>
+                </div>
+                <div class="day2">
+                    <label for="availability2">Weekends<p>Saturday-Sunday</p></label>
+                    <input type="checkbox" id="availability2" value="Weekends">
+                    <br>
+                </div>
+            </div>
         </section>
 
         <section>
