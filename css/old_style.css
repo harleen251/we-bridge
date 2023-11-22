@@ -28,8 +28,11 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
+
 img {
-    width: 25%;
+    /* width: 25%; */
+    width: 9rem;
+    clip-path: circle(40% at 50% 50%);
 }
 
 /* Set a style for all buttons */
