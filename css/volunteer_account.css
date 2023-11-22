@@ -2,28 +2,59 @@
 
 body {
     margin: 0;
-    padding: 0;
+    padding: 15px;
 }
 
-#vol_profile {    
-    margin: 10px;
+#welcome_tag {
+    font-size: 16px;
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+}
+
+.profile_pic {
+    width: 9rem;
+    clip-path: circle(40% at 50% 50%);
+}
+
+#vol_profile img {
+    margin: auto;
+}
+
+#vol_profile {
     border: 1px solid var(--grey-light);
     border-radius: 15px;
     padding: 20px;
     background-color: var(--white);
     text-align: center;
-    box-shadow: 1px 3px 5px  rgba(0, 0, 0, 0.4); 
+    box-shadow: 1px 3px 5px  rgba(0, 0, 0, 0.4);
 }
 
-#volunteerName {
-    font-size: 16px;
-    text-align: center;
+#profile_info h2 {
+    margin-bottom: 0px;
 }
 
-#profilePic {
-    position: relative;
-    width: 9rem;
-    clip-path: circle(40% at 50% 50%);
+#profile_info h2+p{
+ margin-top: 0;
+ color: var(--grey-text);
+}
+
+#skillList_vol {
+    margin-bottom: 1.5rem;
+}
+
+#vol_description, #skillList_vol {
+    display: none;
+}
+
+#skillList_vol p {
+    display: inline-block;
+    margin: .3rem;
+    background-color: var(--skill-background);
+    padding: 6px 15px;
+    border-radius: 25px;
 }
 
 #btnEditProfile {
@@ -33,7 +64,11 @@ body {
     background-color: var(--white);
     border: 2px solid var(--black); 
     border-radius: 8px;
+}    
+
+#btnEditProfile a {
     color: var(--black);
+    text-decoration: none;
     font-size: 16px;
     font-weight: 600;
 }
@@ -42,15 +77,34 @@ div .page {
     display: none;
     /* text-align: center;*/
     padding: 0.44em; 
-    height: calc(200vh - 5.7em);  
+    height: calc(200vh - 5.7em); 
 }
 
 select {
     width: 100%;
     padding: 14px;
-    border-radius: 8px;
-    margin: 5px 0px;
+    border-radius: 15px;
+    margin: 15px 0px;
+    /* appearance:none; */
 }
+
+
+.btnDiv {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    text-align: center;
+}
+
+.viewButton {
+    width: 40%;
+    background-color: var( --purple-primary);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 13px;
+}
+
 
 /* body div.page:nth-child(odd) {
     background-color: beige;
@@ -64,7 +118,7 @@ body div.page:nth-child(even) {
     display: flex;
     flex-direction: row;
     border-bottom: 2px solid var(--grey-light);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .toolbar .item {
@@ -83,12 +137,14 @@ body div.page:nth-child(even) {
     font-weight: 600;
 }
 
-/* #containerRec {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-} */
+#containerRec, #h1Application, #h1Register, #h1Record {
+    padding: 0;
+    margin: 0;
+}
+
+#h1Application, #h1Register, #h1Record {
+    text-transform: uppercase;
+}
 
   /* Card Settings */
 .card {
@@ -97,10 +153,10 @@ body div.page:nth-child(even) {
     background-color: var(--white);
     padding:16px; 
     margin-bottom: 12px;
-    width: 95%;
+    width: 100%;
     transition: all .2s linear;
     overflow: hidden;
-    margin: 1rem;
+    /* margin: 1rem; */
     box-sizing: border-box;
     /* display: flex;
     flex-wrap: wrap; 
@@ -115,6 +171,39 @@ body div.page:nth-child(even) {
 
 .card a {
     text-decoration: none;
+}
+
+.card_icons{
+    width: 14px;
+}
+
+#card_date_container{
+    display:flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#card_location_container{
+    display:flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.post_date{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.post_location{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.post_description_excerpt,
+.post_date,
+.post_location {
+    font-size: 12px;
+    color: var(--grey-middle-placeholdertext);
 }
 
 @media screen and (min-width: 600px) {
