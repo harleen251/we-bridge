@@ -222,7 +222,7 @@ async function filteredPostWithinRadius(event, radius) {
 function navigateToPostDetailPage(eventId){
   setCookie('vol_postId', eventId, 1);
   const postID = getCookie('vol_postId');
-  // alert("new cookie : "+postID);
+   alert("new cookie : "+postID);
   const postDetailPageURL = `../pages/post_detail.html`
   window.location.href = postDetailPageURL
 }
@@ -242,6 +242,7 @@ function createEventDiv(event) {
   // div.appendChild(applyButton);
   return div;
 }
+
 
 
 function resetSearchFields() {
