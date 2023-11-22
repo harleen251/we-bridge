@@ -17,8 +17,8 @@ const account = document.querySelector('.account');
 const submenu1 = document.querySelector('.submenu1');
 const submenu2 = document.querySelector('.submenu2');
 const submenu3 = document.querySelector('.submenu3');
-const org = document.querySelector('.org')
-const vol = document.querySelector('.vol')
+const org = document.querySelector('.org');
+const vol = document.querySelector('.vol');
 login.addEventListener('click', function(e) {
   e.preventDefault(); 
   submenu1.classList.toggle('active');

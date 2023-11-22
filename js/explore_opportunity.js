@@ -46,6 +46,8 @@ function displayAllPosts() {
         radius = getSelectedRadius();
         if (filteredPostWithinRadius(event, radius)) {
           const div = createEventDiv(event);
+          div.setAttribute("class", "card");
+
           output.appendChild(div);
         }
       });
