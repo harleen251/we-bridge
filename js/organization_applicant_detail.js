@@ -287,7 +287,7 @@ async function handleApproveButtonEvent() {
         updateDoc(documentRef, dataToUpdate)
             .then(() => {
             console.log('Document field updated successfully.');
-            alert(' Successfully Approved the Applicant');
+            // alert(' Successfully Approved the Applicant');
             window.location.href = "organization_account.html";
             })
             .catch((error) => {

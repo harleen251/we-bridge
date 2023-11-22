@@ -81,7 +81,7 @@ const scanner = new Html5QrcodeScanner('reader', {
 
     if (checkInSuccessfulIndex !== -1) {
         const postIdMatch = decodedText.match(/Post:\s*([^\s]+)/);
-
+        console.log("postIdMatch", postIdMatch);
         if (postIdMatch && postIdMatch[1]) {
             const postId = postIdMatch[1];
             return { checkInSuccessful: true, postId: postId };
@@ -102,8 +102,9 @@ const scanner = new Html5QrcodeScanner('reader', {
     if (workCompletedIndex !== -1) {
         const postIdMatch = decodedText.match(/Post:\s*([^\s]+)/);
 
-        if (postIdMatch && postIdMatch[1]) {
+        if (postIdMatch && postIdMatch[1]===postIdFromCookie) {
             const postId = postIdMatch[1];
+            
             return { workCompleted: true, postId: postId };
         } else {
             console.error("Post ID not found in the decoded text.");
@@ -146,7 +147,7 @@ const scanner = new Html5QrcodeScanner('reader', {
                     });
             
     
-                    window.location.href = "volunteer_account.html#commitment";
+                    // window.location.href = "volunteer_account.html#commitment";
                     // submitPost.reset();
                 } catch (error) {
                     console.error("Error adding document: ", error);
@@ -246,6 +247,13 @@ const scanner = new Html5QrcodeScanner('reader', {
                         console.error("Error querying for documents for application collection:", error);
                     });
         }
+        const backButton = document.getElementById("back-button");
+    if (backButton) {
+      backButton.addEventListener("click", function() {
+        alert('hi');
+        window.location.href = "volunteer_account.html#commitment";
+      });
+    }
         
     
         
