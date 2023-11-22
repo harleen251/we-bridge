@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="kim1-htmlsignup">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,52 +7,67 @@
         <script type="module" src="../js/organization_signup.js" defer></script>
         <link rel="stylesheet" href="../css/style.css">
     </head>
-    <body>
-        <header>
-            <h1>Make a Difference with <span>WeBridge</span></h1>
-            <p>Join as a Organization</p>
-        </header>
-        <main>
-            <form action="" id="signUp_Form">               
+    <body class="kim1-bodysignup">
+        <div class="kim1-wrapper">
+            <main class="kim1-main">
+                <div class="kim1-container-signup">
+                    <div class="kim1-heartsvg">
+                        <img class="kim1-heart1" src="../images/icons/heart_icon.svg" alt="">
+                    </div>
+                    <h2 class="kim1-h2">Make a Difference with <span class="kim1-webridge">WeBridge</span></h2>
+                    <h2 class="kim1-h2-2">Join as an Organization! <img class="kim1-heart2" src="../images/icons/heart_icon.svg" alt=""></h2>
 
-                <label for="txtOrgName">Organization Name</label>
-                <input type="text" id="txtOrgName" required>
+                    <form action="" id="signUp_Form" class="kim1-signupform">               
 
-                <label for="txtRegNumber">Charitable Registration Number</label>
-                <input type="text" id="txtRegNumber">
+                        <label for="txtOrgName">Organization Name</label>
+                        <input type="text" id="txtOrgName" class="kim1-oname" required>
 
-                <label for="txtFirstName">First Name</label>
-                <input type="text" id="txtFirstName" required>
-                <label for="txtLastName">Last Name</label>
-                <input type="text" id="txtLastName" required>
-            
-                <label for="txtEmail">Email</label>
-                <input type="email" id="txtEmail" required>
+                        <label for="txtRegNumber">Charitable Registration Number</label>
+                        <input type="text" id="txtRegNumber" class="kim1-regnum">
 
-                <label for="txtPassword">Create Password</label>
-                <input type="password" id="txtPassword" required>
-                <label for="txtConfirmPassword">Confirm Password</label>
-                <input type="password" id="txtConfirmPassword" required>
-                <div id="msg"></div>
+                        <label for="txtFirstName">First Name</label>
+                        <input type="text" id="txtFirstName" class="kim1-fname" required>
+                        <label for="txtLastName">Last Name</label>
+                        <input type="text" id="txtLastName" class="kim1-lname" required>
+                    
+                        <label for="txtEmail">Email</label>
+                        <input type="email" id="txtEmail" class="kim1-email" required>
 
-                <label for="txtcheck">By signing up, you agree our <a href="./privacy_and_terms.html#terms"> Terms of Use</a> and have read and understood our <a href="privacy_and_terms.html#privacy">Privacy Policy</a></label>
-                <input type="checkbox" id="txtcheck" required>
+                        <label for="txtPassword">Create Password</label>
+                        <input type="password" id="txtPassword" class="kim1-password" required>
+                        <label for="txtConfirmPassword">Confirm Password</label>
+                        <input type="password" id="txtConfirmPassword" class="kim1-cpass" required>
+                        <div id="msg"></div>
 
+                        <div class="kim1-divcheckbox">
+                            <input type="checkbox" id="txtcheck" class="kim1-checkbox" required>
+                            <label for="txtcheck" class="kim1-checkboxlabel">By signing up, you agree our <a href="./privacy_and_terms.html#terms" class="kim1-link1"> Terms of Use</a> and have read and understood our <a href="./privacy_and_terms.html#privacy" class="kim1-link2">Privacy Policy</a></label>
+                        </div>
 
-                <input type="submit" value="Sign Up" id="signUpBtn">
-                <p>Have an account? <a href="organization_login.html">Sign in</a></p>
+                        <input type="submit" value="Sign Up" id="signUpBtn" class="kim1-submitbutton">
 
-            </form>
-            <div id="welcome">
-                <div class="wrap_welcome">
-                    <h2>Welcome to WeBridge!</h2>
-                    <p>Let's get stated on your journey to making a difference.</p>
-                    <p>Building your profile helps match the perfect opportunities and increases the chances of your applications being accepted. </p>
-    
-                    <button id="build_profile">Build your profile</button>
-                    <button id="skip_profile">Build it later</button>
+                        <p class="kim1-haveacc">Have an account? <a href="organization_login.html" class="kim1-loginlink">Sign in</a></p>
+
+                    </form>
                 </div>
-            </div>
-        </main>        
+
+                <div class="kim1-addimage">
+                    <img class="kim1-img1" src="../images/photo/transparent.png" alt="">
+                    <img class="kim1-img2" src="../images/photo/signup-org.png" alt="">
+                    <h2 class="kim1-h2-3">Make a Difference with <span class="kim1-webridge2">WeBridge</span></h2>
+                </div>
+
+                <div id="welcome" class="kim1-welcome">
+                    <div class="wrap_welcome">
+                        <h2>Welcome to WeBridge!</h2>
+                        <p>Let's get stated on your journey to making a difference.</p>
+                        <p>Building your profile helps match the perfect opportunities and increases the chances of your applications being accepted. </p>
+                    
+                        <button id="build_profile">Build your profile</button>
+                        <button id="skip_profile">Build it later</button>
+                    </div>
+                </div>
+            </main>
+        </div>        
     </body>
 </html>
