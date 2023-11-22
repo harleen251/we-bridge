@@ -9,8 +9,7 @@
 .homepage h1,
 .homepage h2,
 .homepage h3,
-.homepage h4,
-.homepage p {
+.homepage h4{
     color: var(--black);
     text-align: left;
     font-family: "Poppins", sans-serif;
@@ -19,8 +18,13 @@
 
  
 /* Background Settings */
-body {
-    margin: 20px;
+
+body{
+    margin: 0;
+}
+
+main {
+    padding: 20px;
     background: var(--grey-lighter);
 }
 
@@ -113,7 +117,7 @@ body {
     /* position */
     position: absolute;
     bottom: 40px;
-    left: 200px;
+    left: 180px;
 }
 
 #explore-arrow{
@@ -167,9 +171,28 @@ body {
     border: 1px solid var(--grey-light); 
     border-radius: 15px;
     background-color: var(--white);
-    padding:16px; 
+    padding:20px; 
     margin-bottom: 12px;
     cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 8%;
+}
+
+.card_img{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    clip-path: inset(0 0 0 0 round 10px); 
+}
+
+#card_org{
+    grid-column: 1/2;
+    text-align: center;
+}
+
+.card_org_name{
+    margin: 0;
 }
 
 .card a{
@@ -177,6 +200,10 @@ body {
     font-weight: 700;
     color: var(--black);
     text-decoration: none;
+}
+
+#card_post_info{
+    grid-column: 2/3;
 }
 
 .post_description_excerpt,
@@ -222,7 +249,6 @@ body {
     margin-top: 4px;
     margin-bottom: 4px;
 }
-
 /* Button Settings */
 .arrow_button_container {
     margin-top: 24px;
@@ -378,6 +404,6 @@ body {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 20px;
-    }
+    }    
 
 }

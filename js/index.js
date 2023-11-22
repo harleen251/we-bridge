@@ -160,13 +160,17 @@ await getDocs(q)
             anchor.innerText = post.positionTitle;
             anchor.setAttribute("data-postId", postdoc.id);            
             anchor.addEventListener('click', handleViewButtonEvent);
-            txtInner += `<div>`+ organizationdata.orgName +`</div>`;
-            txtInner += `<div>${organizationdata.photoLink}</div>`;
-            txtInner += `<p class="post_description_excerpt">${post.description}</p>`; // add the title   
-            txtInner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
-            txtInner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
-            cardDiv.innerHTML = txtInner;
-            cardDiv.prepend(anchor);   
+            txtInner += `<div id="card_org"><img class="card_img" src="${organizationdata.photoLink}"> <p class="card_org_name">${organizationdata.orgName}</p></div>`;
+            txtInner += `<div class="card_post_info">
+                            <a href="post_detail.html" data-postId="${postdoc.id}" onclick="handleViewButtonEvent(event)">
+                            ${post.positionTitle}
+                            </a>
+                            <p class="post_description_excerpt">${post.description}</p>
+                            <div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>
+                            <div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>
+                        </div>` 
+                                    
+            cardDiv.innerHTML = txtInner; 
             containerOpp.appendChild(cardDiv); // add cardDiv to orderDiv     
     })
     .catch((error) => {
@@ -256,16 +260,24 @@ async function getVolunteerInfo(volunteerId){
                                         anchor.innerText = post.positionTitle;
                                         anchor.setAttribute("data-postId", postDoc.id);            
                                         anchor.addEventListener('click', handleViewButtonEvent);
-                                        txt2Inner += `<div>${organizationdata.orgName}</div>`;
-                                        txt2Inner += `<div>${organizationdata.photoLink}</div>`;
-                                        txt2Inner += `<p class="post_description_excerpt">${post.description}</p>`; // add the title   
-                                        txt2Inner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
-                                        txt2Inner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
+                                        // txt2Inner += `<div>${organizationdata.photoLink}</div>`;
+                                        // txt2Inner += `<div>${organizationdata.orgName}</div>`;
+                                        // txt2Inner += `<p class="post_description_excerpt">${post.description}</p>`; 
+                                        // txt2Inner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
+                                        // txt2Inner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
                                         // txt2Inner += `<p>${post.description}</p>`; // add the title  
                                         // txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
-                                        // txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
+                                        // txt2Inner += `<p>${"Location : " + post.location}</p>`;            
+                                        txt2Inner += `<div id="card_org"><img class="card_img" src="${organizationdata.photoLink}"> <p class="card_org_name">${organizationdata.orgName}</p></div>`;
+                                        txt2Inner += `<div class="card_post_info">
+                                                        <a href="post_detail.html" data-postId="${postDoc.id}" onclick="handleViewButtonEvent(event)">
+                                                        ${post.positionTitle}
+                                                        </a>
+                                                        <p class="post_description_excerpt">${post.description}</p>
+                                                        <div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>
+                                                        <div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>
+                                                    </div>`            
                                         card2Div.innerHTML = txt2Inner;         
-                                        card2Div.prepend(anchor);   
                                         containerRec.appendChild(card2Div); // add cardDiv to orderDiv      
                                 })
                                 .catch((error) => {
