@@ -13,11 +13,6 @@ body {
     padding: 15px;
 }
 
-/* img {
-     width: 9rem;
-    clip-path: circle(40% at 50% 50%);
-} */
-
 #welcome_tag {
     font-size: 16px;
     text-align: center;
@@ -146,8 +141,8 @@ select {
 
 #post-list img {
     position: absolute;
-    right: 50px;
-    top: 25px;
+    right: 30px;
+    top: 20px;
 }
 
 h3 {
@@ -290,7 +285,7 @@ span {
  @media screen and (min-width: 800px) {
 
     main, header {
-        max-width: 1000px;
+        max-width: 900px;
         margin: auto;
     }
 
@@ -383,7 +378,7 @@ span {
 
     #post-list p+div p {
         text-align: left;
-        font-size: 20px;
+        font-size: 17px;
     }
 
     #post-list p+div div {

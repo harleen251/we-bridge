@@ -47,22 +47,14 @@ async function getApplicantInfo() {
                                 document.getElementById("applicant_info").innerHTML = `<img class="profile_pic" src ="${data.photoLink}" alt = "profile photo">
                                 <h2>${data.firstName} ${data.lastName}</h2>
                                 <p>${data.city}, ${data.province}</p>
-                                <section>
                                 <h3>Bio:</h3>
                                 <p>${data.bio}</p>
-                                </section>
-                                <section>
                                 <h3>Email:</h3>
                                 <p>${data.email}</p>
-                                </section>
-                                <section>
                                 <h3>Contact Number:</h3>
                                 <p>${data.phoneNumber}</p>
-                                </section>
-                                <section>
                                 <h3>Introduce yourself and tell us why you want to volunteer for this opportunity?</h3>
-                                <p>${filteredApplicant.motive}</p>
-                                </section>`;
+                                <p>${filteredApplicant.motive}</p>`;
                                 
                                 let h3 = document.createElement("h3");
                                 h3.setAttribute("id", "workExperience")
@@ -87,6 +79,7 @@ async function getApplicantInfo() {
                                     wrap_workExperience.style.display = "block";
                                     wrap_professionalCertificate.style.display = "none";
                                     wrap_applicantSkills.style.display = "none";
+                                    wrap_appliedPosition.style.display = "none";
                                 });
                                 
                     
@@ -246,12 +239,15 @@ async function getAppliedAndApprovedNumber() {
                 applicantsArray.push(doc.data())
             })
             // console.log(applicantsArray);
+            const div_tot_1 = document.createElement('div');
+            total.append(div_tot_1);
+
             const h4 = document.createElement('h4');
             h4.innerText = `Applicants`;
-            total.append(h4);
+            div_tot_1.append(h4);
             const p = document.createElement('p');
             p.innerText = `${applicantsArray.length}`;
-            total.append(p);
+            div_tot_1.append(p);
 
             for(let i = 0; i < applicantsArray.length; i++) {
                 if(applicantsArray[i].status === "approved"){
@@ -259,12 +255,15 @@ async function getAppliedAndApprovedNumber() {
                 }
             }
 
+            const div_tot_2 = document.createElement('div');
+            total.append(div_tot_2);
+
             const h4_2 = document.createElement('h4');
             h4_2.innerText = `Approved`;
-            total.append(h4_2);
+            div_tot_2.append(h4_2);
             const p1 = document.createElement('p');
             p1.innerText = `${countApproved}`;
-            total.append(p1);  
+            div_tot_2.append(p1);  
 
         })
         .catch(err => {
@@ -356,6 +355,7 @@ if(currentStatus[0] === "declined") {
     declineButton.style.cursor = "default";
     declineButton.style.color = "#666262";
     declineButton.style.backgroundColor = "#dad8d8";
+    declineButton.style.border = "none";
 } else {
     declineButton.innerHTML = 'Decline';
 }
