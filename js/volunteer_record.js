@@ -215,7 +215,6 @@ const dataRef = collection(db, 'volunteerRecord');
 
 async function getVolunteerRecordDetails() {
     const q = query(dataRef, where("volunteerID", "==", volunteerId));
-    console.log("volunteerId", volunteerId);
     const volunteerRecords = await getDocs(q);
   
     // Create an array of promises to fetch related data for each record
@@ -261,29 +260,31 @@ async function getVolunteerRecordDetails() {
   (async () => {
     try {
       await getVolunteerRecordDetails();
-      const circle = document.getElementById("circle");
+      const circle = document.querySelector(".volunteer-hours");
       const totalHoursVolunteered = volunteerEntryArray.reduce((total, entry) => total + entry.hours, 0);
 
       // const formattedTotalHours = totalHoursVolunteered.toFixed(2);
-      const text = `${totalHoursVolunteered} <br>Hours<br>volunteered`;
-      circle.innerHTML = text;
+      const text = `${totalHoursVolunteered}`;
+      console.log("totalHoursVolunteered", totalHoursVolunteered  );
+      circle.textContent = text;
       const table = document.getElementById("data-table");
 
     // Function to create a checkbox input element
     function createCheckbox() {
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
+      checkbox.id = "checkboxes";
       return checkbox;
     }
 
     // Create a "Select All" checkbox in the table header
-    const selectAllCheckbox = document.getElementById("selectAllCheckbox");
-    selectAllCheckbox.addEventListener("click", function () {
-      const checkboxes = table.querySelectorAll("input[type='checkbox']");
-      checkboxes.forEach((checkbox) => {
-        checkbox.checked = this.checked;
-      });
-    });
+    // const selectAllCheckbox = document.getElementById("selectAllCheckbox");
+    // selectAllCheckbox.addEventListener("click", function () {
+    //   const checkboxes = table.querySelectorAll("input[type='checkbox']");
+    //   checkboxes.forEach((checkbox) => {
+    //     checkbox.checked = this.checked;
+    //   });
+    // });
 
 // Function to sort data based on the date
 function sortDataByDate(data, newestFirst) {
@@ -320,17 +321,90 @@ function sortDataByDate(data, newestFirst) {
       columns.forEach((column) => {
         const cell = document.createElement("td");
         cell.textContent = item[column];
+        cell.classList.add(column);
         row.appendChild(cell);
       });
   
-      const checkboxCell = document.createElement("td");
-      const checkbox = createCheckbox();
-      checkboxCell.appendChild(checkbox);
-      row.appendChild(checkboxCell);
+      // const checkboxCell = document.createElement("td");
+      // const checkbox = createCheckbox();
+      // checkboxCell.appendChild(checkbox);
+      // row.appendChild(checkboxCell);
   
       tbody.appendChild(row);
     });
   }
+
+  // function populateTable(data) {
+  //   // Clear the table
+  //   const table = document.getElementById("data-table");
+  //   const tbody = table.getElementsByTagName("tbody")[0];
+  //   // Clear the existing rows in the tbody
+  //   tbody.innerHTML = "";  
+  
+  //   // Re-create the table with sorted data
+  //   data.forEach((item) => {
+  //     // Create a row for positionTitle and checkbox
+  //     const titleRow = document.createElement("tr");
+  
+      
+  
+  //     // Create positionTitle cell
+  //     const titleCell = document.createElement("td");
+  //     titleCell.textContent = item["positionTitle"];
+  //     titleCell.className = "position-title-mobile desktop-position-title"
+  //     titleRow.appendChild(titleCell);
+  //       // // Create checkbox cell
+  //       // const checkboxCell = document.createElement("td");
+  //       // const checkbox = createCheckbox();
+  //       // checkboxCell.appendChild(checkbox);
+  //       // titleRow.appendChild(checkboxCell);
+  
+  //     // Append the titleRow to tbody
+  //     tbody.appendChild(titleRow);
+  
+  //     // Create a row for date, organizationName, and hours
+  //     const detailsRow = document.createElement("tr");
+  
+  //     // Create data name cells
+  //     const orgNameLabelCell = document.createElement("td");
+  //     orgNameLabelCell.textContent = "Organization";
+  //     orgNameLabelCell.className = "mobile-view"
+
+  //     detailsRow.appendChild(orgNameLabelCell);
+  
+  //     const dateLabelCell = document.createElement("td");
+  //     dateLabelCell.textContent = "Date";
+  //     dateLabelCell.className = "mobile-view";
+
+  //     detailsRow.appendChild(dateLabelCell);
+  
+  //     const hoursLabelCell = document.createElement("td");
+  //     hoursLabelCell.textContent = "Hours";
+  //     hoursLabelCell.className = "mobile-view"
+  //     detailsRow.appendChild(hoursLabelCell);
+  
+  //     // Create data cells
+  //     const orgCell = document.createElement("td");
+  //     orgCell.textContent = item["organizationName"];
+  //     orgCell.className = "desktop-organization"
+  //     detailsRow.appendChild(orgCell); 
+  
+  //     const dateCell = document.createElement("td");
+  //     dateCell.textContent = item["date"];
+  //     dateCell.className = "desktop-date";
+  //     detailsRow.appendChild(dateCell);
+  
+  //     const hoursCell = document.createElement("td");
+  //     hoursCell.textContent = item["hours"];
+  //     hoursCell.className = "desktop-hours"
+  //     detailsRow.appendChild(hoursCell);
+    
+  
+  //     // Append the detailsRow to tbody
+  //     tbody.appendChild(detailsRow);
+  //   });
+  // }
+  
   
     } catch (error) {
       console.error(error);

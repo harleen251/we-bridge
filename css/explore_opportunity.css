@@ -1,0 +1,158 @@
+
+:root {
+    --grey-text: var(--grey-middle-placeholdertext);
+    --grey-border: var( --grey-light);
+    --skill-background: var( --green-lighter);
+    --card-background: var( --white);
+    --primary-button: var( --purple-primary);
+    --status-backgroud: var( --purple-primary);
+    --secondary-button: var(--purple-light);
+}
+
+body {
+    width: 90%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Poppins", sans-serif;
+    /* max-width: 900px; */
+}
+
+
+.horizontal-inputs-explore {
+    margin-left: 1rem !important;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.5rem;
+}
+
+#find-opportunity-heading-explore {
+    grid-row: 1;
+    grid-column: span 2;
+    text-align: left;
+    margin-top: 0;
+}
+#searchInput {
+    grid-column: span 2;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.search-container {
+    grid-column: 1/3;
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    background: var(--secondary-button);
+    color: var(--card-background);
+    /* font-weight: px; */
+}
+#interests {
+    grid-column: 1/2;
+}
+
+#search {
+    width: 100%;
+    grid-column: 1/3;
+    padding: 14px;
+    background: var(--primary-button);
+    color: var(--card-background);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#more-filters {
+    width: 100%;
+    grid-column: 1/3;
+    background-color: var(--card-background);
+    border: 1px solid var(--primary-button);
+    color: var(--primary-button);
+    margin-top: 0;
+}
+button#more-filters:hover {
+    color: var(--card-background);
+    background-color: var(--primary-button);
+}
+button,
+input {
+    border-radius: 15px;
+}
+select#skills:hover,
+select#interests:hover {
+    background-color: var(--card-background);
+    color: var(--secondary-button);
+}
+input#search:hover{
+    background-color: var(--card-background);
+    color: var(--primary-button);
+}
+#more-filters-pop-up-heading {
+    color: var(--primary-button);
+    text-align: center;
+}
+#heading-distance {
+    padding-left: 30px;
+
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    z-index: 1;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 70%;
+  }
+
+
+  /* Add styles for overlay/background when the modal is open */
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  .radio-button-and-label {
+    /* width: 30%; */
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 10px;
+    width: fit-content;
+    margin-left: 20px;
+  }
+  input[type="radio"]{
+    width: fit-content;
+    margin-right: 0;
+    margin-left: auto;
+  }
+  #pop-up-close-button {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  
+
+/* DESKTOP VIEW STARTS HERE */
+
+@media screen and (min-width: 800px) {
+    button.more-filters-btn-mobile {
+        display: none;
+    }
+}
+
+
+
+
+
+

@@ -1,14 +1,15 @@
+
 <!-- Skils:  https://docs.google.com/document/d/1iFOL1gN13W5SHk45457bDt9ntHQUXqPN0478csTEiz0/edit
     Interests: https://docs.google.com/document/d/1l9Z0Th4T7J1a3TXLcqeYuYMWPEUnBWe_O-da3i9PU2E/edit
 -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Explore Page</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/explore_opportunity.js" type="module" defer></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/explore_opportunity.css" />
     <script type="module" src="../js/header.js"></script>
     <link rel="stylesheet" href="../css/header.css">
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
@@ -109,12 +110,18 @@
                 </ul>
             </nav>
         </div>
-       
-    </header>
-    <div id="horizontal-inputs" style="margin-left: 150px;">
-    <input type="text" id="searchInput" placeholder="Search...">
-    <label for="interests"></label>
-    <select name="interests" id="interests">
+  <body>
+    <div
+      id="horizontal-inputs"
+      class="horizontal-inputs-explore"
+      style="margin-left: 150px">
+      <h1 id="find-opportunity-heading-explore">Find Opportunities</h1>
+      <div class="search-container">
+        <i class="search-icon fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search..." />
+      </div>
+      <label for="interests"></label>
+      <select name="interests" id="interests">
         <option value="Interests" selected>Interests</option>
         <option value="Advocacy and Law">Advocacy and Law</option>
         <option value="Anti-Racism">Anti-Racism</option>
@@ -123,31 +130,47 @@
         <option value="Elections">Elections</option>
         <option value="Food Security">Food Security</option>
         <option value="Indigenous">Indigenous</option>
-        <option value="Literacy, Libtaries, Learning">Literacy, Libtaries, Learning</option>
-        <option value="Poverty and Homelessness">Poverty and Homelessness</option>
+        <option value="Literacy, Libtaries, Learning">
+          Literacy, Libtaries, Learning
+        </option>
+        <option value="Poverty and Homelessness">
+          Poverty and Homelessness
+        </option>
         <option value="Seniors">Seniors</option>
         <option value="Sports and Recreation">Sports and Recreation</option>
-        <option value="Agriculture, Horticulture, Gardening,">Agriculture, Horticulture, Gardening,</option>
+        <option value="Agriculture, Horticulture, Gardening,">
+          Agriculture, Horticulture, Gardening,
+        </option>
         <option value="Arts and Culture">Arts and Culture</option>
         <option value="Computers and IT">Computers and IT</option>
         <option value="Disaster Relief">Disaster Relief</option>
-        <option value="Employment and Career Mentorship">Employment and Career Mentorship</option>
+        <option value="Employment and Career Mentorship">
+          Employment and Career Mentorship
+        </option>
         <option value="Gender and Identity">Gender and Identity</option>
-        <option value="International Development">International Development</option>
+        <option value="International Development">
+          International Development
+        </option>
         <option value="Nonprofit Services">Nonprofit Services</option>
-        <option value="Professional Associations">Professional Associations</option>
-        <option value="Special Events and Festivals">Special Events and Festivals</option>
+        <option value="Professional Associations">
+          Professional Associations
+        </option>
+        <option value="Special Events and Festivals">
+          Special Events and Festivals
+        </option>
         <option value="Animal Services">Animal Services</option>
         <option value="Children, Youth, Family">Children, Youth, Family</option>
-        <option value="Diversity and Immigration">Diversity and Immigration</option>
+        <option value="Diversity and Immigration">
+          Diversity and Immigration
+        </option>
         <option value="Environment">Environment</option>
         <option value="Health and Wellness">Health and Wellness</option>
         <option value="LGBTQ+">LGBTQ+</option>
         <option value="Older Adults">Older Adults</option>
         <option value="Refugee and Settlement">Refugee and Settlement</option>
         <option value="Spirituality and Faith">Spirituality and Faith</option>
-    </select>
-    <select name="skills" id="skills">
+      </select>
+      <select name="skills" id="skills">
         <option value="Skills" selected>Skills</option>
         <option value="Budgeting">Budgeting</option>
         <option value="Forecasting">Forecasting</option>
@@ -182,7 +205,9 @@
         <option value="Oversight">Oversight</option>
         <option value="Risk Management">Risk Management</option>
         <option value="IT and Systems Advice">IT and Systems Advice</option>
-        <option value="Software Use and Instruction">Software Use and Instruction</option>
+        <option value="Software Use and Instruction">
+          Software Use and Instruction
+        </option>
         <option value="Legal Advice">Legal Advice</option>
         <option value="Contract Review">Contract Review</option>
         <option value="Contract Writing">Contract Writing</option>
@@ -206,20 +231,49 @@
         <option value="Retail Sales">Retail Sales</option>
         <option value="Counselling">Counselling</option>
         <option value="Mentoring">Mentoring</option>
-    </select>
-    
-    <input type="submit" value="Search" id="search"><br/>
+      </select>
+      <input type="submit" value="Search" id="search" /><br />
+      <button
+        class="more-filters-btn-mobile"
+        id="more-filters"
+        onclick="openModal()">
+        More filters
+      </button>
     </div>
-    <div id="vertical-inputs">
-    <input type="radio" name="radius" id="10" value="10" checked>
-    <label for="10">10 km</label><br>
-      
-    <input type="radio" name="radius" id="20" value="20">
-    <label for="20">20 km</label><br>
-      
-    <input type="radio" name="radius" id="30" value="30">
-    <label for="30">30 km</label><br>
+    <div class="overlay" id="overlay" onclick="closeModal()"></div>
+    <div class="modal" id="modal">
+      <div id="vertical-inputs">
+        <h2 id="more-filters-pop-up-heading">More Filters</h2>
+        <div class="radius-radio-buttons">
+          <h3 id="heading-distance">Distance:</h3>
+          <div class="radio-button-and-label">
+            <input type="radio" name="radius" id="radius-10" value="10" checked />
+            <label for="10" class="radio-label" id="within-10-km">within 10 km</label><br />
+          </div>
+          <div class="radio-button-and-label">
+            <input type="radio" name="radius" id="20" value="20" />
+            <label for="20" class="radio-label">within 20 km</label><br />
+          </div>
+          <div class="radio-button-and-label">
+            <input type="radio" name="radius" id="30" value="30" />
+            <label for="30" class="radio-label">within 30 km</label><br />
+          </div>
+        </div>
+      </div>
+      <button onclick="closeModal()" id="pop-up-close-button">Close</button>
     </div>
     <div id="eventDetails"></div>
-</body>
+    <script>
+      // JavaScript functions to open and close the modal
+      function openModal() {
+        document.getElementById("modal").style.display = "block";
+        console.log("I'm a pop up");
+        document.getElementById("overlay").style.display = "block";
+      }
+      function closeModal() {
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+      }
+    </script>
+  </body>
 </html>
