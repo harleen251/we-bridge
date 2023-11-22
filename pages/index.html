@@ -10,13 +10,21 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/header.css">
     <script type="module" src="../js/index.js" defer></script>
+    <script type="module" src="../js/header.js"></script>
+        <link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
     <!-- header>nav>.row>.col>.dropdown-container>.dropdown-toggle.click-dropdown>{Log In}^.dropdown-menu>(ul>li>a[href=""]{Menu$})*2 -->
-    <header>
-        <!-- <nav>
-            <div class="container">
-                <a href="explore_opportunity.html">Find Opportunities</a>
+    <header class="main-header">
+        <div class="deskTop">
+            <div class="left-section">
+                <a href="../pages/explore_opportunity.html">Find opportunities</a>
+                <a href="#">About us</a>
+            </div>
+            <div class="center-section">
+                <img src="../img/WeBridge_Logo_main.svg" alt="Logo">
+            </div>
+            <div class="right-section">
                 <button class="btn" id="btnLogin">Log In <i class="fa-solid fa-caret-down" id="arrow"></i></button>
                 <div class="dropdown" id="dropdown">
                     <a href="volunteer_login.html">
@@ -41,18 +49,17 @@
                 </div>
                 <button class="btn" id="btnAccount" style="display: none;">Account <i class="fa-solid fa-caret-down" id="arrowAcc"></i></button>
                 <div class="dropdown" id="dropdownAcc">
-                    <a id="linkAccount">
+                    <a id="linkAccount1">
                     <i class="bx bx-plus-circle"></i>
                         Account
                     </a>
-                    <a id="btnLogout">
+                    <a id="btnLogout1">
                     <i class="bx bx-book"></i>
                         LogOut
                     </a>
                 </div>
             </div>
-        </nav>
-        </div> -->
+        </div>
                 <!-- 汉堡按钮 -->
         <div class="mobile">
             <img src="../img/WeBridge_Logo_main.svg" alt="Logo">
