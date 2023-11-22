@@ -19,6 +19,7 @@ const db = getFirestore(firebassApp);
 const postCollection = collection(db, "posts");
 const volunteerCollection = collection(db, "volunteer");
 const appCollection = collection(db, "application");
+const organizationCollection = collection(db, "organization"); //organizationId
 
 // Retrieve the volunteerId and OrganizationId from the cookie
 let volunteerId = "";
@@ -29,7 +30,7 @@ getCookie('volunteerId')
     if (cookieValue !== null) {
       // Cookie found, use cookieValue
       if (cookieValue !== "") {
-        // volunteerId = cookieValue;
+        volunteerId = cookieValue;
         // console.log(`volunteerId value: ${cookieValue}`);
         // btnAccount.style.display = "block";
         // btnLogin.style.display = "none";
@@ -42,7 +43,7 @@ getCookie('volunteerId')
               if (cookieValue !== null) {
               // Cookie found, use cookieValue
                 if (cookieValue !== "") {
-                    // organizationId = cookieValue;
+                    organizationId = cookieValue;
                     // console.log(`organizationId value: ${cookieValue}`);
                     // btnAccount.style.display = "block";
                     // btnLogin.style.display = "none";
@@ -137,26 +138,43 @@ let i = 1;
 
 await getDocs(q)
 .then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-    const post = doc.data();
-    // let txtInner = `<header><h1>${post.positionTitle}</h1></header>`;    
-    let txtInner = ""; 
-    console.log(i);
-    i++;
-    let cardDiv = document.createElement("div"); // create new Div, cardDiv to display details data             
-    cardDiv.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
+    querySnapshot.forEach((postdoc) => {
+    const post = postdoc.data();
+   
+    console.log('post.organizationId : ' + post.organizationId)  ;
+    const orgRef = doc(organizationCollection, post.organizationId);
+    getDoc(orgRef)
+        .then((orgsnapshot) => {
+            let organizationdata = orgsnapshot.data();
+            console.log("Organization name:", organizationdata.orgName);
+            console.log("Organization photoLink:", organizationdata.photoLink); 
+            // let txtInner = `<header><h1>${post.positionTitle}</h1></header>`;    
+            let txtInner = ""; 
+            console.log(i);
+            i++;
+            let cardDiv = document.createElement("div"); // create new Div, cardDiv to display details data             
+            cardDiv.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
+            
+            const anchor = document.createElement('a');
+            anchor.href = 'post_detail.html';
+            anchor.innerText = post.positionTitle;
+            anchor.setAttribute("data-postId", postdoc.id);            
+            anchor.addEventListener('click', handleViewButtonEvent);
+            txtInner += `<div>`+ organizationdata.orgName +`</div>`;
+            txtInner += `<div>${organizationdata.photoLink}</div>`;
+            txtInner += `<p class="post_description_excerpt">${post.description}</p>`; // add the title   
+            txtInner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
+            txtInner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
+            cardDiv.innerHTML = txtInner;
+            cardDiv.prepend(anchor);   
+            containerOpp.appendChild(cardDiv); // add cardDiv to orderDiv     
+    })
+    .catch((error) => {
+            console.error("Error getting document:", error);
+    }); 
     
-    const anchor = document.createElement('a');
-    anchor.href = 'post_detail.html';
-    anchor.innerText = post.positionTitle;
-    anchor.setAttribute("data-postId", doc.id);            
-    anchor.addEventListener('click', handleViewButtonEvent);
-    txtInner += `<p class="post_description_excerpt">${post.description}</p>`; // add the title   
-    txtInner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
-    txtInner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
-    cardDiv.innerHTML = txtInner;
-    cardDiv.prepend(anchor);   
-    containerOpp.appendChild(cardDiv); // add cardDiv to orderDiv   
+
+      
     });
 })
 .catch((error) => {
@@ -164,6 +182,7 @@ await getDocs(q)
 });
 
 async function getVolunteerInfo(volunteerId){
+   
     const docRef = doc(volunteerCollection, volunteerId);
     const docSnap = await getDoc(docRef);
 
@@ -211,32 +230,49 @@ async function getVolunteerInfo(volunteerId){
 
                 
                 let qApp = query(appCollection, where ('postsID', '==', postDoc.id));
+                let orgName = '';
+                let orgImgLink = '';
                 getDocs(qApp)
                     .then((appSnapshot) => {
                             appSnapshot.forEach((appDoc) => {
                             let appData = appDoc.data();
                             if (appData.volunteerID != volunteerId){
                                 console.log("NOT volunteerID and " + "postDoc.id : " + postDoc.id);
-
-                                let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
-                                card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
-                                document.getElementById("h1Recomm").style.display = "block";  
-                                // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
-                                let txt2Inner = ""; 
-                                const anchor = document.createElement('a');
-                                anchor.href = 'post_detail.html';
-                                anchor.innerText = post.positionTitle;
-                                anchor.setAttribute("data-postId", postDoc.id);            
-                                anchor.addEventListener('click', handleViewButtonEvent);
-                                txt2Inner += `<p class="post_description_excerpt">${post.description}</p>`; // add the title   
-                                txt2Inner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
-                                txt2Inner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
-                                // txt2Inner += `<p>${post.description}</p>`; // add the title  
-                                // txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
-                                // txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
-                                card2Div.innerHTML = txt2Inner;         
-                                card2Div.prepend(anchor);   
-                                containerRec.appendChild(card2Div); // add cardDiv to orderDiv
+                                ////////////////////////////// Organization Info /////////////////////////////////////
+                                
+                                const orgRef = doc(organizationCollection, post.organizationId);
+                                getDoc(orgRef)
+                                    .then((orgsnapshot) => {
+                                        let organizationdata = orgsnapshot.data();
+                                        console.log("In Post Organization name:", organizationdata.orgName);
+                                        console.log("In Post Organization photoLink:", organizationdata.photoLink);
+                                        let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data             
+                                        card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......     
+                                        document.getElementById("h1Recomm").style.display = "block";  
+                                        // let txt2Inner = `<h1>${post.positionTitle}</h1>`; 
+                                        let txt2Inner = ""; 
+                                        const anchor = document.createElement('a');
+                                        anchor.href = 'post_detail.html';
+                                        anchor.innerText = post.positionTitle;
+                                        anchor.setAttribute("data-postId", postDoc.id);            
+                                        anchor.addEventListener('click', handleViewButtonEvent);
+                                        txt2Inner += `<div>${organizationdata.orgName}</div>`;
+                                        txt2Inner += `<div>${organizationdata.photoLink}</div>`;
+                                        txt2Inner += `<p class="post_description_excerpt">${post.description}</p>`; // add the title   
+                                        txt2Inner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>` ;
+                                        txt2Inner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>`;              
+                                        // txt2Inner += `<p>${post.description}</p>`; // add the title  
+                                        // txt2Inner += `<p>${"Event Date :" + post.date.toDate().toLocaleDateString()}</p>`;
+                                        // txt2Inner += `<p>${"Location : " + post.location}</p>`;                       
+                                        card2Div.innerHTML = txt2Inner;         
+                                        card2Div.prepend(anchor);   
+                                        containerRec.appendChild(card2Div); // add cardDiv to orderDiv      
+                                })
+                                .catch((error) => {
+                                        console.error("Error getting document:", error);
+                                }); 
+                                ////////////////////////////// Organization Info /////////////////////////////////////
+                                
                             }
                          });
                     })

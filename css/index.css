@@ -6,11 +6,11 @@
 ********************************************** */
 
 /* Font Setting */
-h1,
-h2,
-h3,
-h4,
-p {
+.homepage h1,
+.homepage h2,
+.homepage h3,
+.homepage h4,
+.homepage p {
     color: var(--black);
     text-align: left;
     font-family: "Poppins", sans-serif;
@@ -25,7 +25,7 @@ body {
 }
 
 /* Pseudo Settings */
-button:hover{
+.homepage button:hover{
     opacity: 100%;
     background-color: var(--yellow-primary);
 }
@@ -36,7 +36,7 @@ button:hover{
     box-shadow: 0 0 8px rgba(0,0,0,.125);
 }
 
-button:active{
+.homepage button:active{
     opacity: 100%;
     background-color: var(--yellow-primary);
     /* background-color: var(--purple-light); */
@@ -145,13 +145,13 @@ button:active{
 }
 
 /*** Latest Opportunity and Recommendation Section ***/
-h2 {
+.homepage h2 {
     font-size: 24px;
     margin: 0;
     padding: 0;
 }
 
-p {
+.homepage p {
     font-size: 12px;
 }
 
@@ -169,6 +169,7 @@ p {
     background-color: var(--white);
     padding:16px; 
     margin-bottom: 12px;
+    cursor: pointer;
 }
 
 .card a{
@@ -227,6 +228,7 @@ p {
     margin-top: 24px;
     margin-bottom: 84px;
     text-align: center;
+    position: relative;
 
 }
 
@@ -325,13 +327,23 @@ p {
         font-size: 20px;
     }
 
+    .carousel_logo{
+        height: 70px;
+    }
+
+    #carousel {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+
     /*** Latest Opportunity and Recommendation Section ***/
     .card {
         padding: 28px;
         margin: 0;
     }
 
-    h2 {
+    .homepage h2 {
         font-size: 32px;
     }
 
@@ -361,4 +373,11 @@ p {
         grid-template-columns: 1fr 1fr;
         grid-gap: 20px;
     }
+
+    #containerRec{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
 }
