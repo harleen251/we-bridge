@@ -6,20 +6,22 @@
     <title>WeBridge - Organization</title>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script type="module" src="../js/organization_manage_activity.js" defer></script>
-    <link rel="stylesheet" href="../css/old_style.css" />
+    <link rel="stylesheet" href="../css/organization_manage_activity.css" />
 </head>
 <body>
     <main>
-        <section>
+        <section id="Post_info_wrap">
             <div id="Post_info">
             </div>
-            <button><a href="./post_detail.html">View Post</a></button>
+            <div id="button_wrap">
+                <button><a href="./post_detail.html">View Post</a></button>
+            </div>
         </section>
         <div id="volunteerTracking">
             <section>
                 <h2>VOLUNTEER TRACKING</h2>
                 <div>
-                    <table>
+                    <table id="table">
                         <thead>
                             <th>Name</th><th>Check-in</th><th>Check-out</th><th>Total Hours</th>
                         </thead>
@@ -29,7 +31,7 @@
                     </table>
                 </div>
             </section>
-            <div>
+            <div id="qrcode_button_wrap">
                 <button id="checkInBtn">Generate Check-In QR Code</button>
                 <button id="checkOutBtn">Generate Check-Out QR Code</button>
     
