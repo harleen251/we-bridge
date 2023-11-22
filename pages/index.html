@@ -6,7 +6,7 @@
     <title>WeBridge - Home Page</title>
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="../css/dropdown.css"> -->
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
     <link rel="stylesheet" href="../css/index.css">
     <script type="module" src="../js/index.js" defer></script>
 </head>
@@ -50,7 +50,58 @@
                     </a>
                 </div>
             </div>
-        </nav>
+        </div>
+                <!-- 汉堡按钮 -->
+        <div class="mobile">
+            <img src="../img/WeBridge_Logo_main.svg" alt="Logo">
+            <div class="hamburger-menu">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </div>
+            
+            <!-- 要显示/隐藏的菜单 -->
+            <nav class="menu">
+                <img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="white_mobile_logo">
+                <ul>
+                    <li><a href="../pages/explore_opportunity.html">Find opportunities</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li>
+                        <a href="#" class="login">Log in <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu1" >
+                            <li><a href="../pages/volunteer_login.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_login.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="signUp">Sign Up <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu2" >
+                            <li><a href="../pages/volunteer_signup.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_signup.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="account" style="display: none;">Account<i class="fa-solid fa-caret-down" id="arrowAcc"></i></a>
+                        <ul class="submenu3">
+                            <div class="org">
+                                <li ><a id="orgLink">Organization Profile</a></li>
+                                <li ><a id="postLink">Posting</a></li>
+                                <li ><a id="appLink">Application</a></li>
+                            </div>
+                            <div class="vol">
+                                <li ><a id="myLink">My Profile</a></li>
+                                <li ><a id="appHisLink">Appocation History</a></li>
+                                <li ><a id="regLink">Registered Event</a></li>
+                                <li ><a id="volRecLink">Volunteer Record</a></li>
+                            </div>
+                            
+                            <li><a id="btnLogout2">LogOut</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+       
     </header>
 
     <main class="homepage">
