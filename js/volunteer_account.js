@@ -22,6 +22,7 @@ const db = getFirestore(firebassApp);
 
 // Reference to the volunteer collection
 const volunteerCollection = collection(db, "volunteer");
+const organizationCollection = collection(db, "organization"); //organizationId
 
 // Retrieve the user's ID from the cookie
 const volunteerId = await getCookie("volunteerId");
@@ -39,13 +40,22 @@ async function getVolunteerInfo(){
     if (docSnap.exists()) {
         const volunteerData = docSnap.data();
         console.log("Document data:", volunteerData);
-        document.getElementById('volunteerName').innerHTML = volunteerData.firstName;
-        document.getElementById('txtFirstName').innerHTML =  volunteerData.firstName + " " + volunteerData.lastName;
-        document.getElementById('profilePic').src = (volunteerData.photoLink == null ? " " : volunteerData.photoLink);
-        document.getElementById('txtBio').innerHTML = (volunteerData.bio == null ? " " : volunteerData.bio);
-        document.getElementById('txtCity').innerHTML = (volunteerData.city == null ? " " : volunteerData.city);
-        document.getElementById('txtProvince').innerHTML = (volunteerData.province == null ? " " : volunteerData.province);
-        document.getElementById('txtSkill').innerHTML = (volunteerData.skills == null ? " " : volunteerData.skills.join(',') );
+        document.getElementById("welcome_tag").innerHTML = `Welcome ${volunteerData.firstName}!`;
+            let profile_info = document.getElementById("profile_info")
+            profile_info.innerHTML = `  <div>
+                                        <img class="profile_pic" src= "${(volunteerData.photoLink == null ? " " : volunteerData.photoLink)}" alt = "profile image">
+                                        </div>
+                                        <div>
+                                        <h2>${volunteerData.firstName + " " + volunteerData.lastName}</h2> 
+                                        <p>${(volunteerData.city == null ? " " : volunteerData.city)}, ${(volunteerData.province == null ? " " : volunteerData.province)}</p>
+                                        <p id="vol_description">${(volunteerData.bio == null ? " " : volunteerData.bio)}</p>
+                                        <div id="skillList_vol"></div>
+                                        </div>`;
+                                        for(let i = 0; i < volunteerData.skills.length; i++) {
+                                            let p = document.createElement("p");
+                                            p.innerHTML = volunteerData.skills[i];
+                                            skillList_vol.appendChild(p);
+                                        }
         getApplicantInfo();
         
     } else {
@@ -80,15 +90,34 @@ async function getApplicantInfo() {
                                 if (postDoc.exists) {
                                 const postData = postDoc.data();
                                 console.log('Post Details : ', postData);
-                                let txt2Inner = `<header><h3>${postData.positionTitle}</h3></header>`;
-                                document.getElementById("h1Recomm").style.display = "block";  
-                                let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
-                                card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
+                                let txt2Inner = '';
+                                switch (application.status) {
+                                    case "approved":
+                                        txt2Inner +=`<p><img class="card_icons" src="../images/icons/approved.svg">  ${application.status}</p>` ;
+                                        break;
+                                    case "complete":
+                                        txt2Inner +=`<p><img class="card_icons" src="../images/icons/approved.svg">  ${application.status}</p>` ;
+                                    break;
+                                    case "declined":
+                                        txt2Inner +=`<p><img class="card_icons" src="../images/icons/declined.svg">  ${application.status}</p>` ;
+                                        break;
+                                    case "applied":
+                                        txt2Inner +=`<p><img class="card_icons" src="../images/icons/pending.svg">  ${application.status}</p>` ;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                    
+                                txt2Inner += `<header><h3>${postData.positionTitle}</h3></header>`;
+                                // document.getElementById("h1Application").style.display = "block";  
+                                let card2Div = document.createElement("div"); 
+                                card2Div.setAttribute("class", "card"); 
                                 // txt2Inner += `<a href="">${postDoc.id}</p>`;
-                                txt2Inner += `<p>${postData.positionTitle}</p>`;
-                                txt2Inner += `<p>${postData.location}</p>`;
-                                txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
-                                txt2Inner += `<p>${application.status}</p>`; // add the title             
+                                // txt2Inner += `<p>${postData.positionTitle}</p>`;
+                                txt2Inner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${application.dateApplied.toDate().toLocaleString()}</p></div>` ;
+                                txt2Inner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${postData.location}</p></div>`; 
+                                // txt2Inner += `<p>${postData.location}</p>`;
+                                // txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;                                        
                                 card2Div.innerHTML = txt2Inner;
                                 containerRec.appendChild(card2Div); // add cardDiv to orderDiv
                                 const viewButton = document.createElement('button');
@@ -96,7 +125,10 @@ async function getApplicantInfo() {
                                 viewButton.setAttribute("data-appId", appDoc.id);
                                 viewButton.setAttribute("data-postId", application.postsID);
                                 viewButton.innerHTML = 'Check Details';
-                                card2Div.append(viewButton);
+                                let buttonDiv = document.createElement("div");
+                                buttonDiv.setAttribute("class", "btnDiv");
+                                buttonDiv.append(viewButton);
+                                card2Div.append(buttonDiv);
                                 console.log("button appened");
                                 viewButton.addEventListener('click', handleViewButtonEvent); 
                                 } else {
@@ -129,9 +161,24 @@ async function getRegisteredInfo() {
     } 
     await getDocs(q, applicationCollection)
             .then((querySnapshot) => {
-                if (!querySnapshot.empty) {                 
+                if (!querySnapshot.empty) {  
+                                 
                     querySnapshot.forEach((appDoc) => {
-                        const application = appDoc.data();                   
+                        let buttonDiv = document.createElement("div");
+                        buttonDiv.setAttribute("class", "btnDiv");
+                        const application = appDoc.data(); 
+                        let orgName = '';
+                        console.log('application.organizationId : ' + application.organizationId)  
+                        const orgRef = doc(organizationCollection, application.organizationId);
+                        getDoc(orgRef)
+                            .then((orgsnapshot) => {
+                                let organizationdata = orgsnapshot.data();
+                                console.log("Organization data:", organizationdata.orgName);
+                                orgName = organizationdata.orgName;            
+                        })
+                        .catch((error) => {
+                                console.error("Error getting document:", error);
+                        });       
                         console.log("application.postsID : "+  application.postsID);
                         const postsCollection = collection( db, 'posts' ); 
                         const postRef = doc(postsCollection, application.postsID);
@@ -141,14 +188,15 @@ async function getRegisteredInfo() {
                                     const postData = postDoc.data();
                                     console.log('Post Details : ', postData);
                                     let txt2Inner = `<header><h3>${postData.positionTitle}</h3></header>`;
-                                    document.getElementById("h1Recomm").style.display = "block";  
+                                    // document.getElementById("h1Recomm").style.display = "block";  
                                     let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
                                     card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-                                    txt2Inner += `<a href="">${appDoc.id}</p>`;
+                                    // txt2Inner += `<a href="">${appDoc.id}</p>`;
                                     // txt2Inner += `<a href="">${postData.positionTitle}</p>`;
-                                    txt2Inner += `<a href="">${postData.location}</p>`;
-                                    txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
-                                    txt2Inner += `<p>${application.status}</p>`; // add the title             
+                                    txt2Inner += `<h5>${orgName}</h5>`;
+                                    txt2Inner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${application.dateApplied.toDate().toLocaleString()}</p></div>` ;
+                                    txt2Inner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${postData.location}</p></div>`; 
+                                    // txt2Inner += `<p>${application.status}</p>`; // add the title             
                                     card2Div.innerHTML = txt2Inner;
                                     containerRegistered.appendChild(card2Div); // add cardDiv to orderDiv
                                     if (application.status === "approved" && postData.date < currentDate) {
@@ -167,9 +215,11 @@ async function getRegisteredInfo() {
                                                             checkInButton.setAttribute("data-appId", appDoc.id);
                                                             checkInButton.setAttribute("data-postId", application.postsID);
                                                             console.log("app ID : " + appDoc.id);
+                                                            checkInButton.setAttribute("class", "viewButton");
                                                             checkInButton.setAttribute("checkedIn", "false");
-                                                            checkInButton.innerHTML = 'Check Out';
-                                                            card2Div.append(checkInButton);
+                                                            checkInButton.innerHTML = 'Check Out';     
+                                                            buttonDiv.append(checkInButton);
+                                                            card2Div.append(buttonDiv);
                                                             console.log("button checkOutButton appened");
                                                             checkInButton.addEventListener('click', handleCheckInButtonEvent);
                                                         }                                                        
@@ -180,9 +230,11 @@ async function getRegisteredInfo() {
                                                     checkInButton.setAttribute("data-appId", appDoc.id);
                                                     checkInButton.setAttribute("data-postId", application.postsID);
                                                     console.log("posts ID :   " + application.postsID);
+                                                    checkInButton.setAttribute("class", "viewButton");
                                                     checkInButton.setAttribute("checkedIn", "true");
-                                                    checkInButton.innerHTML = 'Check In';
-                                                    card2Div.append(checkInButton);
+                                                    checkInButton.innerHTML = 'Check In';                                                    
+                                                    buttonDiv.append(checkInButton);
+                                                    card2Div.append(buttonDiv);
                                                     console.log("button checkInButton appened");
                                                     checkInButton.addEventListener('click', handleCheckInButtonEvent);                                                    
                                                  }
@@ -196,7 +248,8 @@ async function getRegisteredInfo() {
                                     viewButton.setAttribute("data-appId", appDoc.id);
                                     viewButton.setAttribute("data-postId", application.postsID);
                                     viewButton.innerHTML = 'Check Details';
-                                    card2Div.append(viewButton);
+                                    buttonDiv.append(viewButton);
+                                    card2Div.append(buttonDiv);
                                     console.log("button appened");
                                     viewButton.addEventListener('click', handleViewButtonEvent); 
                                 } else {

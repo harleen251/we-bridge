@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="kim-htmllogin">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,19 +10,30 @@
     <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script> -->
 </head>
-<body>
-    <h2>Log in to WeBridge to manage your volunteers</h2>
-    <div id="divLogin">          
-        <div class="container">
-            <label for="txtEmail"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email Address" id="txtEmail" name="txtEmail" size="30" pattern=".+@.+" required>
-            <label for="txtPsw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" id="txtPsw" name="txtPsw" required>                    
-            <button type="submit" id="btnLogin">Login</button>                
-        </div>
-        <div class="container" style="background-color:#f1f1f1">
-            <p>Don't have an account?<span class="psw"><a href="./organization_signup.html">Sign Up</a></span></p>
-        </div>
-    </div> 
+<body class="kim-bodylogin">
+    <div class="kim-wrapper">
+        <main class="kim-main">
+            <div class="kim-addimage">
+                <img class="kim-img2" src="../images/photo/transparent.png" alt="">
+                <img class="kim-img3" src="../images/photo/transparent.png" alt="">
+                <img class="kim-img1" src="../images/photo/peeps-org.png" alt="">
+            </div>
+            <div id="divLogin" class="container kim-container-login">          
+                <h2 class="kim-h2">Log in to <span class="kim-webridge">WeBridge</span> <br> to manage your volunteers</h2>
+                <div class="container kim-container-emailandpassword">    
+                    <label for="txtEmail"><b>Email</b></label>
+                    <input type="text" class="kim-emailbox" placeholder="Enter Email Address" id="txtEmail" name="txtEmail" size="30" pattern=".+@.+" required>
+                    <label for="txtPsw"><b>Password</b></label>
+                    <input type="password" class="kim-passwordbox" placeholder="Enter Password" id="txtPsw" name="txtPsw" required>    
+                    <p>Forgot password?</p>                 
+                    <button type="submit" class="kim-submitbutton" id="btnLogin">Login</button>                
+                </div>
+                <!-- style="background-color:#f1f1f1" -->
+                <div class="container kim-container-donthaveacc" >
+                    <p>Don't have an account? <span class="psw kim-signuplink"><a href="./organization_signup.html">Sign Up</a></span></p>
+                </div>
+            </div> 
+        </main>
+    </div>
 </body>
 </html>

@@ -95,6 +95,7 @@ body {
 #opportunity_detail .div4 p {
     margin-top: 0;
     padding-top: 0;
+    padding-bottom: 2rem;
 }
 
 #opportunity_detail .div4 h3 {
@@ -141,6 +142,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr 1fr 1fr ;
+    row-gap: 10px;
 }
 
 #similar_opportunities img {

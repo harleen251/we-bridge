@@ -220,3 +220,381 @@ label {
     /* Could be more or less, depending on screen size */
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*****************************************************************************/
+/*****************************************************************************/
+/************************** Start of Kim's Part ******************************/
+/*****************************************************************************/
+
+/************************* Start of Mobile View ******************************/
+
+/*****************************************************************************/
+/******************************* Login Page **********************************/
+/*****************************************************************************/
+* {
+    box-sizing: border-box;
+}
+
+.kim-htmllogin {
+    background-color: #3d0080;
+}
+
+.kim-bodylogin {
+    font-family: "Poppins", sans-serif;
+    background-color: #3d0080;
+    margin: 0;
+}
+
+.kim-wrapper {
+    background-color: #3d0080;
+    width: auto;
+    margin: 0;
+    padding: 1rem;
+}
+
+.kim-addimage {
+    display: none;
+}
+
+.kim-h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #ccc;
+}
+
+.kim-webridge {
+    color: #FFC107;
+}
+
+.kim-container-emailandpassword {
+    color: #ccc;
+    font-size: 12px;
+    padding: 0;
+}
+
+.kim-emailbox, .kim-passwordbox{
+    width: 100% !important;
+    padding: 15px !important;
+    margin: 10px 0 20px 0 !important;
+    display: inline-block;
+    border: no;
+    border-radius: 15px;
+}
+
+ .kim-submitbutton {
+    background-color: #FFC107;
+    color: #3d0080;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+    width: 100% !important;
+    border-radius: 15px;
+}
+
+.kim-submitbutton:hover {
+    opacity: 0.8;
+}
+
+.kim-container-donthaveacc p, .kim-container-emailandpassword p {
+    text-align: center;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.kim-signuplink a {
+    color: #FFC107;
+    text-decoration: none;
+}
+
+/*****************************************************************************/
+/******************************* Signup Page *********************************/
+/*****************************************************************************/
+
+.kim1-htmlsignup {
+    background-color: #ccc;
+}
+
+.kim1-bodysignup {
+    font-family: "Poppins", sans-serif;
+    background-color: #ccc;
+    margin: 0;
+}
+
+.kim1-wrapper {
+    background-color: #ccc;
+    width: auto;
+    margin: 0;
+    padding: 1rem;
+}
+
+.kim1-addimage {
+    display: none;
+}
+
+.kim1-welcome {
+    display: none;
+}
+
+.kim1-heart2 {
+    display: none;
+}
+
+.kim1-heartsvg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kim1-heart1 {
+    text-align: center;
+}
+
+.kim1-h2 {
+    text-align: center;
+    font-size: 28px;
+    margin: 0;
+}
+
+.kim1-webridge {
+    color: #3d0080;
+}
+
+.kim1-h2-2 {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 0;
+}
+
+.kim1-signupform {
+    font-size: 12px;
+}
+
+.kim1-fname, .kim1-lname, .kim1-email, .kim1-password, .kim1-cpass, .kim1-oname, .kim1-regnum {
+    width: 100% !important;
+    padding: 15px !important;
+    margin: 10px 0 20px 0 !important;
+    display: inline-block;
+    border: no;
+    border-radius: 15px;
+}
+
+.kim1-divcheckbox {
+    display: flex;
+    align-items: start;
+}
+
+.kim1-checkbox {
+    width: 20px;
+    height: 20px;
+}
+
+.kim1-checkboxlabel {
+    margin-left: .5rem;
+}
+
+.kim1-link1, .kim1-link2 {
+    color: #3d0080;
+}
+
+.kim1-submitbutton {
+    background-color: #3d0080;
+    color: #ccc;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.kim1-submitbutton:hover {
+    opacity: 0.8;
+}
+
+.kim1-haveacc {
+    text-align: center;
+    font-size: 12px;
+}
+
+.kim1-loginlink {
+    color: #3d0080;
+    text-decoration: none;
+}
+
+/************************* End of Mobile View ********************************/
+
+/************************* Start of Desktop View *****************************/
+@media screen and (min-width: 1024px) {
+
+/*****************************************************************************/
+/******************************* Login Page **********************************/
+/*****************************************************************************/
+
+    .kim-wrapper {
+        width: auto;
+        padding: 3rem;
+    }
+    
+    .kim-addimage {
+        display: block;
+        position: relative;
+    }
+
+    .kim-h2 {
+        text-align: left;
+        font-size: 38px;
+    }
+
+    .kim-container-login {
+        padding-left: 6rem;
+    }
+
+    .kim-container-emailandpassword, .kim-submitbutton {
+        font-size: 16px;
+    }
+
+    .kim-container-donthaveacc p, .kim-container-emailandpassword p {
+        font-size: 16px;
+    }
+
+    .kim-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1%;
+    }
+
+    .kim-addimage img {
+        width: 100%;
+        border-radius: 80px;
+        position: absolute;
+    }
+
+
+    .kim-img2 {
+        border: 1px solid #FFC107;
+        position: absolute;
+        left: 2rem;
+        top: 1rem;
+    }
+    
+    .kim-img3 {
+        border: 1px solid #FFC107;
+        position: absolute;
+        left: 4rem;
+        top: 3rem;
+    }
+
+/*****************************************************************************/
+/******************************* Signup Page *********************************/
+/*****************************************************************************/
+
+    .kim1-wrapper {
+        width: auto;
+        padding: 3rem;
+    }    
+
+    .kim1-heartsvg {
+        display: none;
+    }
+
+    .kim1-h2 {
+        display: none;
+    }
+
+    .kim1-h2-2 {
+        text-align: left;
+        font-size: 38px;
+    }
+
+    .kim1-heart2 {
+        display: inline-block;
+    }
+
+    .kim1-addimage {
+        display: block;
+        position: relative;
+    }
+
+    .kim1-container-signup {
+        padding: 0 3rem;
+    }
+
+    .kim1-signupform, .kim1-submitbutton, .kim1-haveacc {
+        font-size: 16px;
+    }
+
+    .kim1-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1%;
+    }
+
+    .kim1-addimage img {
+        width: 100%;
+        border-radius: 80px;
+        position: absolute;
+        /* max-height: 80%; */
+    }
+
+    .kim1-img1 {
+        border: 3px solid #FFB549;
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        /* max-height: 90%; */
+    }
+
+    .kim1-h2-3 {
+        position: relative;
+        top: 35rem;
+        /* padding-top: 45rem; */
+        text-align: center;
+        font-size: 38px;
+    }
+
+    .kim1-webridge2 {
+        color: #3d0080;
+    }
+}
+
+/************************* End of Desktop View *******************************/
+
+/*****************************************************************************/
+/*****************************************************************************/
+/**************************** End of Kim's Part ******************************/
+/*****************************************************************************/

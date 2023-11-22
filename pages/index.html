@@ -9,13 +9,21 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/index.css">
     <script type="module" src="../js/index.js" defer></script>
+    <script type="module" src="../js/header.js" defer></script>
+    <link rel="stylesheet" href="../css/header.css">
 </head>
 <body>
     <!-- header>nav>.row>.col>.dropdown-container>.dropdown-toggle.click-dropdown>{Log In}^.dropdown-menu>(ul>li>a[href=""]{Menu$})*2 -->
-    <header>
-        <nav>
-            <div class="container">
-                <a href="explore_opportunity.html">Find Opportunities</a>
+    <header class="main-header">
+        <div class="deskTop">
+            <div class="left-section">
+                <a href="../pages/explore_opportunity.html">Find opportunities</a>
+                <a href="#">About us</a>
+            </div>
+            <div class="center-section">
+                <img src="../img/WeBridge_Logo_main.svg" alt="Logo">
+            </div>
+            <div class="right-section">
                 <button class="btn" id="btnLogin">Log In <i class="fa-solid fa-caret-down" id="arrow"></i></button>
                 <div class="dropdown" id="dropdown">
                     <a href="volunteer_login.html">
@@ -40,17 +48,56 @@
                 </div>
                 <button class="btn" id="btnAccount" style="display: none;">Account <i class="fa-solid fa-caret-down" id="arrowAcc"></i></button>
                 <div class="dropdown" id="dropdownAcc">
-                    <a id="linkAccount">
+                    <a id="linkAccount1">
                     <i class="bx bx-plus-circle"></i>
                         Account
                     </a>
-                    <a id="btnLogout">
+                    <a id="btnLogout1">
                     <i class="bx bx-book"></i>
                         LogOut
                     </a>
                 </div>
             </div>
-        </nav>
+        </div>
+                <!-- 汉堡按钮 -->
+        <div class="mobile">
+            <img src="../img/WeBridge_Logo_main.svg" alt="Logo">
+            <div class="hamburger-menu">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </div>
+            
+            <!-- 要显示/隐藏的菜单 -->
+            <nav class="menu">
+                <ul>
+                    <li><a href="../pages/explore_opportunity.html">Find opportunities</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li>
+                        <a href="#" class="login">Log in <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu1" >
+                            <li><a href="../pages/volunteer_login.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_login.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="signUp">Sign Up <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu2" >
+                            <li><a href="../pages/volunteer_signup.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_signup.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="account" style="display: none;">Account<i class="fa-solid fa-caret-down" id="arrowAcc"></i></a>
+                        <ul class="submenu3">
+                            <li><a id="linkAccount2">Account</a></li>
+                            <li><a id="btnLogout2">LogOut</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+       
     </header>
 
     <main class="homepage">

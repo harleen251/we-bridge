@@ -1,77 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer Account Page</title>
-    <script type="module" src="../js/volunteer_account.js" defer></script>
-    <!-- <link rel="stylesheet" href="../css/dropdown.css"> -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/volunteer_account.css">
-</head>
-<body>
-    <a href="index.html" style="text-align: right; display: block;">Home</a>
-    <div id="vol_profile">
-        <h1 id="volunteerName">volunteerName</h1>
-        <img id="profilePic" src="" alt="Profile Picture">
-        <p id="txtRecord">52 HOURS VOLUNTEERED</p>
-        <p id="txtFirstName">First Name</p>
-        <p id="txtCity">City</p>
-        <p id="txtProvince">Province</p>
-        <p id="txtBio">Bio</p>
-        <p id="txtSkill">Skill</p>
-        <button id="btnEditProfile">Edit profile</button>        
-    </div>
-    <div class="toolbar">           
-        <a class="item" href="#history" id="btnHistory">Application History</a>
-        <a class="item" href="#commitment" id="btnEvent">Registered Event</a>
-        <a class="item" href="#record" id="btnRecord" >Volunteer Records</a>
-    </div>
-    <div>       
-        <div class="page" id="history">
-            <session>
-                <h2 id="h1Recomm" style="display: none;">Application History</h2><br>
-                <select id="applicationFilter">
-                    <option value="approved">Approved</option>
-                    <option value="declined">Declined</option>
-                    <option value="applied">Applied</option>
-                    <option value="all" selected>All</option>
-                </select>            
-                <div id="containerRec"></div>            
-            </session>
-        </div>
-       
-        <div class="page" id="commitment" >
-            <session>
-                <h2>Commitment</h2>
-                <select id="applicationFilter2">
-                    <option value="active">Active</option>
-                    <option value="closed">Inactive/Closed</option>
-                    <option value="all" selected>All</option>
-                </select>
-                <div id="containerRegistered"></div>
-            </session>
-        </div>
-        <div class="page" id="record" >
-            <h2>Record</h2>
-        </div>
-    </div>
-    
-
-
-
-    <!-- <div class="toolbar">           
-        <a class="item" href="#history" >Application History</a>
-        <a class="item" href="#commitment" >Registered Event</a>
-        <a class="item" href="#record" >Volunteer Records</a>
-    </div> -->
-    
-    
-    
-    
-    
-    <script>
-        
-    </script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Volunteer Account Page</title>
+        <script type="module" src="../js/volunteer_account.js" defer></script>
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/volunteer_account.css">
+    </head>
+    <body>
+        <a href="index.html" style="text-align: right; display: block;">Home</a>
+        <header>
+            <h1 id="welcome_tag"></h1>
+        </header>
+        <main>
+            <section id="vol_profile">
+                <div id="profile_info"></div>   
+                <button id="btnEditProfile"><a href="volunteer_build_profile.html">Edit Profile</a></button>  
+            </section>            
+            <div class="toolbar">           
+                <a class="item" href="#history" id="btnHistory">History</a>
+                <a class="item" href="#commitment" id="btnEvent">Event</a>
+                <a class="item" href="#record" id="btnRecord" >Records</a>
+            </div>
+            <div>       
+                <div class="page" id="history">
+                    <session>
+                        <h2 id="h1Application">application history</h2>
+                        <select id="applicationFilter">
+                            <option value="approved">Approved</option>
+                            <option value="declined">Declined</option>
+                            <option value="applied">Applied</option>
+                            <option value="all" selected>All</option>
+                        </select>            
+                        <div id="containerRec"></div>            
+                    </session>
+                </div>            
+                <div class="page" id="commitment" >
+                    <session>
+                        <h2 id="h1Register">REGISTERED EVENT</h2>
+                        <select id="applicationFilter2">
+                            <option value="active">Active</option>
+                            <option value="closed">Inactive/Closed</option>
+                            <option value="all" selected>All</option>
+                        </select>
+                        <div id="containerRegistered"></div>
+                    </session>
+                </div>
+                <div class="page" id="record" >
+                    <session>
+                        <h2 id="h1Record">volunteer records</h2>
+                    </session>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
