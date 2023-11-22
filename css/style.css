@@ -293,7 +293,7 @@ label {
 .kim-h2 {
     text-align: center;
     font-size: 28px;
-    color: #ccc;
+    color: var(--grey-lighter);
 }
 
 .kim-webridge {
@@ -301,7 +301,7 @@ label {
 }
 
 .kim-container-emailandpassword {
-    color: #ccc;
+    color: var(--grey-lighter);
     font-size: 12px;
     padding: 0;
 }
@@ -332,7 +332,7 @@ label {
 
 .kim-container-donthaveacc p, .kim-container-emailandpassword p {
     text-align: center;
-    color: #ccc;
+    color: var(--grey-lighter);
     font-size: 12px;
 }
 
@@ -346,17 +346,17 @@ label {
 /*****************************************************************************/
 
 .kim1-htmlsignup {
-    background-color: #ccc;
+    background-color: var(--grey-lighter);
 }
 
 .kim1-bodysignup {
     font-family: "Poppins", sans-serif;
-    background-color: #ccc;
+    background-color: var(--grey-lighter);
     margin: 0;
 }
 
 .kim1-wrapper {
-    background-color: #ccc;
+    background-color: var(--grey-lighter);
     width: auto;
     margin: 0;
     padding: 1rem;
@@ -433,7 +433,7 @@ label {
 
 .kim1-submitbutton {
     background-color: #3d0080;
-    color: #ccc;
+    color: var(--grey-lighter);
     padding: 15px 20px;
     margin: 20px 0;
     border: none;
