@@ -4,6 +4,8 @@ const urlsToCache = ["/", "/pages", "/js","/css", "/img", "/images", "/pages/ind
 //   "/assets/icons/icon-192x192.png", "/assets/icons/icon-512x512.png","/assets/icons/icon-144x144.png",
 //   "https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"
 //  ];
+
+
 // NEVER cache service worker itself ( i.e. don't include sw.js in above array)
 // MAKE SURE THERE IS NO TYPO in the File names otherwise the cache.addAll fails in install
 
