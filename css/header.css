@@ -136,7 +136,7 @@ header a:hover {
   display: none;
 }
 
-.mobile .vol {
+.mobile #vol {
   display: none;
 }
 

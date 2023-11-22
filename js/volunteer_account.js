@@ -165,7 +165,7 @@ async function getRegisteredInfo() {
                                  
                     querySnapshot.forEach((appDoc) => {
                         let buttonDiv = document.createElement("div");
-                        buttonDiv.setAttribute("class", "btnDiv");
+                        buttonDiv.setAttribute("class", "btnDiv2");
                         const application = appDoc.data(); 
                         let orgName = '';
                         console.log('application.organizationId : ' + application.organizationId)  
@@ -396,4 +396,20 @@ navigateToPage();
 window.addEventListener('hashchange', navigateToPage);
 
 // event.target.parentElement.id
+
+
+var marker = document.querySelector('#marker');
+		var item = document.querySelectorAll('nav a');
+		
+		
+		function indicator(e) {
+			marker.style.left = e.offsetLeft + 'px';
+			marker.style.width = e.offsetWidth + 'px';
+		}
+		
+		item.forEach(link => {
+			link.addEventListener("click", (e) => {	
+				indicator(e.target);			
+			})
+		})
 
