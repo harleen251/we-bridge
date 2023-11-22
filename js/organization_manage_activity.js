@@ -54,7 +54,7 @@ async function postInfo() {
             console.log("Document data:", data);
 
             let post_info = document.getElementById("Post_info")
-            post_info.innerHTML = `<img src = "${org_info.photoLink}" >
+            post_info.innerHTML = `<img id="profile_img" src = "${org_info.photoLink}" >
                                     <h1>${data.positionTitle}</h1>
                                     <p>${data.description}</p>`
         
@@ -142,8 +142,8 @@ async function getVolunteerList() {
                                 record.checkOutDate.toDate().getHours().toString().padStart(2, '0')+":"+record.checkOutDate.toDate().getMinutes().toString().padStart(2, '0'):"00:00"; 
                                 let hours = record.hours?record.hours:"0";
                                 let row = `<tr>
-                                            <td><img src=${data.photoLink} width="100">
-                                            ${data.firstName}</td>
+                                            <td><img class="vol_profile" src=${data.photoLink} width="100">
+                                            <p>${data.firstName}</p></td>
                                             <td><p>${checkInDate}</p><p>${checkInTime}</p></td>
                                             <td><p>${checkOutDate}</p><p>${checkOutTime}</p></td>
                                             <td>${hours}</td>

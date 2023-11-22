@@ -380,10 +380,7 @@ select {
 
 /* end */
 
-/* org manage activity */
-#volunteerTracking {
-    display: none;
-}
+
 
 /*explore pop up application*/
 .popup {
@@ -400,6 +397,11 @@ select {
 
 /* END */
 
+
+/* org manage activity */
+#volunteerTracking {
+    display: none;
+}
 
 /* QR CODE Popup */
 
