@@ -74,7 +74,7 @@ getCookie('volunteerId')
         linkAccount1.href  = "volunteer_account.html";
         myLink.href = "volunteer_account.html"
         appHisLink.href = "volunteer_account.html#history";
-        regLink.href = "volunteer_account.html#comitment";
+        regLink.href = "volunteer_account.html#commitment";
         volRecLink.href = "volunteer_record.html"
       } else {
         // Cookie not found

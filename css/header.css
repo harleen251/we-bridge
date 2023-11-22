@@ -22,7 +22,7 @@ header {
     display: block;
     width: 30px; /* 汉堡按钮的宽度 */
     height: 20px; /* 汉堡按钮的高度 */
-  
+    z-index: 99;
 }
 
 .deskTop {
@@ -89,6 +89,7 @@ header a:hover {
 /* Rotate and style the bar to create the effect of a hamburger button */
 .hamburger-menu.active .bar:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
+    background-color: white;
 }
 
 .hamburger-menu.active .bar:nth-child(2) {
@@ -97,6 +98,7 @@ header a:hover {
 
 .hamburger-menu.active .bar:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
+    background-color: white;
 }
 
 .menu.active {
@@ -104,12 +106,20 @@ header a:hover {
     background-color: #4410A5;
     border: 1px solid #ccc;
     position: absolute;
-    top: 50px;
+    width: 250px;
+    top: 20px;
     right: 20px;
-    padding: 10px 20px 40px 0;
+    padding: 40px 15px 150px 0;
     /* ... */
 }
 
+.menu img {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  width: 120px;
+  height: auto;
+}
 .submenu1, .submenu2, .submenu3 {
     display: none;
 }
