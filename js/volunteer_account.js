@@ -22,6 +22,7 @@ const db = getFirestore(firebassApp);
 
 // Reference to the volunteer collection
 const volunteerCollection = collection(db, "volunteer");
+const organizationCollection = collection(db, "organization"); //organizationId
 
 // Retrieve the user's ID from the cookie
 const volunteerId = await getCookie("volunteerId");
@@ -109,8 +110,8 @@ async function getApplicantInfo() {
                                     
                                 txt2Inner += `<header><h3>${postData.positionTitle}</h3></header>`;
                                 // document.getElementById("h1Application").style.display = "block";  
-                                let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
-                                card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
+                                let card2Div = document.createElement("div"); 
+                                card2Div.setAttribute("class", "card"); 
                                 // txt2Inner += `<a href="">${postDoc.id}</p>`;
                                 // txt2Inner += `<p>${postData.positionTitle}</p>`;
                                 txt2Inner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${application.dateApplied.toDate().toLocaleString()}</p></div>` ;
@@ -126,7 +127,7 @@ async function getApplicantInfo() {
                                 viewButton.innerHTML = 'Check Details';
                                 let buttonDiv = document.createElement("div");
                                 buttonDiv.setAttribute("class", "btnDiv");
-                                buttonDiv.append(viewButton)
+                                buttonDiv.append(viewButton);
                                 card2Div.append(buttonDiv);
                                 console.log("button appened");
                                 viewButton.addEventListener('click', handleViewButtonEvent); 
@@ -160,9 +161,24 @@ async function getRegisteredInfo() {
     } 
     await getDocs(q, applicationCollection)
             .then((querySnapshot) => {
-                if (!querySnapshot.empty) {                 
+                if (!querySnapshot.empty) {  
+                                 
                     querySnapshot.forEach((appDoc) => {
-                        const application = appDoc.data();                   
+                        let buttonDiv = document.createElement("div");
+                        buttonDiv.setAttribute("class", "btnDiv");
+                        const application = appDoc.data(); 
+                        let orgName = '';
+                        console.log('application.organizationId : ' + application.organizationId)  
+                        const orgRef = doc(organizationCollection, application.organizationId);
+                        getDoc(orgRef)
+                            .then((orgsnapshot) => {
+                                let organizationdata = orgsnapshot.data();
+                                console.log("Organization data:", organizationdata.orgName);
+                                orgName = organizationdata.orgName;            
+                        })
+                        .catch((error) => {
+                                console.error("Error getting document:", error);
+                        });       
                         console.log("application.postsID : "+  application.postsID);
                         const postsCollection = collection( db, 'posts' ); 
                         const postRef = doc(postsCollection, application.postsID);
@@ -175,11 +191,12 @@ async function getRegisteredInfo() {
                                     // document.getElementById("h1Recomm").style.display = "block";  
                                     let card2Div = document.createElement("div"); // create new Div, cardDiv to display details data                                           
                                     card2Div.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......
-                                    txt2Inner += `<a href="">${appDoc.id}</p>`;
+                                    // txt2Inner += `<a href="">${appDoc.id}</p>`;
                                     // txt2Inner += `<a href="">${postData.positionTitle}</p>`;
-                                    txt2Inner += `<a href="">${postData.location}</p>`;
-                                    txt2Inner += `<p>${application.dateApplied.toDate().toLocaleString()}</p>`;
-                                    txt2Inner += `<p>${application.status}</p>`; // add the title             
+                                    txt2Inner += `<h5>${orgName}</h5>`;
+                                    txt2Inner +=`<div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${application.dateApplied.toDate().toLocaleString()}</p></div>` ;
+                                    txt2Inner += `<div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${postData.location}</p></div>`; 
+                                    // txt2Inner += `<p>${application.status}</p>`; // add the title             
                                     card2Div.innerHTML = txt2Inner;
                                     containerRegistered.appendChild(card2Div); // add cardDiv to orderDiv
                                     if (application.status === "approved" && postData.date < currentDate) {
@@ -200,8 +217,9 @@ async function getRegisteredInfo() {
                                                             console.log("app ID : " + appDoc.id);
                                                             checkInButton.setAttribute("class", "viewButton");
                                                             checkInButton.setAttribute("checkedIn", "false");
-                                                            checkInButton.innerHTML = 'Check Out';
-                                                            card2Div.append(checkInButton);
+                                                            checkInButton.innerHTML = 'Check Out';     
+                                                            buttonDiv.append(checkInButton);
+                                                            card2Div.append(buttonDiv);
                                                             console.log("button checkOutButton appened");
                                                             checkInButton.addEventListener('click', handleCheckInButtonEvent);
                                                         }                                                        
@@ -214,8 +232,9 @@ async function getRegisteredInfo() {
                                                     console.log("posts ID :   " + application.postsID);
                                                     checkInButton.setAttribute("class", "viewButton");
                                                     checkInButton.setAttribute("checkedIn", "true");
-                                                    checkInButton.innerHTML = 'Check In';
-                                                    card2Div.append(checkInButton);
+                                                    checkInButton.innerHTML = 'Check In';                                                    
+                                                    buttonDiv.append(checkInButton);
+                                                    card2Div.append(buttonDiv);
                                                     console.log("button checkInButton appened");
                                                     checkInButton.addEventListener('click', handleCheckInButtonEvent);                                                    
                                                  }
@@ -229,7 +248,8 @@ async function getRegisteredInfo() {
                                     viewButton.setAttribute("data-appId", appDoc.id);
                                     viewButton.setAttribute("data-postId", application.postsID);
                                     viewButton.innerHTML = 'Check Details';
-                                    card2Div.append(viewButton);
+                                    buttonDiv.append(viewButton);
+                                    card2Div.append(buttonDiv);
                                     console.log("button appened");
                                     viewButton.addEventListener('click', handleViewButtonEvent); 
                                 } else {
