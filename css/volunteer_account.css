@@ -92,10 +92,25 @@ select {
 .btnDiv {
     margin: 0;
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;    
     justify-content: center;
     text-align: center;
 }
+
+.btnDiv2 {
+    margin: 0 auto;
+    flex-wrap: wrap; 
+    flex-flow: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.btnDiv2 button {
+    margin: 10px auto;
+}
+
+
 
 .viewButton {
     width: 40%;
@@ -217,3 +232,147 @@ body div.page:nth-child(even) {
         flex: 1 1 calc(33% - 2rem);
     }
 }
+
+/* For Desktop { */
+    @media screen and (min-width: 800px) {
+
+        main, header {
+            max-width: 900px;
+            margin: auto;
+        }
+    
+        #welcome_tag {
+            text-align: left;
+        }
+    
+        #profile_info {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+        }
+    
+        .profile_pic {
+            width: 16rem;
+            transform: translateY(20%);
+        }
+    
+        #profile_info div:last-of-type {
+            text-align: left;
+            padding-right: 20px;
+            
+        }
+    
+        #profile_info div:last-of-type h2+p {
+            font-size: 16px;
+        }
+    
+        #profile_info>div:last-of-type h2+p+p {
+            font-size: 12px;
+        }
+    
+        #vol_description, #skillList_Org {
+            display: block;
+        }
+    
+        #post-list button {
+            display: block;
+        }
+    
+        #vol_profile {
+            position: relative;
+        }
+    
+        #btnEditProfile {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            width: 170px;
+        }
+    
+        #btnEditProfile a {
+            font-size: 14px;
+        }
+    
+        .nav_tab .item {
+            text-align: left;
+        }
+    
+        .posting {
+            position: relative;
+        }
+    
+        #create-post-button {
+            width: 200px;
+            position: absolute;
+            right: 0px;
+        }
+    
+        select {
+            width: 375px;
+            margin-bottom: 20px;
+        }
+    
+        #post-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+    
+        #post-list p+div {
+            display: inline-block;
+            text-align: left;
+            margin-left: 0;
+            margin-top: 0;
+        }
+    
+        #post-list > div > div > div:nth-of-type(-n+2) {
+            border: none;
+        }
+    
+        #post-list p+div p {
+            text-align: left;
+            font-size: 17px;
+        }
+    
+        #post-list p+div div {
+            display: flex;
+        }
+    
+        #post-list > div > div  p:nth-of-type(odd) {
+            font-weight: normal;
+            margin-left: 0;
+        }
+    
+        #post-list h3 {
+            font-size: 24px;
+        }
+    
+        #post-list h3+p {
+          font-size: 16px;
+        }
+    
+        #post-list > div > div  p:nth-of-type(even) {
+            color: var(--black);
+        }
+    
+        span {
+            display: inline;
+        }
+    
+        #post-list div {
+            position: relative;
+        }
+    
+        #post-list button {
+            position: absolute;
+            right: 15px;
+            bottom: 25px;
+            width: 17vw;
+            max-width: 200px;
+        }
+    
+        #application-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+    }
