@@ -1,6 +1,6 @@
 /*Fonts*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url(style.css);
 :root {
     --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
@@ -17,6 +17,7 @@ header {
     cursor: pointer;
   }
 
+
 .hamburger-menu {
     display: block;
     width: 30px; /* 汉堡按钮的宽度 */
@@ -29,7 +30,7 @@ header {
 }
 
 .mobile {
-  padding: 15px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   background-color: #F5F6F8;
@@ -121,6 +122,14 @@ header a:hover {
     display: block;
 }
 
+.mobile .org {
+  display: none;
+}
+
+.mobile .vol {
+  display: none;
+}
+
 @media screen and (min-width: 1024px) {
     
       .mobile {
@@ -177,9 +186,11 @@ header a:hover {
           /* box-shadow: var(--shadow); */
           position: relative;
           font-size: 1.3rem;
+          width: 150px;
+          color: black;
       }
       
-      #btnSignUp {
+      #btnAccount, #btnSignUp {
         background-color: black;
         color: white;
       }
@@ -202,9 +213,11 @@ header a:hover {
         transform: translateY(0.5rem);
         transition: all 0.1s cubic-bezier(0.16, 1, 0.5, 1);
       }
+
+      
       
       .dropdown a {
-        width: 200px;
+        width: 220px;
         display: flex;
         align-items: center;
         column-gap: var(--gap);
