@@ -97,7 +97,7 @@ submitPost.addEventListener("submit", async function (event) {
                 orgName: orgName
             });
 
-            alert("Post submitted successfully!");
+            // alert("Post submitted successfully!");
 
             // 重置表单
             submitPost.reset();

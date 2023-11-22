@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/explore_opportunity.css" />
     <script type="module" src="../js/header.js"></script>
+    <script type="module" src="../js/explore_opportunity.js"></script>
     <link rel="stylesheet" href="../css/header.css">
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
 </head>
@@ -117,8 +118,8 @@
       style="margin-left: 150px">
       <h1 id="find-opportunity-heading-explore">Find Opportunities</h1>
       <div class="search-container">
-        <i class="search-icon fas fa-search"></i>
-        <input type="text" id="searchInput" placeholder="Search..." />
+        <!-- todo: Add search icon -->
+        <input type="text" id="searchInput" placeholder="Search..." >
       </div>
       <label for="interests"></label>
       <select name="interests" id="interests">
@@ -262,7 +263,7 @@
       </div>
       <button onclick="closeModal()" id="pop-up-close-button">Close</button>
     </div>
-    <div id="eventDetails"></div>
+    <div id="eventDetails" ></div>
     <script>
       // JavaScript functions to open and close the modal
       function openModal() {
