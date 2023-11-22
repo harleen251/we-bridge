@@ -21,7 +21,7 @@ const firebaseConfig = {
   window.addEventListener('load', applicationDetail);
   window.addEventListener('load', recommendations);
   
-  const urlParams = new URLSearchParams(window.location.search);
+  //const urlParams = new URLSearchParams(window.location.search);
   // const postId = await getCookie("vol_postId");
 
 
@@ -29,6 +29,7 @@ const firebaseConfig = {
   let org_postId
   try {
       org_postId = await getCookie("idPost");
+      
   }
   catch (error) {
       console.error("Error getting cookie:", error);

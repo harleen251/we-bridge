@@ -71,6 +71,7 @@ getCookie('volunteerId')
         login.style.display = "none";
         signUp.style.display = "none";
         vol.style.display = "block";
+        org.style.display = "none"
         linkAccount1.href  = "volunteer_account.html";
         myLink.href = "volunteer_account.html"
         appHisLink.href = "volunteer_account.html#history";
@@ -92,6 +93,7 @@ getCookie('volunteerId')
                     login.style.display = "none";
                     signUp.style.display = "none";
                     org.style.display = "block";
+                    vol.style.display = "none"
                     linkAccount1.href  = "organization_account.html";
                     orgLink.href  = "organization_account.html";
                     postLink.href = "organization_account.html#post";
