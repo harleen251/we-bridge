@@ -22,28 +22,45 @@ const firebaseConfig = {
   window.addEventListener('load', recommendations);
   
   //const urlParams = new URLSearchParams(window.location.search);
-  // const postId = await getCookie("vol_postId");
-
+  
 
   // Get cookie from organization side for viewing post
   let org_postId
+  let vol_postId
+  let signal
   try {
-      org_postId = await getCookie("idPost");
-      
+      org_postId = await getCookie("idPost");    
   }
   catch (error) {
-      console.error("Error getting cookie:", error);
+      console.error("Error getting org_cookie:", error);
+  }
+
+  try {
+    vol_postId = await getCookie("vol_postId"); 
+  } catch (error) {
+    console.error("Error getting vol_cookie:", error);
+  }
+
+  try {
+    signal = await getCookie("signal"); 
+  } catch (error) {
+    console.error("Error getting gs_cookie:", error);
   }
 
   let postId;
-  if (org_postId !== undefined) {
-      postId = org_postId;
-      document.getElementById("similar_opportunities").style.display = "none";
+  if (org_postId == "" || org_postId == undefined ) {
+    console.log("1")
+      postId = vol_postId;
+      if(signal == "true"){
+        document.getElementById("similar_opportunities").style.display = "none";
+      }
   } 
-  else {
+   else {
       // Get cookie from volunteer side
-      postId = await getCookie("vol_postId");
-  }
+      postId = org_postId;
+      console.log("2")
+      document.getElementById("similar_opportunities").style.display = "none";
+   }
 
 
   let organizationId = ""; 
@@ -106,7 +123,7 @@ const firebaseConfig = {
                   const postDate = document.getElementById('postDate');
                   const btns = document.getElementById('btns');
                   // Display the apply button,only if the cookie from organization side for postId is undefined
-                  if(org_postId === undefined) {
+                  if((org_postId === "" || org_postId == undefined )&& signal === "false") {
                     const applyButton = createApplyButton(doc.id);
                     const orgPro = document.createElement('button');
                     orgPro.textContent = 'Organization Profile'
@@ -360,7 +377,7 @@ function createPopupForApplication(eventId) {
 
  function navigateToPostDetailPage(eventId){
   setCookie('vol_postId', eventId, 1);
-  const postID = getCookie('vol_postId');
+  setCookie("signal", "false", 1)
   const postDetailPageURL = `../pages/post_detail.html`
   window.location.href = postDetailPageURL
 }

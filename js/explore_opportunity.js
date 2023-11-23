@@ -220,9 +220,8 @@ async function filteredPostWithinRadius(event, radius) {
 
 
 function navigateToPostDetailPage(eventId){
-  setCookie('vol_postId', eventId, 1);
-  const postID = getCookie('vol_postId');
-   alert("new cookie : "+postID);
+  setCookie("vol_postId", eventId, 1);
+  setCookie("signal", "false", 1)
   const postDetailPageURL = `../pages/post_detail.html`
   window.location.href = postDetailPageURL
 }

@@ -46,14 +46,20 @@ const toggleArrowSignUp = document.getElementById("arrowSignup");
 const dropdownAcc = document.getElementById("btnAccount");
 const dropdownMenuAcc = document.getElementById("dropdownAcc");
 const toggleArrowAcc = document.getElementById("arrowAcc");
-const linkAccount1 = document.getElementById("linkAccount1");
-const orgLink = document.getElementById("orgLink");
-const postLink = document.getElementById("postLink");
-const appLink = document.getElementById("appLink");
-const myLink = document.getElementById("myLink");
-const appHisLink = document.getElementById("appHisLink");
-const regLink = document.getElementById("regLink");
-const volRecLink = document.getElementById("volRecLink");
+const orgLink1 = document.getElementById("orgLink1");
+const postLink1 = document.getElementById("postLink1");
+const appLink1 = document.getElementById("appLink1");
+const myLink1 = document.getElementById("myLink1");
+const appHisLink1 = document.getElementById("appHisLink1");
+const regLink1 = document.getElementById("regLink1");
+const volRecLink1 = document.getElementById("volRecLink1");
+const orgLink2 = document.getElementById("orgLink2");
+const postLink2 = document.getElementById("postLink2");
+const appLink2 = document.getElementById("appLink2");
+const myLink2 = document.getElementById("myLink2");
+const appHisLink2 = document.getElementById("appHisLink2");
+const regLink2 = document.getElementById("regLink2");
+const volRecLink2 = document.getElementById("volRecLink2");
 let volunteerId = "";
 let organizationId = "";
 
@@ -72,11 +78,14 @@ getCookie('volunteerId')
         signUp.style.display = "none";
         vol.style.display = "block";
         org.style.display = "none"
-        linkAccount1.href  = "volunteer_account.html";
-        myLink.href = "volunteer_account.html"
-        appHisLink.href = "volunteer_account.html#history";
-        regLink.href = "volunteer_account.html#commitment";
-        volRecLink.href = "volunteer_record.html"
+        myLink1.href = "volunteer_account.html"
+        appHisLink1.href = "volunteer_account.html#history";
+        regLink1.href = "volunteer_account.html#commitment";
+        volRecLink1.href = "volunteer_account.html#record"
+        myLink2.href = "volunteer_account.html"
+        appHisLink2.href = "volunteer_account.html#history";
+        regLink2.href = "volunteer_account.html#commitment";
+        volRecLink2.href = "volunteer_account.html#record"
       } else {
         // Cookie not found
         getCookie('organizationId')
@@ -94,10 +103,12 @@ getCookie('volunteerId')
                     signUp.style.display = "none";
                     org.style.display = "block";
                     vol.style.display = "none"
-                    linkAccount1.href  = "organization_account.html";
-                    orgLink.href  = "organization_account.html";
-                    postLink.href = "organization_account.html#post";
-                    appLink.href = "organization_account.html#application";
+                    orgLink1.href  = "organization_account.html";
+                    postLink1.href = "organization_account.html#post";
+                    appLink1.href = "organization_account.html#application";
+                    orgLink2.href  = "organization_account.html";
+                    postLink2.href = "organization_account.html#post";
+                    appLink2.href = "organization_account.html#application";
                 } else {
                     dropdownAcc.style.display = "none";
                     dropdownSignUp.style.display = "block";
@@ -170,6 +181,8 @@ async function logout() {
     // Clear cookies
     await setCookie("organizationId", "", 1);
     await setCookie("volunteerId", "", 1);
+    await setCookie("vol_postId", "", 1);
+    await setCookie("idPost", "", 1);
     console.log("organizationId", getCookie("organizationId"));
     console.log("volunteerId", getCookie("volunteerId"));
     window.location.href = 'index.html';

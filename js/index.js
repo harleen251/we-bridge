@@ -332,4 +332,5 @@ async function handleViewButtonEvent(event) {
     let postId = event.target.getAttribute('data-postId');
     console.log(postId);
    await setCookie("vol_postId", postId, 1);
+   setCookie("signal", "false", 1)
 }
