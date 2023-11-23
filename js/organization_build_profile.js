@@ -184,7 +184,7 @@ async function saveOrganization(){
     const docRef = doc(organizationCollection, organizationId).withConverter(organizationConverter);
     await setDoc(docRef, org, { merge: true }).then(() => {
         console.log('Organization data saved successfully.');
-        alert(redirectURL);
+        // alert(redirectURL);
         window.location.href = redirectURL;
     })
     .catch((error) => {

@@ -383,6 +383,7 @@ function navigateToPage(event) {
             btnEvent.style.fontWeight = '600';
             btnHistory.style.borderBottom = 'none';
             btnHistory.style.fontWeight = 'normal';
+            window.location.href = "volunteer_record.html";
         }
       page.style.display = 'block';
     } else {
@@ -399,18 +400,4 @@ window.addEventListener('hashchange', navigateToPage);
 // event.target.parentElement.id
 
 
-var marker = document.querySelector('#marker');
-		var item = document.querySelectorAll('nav a');
-		
-		
-		function indicator(e) {
-			marker.style.left = e.offsetLeft + 'px';
-			marker.style.width = e.offsetWidth + 'px';
-		}
-		
-		item.forEach(link => {
-			link.addEventListener("click", (e) => {	
-				indicator(e.target);			
-			})
-		})
 

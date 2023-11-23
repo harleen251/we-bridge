@@ -303,6 +303,10 @@ main {
         border-radius: 50px;
         overflow: hidden;
         object-fit: cover;
+
+        /* added relative and index */
+        position: relative;
+        z-index: 2;
     }
 
     #hero_rect{
@@ -312,7 +316,8 @@ main {
         position: absolute;
         top: 24px;
         left: 24px;
-        z-index: -1;
+        /* changed it fr. -1 to 1 */
+        z-index: 1;
     }
     
     .hero_title_container{

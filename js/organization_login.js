@@ -38,7 +38,7 @@ async function signIn() {
     // Get the volunteer ID from Firestore 
     
     const organizationId = querySnapshot.docs[0].id;
-    alert(organizationId);
+    // alert(organizationId);
 
     // Save the volunteer ID in a cookie
     await setCookie("idOrganization", organizationId, 1);

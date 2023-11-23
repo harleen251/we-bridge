@@ -1,9 +1,11 @@
 const cacheName = "v1";
-const urlsToCache = ["/", "/pages", "/js","/css", "/img", "/images", "/pages/index.html", "/js/index.js", "/js/header.js", "/css/style.css", "/css/index.css", "/css/header.css","/images/icons"];
+const urlsToCache = ["/", "/pages", "/js","/css", "/img", "/images", "/assets/icons", "/pages/index.html", "/js/index.js", "/js/header.js", "/css/style.css", "/css/index.css", "/css/header.css","/images/icons"];
 // const urlsToCache = [ "/","/index.html", "/app.js", "/app.webmanifest", "/style.css", 
 //   "/assets/icons/icon-192x192.png", "/assets/icons/icon-512x512.png","/assets/icons/icon-144x144.png",
 //   "https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"
 //  ];
+
+
 // NEVER cache service worker itself ( i.e. don't include sw.js in above array)
 // MAKE SURE THERE IS NO TYPO in the File names otherwise the cache.addAll fails in install
 

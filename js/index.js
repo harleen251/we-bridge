@@ -334,3 +334,11 @@ async function handleViewButtonEvent(event) {
    await setCookie("vol_postId", postId, 1);
    setCookie("signal", "false", 1)
 }
+
+window.addEventListener('offline', () => {
+    alert('You are now offline!'); // Customize the alert as needed
+});
+  
+window.addEventListener('online', () => {
+    alert('You are now back online!'); // Customize the alert as needed
+});
