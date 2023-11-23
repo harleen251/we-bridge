@@ -162,7 +162,7 @@ await getDocs(q)
             anchor.addEventListener('click', handleViewButtonEvent);
             txtInner += `<div id="card_org"><img class="card_img" src="${organizationdata.photoLink}"> <p class="card_org_name">${organizationdata.orgName}</p></div>`;
             txtInner += `<div class="card_post_info">
-                            <a href="post_detail.html" data-postId="${postdoc.id}" onclick="handleViewButtonEvent(event)">
+                            <a href="post_detail.html" data-postId="${postdoc.id}" onclick="handleViewButtonEvent2(event)">
                             ${post.positionTitle}
                             </a>
                             <p class="post_description_excerpt">${post.description}</p>
@@ -171,6 +171,9 @@ await getDocs(q)
                         </div>` 
                                     
             cardDiv.innerHTML = txtInner; 
+            //cardDiv.appendChild(anchor);
+            cardDiv.setAttribute("data-postId", postdoc.id);  
+            cardDiv.addEventListener('click', handleViewButtonEvent);
             containerOpp.appendChild(cardDiv); // add cardDiv to orderDiv     
     })
     .catch((error) => {
@@ -258,7 +261,7 @@ async function getVolunteerInfo(volunteerId){
                                         const anchor = document.createElement('a');
                                         anchor.href = 'post_detail.html';
                                         anchor.innerText = post.positionTitle;
-                                        anchor.setAttribute("data-postId", postDoc.id);            
+                                        anchor.setAttribute("data-postId", post.id);            
                                         anchor.addEventListener('click', handleViewButtonEvent);
                                         // txt2Inner += `<div>${organizationdata.photoLink}</div>`;
                                         // txt2Inner += `<div>${organizationdata.orgName}</div>`;
@@ -270,14 +273,18 @@ async function getVolunteerInfo(volunteerId){
                                         // txt2Inner += `<p>${"Location : " + post.location}</p>`;            
                                         txt2Inner += `<div id="card_org"><img class="card_img" src="${organizationdata.photoLink}"> <p class="card_org_name">${organizationdata.orgName}</p></div>`;
                                         txt2Inner += `<div class="card_post_info">
-                                                        <a href="post_detail.html" data-postId="${postDoc.id}" onclick="handleViewButtonEvent(event)">
+                                                        <a href="post_detail.html" data-postId="${postDoc.id}" onclick="handleViewButtonEvent2(event)">
                                                         ${post.positionTitle}
                                                         </a>
                                                         <p class="post_description_excerpt">${post.description}</p>
                                                         <div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>
                                                         <div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>
-                                                    </div>`            
-                                        card2Div.innerHTML = txt2Inner;         
+                                                    </div>`;
+                                       
+                                        card2Div.innerHTML = txt2Inner; 
+                                        //card2Div.appendChild(anchor);        
+                                        card2Div.setAttribute("data-postId", post.id);  
+                                        card2Div.addEventListener('click', handleViewButtonEvent);
                                         containerRec.appendChild(card2Div); // add cardDiv to orderDiv      
                                 })
                                 .catch((error) => {
@@ -330,10 +337,13 @@ if (volunteerId !== "") {
 
 async function handleViewButtonEvent(event) {
     let postId = event.target.getAttribute('data-postId');
-    console.log(postId)
+    console.log(postId);
+   await setCookie("postId", postId, 1);
    await setCookie("vol_postId", postId, 1);
-   setCookie("signal", "false", 1)
+   await setCookie("signal", "false", 1)
 }
+
+
 
 window.addEventListener('offline', () => {
     alert('You are now offline!'); // Customize the alert as needed
