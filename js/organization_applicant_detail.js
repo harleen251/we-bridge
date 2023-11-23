@@ -76,10 +76,12 @@ async function getApplicantInfo() {
                                 applicant_info.append(div1);
 
                                 workExperience.addEventListener("click", function() {
-                                    wrap_workExperience.style.display = "block";
-                                    wrap_professionalCertificate.style.display = "none";
-                                    wrap_applicantSkills.style.display = "none";
-                                    wrap_appliedPosition.style.display = "none";
+                                    if (window.innerWidth < 800) {
+                                        wrap_workExperience.style.display = "block";
+                                        wrap_professionalCertificate.style.display = "none";
+                                        wrap_applicantSkills.style.display = "none";
+                                        wrap_appliedPosition.style.display = "none";
+                                    }
                                 });
                                 
                     
@@ -103,10 +105,12 @@ async function getApplicantInfo() {
                                 applicant_info.append(div2);
 
                                 professionalCertificate.addEventListener("click", function() {
-                                    wrap_professionalCertificate.style.display = "block";
-                                    wrap_workExperience.style.display = "none";
-                                    wrap_applicantSkills.style.display = "none";
-                                    wrap_appliedPosition.style.display = "none";
+                                    if (window.innerWidth < 800) {
+                                        wrap_professionalCertificate.style.display = "block";
+                                        wrap_workExperience.style.display = "none";
+                                        wrap_applicantSkills.style.display = "none";
+                                        wrap_appliedPosition.style.display = "none";
+                                    }
                                 });
 
                     
@@ -123,6 +127,7 @@ async function getApplicantInfo() {
                                 })
                     
                                 let h3_3 = document.createElement("h3");
+                                h3_3.setAttribute("id", "lang")
                                 h3_3.innerHTML = "Language";
                                 div3.append(h3_3);
                                 let p7 = document.createElement("p");
@@ -131,10 +136,12 @@ async function getApplicantInfo() {
                                 applicant_info.append(div3);
 
                                 applicantSkills.addEventListener("click", function() {
-                                    wrap_applicantSkills.style.display = "block";
-                                    wrap_workExperience.style.display = "none";
-                                    wrap_professionalCertificate.style.display = "none";
-                                    wrap_appliedPosition.style.display = "none";
+                                    if (window.innerWidth < 800) {
+                                        wrap_applicantSkills.style.display = "block";
+                                        wrap_workExperience.style.display = "none";
+                                        wrap_professionalCertificate.style.display = "none";
+                                        wrap_appliedPosition.style.display = "none";
+                                    }
                                 });
 
 
@@ -214,10 +221,12 @@ async function getPostDetails() {
             })
 
             appliedPosition.addEventListener("click", function() {
-                wrap_appliedPosition.style.display = "block";
-                wrap_workExperience.style.display = "none";
-                wrap_professionalCertificate.style.display = "none";
-                wrap_applicantSkills.style.display = "none";
+                if (window.innerWidth < 800) {
+                    wrap_appliedPosition.style.display = "block";
+                    wrap_workExperience.style.display = "none";
+                    wrap_professionalCertificate.style.display = "none";
+                    wrap_applicantSkills.style.display = "none";
+                }
             });
 
         })

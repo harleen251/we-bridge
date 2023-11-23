@@ -218,11 +218,17 @@ span {
 #application-list .statusDiv {
     width: 110px;
     background-color: var(--status-backgroud);
-    text-align: center;
+    display: flex;
+    justify-content: center;
     color: var(--white);
     border-radius: 20px;
     padding: .3rem 1rem;
     margin-bottom: 0;
+}
+
+.statusDiv p {
+    margin: 0;
+    padding: 0;
 }
 
 #application-list img:nth-of-type(even){

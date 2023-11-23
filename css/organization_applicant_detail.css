@@ -63,6 +63,10 @@ h1 {
     font-weight: bold;
 }
 
+#applicant_info p {
+    margin-bottom: .3rem;
+}
+
 #subWrapper_orgApplicantDetail {
     background-color: var(--card-background);
     padding: 20px;
@@ -104,6 +108,24 @@ h1 {
 
 #wrap_applicantSkills {
     display: none;
+    padding: 1rem 0rem;
+}
+
+#applicantSkills h3 {
+    margin-bottom: 1rem;
+}
+
+#lang {
+    /* margin-top: 1rem; */
+    padding-top: 1.5rem;
+}
+
+#wrap_applicantSkills p:not(:last-child) {
+    display: inline-block;
+    margin: .3rem;
+    background-color: var(--skill-background);
+    padding: 6px 15px;
+    border-radius: 25px;
 }
 
 #appliedPosition {
@@ -199,4 +221,54 @@ h1 {
 
 @media screen and (min-width: 800px) {
 
+    h1 {
+        font-size: 32px;
+        text-align: left;
+    }
+
+    #wrap_workExperience {
+        display:block;
+    }
+
+    #workExperience, #professionalCertificate,#applicantSkills, #appliedPosition {
+        cursor: none;
+        background-color: var(--card-background);
+        padding: 0px;
+        margin: 0;
+        border-bottom: none; 
+    }
+
+    #wrap_professionalCertificate {
+        display: block;
+    }
+
+    #wrap_applicantSkills {
+        display: block;
+    }
+
+    #wrap_appliedPosition {
+        display: block;
+    }
+
+    #applicant_info p {
+        color: var(--black);
+    }
+
+    #applicant_info h3 {
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 2rem;
+    }
+
+    #applicant_info #lang {
+        margin-top: 2rem;
+        padding-top: 0;
+    }
+
+    #applicant_info #workExperience, #applicant_info #professionalCertificate,#applicant_info #applicantSkills{
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+   
 }
