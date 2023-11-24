@@ -53,6 +53,8 @@ const firebaseConfig = {
       postId = vol_postId;
       if(signal == "true"){
         document.getElementById("similar_opportunities").style.display = "none";
+        document.querySelector('.post_detail').style.display = "block"
+        document.getElementById("opportunity_detail").style.width = "95%"
       }
   } 
    else {
@@ -60,6 +62,8 @@ const firebaseConfig = {
       postId = org_postId;
       console.log("2")
       document.getElementById("similar_opportunities").style.display = "none";
+      document.querySelector('.post_detail').style.display = "block"
+      document.getElementById("opportunity_detail").style.width = "95%"
    }
 
 

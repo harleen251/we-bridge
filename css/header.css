@@ -71,7 +71,7 @@ header a {
     font-size: 1.1rem;
 }
 
-header a:hover {
+.menu li a:hover {
   background-color: #212121;
 }
 
@@ -113,10 +113,10 @@ header a:hover {
     background-color: #4410A5;
     border: 1px solid #ccc;
     position: absolute;
-    width: 250px;
-    top: 20px;
-    right: 20px;
+    width: 100vw;
+    height: 100vh;
     padding: 40px 15px 150px 0;
+    z-index: 80;
     /* ... */
 }
 
@@ -180,7 +180,7 @@ header a:hover {
 
       .center-section {
         position: absolute;
-        left: 50%;
+        left: 55%;
         transform: translateX(-50%);
       }
       
@@ -264,7 +264,7 @@ header a:hover {
         color: #ED7A80 !important;
       }
 
-      header a:hover {
+      .left-section a:hover , .right-section a:hover{
         background-color: var(--color);
         color: white;
       }
