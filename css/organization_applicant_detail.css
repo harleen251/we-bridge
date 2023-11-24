@@ -277,13 +277,15 @@ h1 {
 @media screen and (min-width: 800px) {
 
     body {
-        max-width: 900px;
+        max-width: 1000px;
         margin: auto;
     }
 
     h1 {
         font-size: 32px;
         text-align: left;
+        padding-left: 30px;
+        margin-bottom: 0;
     }
 
     #applicant_info img+h2 {
@@ -304,10 +306,12 @@ h1 {
 
     #applicant_info {
         padding: 3rem;
+        border: 1px solid var(--grey-border);
     }
 
     #post_info {
         padding: 2rem 1.5rem;
+        border: 1px solid var(--grey-border);
     }
 
     #post_info h2 {
@@ -373,6 +377,9 @@ h1 {
         /* position: absolute; */
         /* right: 35px; */
         /* bottom: 20px; */
+        border-radius: 30px;
+        /* width: 29vw; */
+        /* max-width: 250px; */
     }
 
     .main_wrapper {
@@ -382,8 +389,8 @@ h1 {
     #button {
         grid-column: 1/2;
         position: absolute;
-        bottom: 20px;
-        left: 20px;
+        bottom: 22px;
+        left: 22px;
         padding: 1rem 1rem;
         width: 60vw;
         max-width: 550px;

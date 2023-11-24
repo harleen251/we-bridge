@@ -56,12 +56,16 @@ async function postInfo() {
             let post_info = document.getElementById("Post_info")
             post_info.innerHTML = `<img id="profile_img" src = "${org_info.photoLink}" >
                                     <h1>${data.positionTitle}</h1>
-                                    <p>${data.description}</p>`
-        
+                                    <p>${data.description}</p>
+                                    <div id="wrap_data"></div>`
+            let wrap_data = document.getElementById("wrap_data")
             const date = data.date.toDate();
+            const img = document.createElement('img');
+            img.setAttribute("src", "../images/icons/date.svg")
+            wrap_data.append(img);
             const p = document.createElement('p');
             p.innerText = date.toLocaleDateString('en-GB');
-            post_info.append(p);
+            wrap_data.append(p);
 
             const hours = date.getHours().toString().padStart(2, '0');
             let period;
@@ -72,13 +76,20 @@ async function postInfo() {
                 period = "PM";
             }
             const minutes = date.getMinutes().toString().padStart(2, '0');
+
+            const img1 = document.createElement('img');
+            img1.setAttribute("src", "../images/icons/time.svg")
+            wrap_data.append(img1);
             const p1 = document.createElement('p');
             p1.innerText = `${hours}:${minutes} ${period}`;
-            post_info.append(p1);
+            wrap_data.append(p1);
 
+            const img2 = document.createElement('img');
+            img2.setAttribute("src", "../images/icons/location.svg")
+            wrap_data.append(img2);
             const p2 = document.createElement('p');
             p2.innerText = `${data.location}`;
-            post_info.append(p2);
+            wrap_data.append(p2);
         })
         .catch((error) => {
             console.error("Error getting document:", error);

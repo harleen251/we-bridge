@@ -21,6 +21,26 @@
     clip-path: circle(40% at 50% 50%);
 }
 
+#Post_info  p {
+    font-size: 16px;
+    padding-bottom: .2rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    
+}
+
+#wrap_data img {
+    width: 20px;
+    height: 20px;
+    padding-left: .3rem;
+}
+
+#wrap_data p{
+    display: inline-block;
+    padding: 0 3rem 0 0;
+    font-size: 14px;
+}
+
 #button_wrap {
     display: flex;
     justify-content: center;
