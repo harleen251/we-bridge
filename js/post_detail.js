@@ -73,66 +73,72 @@ const firebaseConfig = {
   function applicationDetail() {
       opportunity_detail.innerHTML = "";
       getDoc(docRef)
-          .then((doc) => {
-              if (doc.exists()) {
+          .then((doc1) => {
+              if (doc1.exists()) {
                   // Document exists, and you can access its data
-                  const data = doc.data();
+                  const data = doc1.data();
                   const date = new Date(data.date.toDate());
                   const expireDate = new Date(data.expireDate.toDate());
                   const postOnDate = new Date(data.posted_on_date.toDate());
-                  console.log('Document data:', data);
-                  opportunity_detail.innerHTML =
-                  ` 
-                  <div class="div1">
-                  <img src= "${data.photoLink}" alt = "profile image">
-                   <h1> ${data.positionTitle}</h1>
-                   <p>${data.orgName}</p>
-                  <div id="postDate">
-                   <p> Posted on: ${postOnDate.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                  })} </p>
-                   <p> Expired on: ${expireDate.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                  })} </p>
-                  </div class="div2">
-                  </div>
-                  <div id="btns"> </div>
-                  <div class="div3">
-                   <p> <i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                  })} </p>
-                   <p> <i class="fa-solid fa-clock" style="color: #8f8f8f;"></i> ${data.hours} Hours </p>
-                   <p> <i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${data.location} </p>
-                   <p> <i class="fa-solid fa-globe" style="color: #8f8f8f;"></i> ${data.preferredLanguage} </p>
-                   <p> <i class="fa-solid fa-star" style="color: #8f8f8f;"></i> ${data.interests} </p>
-                   <p> <i class="fa-solid fa-desktop" style="color: #8f8f8f;"></i> ${data.mode_of_work} </p>
-                  </div>
-                  <div class="div4">
-                   <h3>Descriptions</h3>
-                  <p> ${data.description} </p></div>
-                  </div>
-                  `;
-                  organizationId= data.organizationId;
-                  console.log("org id" , organizationId);
-                  const postDate = document.getElementById('postDate');
-                  const btns = document.getElementById('btns');
-                  // Display the apply button,only if the cookie from organization side for postId is undefined
-                  if((org_postId === "" || org_postId == undefined )&& signal === "false") {
-                    const applyButton = createApplyButton(doc.id);
-                    const orgPro = document.createElement('button');
-                    orgPro.textContent = 'Organization Profile'
-                    orgPro.className = 'proBtn'
-                    btns.appendChild( orgPro);
-                    btns.appendChild( applyButton);
-                  }
+                  organizationId = data.organizationId;
+                  getDoc(doc(collection(db,'organization'),organizationId))
+                    .then((doc2) => {
+                      if(doc2.exists()){
+                        const photoLink = doc2.data().photoLink;
+                        opportunity_detail.innerHTML =
+                            ` 
+                            <div class="div1">
+                            <img src= "${photoLink}" alt = "profile image">
+                            <h1> ${data.positionTitle}</h1>
+                            <p>${data.orgName}</p>
+                            <div id="postDate">
+                            <p> Posted on: ${postOnDate.toLocaleString('en-US', {
+                              year: 'numeric',
+                              month: '2-digit',
+                              day: '2-digit',
+                            })} </p>
+                            <p> Expired on: ${expireDate.toLocaleString('en-US', {
+                              year: 'numeric',
+                              month: '2-digit',
+                              day: '2-digit',
+                            })} </p>
+                            </div class="div2">
+                            </div>
+                            <div id="btns"> </div>
+                            <div class="div3">
+                            <p> <i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
+                              year: 'numeric',
+                              month: '2-digit',
+                              day: '2-digit',
+                            })} </p>
+                            <p> <i class="fa-solid fa-clock" style="color: #8f8f8f;"></i> ${data.hours} Hours </p>
+                            <p> <i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${data.location} </p>
+                            <p> <i class="fa-solid fa-globe" style="color: #8f8f8f;"></i> ${data.preferredLanguage} </p>
+                            <p> <i class="fa-solid fa-star" style="color: #8f8f8f;"></i> ${data.interests} </p>
+                            <p> <i class="fa-solid fa-desktop" style="color: #8f8f8f;"></i> ${data.mode_of_work} </p>
+                            </div>
+                            <div class="div4">
+                            <h3>Descriptions</h3>
+                            <p> ${data.description} </p></div>
+                            </div>
+                            `;
 
+                            const postDate = document.getElementById('postDate');
+                            const btns = document.getElementById('btns');
+                            // Display the apply button,only if the cookie from organization side for postId is undefined
+                            if((org_postId === "" || org_postId == undefined )&& signal === "false") {
+                              const applyButton = createApplyButton(doc1.id);
+                              const orgPro = document.createElement('button');
+                              orgPro.textContent = 'Organization Profile'
+                              orgPro.className = 'proBtn'
+                              btns.appendChild( orgPro);
+                              btns.appendChild( applyButton);
+                            }
+                      }
+                    }).catch((error) =>{
 
+                    })
+                
               } else {
                   // Document does not exist
                   console.log('Document does not exist.');
@@ -144,23 +150,24 @@ const firebaseConfig = {
   }
   const recommendedPosts = [];
   const recommendedPostsId = [];
+
   function recommendations() {
     similar_opportunities.innerHTML = "<h1>Similar Opportunities</h1>"; // Clear previous recommendations
       
     getDoc(docRef)
-      .then((doc) => {
-        if (doc.exists) {
-          const data = doc.data();
+      .then((doc1) => {
+        if (doc1.exists) {
+          const data = doc1.data();
           const interests = data.interests; // Get interests of the current post
           // Create a query to find other posts with the same interests
           const queryRef = query(colRef, where("interests", "array-contains-any", interests));
   
           getDocs(queryRef)
             .then((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                if (doc.id !== postId) {
-                  recommendedPosts.push(doc);
-                  recommendedPostsId.push(doc.id);
+              querySnapshot.forEach((doc3) => {
+                if (doc3.id !== postId) {
+                  recommendedPosts.push(doc3);
+                  recommendedPostsId.push(doc3.id);
                 }
               });
   
@@ -176,13 +183,20 @@ const firebaseConfig = {
                     description = recommendedData.description;
                 }
                   console.log(recommendedPostsId[i])
+
+                   organizationId = recommendedData.organizationId;
+                  getDoc(doc(collection(db,'organization'),organizationId))
+                    .then((doc2) => {
+                      if(doc2.exists()){
+                        const photoLink = doc2.data().photoLink;
+
                   // Create a div containing the details
                  
                   recommendationDiv.addEventListener("click", () => {
                     navigateToPostDetailPage(recommendedPostsId[i]);
                   });
                   recommendationDiv.innerHTML += `
-                    <img src= "${recommendedData.photoLink}" alt = "profile image">
+                    <img src= "${photoLink}" alt = "profile image">
                     <p class="orgName">${recommendedData.orgName}</p>
                     <h2>${recommendedData.positionTitle}</h2>
                     <p>${description}</p>
@@ -196,6 +210,11 @@ const firebaseConfig = {
                   `;
   
                   // Append recommendationDiv to similar_opportunities
+                      }
+                    }).catch((error) =>{
+
+                    })
+                  
                   similar_opportunities.appendChild(recommendationDiv);
                 }
   
@@ -240,19 +259,36 @@ function showMoreRecommendations(startIndex) {
             recommendationDiv.addEventListener("click", () => {
                 navigateToPostDetailPage(recommendedPostsId[i]);
             });
-            recommendationDiv.innerHTML = `
-                  <img src= "${recommendedData.photoLink}" alt = "profile image">
-                  <p class="orgName">${recommendedData.orgName}</p>
-                  <h2>${recommendedData.positionTitle}</h2>
-                  <p>${description}</p>
-                  <p><i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                  })}</p>
-                  <p><i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${recommendedData.location}</p>
-                  
-            `;
+            organizationId = recommendedData.organizationId;
+                  getDoc(doc(collection(db,'organization'),organizationId))
+                    .then((doc2) => {
+                      if(doc2.exists()){
+                        const photoLink = doc2.data().photoLink;
+
+                  // Create a div containing the details
+                 
+                  recommendationDiv.addEventListener("click", () => {
+                    navigateToPostDetailPage(recommendedPostsId[i]);
+                  });
+                  recommendationDiv.innerHTML += `
+                    <img src= "${photoLink}" alt = "profile image">
+                    <p class="orgName">${recommendedData.orgName}</p>
+                    <h2>${recommendedData.positionTitle}</h2>
+                    <p>${description}</p>
+                    <p><i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit',
+                    })}</p>
+                    <p><i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${recommendedData.location}</p>
+                    <br>
+                  `;
+  
+                  // Append recommendationDiv to similar_opportunities
+                      }
+                    }).catch((error) =>{
+
+                    })
   
             // Append recommendationDiv to similar_opportunities
             similar_opportunities.appendChild(recommendationDiv);
@@ -268,9 +304,19 @@ function showMoreRecommendations(startIndex) {
 function createApplyButton(eventId) {
   const applyButton = document.createElement('button');
   applyButton.textContent = 'Apply';
-  applyButton.addEventListener('click', () => {
+  applyButton.addEventListener('click', async() => {
     console.log("Button ID: " + eventId);
-    createPopupForApplication(eventId);
+    let volunteerId
+    try {
+      volunteerId = await getCookie('volunteerId')
+    } catch (error) {
+      
+    }
+    if (volunteerId == "" || volunteerId == undefined) {
+      window.location.href = "../pages/volunteer_login.html"
+    } else{
+      createPopupForApplication(eventId);
+    }
   });
   return applyButton;
 }
@@ -310,22 +356,27 @@ function createPopupForApplication(eventId) {
 
 // Handle click event of submit button
   submitButton.addEventListener('click', async () => {
-  const contactNumber = contactNumberInput.value;
-  const applicationReason = applicationReasonInput.value;
-  let volunteerId = ""
-  getCookie('volunteerId')
-  .then((cookieValue) => {
-    if (cookieValue !== null) {
-      // Cookie found, use cookieValue
-      if (cookieValue !== "") {
-        volunteerId = cookieValue;
-        console.log(`volunteerId value: ${cookieValue}`); 
-      }      
-    } 
-  })
-  .catch((error) => {
-    //console.error('An error occurred while retrieving the cookie:', error);
-  });
+    let volunteerId
+    try {
+      volunteerId = await getCookie('volunteerId')
+    } catch (error) {
+      
+    }
+      const contactNumber = contactNumberInput.value;
+      const applicationReason = applicationReasonInput.value;
+  //     getCookie('volunteerId')
+  //     .then((cookieValue) => {
+  //       if (cookieValue !== null) {
+  //         // Cookie found, use cookieValue
+  //         if (cookieValue !== "") {
+  //           volunteerId = cookieValue;
+  //           console.log(`volunteerId value: ${cookieValue}`); 
+  //         }      
+  //       } 
+  // })
+  // .catch((error) => {
+  //   //console.error('An error occurred while retrieving the cookie:', error);
+  // });
 
   var currentDate = new Date();
   
@@ -370,6 +421,8 @@ function createPopupForApplication(eventId) {
     console.error("Error adding document: ", error);
     // alert("An error occurred while submitting the application.");
   }
+    
+  
 
   // Close the pop-up interface
   popup.remove();

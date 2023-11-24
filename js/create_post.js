@@ -59,7 +59,6 @@ submitPost.addEventListener("submit", async function (event) {
             const data1 = organizationDoc.data();
             const email = data1.email;
             const phoneNumber = data1.phoneNumber;
-            const photoLink = data1.photoLink
             const orgName = data1.orgName
 
             // 获取表单数据
@@ -93,7 +92,6 @@ submitPost.addEventListener("submit", async function (event) {
                 email: email,
                 organizationId: organizationId,
                 posted_on_date: currentDate,
-                photoLink: photoLink,
                 orgName: orgName
             });
 
@@ -159,3 +157,4 @@ save_skill.addEventListener("click", function (event) {
     console.log(skillArray)
     option_skill.style.display = "none";
 })
+
