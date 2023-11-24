@@ -141,6 +141,61 @@ h1 {
     display: none;
 }
 
+#post_info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: .3rem;
+}
+
+#post_info h3+p {
+    margin-top: .2rem;
+}
+
+#post_info p {
+    font-size: 14px;
+}
+
+#post_info p:nth-of-type(2), #post_info p:nth-of-type(3) {
+    color: var(--grey-text);
+}
+
+#post_info p:nth-of-type(2) {
+    margin-bottom: .1rem;
+    margin-top: 2rem;
+}
+
+ p:nth-of-type(3) {
+    margin-top: 0rem;
+    margin-bottom: 2rem;
+}
+
+#post_info .bottom_border {
+    border-bottom: 2px solid var(--grey-medium);
+    padding-bottom: .5rem;
+    font-size: 12px;
+}
+
+#post_info h3:last-of-type {
+    margin-top: 2.5rem;
+}
+
+#post_info #skillList p{
+    display: inline;
+    color: var(--black);
+    padding-left: .2rem;
+    font-size: 12px;
+}
+
+#post_info #skillList  {
+    border-bottom: 2px solid var(--grey-medium);
+    padding-bottom: .5rem;
+}
+
+#post_info img {
+    margin-right: 1rem;
+}
+
+
 #total {
     display: flex;
     text-align: center;
@@ -148,7 +203,7 @@ h1 {
     border: 1px solid #888;
     border-radius: 10px;
     padding: 10px;
-    margin: 10px 0px;
+    margin: 30px 0px;
 }
 
 #total>div:first-of-type {
@@ -252,6 +307,7 @@ h1 {
 
     #applicant_info p {
         color: var(--black);
+        font-size: 14px;
     }
 
     #applicant_info h3 {
@@ -270,5 +326,6 @@ h1 {
         font-weight: 600;
     }
 
+   
    
 }
