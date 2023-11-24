@@ -185,9 +185,9 @@ header a {
       }
       
       
-      .container {
+      /* .container {
         display: flex;
-      }
+      } */
       
       header .btn {
           background-color: white;

@@ -324,7 +324,7 @@ async function getApplicationList() {
 
                             const statusDiv = document.createElement('div');
                             statusDiv.setAttribute("class", "statusDiv");
-                            statusDiv.innerHTML = status;
+                            statusDiv.innerHTML = `<p>${status}</p>`;
                             div.append(statusDiv);
                             const img = document.createElement('img');
                             if(data.photoLink === undefined) {
