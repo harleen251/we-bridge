@@ -185,9 +185,9 @@ header a:hover {
       }
       
       
-      .container {
+      /* .container {
         display: flex;
-      }
+      } */
       
       header .btn {
           background-color: white;
