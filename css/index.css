@@ -77,6 +77,8 @@ main {
     border-radius: 20px;
     overflow: hidden;
     object-fit: cover;
+    position: relative;
+    z-index:2;
 }
 
 .hero_img_container {
@@ -92,12 +94,13 @@ main {
     position: absolute;
     top: 12px;
     left: 12px;
-    z-index: -1;
+    z-index: 1;
 
 }
 
 #explore_button_container{
     position: relative;
+    z-index: 3;
 }
 
 #explore_button {
