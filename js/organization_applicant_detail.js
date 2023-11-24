@@ -76,10 +76,12 @@ async function getApplicantInfo() {
                                 applicant_info.append(div1);
 
                                 workExperience.addEventListener("click", function() {
-                                    wrap_workExperience.style.display = "block";
-                                    wrap_professionalCertificate.style.display = "none";
-                                    wrap_applicantSkills.style.display = "none";
-                                    wrap_appliedPosition.style.display = "none";
+                                    if (window.innerWidth < 800) {
+                                        wrap_workExperience.style.display = "block";
+                                        wrap_professionalCertificate.style.display = "none";
+                                        wrap_applicantSkills.style.display = "none";
+                                        wrap_appliedPosition.style.display = "none";
+                                    }
                                 });
                                 
                     
@@ -103,10 +105,12 @@ async function getApplicantInfo() {
                                 applicant_info.append(div2);
 
                                 professionalCertificate.addEventListener("click", function() {
-                                    wrap_professionalCertificate.style.display = "block";
-                                    wrap_workExperience.style.display = "none";
-                                    wrap_applicantSkills.style.display = "none";
-                                    wrap_appliedPosition.style.display = "none";
+                                    if (window.innerWidth < 800) {
+                                        wrap_professionalCertificate.style.display = "block";
+                                        wrap_workExperience.style.display = "none";
+                                        wrap_applicantSkills.style.display = "none";
+                                        wrap_appliedPosition.style.display = "none";
+                                    }
                                 });
 
                     
@@ -123,6 +127,7 @@ async function getApplicantInfo() {
                                 })
                     
                                 let h3_3 = document.createElement("h3");
+                                h3_3.setAttribute("id", "lang")
                                 h3_3.innerHTML = "Language";
                                 div3.append(h3_3);
                                 let p7 = document.createElement("p");
@@ -131,10 +136,12 @@ async function getApplicantInfo() {
                                 applicant_info.append(div3);
 
                                 applicantSkills.addEventListener("click", function() {
-                                    wrap_applicantSkills.style.display = "block";
-                                    wrap_workExperience.style.display = "none";
-                                    wrap_professionalCertificate.style.display = "none";
-                                    wrap_appliedPosition.style.display = "none";
+                                    if (window.innerWidth < 800) {
+                                        wrap_applicantSkills.style.display = "block";
+                                        wrap_workExperience.style.display = "none";
+                                        wrap_professionalCertificate.style.display = "none";
+                                        wrap_appliedPosition.style.display = "none";
+                                    }
                                 });
 
 
@@ -191,14 +198,16 @@ async function getPostDetails() {
             <section>
             <h3>${dataPost.positionTitle}</h3>
             <p>${dataOrg.orgName}</p>
-            <p>Posted On:${dataPost.posted_on_date.toDate().toLocaleDateString()}</p>
-            <p>Expiry On:${dataPost.expireDate.toDate().toLocaleDateString()}</p>
-            <p>${dataPost.date.toDate().toLocaleDateString('en-GB')}</p>
-            <p>${dataPost.hours} Hours</p>
-            <p>${dataPost.location}</p>
-            <div id = "skillList" ></div>
-            <p>${dataPost.preferredLanguage}</p>
-            <p>${dataPost.mode_of_work}</p>
+            <p>Posted On: ${dataPost.posted_on_date.toDate().toLocaleDateString()}</p>
+            <p>Expiry On: ${dataPost.expireDate.toDate().toLocaleDateString()}</p>
+            
+            <p class="bottom_border" ><img src="../images/icons/date.svg" width="22px" height="22px" >${dataPost.date.toDate().toLocaleDateString('en-GB')}</p>
+            <p class="bottom_border"><img src="../images/icons/time.svg" width="22px" height="22px" >${dataPost.hours} Hours</p>
+            <p class="bottom_border"><img src="../images/icons/location.svg" width="22px" height="22px" >${dataPost.location}</p>
+            <div id = "skillList" ><img src="../images/icons/skills.svg" width="22px" height="22px" ></div>
+            <p class="bottom_border"><img src="../images/icons/language.svg" width="22px" height="22px" >${dataPost.preferredLanguage}</p>
+            <p class="bottom_border"><img src="../images/icons/mode-of-work.svg" width="22px" height="22px" >${dataPost.mode_of_work}</p>
+            
             </section>
             <section>
             <h3>Descriptions</h3>
@@ -209,15 +218,18 @@ async function getPostDetails() {
             
             dataPost.skills.forEach(function(skill) {
                 let para = document.createElement("p");
-                para.innerHTML = `${skill}`
+                // para.setAttribute("class", "bottom_border")
+                para.innerHTML = `${skill}, `
                 document.getElementById("skillList").append(para);
             })
 
             appliedPosition.addEventListener("click", function() {
-                wrap_appliedPosition.style.display = "block";
-                wrap_workExperience.style.display = "none";
-                wrap_professionalCertificate.style.display = "none";
-                wrap_applicantSkills.style.display = "none";
+                if (window.innerWidth < 800) {
+                    wrap_appliedPosition.style.display = "block";
+                    wrap_workExperience.style.display = "none";
+                    wrap_professionalCertificate.style.display = "none";
+                    wrap_applicantSkills.style.display = "none";
+                }
             });
 
         })
