@@ -8,6 +8,10 @@
     --primary-button: var( --purple-primary);
 }
 
+body {
+    padding: 10px;
+}
+
 #Post_info_wrap {
     background-color: var(--card-background);
     padding: 20px;
@@ -21,6 +25,14 @@
     clip-path: circle(40% at 50% 50%);
 }
 
+#description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
 #Post_info  p {
     font-size: 16px;
     padding-bottom: .2rem;
@@ -29,16 +41,27 @@
     
 }
 
+#wrap_data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 #wrap_data img {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     padding-left: .3rem;
 }
 
 #wrap_data p{
-    display: inline-block;
-    padding: 0 3rem 0 0;
-    font-size: 14px;
+    padding: 0 1rem 0 .5rem;
+    font-size: 12px;
+}
+
+#wrap_data div{
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
 }
 
 #button_wrap {
@@ -82,9 +105,20 @@ thead {
     background-color: var(--card-background);
 }
 
+#tbody td {
+    padding-bottom: .5rem;
+}
+
 .vol_profile {
-    width: 3rem;
+    /* width: 3rem; */
+    width: 50px;
+    height: 50px;
     clip-path: circle(40% at 50% 50%);
+}
+
+th {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
 }
 
 th, td {
@@ -157,4 +191,69 @@ th, td {
 
 .close {
     font-size: 40px;
+}
+
+@media screen and (min-width: 800px) {
+
+    body {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    #Post_info {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    #profile_img {
+        display: block;
+        width: 193px;
+        height: 179px;
+        clip-path: none;
+        margin-right: 20px;
+    }
+
+    #description {
+        /* overflow: hidden; */
+        /* display: -webkit-box; */
+        -webkit-line-clamp: 3; 
+        /* -webkit-box-orient: vertical; */
+        /* text-overflow: ellipsis; */
+        
+    }
+
+    #wrap_data {
+        margin-top: 1.8rem;
+        width: 54vw;
+        max-width: 580px;
+    }
+
+    #qrcode_button_wrap button{
+        display: inline;
+        width: 350px;
+    }
+
+    #qrcode_button_wrap button:first-of-type {
+        margin-left: 0px;
+    }
+
+    #qrcode_button_wrap button:last-of-type {
+        margin-left: 0px;
+    }
+
+    #Post_info_wrap {
+        position: relative;
+    }
+
+    #button_wrap button {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        width: 13vw;
+        max-width: 130px;
+    }
 }
