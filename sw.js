@@ -1,5 +1,5 @@
 const cacheName = "v1";
-const urlsToCache = ["/", "/pages", "/js","/css", "/img", "/images", "/assets/icons", "/pages/index.html", "/js/index.js", "/js/header.js", "/css/style.css", "/css/index.css", "/css/header.css","/images/icons"];
+const urlsToCache = [ "/", "/pages", "/js","/css", "/img", "/images", "/assets/icons", "/pages/index.html", "/js/index.js", "/js/header.js", "/css/style.css", "/css/index.css", "/css/header.css","/images/icons" ];
 // const urlsToCache = [ "/","/index.html", "/app.js", "/app.webmanifest", "/style.css", 
 //   "/assets/icons/icon-192x192.png", "/assets/icons/icon-512x512.png","/assets/icons/icon-144x144.png",
 //   "https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"
@@ -15,7 +15,7 @@ self.addEventListener('install', (event) => { // invoked when a browser installs
     event.waitUntil(       // waitUntil tells the browser to wait for the input promise to finish
 		  caches.open( cacheName )		//caches is a global object representing CacheStorage
 			  .then( ( cache ) => { 			// open the cache with the name cacheName*
-				  return cache.addAll( urlsToCache );      	// pass the array of URLs to cache**. it returns a promise
+				  return cache.addAll( urlsToCache ); // pass the array of URLs to cache**. it returns a promise
 		}));
     self.skipWaiting();  // it tells browser to activate this SW and discard old one immediately (useful during development)
     console.log(`[SW] installed`);
@@ -47,6 +47,16 @@ self.addEventListener('fetch', event => {
 
     event.respondWith(NetworkFirstThenCacheStrategy(event) );
 
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data === 'showOfflineAnimation') {
+    self.clients.matchAll().then((clients) => {
+      clients.forEach((client) => {
+        client.postMessage({ command: 'showOfflineAnimation' });
+      });
+    });
+  }
 });
 
 // CACHE FIRST, THEN NETWORK STRATEGY

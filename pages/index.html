@@ -6,13 +6,39 @@
     <title>WeBridge - Home Page</title>
     <link rel="icon" type="image/x-icon" href="/assets/icons/icon-96x96.png">
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
-    <!-- <link rel="stylesheet" href="../css/dropdown.css">  -->
-   <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script type="module" src="../js/index.js" defer></script>
     <script type="module" src="../js/header.js"> defer</script>
-    <link rel="stylesheet" href="../css/header.css">
+    
     <link rel="manifest" href="/app.webmanifest">
+    <style>
+        /* Add your CSS styles for the offline animation here */
+        @keyframes offlineAnimation {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0); }
+        }
+
+        #offlineAnimationContainer {
+            z-index: 1000;
+        }
+    
+        .offline-animation {
+          display: none;
+          position: fixed;
+          top: 50px;
+          left: 30%;
+          transform: translateX(-50%);
+          background-color: #f44336;
+          color: white;
+          padding: 10px;
+          border-radius: 5px;
+          animation: offlineAnimation 1s infinite;
+        }
+    </style>
 </head>
 <body>
     <!-- header>nav>.row>.col>.dropdown-container>.dropdown-toggle.click-dropdown>{Log In}^.dropdown-menu>(ul>li>a[href=""]{Menu$})*2 -->
@@ -117,6 +143,9 @@
         </div>
        
     </header>
+    <div class="offline-animation" id="offlineAnimationContainer">
+        You are currently offline. Please check your internet connection.
+    </div>
     <main class="homepage">
         <section id="hero">
             <div id="hero_container">
@@ -169,6 +198,44 @@
                     </div>
         </section>
     </main>
+    <footer>
+        <div class="footerContainer">
+            <div class="container">
+                <div class="footer-logo">
+                    <a href="../pages/index.html"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="Logo" class="footerImg"></a>
+                </div>
+                <div class="social-media">
+                    <ul>
+                        <li>
+                            <a aria-label="Link to our LinkedIn" href="https://LinkedIn.com">
+                                <i aria-hidden="true" class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>                
+                        <li>
+                            <a aria-label="Link to our Facebook profile" href="https://facebook.com">
+                                <i aria-hidden="true" class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Instagram profile" href="https://instagram.com">
+                                <i aria-hidden="true" class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Twitter profile" href="https://twitter.com">
+                                <i aria-hidden="true" class="fa-brands fa-x-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <p>Copyright &copy; WeBridge</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        
+        
+      </footer>
     <script>
         ;(async () => {
               // does the browser support service workers?
@@ -189,10 +256,24 @@
                 console.log(`Service Worker is Active:`, active);
                 // At this point, you can call methods that require an active service worker,
                 // like registration.pushManager.subscribe() for push notification
-              } else {
+
+                navigator.serviceWorker.addEventListener('message', (event) => {
+                    if (event.data.command === 'showOfflineAnimation') {
+                    // Show the offline animation
+                    const offlineAnimationContainer = document.getElementById('offlineAnimationContainer');
+                    offlineAnimationContainer.style.display = 'block';
+
+                    // You can customize the duration the animation is displayed
+                    setTimeout(() => {
+                        offlineAnimationContainer.style.display = 'none';
+                    }, 5000); // Adjust the duration (in milliseconds) as needed
+                    }
+                });
+                
+            } else {
                 // happens when the app isn't served over a TLS connection (HTTPS)
                 console.warn('Service Worker not available');
-              }
+            }
           })();//async IIFE    
   </script>
 </body>
