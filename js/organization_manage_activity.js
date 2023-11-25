@@ -54,14 +54,25 @@ async function postInfo() {
             console.log("Document data:", data);
 
             let post_info = document.getElementById("Post_info")
-            post_info.innerHTML = `<img id="profile_img" src = "${org_info.photoLink}" >
+            post_info.innerHTML = `<div>
+                                    <img id="profile_img" src = "${org_info.photoLink}" >
+                                    </div>
+                                    <div>
                                     <h1>${data.positionTitle}</h1>
-                                    <p>${data.description}</p>`
-        
+                                    <p id="description">${data.description}</p>
+                                    <div id="wrap_data"></div>
+                                    </div>`
+            let wrap_data = document.getElementById("wrap_data")
             const date = data.date.toDate();
+
+            const div_data_wrap = document.createElement('div');
+            wrap_data.append(div_data_wrap);
+            const img = document.createElement('img');
+            img.setAttribute("src", "../images/icons/date.svg")
+            div_data_wrap.append(img);
             const p = document.createElement('p');
             p.innerText = date.toLocaleDateString('en-GB');
-            post_info.append(p);
+            div_data_wrap.append(p);
 
             const hours = date.getHours().toString().padStart(2, '0');
             let period;
@@ -72,13 +83,24 @@ async function postInfo() {
                 period = "PM";
             }
             const minutes = date.getMinutes().toString().padStart(2, '0');
+
+            const div_data_wrap1 = document.createElement('div');
+            wrap_data.append(div_data_wrap1);
+            const img1 = document.createElement('img');
+            img1.setAttribute("src", "../images/icons/time.svg")
+            div_data_wrap1.append(img1);
             const p1 = document.createElement('p');
             p1.innerText = `${hours}:${minutes} ${period}`;
-            post_info.append(p1);
+            div_data_wrap1.append(p1);
 
+            const div_data_wrap2 = document.createElement('div');
+            wrap_data.append(div_data_wrap2);
+            const img2 = document.createElement('img');
+            img2.setAttribute("src", "../images/icons/location.svg")
+            div_data_wrap2.append(img2);
             const p2 = document.createElement('p');
             p2.innerText = `${data.location}`;
-            post_info.append(p2);
+            div_data_wrap2.append(p2);
         })
         .catch((error) => {
             console.error("Error getting document:", error);

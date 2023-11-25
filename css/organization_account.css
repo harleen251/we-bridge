@@ -292,7 +292,7 @@ span {
  @media screen and (min-width: 800px) {
 
     main, header {
-        max-width: 900px;
+        max-width: 1000px;
         margin: auto;
     }
 
