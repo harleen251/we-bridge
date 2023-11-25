@@ -1,0 +1,14 @@
+@import url(style.css);
+
+/* **********************************************
+    Base Declarations
+********************************************** */
+
+body{
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+    background: var(--grey-lighter);
+}
