@@ -49,15 +49,33 @@ self.addEventListener('fetch', event => {
 
 });
 
-self.addEventListener('message', (event) => {
-  if (event.data === 'showOfflineAnimation') {
-    self.clients.matchAll().then((clients) => {
-      clients.forEach((client) => {
-        client.postMessage({ command: 'showOfflineAnimation' });
-      });
-    });
-  }
-});
+// self.addEventListener('fetch', (event) => {
+//   event.respondWith(
+//     caches.match(event.request)
+//       .then((response) => {
+//         return response || fetch(event.request);
+//       })
+//   );
+// });
+
+// self.addEventListener('message', (event) => {
+//   if (event.data === 'showOfflineAnimation') {
+//     self.clients.matchAll().then((clients) => {
+//       clients.forEach((client) => {
+//         client.postMessage({ command: 'showOfflineAnimation' });
+//       });
+//     });
+//   }
+// });
+
+// self.addEventListener('offline', () => {
+//   // Send a message to the main page to show the offline animation
+//   self.clients.matchAll().then((clients) => {
+//     clients.forEach((client) => {
+//       client.postMessage({ command: 'showOfflineAnimation' });
+//     });
+//   });
+// });                                                                 
 
 // CACHE FIRST, THEN NETWORK STRATEGY
 async function CacheFirstThenNetworkStrategy(event) {
