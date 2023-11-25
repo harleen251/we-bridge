@@ -1,6 +1,6 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url(style.css);
+
 /* Login and Index */
 /*Color*/
 :root {
@@ -42,14 +42,21 @@
 .post_detail {
     font-family: "Poppins", sans-serif;
     background-color: var(--white);
-    margin-left: 1rem;
+    /* margin-left: 1rem;
     margin-right: 1rem;
-    padding-top: 60px;
+    padding-top: 60px; */
 
 }
 
+
 body {
     margin: 0;
+}
+
+.div3 img {
+    width: 22px !important;
+    height: 22px !important;
+    margin-right: 12px !important;
 }
 
 .post_detail button, .popup-content button {
@@ -62,6 +69,11 @@ body {
     width: 42%;
     border-radius: 8px;
     font-weight: bold;
+}
+#opportunity_detail {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-top: 60px; 
 }
 
 #opportunity_detail img {
@@ -115,6 +127,8 @@ body {
     padding-top: 0;
     margin-top: 0;
     border-bottom-width: 50%;
+    display: flex;
+    align-items: center;
 }
 
 #opportunity_detail .div3 {
@@ -127,12 +141,18 @@ body {
     margin-right: 10%;
 }
 
+#similar_opportunities{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 10px;
+    margin-top: 60px;
+}
 #similar_opportunities h1 {
     font-size: 1.2rem;
     color: var(--purple-dark);
 }
 
-#similar_opportunities div {
+#similar_opportunities .similar_div {
     border: 1px solid var(--grey-light); 
     border-radius: 15px;
     background-color: var(--white);
@@ -140,11 +160,10 @@ body {
     margin-bottom: 12px;
     margin-right: 20px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr ;
-    row-gap: 10px;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 8%;
 }
-#similar_opportunities div:hover{
+#similar_opportunities .similar_div:hover{
     opacity: 100%;
     border:1.5px solid var(--purple-lighter);
     box-shadow: 0 0 8px rgba(0,0,0,.125);
@@ -154,19 +173,29 @@ body {
     width: 38vw;
     height: auto; 
     margin-right: 20px;
-    grid-row: span 3;
     position: relative;
     top: 20px;
 }
 
 #similar_opportunities h2 {
     font-size: 1.1rem;
+    overflow: hidden; /* hidden overflow paet */
+    white-space: nowrap; /* no wrap */
+    text-overflow: ellipsis; /* show ellipsis */
+    width: 190px;
+}
+
+.descri {
+    overflow: hidden; /* hidden overflow paet */
+    white-space: nowrap; /* no wrap */
+    text-overflow: ellipsis; /* show ellipsis */
+    width: 190px;
 }
 
 #similar_opportunities .orgName {
-    grid-row: 4;
-    position: relative;
-    left: 16%;
+    margin-top: 20px;
+    text-align: center;
+    
 }
 
 #similar_opportunities{
@@ -189,7 +218,8 @@ body {
     z-index: 1000;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    max-width: 400px; /* Set the maximum width of the popup, adjust as needed */
+    width: 80vw;
+    max-width: 500px; /* Set the maximum width of the popup, adjust as needed */
     border-radius: 15px;
   }
   

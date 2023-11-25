@@ -110,16 +110,16 @@ const firebaseConfig = {
                             </div>
                             <div id="btns"> </div>
                             <div class="div3">
-                            <p> <i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
+                            <p> <img src= "../images/icons/date.svg" alt = "date icon"> ${date.toLocaleString('en-US', {
                               year: 'numeric',
                               month: '2-digit',
                               day: '2-digit',
                             })} </p>
-                            <p> <i class="fa-solid fa-clock" style="color: #8f8f8f;"></i> ${data.hours} Hours </p>
-                            <p> <i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${data.location} </p>
-                            <p> <i class="fa-solid fa-globe" style="color: #8f8f8f;"></i> ${data.preferredLanguage} </p>
-                            <p> <i class="fa-solid fa-star" style="color: #8f8f8f;"></i> ${data.interests} </p>
-                            <p> <i class="fa-solid fa-desktop" style="color: #8f8f8f;"></i> ${data.mode_of_work} </p>
+                            <p> <img src= "../images/icons/time.svg" alt = "time icon">${data.hours} Hours </p>
+                            <p> <img src= "../images/icons/location.svg" alt = "location icon">${data.location} </p>
+                            <p> <img src= "../images/icons/language.svg" alt = "language icon">${data.preferredLanguage} </p>
+                            <p> <img src= "../images/icons/skills.svg" alt = "skills icon">${data.interests} </p>
+                            <p> <img src= "../images/icons/mode-of-work.svg" alt = "mode-of-work icon">${data.mode_of_work} </p>
                             </div>
                             <div class="div4">
                             <h3>Descriptions</h3>
@@ -178,14 +178,11 @@ const firebaseConfig = {
               if (recommendedPosts.length > 0) {
                 for (let i = 0; i < Math.min(recommendedPosts.length, 3); i++) {
                   const recommendationDiv = document.createElement("div");
+                  recommendationDiv.className = "similar_div"
                   const recommendedData = recommendedPosts[i].data();
                   const date = new Date(recommendedData.date.toDate());
                   let description = recommendedData.description
-                  if (recommendedData.description.length > 30) {
-                    description = recommendedData.description.slice(0, 30) + '...';
-                } else {
-                    description = recommendedData.description;
-                }
+                  
                   console.log(recommendedPostsId[i])
 
                    organizationId = recommendedData.organizationId;
@@ -200,17 +197,20 @@ const firebaseConfig = {
                     navigateToPostDetailPage(recommendedPostsId[i]);
                   });
                   recommendationDiv.innerHTML += `
+                    <div class="reDiv1">
                     <img src= "${photoLink}" alt = "profile image">
                     <p class="orgName">${recommendedData.orgName}</p>
+                    </div>
+                    <div class="reDiv2">
                     <h2>${recommendedData.positionTitle}</h2>
-                    <p>${description}</p>
-                    <p><i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
+                    <p class="descri">${description}</p>
+                    <p style=" color : #8F8F8F;"><i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
                       year: 'numeric',
                       month: '2-digit',
                       day: '2-digit',
                     })}</p>
-                    <p><i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${recommendedData.location}</p>
-                    <br>
+                    <p style=" color : #8F8F8F;"><i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${recommendedData.location}</p>
+                    </div>
                   `;
   
                   // Append recommendationDiv to similar_opportunities
@@ -253,13 +253,10 @@ function showMoreRecommendations(startIndex) {
             const recommendedData = recommendedPosts[i].data();
             const date = new Date(recommendedData.date.toDate());
             let description = recommendedData.description
-                  if (recommendedData.description.length > 30) {
-                    description = recommendedData.description.slice(0, 30) + '...';
-                } else {
-                    description = recommendedData.description;
-                }
+                  
             // Create a div containing the details
             const recommendationDiv = document.createElement("div");
+            recommendationDiv.className = "similar_div"
             recommendationDiv.addEventListener("click", () => {
                 navigateToPostDetailPage(recommendedPostsId[i]);
             });
@@ -275,17 +272,20 @@ function showMoreRecommendations(startIndex) {
                     navigateToPostDetailPage(recommendedPostsId[i]);
                   });
                   recommendationDiv.innerHTML += `
-                    <img src= "${photoLink}" alt = "profile image">
-                    <p class="orgName">${recommendedData.orgName}</p>
-                    <h2>${recommendedData.positionTitle}</h2>
-                    <p>${description}</p>
-                    <p><i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
-                      year: 'numeric',
-                      month: '2-digit',
-                      day: '2-digit',
-                    })}</p>
-                    <p><i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${recommendedData.location}</p>
-                    <br>
+                  <div class="reDiv1">
+                  <img src= "${photoLink}" alt = "profile image">
+                  <p class="orgName">${recommendedData.orgName}</p>
+                  </div>
+                  <div class="reDiv2">
+                  <h2>${recommendedData.positionTitle}</h2>
+                  <p class="descri">${description}</p>
+                  <p style=" color : #8F8F8F;"><i class="fa-solid fa-calendar-days" style="color: #8f8f8f;"></i>  ${date.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  })}</p>
+                  <p style=" color : #8F8F8F;"><i class="fa-solid fa-location-dot" style="color: #8f8f8f;"></i> ${recommendedData.location}</p>
+                  </div>
                   `;
   
                   // Append recommendationDiv to similar_opportunities

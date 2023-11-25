@@ -307,7 +307,7 @@ window.addEventListener('offline', () => {
     // You can customize the duration the animation is displayed
     setTimeout(() => {
     offlineAnimationContainer.style.display = 'none';
-    }, 5000); // Adjust the duration (in milliseconds) as needed
+    }, 8000); // Adjust the duration (in milliseconds) as needed
 });
   
 window.addEventListener('online', () => {
