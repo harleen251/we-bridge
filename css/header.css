@@ -163,14 +163,14 @@ header a {
       
       header a {
         color: black;
-        margin-right: 100px;
+        margin-right: 70px;
         font-size: 1.3rem;
       }
 
       .left-section,
       .right-section {
         display: flex;
-        margin-right: 100px;
+        margin-right: 70px;
       }
       
       header img {
@@ -180,7 +180,7 @@ header a {
 
       .center-section {
         position: absolute;
-        left: 55%;
+        left: 53%;
         transform: translateX(-50%);
       }
       

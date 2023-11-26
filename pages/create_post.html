@@ -126,29 +126,36 @@
         <textarea id="txtDescription" name="description" rows="4" required></textarea>
         <br>
 
-        <label for="date">Date:</label>
-        <input type="date" id="txtDate" name="date" required>
-        <br>
-
-        <label for="hours">Hours:</label>
-        <input type="text" id="txtHours" name="hours" required>
-        <br>
+        <div class="mobilediv1">
+            <div class="date">
+                <label for="date">Date:</label>
+                <input type="date" id="txtDate" name="date" required>
+             </div>
+             <div class="hours">
+                <label for="hours">Hours:</label>
+                <input type="text" id="txtHours" name="hours" required>
+            </div>
+        </div>
 
         <label for="location">Activity Location:</label>
         <input type="text" id="txtLocation" name="location" required>
         <br>
 
-        <label for="expireDate">Post Expire Date:</label>
-        <input type="date" id="txtExpireDate" name="expireDate" required>
-        <br>
-
-        <label for="mode of work">Mode of Work</label>
-        <select name="mode_of_work" id="mode_of_work">
-            <option value="Onsite_work">Onsite work</option>
-            <option value="Remote_work">Remote Work</option>
-            <option value="Hybrid_work">Hybrid Work</option>
-        </select>
-        <br>
+        <div class="mobileDiv2">
+            <div class="expireDate">
+                <label for="expireDate">Post Expire Date:</label>
+                <input type="date" id="txtExpireDate" name="expireDate" required>
+             </div>
+        
+             <div class="mode_of_work">
+                <label for="mode of work">Mode of Work</label>
+                <select name="mode_of_work" id="mode_of_work">
+                    <option value="Onsite_work">Onsite work</option>
+                    <option value="Remote_work">Remote Work</option>
+                    <option value="Hybrid_work">Hybrid Work</option>
+                </select>
+            </div>
+        </div>
         
         <label for="availbility">Availbility</label>
         <select name="availbility" id="availbility">
@@ -160,7 +167,7 @@
         <section id="interest">
             <h3>Which categories best matches the volunteer work?</h2>
             <div class="select-choose"></div>
-            <p>Select up to 5 Interests</p>
+            <p>Select up to 3 Interests</p>
             <button id="choose_interest">Choose</button>
 
             <div id="option_interest">
@@ -169,7 +176,7 @@
                         <span onclick="document.getElementById('option_interest').style.display='none'" class="close" title="Close Modal">&times;</span>
                     </div>
                     <h3>Select Your Interests</h3>
-                    <p>Please select up to 5 interests</p>
+                    <p>Please select up to 3 interests</p>
                     <fieldset>
                         <label for="interest1">Advocacy and Law</label>
                         <input type="checkbox" id="interest1" value="Advocacy and Law">
@@ -273,7 +280,7 @@
         
         <div id="skill">
             <h3>What skills do you need from Volunteers?</h2>
-            <p>Select up to 5 Skills</p>
+            <p>Select up to 3 Skills</p>
             <button id="choose_skill">Choose</button>
             <div id="option_skill">
                 <section id="wrap_skill">
@@ -281,7 +288,7 @@
                         <span onclick="document.getElementById('option_skill').style.display='none'" class="close" title="Close Modal">&times;</span>
                     </div>
                     <h3>Select Your Skills</h3>
-                    <p>Please select up to 5 skills</p>
+                    <p>Please select up to 3 skills</p>
                     <fieldset>
                         <h3>Accounting</h3>
                         <label for="skill1">Budgeting</label>
@@ -406,9 +413,10 @@
         <input type="email" id="txtEmail" name="email" required>
         <br> -->
         
+        <div id="postBtn">
         <button id="discord">Discord</button>
         <button>Publish</button>
-        
+        </div>
 
     </form>
 
