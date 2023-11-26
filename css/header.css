@@ -55,17 +55,17 @@ header {
 
 header ul  {
     list-style: none;
-    padding-left: 1rem;
+    padding-left: 1.3rem;
 }
 
 header li {
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 header a {
     text-decoration: none;
     color: white;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 24px;
 }
 
 .menu li a:hover {
@@ -107,12 +107,12 @@ header a {
 
 .menu.active {
     display: block;
-    background-color: #4410A5;
+    background-color: #360B83;
     border: 1px solid #ccc;
     position: absolute;
     width: 100vw;
     height: 100vh;
-    padding: 40px 15px 150px 0;
+    padding: 60px 15px 150px 0;
     z-index: 80;
     top: 0;
     left: 0;
@@ -121,19 +121,24 @@ header a {
 
 .menu img {
   position: absolute;
-  top: 10px;
-  left: 8px;
-  width: 120px;
+  top: 20px;
+  left: 18px;
+  width: 150px;
   height: auto;
 }
 .submenu1, .submenu2, .submenu3 {
     display: none;
 }
 
+.submenu1 a, .submenu2 a , .submenu3 a {
+  font-size: 18px;
+}
+
 .submenu1.active, .submenu2.active, .submenu3.active {
     display: block;
-    
+    margin-top: 20px;
 }
+
 .logout.active {
     display: block;
 }
