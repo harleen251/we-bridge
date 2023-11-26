@@ -171,7 +171,7 @@ main {
     border: 1px solid var(--grey-light); 
     border-radius: 15px;
     background-color: var(--white);
-    padding:20px; 
+    padding: 18px; 
     margin-bottom: 12px;
     cursor: pointer;
     display: grid;
@@ -249,6 +249,7 @@ main {
     margin-top: 4px;
     margin-bottom: 4px;
 }
+
 /* Button Settings */
 .arrow_button_container {
     margin-top: 24px;
@@ -367,7 +368,6 @@ main {
         margin-right: 5%;
     }
     
-
     /*** Latest Opportunity and Recommendation Section ***/
     .card {
         padding: 28px;
