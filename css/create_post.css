@@ -3,7 +3,7 @@
 
 .createPost {
     background-color: #F5F6F8;
-    margin-top: 80px;
+    margin-top: 40px;
     font-family: "Poppins", sans-serif;
 }
 
@@ -17,9 +17,10 @@ body {
     text-align: center;
 }
 
-#postForm label, input, textarea, select, h3, p {
+.formCon {
     margin-left: 40px;
 }
+
 /* #postForm :not(h2){
     margin-left: 1rem;
     margin-right: 1rem;
@@ -116,7 +117,11 @@ body {
     grid-template-columns: repeat(2,1fr);
     column-gap: 20px;
     justify-items: center;
-    margin-left: 30px;
+    margin-left: 20px;
+}
+
+#txtPreferredLanguage {
+    width: 95% !important;
 }
 /* .mobilediv1 input {
     width: 40% !important;

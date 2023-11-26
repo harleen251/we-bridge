@@ -114,6 +114,8 @@ header a {
     height: 100vh;
     padding: 40px 15px 150px 0;
     z-index: 80;
+    top: 0;
+    left: 0;
     /* ... */
 }
 
@@ -264,7 +266,9 @@ header a {
       .left-section a:hover , .right-section a:hover{
         /* background-color: var(--color);
         color: white; */
-        border-bottom: 2px solid ;
+        /* border-bottom: 2px solid ; */
+        text-decoration: underline;
+        text-underline-offset: 8px;
       }
       
       .show {
