@@ -414,15 +414,20 @@
         <br> -->
         
         <div id="postBtn">
-        <button id="discord">Discord</button>
-        <button>Publish</button>
+        <button id="discord" onclick="goBack()">Discord</button>
+        <button id="submitPost">Publish</button>
         </div>
 
     </form>
 
     <div id="infoArea"></div>
     </main>
-    
+
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+    </script>
 </body>
 </html>
 

@@ -56,7 +56,7 @@ body {
 .div3 img {
     width: 22px !important;
     height: 22px !important;
-    margin-right: 12px !important;
+    margin-right: 12px !important; 
 }
 
 .post_detail button, .popup-content button {
@@ -81,6 +81,7 @@ body {
     height: auto; 
     margin-right: 20px;
     grid-row: span 3;
+    clip-path: inset(0 0 0 0 round 10px); 
 }
 
 #opportunity_detail .div1 {
@@ -175,6 +176,7 @@ body {
     margin-right: 20px;
     position: relative;
     top: 20px;
+    clip-path: inset(0 0 0 0 round 10px); 
 }
 
 #similar_opportunities h2 {

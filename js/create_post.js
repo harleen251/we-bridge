@@ -41,7 +41,7 @@ const db = getFirestore();
 
 const colRef = collection(db, 'posts');
 
-const submitPost = document.getElementById("postForm");
+const submitPost = document.getElementById("submitPost");
 const skillArray = [];
 const interestArray = [];
 

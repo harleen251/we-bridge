@@ -29,9 +29,6 @@ header {
     display: none;
 }
 
-.logoLink:active {
-  background-color: white;
-}
 .mobile {
   padding: 20px;
   display: flex;
@@ -72,7 +69,7 @@ header a {
 }
 
 .menu li a:hover {
-  background-color: #212121;
+  color: #FFD25E;
 }
 
 .bar {
@@ -218,7 +215,7 @@ header a {
       .dropdown {
         position: absolute;
         top: 30px;
-        right: 290px;
+        right: 265px;
         width: 280px;
         height: 130px;
         box-shadow: var(--shadow);
@@ -235,7 +232,7 @@ header a {
 
       #dropdownSignUp, #dropdownAcc {
         position: absolute;
-        right: 120px;
+        right: 95px;
         background: black;
       }
 
@@ -265,8 +262,9 @@ header a {
       }
 
       .left-section a:hover , .right-section a:hover{
-        background-color: var(--color);
-        color: white;
+        /* background-color: var(--color);
+        color: white; */
+        border-bottom: 2px solid ;
       }
       
       .show {

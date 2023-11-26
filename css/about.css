@@ -3,7 +3,6 @@
 /* **********************************************
     Base Declarations
 ********************************************** */
-
 body{
     margin: 0;
 }
@@ -11,4 +10,106 @@ body{
 main {
     padding: 20px;
     background: var(--grey-lighter);
+}
+
+.border{
+    border-bottom: 6px solid var(--purple-primary);
+    width: 6rem;
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.about h2{
+    font-size: 24px;
+}
+
+.about p{
+font-size: 16px;
+}
+
+section{
+    margin-bottom: 52px;
+}
+/* **********************************************
+    Main Declarations
+********************************************** */
+
+/************* Hero Section ********************/
+#h1_webridge{
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.h1_vol_org{
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0;
+}
+
+#h1_vol{
+    text-align: left;
+}
+
+#h1_org{
+    text-align: right;
+}
+
+.circle{
+    height: 275px;
+    width: 275px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+#circle1{
+    background-color: var(--yellow-light);
+}
+
+#circle2{
+    background-color: var(--purple-light);
+}
+
+/************* Mission Section ********************/
+
+.mission_h3{
+    font-size: 16px;
+    color: var(--purple-primary);
+}
+.vision_right_container img{
+    width: 302px;
+    height: 232px;
+    overflow: hidden;
+    clip-path: inset(0 0 0 0 round 50px);
+} 
+/************* Team Section ********************/
+.team_container img{
+    width: 300px;
+}
+
+
+/************* Contact Section ********************/
+.social-media ul li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+.social-media ul {
+    margin: 0;
+    padding: 0;
+}
+
+.social-media a{
+    font-size: 20px;
+    color: white;
+    width: 28px;
+    height: 28px;
+    background-color: var(--purple-primary);
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+    margin-right: 12px;
+}
+
+.contact_link{
+    color: var(--purple-light);
 }
