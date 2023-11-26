@@ -132,8 +132,8 @@ const today = Timestamp.now();
 const q = query(postCollection,
     where('expireDate', '>', today),
     orderBy('expireDate','desc'),
-    orderBy('date','desc'),
-    limit(5));
+    orderBy('posted_on_date','desc'),
+    limit(20));
 let i = 1;
 
 await getDocs(q)
