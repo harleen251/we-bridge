@@ -15,6 +15,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     font-family: "Poppins", sans-serif;
+    font-size: 12px;
     /* max-width: 900px; */
 }
 
@@ -31,13 +32,18 @@ body {
     grid-row: 1;
     grid-column: span 2;
     text-align: left;
-    margin-top: 0;
+    margin-top: 40px;
 }
 #searchInput {
     grid-column: span 2;
     width: 100%;
     margin-top: 0;
     margin-bottom: 0;
+    background-image: url('../images/icons/Search.svg');
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    background-size: 20px 20px;
 }
 .search-container {
     grid-column: 1/3;
@@ -50,9 +56,24 @@ select {
     background: var(--secondary-button);
     color: var(--card-background);
     /* font-weight: px; */
+    text-align: center;
+
 }
+
 #interests {
     grid-column: 1/2;
+    grid-row: 3/4;
+}
+#skills {
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+select,
+#search,
+#more-filters
+{
+    font-size: 16px;
+    font-weight: bold;
 }
 
 #search {
@@ -93,7 +114,7 @@ input#search:hover{
     color: var(--primary-button);
     text-align: center;
 }
-#heading-distance {
+.heading-distance {
     padding-left: 30px;
 
 }
@@ -110,7 +131,20 @@ input#search:hover{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 70%;
   }
+  .card_icon{
+    width: 14px;
+}
+#date,
+#location
+{
+    display:flex;
+    gap: 8px;
+    align-items: center;
+}
 
+.location-explore {
+    margin-bottom: 12px;
+}
 
   /* Add styles for overlay/background when the modal is open */
   .overlay {
@@ -152,21 +186,50 @@ input#search:hover{
     width: 100%;
     transition: all .2s linear;
     overflow: hidden;
-    /* margin: 1rem; */
     box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;
     margin-top: 0;
-    /* display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    text-align: center;*/
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1rem; 
+}
+.post-group {
+    margin-top: 0;
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.organization-logo {
+    margin-top: 3rem;
+    margin-bottom: auto;
+}
+.post-text-content-explore h3{
+    font-size: 16px;
 }
   
 .card:hover {
     box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
     transform: translate3D(0, -2px, 0);
 } 
+.grey-text {
+    color: var(--grey-text);
+}
+
+
+div.radius-radio-buttons {
+    display: none;
+}
+
+.read-more-link {
+    color: blue;
+    cursor: pointer;
+    display: none; /* Initially hide the link */
+  }
+
+  /* Hide the additional text by default */
+  .additional-text {
+    display: none;
+  }
   
   
 
@@ -176,6 +239,74 @@ input#search:hover{
     button.more-filters-btn-mobile {
         display: none;
     }
+    .horizontal-inputs-explore {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+    /* .grid-search-input-desktop {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    } */
+    /* #searchInput {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    } */
+    /* .grid-desktop  {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);        
+    } */
+    .search-input-desktop {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+    select#interests {
+        grid-column: 2/3;
+        grid-row: 2/3;
+    }
+    select#skills {
+        grid-column: 3/4;
+        grid-row: 2/3;
+    }
+    input#search {
+        grid-column: 4/5;
+        grid-row: 2/3;
+    }
+/*     
+    div.desktop-view {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    } */
+    #vertical-filter{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+    }
+    /* div#eventDetails {
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+    
+     div.card {
+        grid-column: 2/3;
+    }  */
+
+    .desktop-view-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+   div#eventDetails {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+   }
+   #radio-label {
+    font-size: 12px;
+   }
+    
+    
+    
+
 }
 
 

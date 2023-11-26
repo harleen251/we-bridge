@@ -51,6 +51,7 @@ function displayAllPosts() {
           output.appendChild(div);
         }
       });
+      document.body.appendChild(document.createElement('script')).text = toggleReadMore.toString() + ';';
     })
     .catch(err => {
       console.log(err.message);
@@ -230,17 +231,65 @@ function createEventDiv(event) {
   const div = document.createElement('div');
   const date = new Date(event.date.toDate()); 
   const expireDate = new Date(event.expireDate.toDate()); 
-  div.innerHTML = `<br><h3>${event.positionTitle} </h3>
-    ${event.description} <br>
-    <br>  ${date.toLocaleString()}
-    <br>  ${event.location} `;
-    div.addEventListener("click", ()=>{
-      navigateToPostDetailPage(event.id);
+  const orgLogo = document.createElement('img');
+
+  orgLogo.src = "../images/organization logo/spca.png"
+  orgLogo.className = "organization-logo"
+
+  div.appendChild(orgLogo);
+  let textDiv = document.createElement('div');
+  textDiv.className = "post-text-content-explore"
+
+    // Truncate the event description if it's too long
+    const truncatedDescription = event.description.length > 100
+    ? event.description.substring(0, 100) + "..."
+    : event.description;
+
+    textDiv.insertAdjacentHTML('beforeend', `<br><h3 class="position-title-explore post-group">${event.positionTitle} </h3>
+    <p class="event-description-explore post-group grey-text">${truncatedDescription}</p>
+    <p class="additional-text" id="remaining-text grey-text">${event.description}</p>
+    <p class="read-more-link" onclick="toggleReadMore(event)">Read More...</p>
+    <div id="date"><img class="date-explore post-group card_icon" src="../images/icons/date.svg"><p class="post_date grey-text">${date.toLocaleString()}</p></div>
+    <div id="location"><img class="location-explore card_icon" src="../images/icons/location.svg"><p class="location-explore post-group grey-text">${event.location}</p></div>`);
+
+    div.addEventListener( "click" , () =>{
+      navigateToPostDetailPage(event . id) ; 
     })
-  // const applyButton = createApplyButton(event.id);
-  // div.appendChild(applyButton);
+
+    // Initially hide the additional text and "Read More" link
+  const additionalText = textDiv.querySelector('.additional-text');
+  const readMoreLink = textDiv.querySelector('.read-more-link');
+  additionalText.style.display = 'none';
+
+  // Show the "Read More" link if the description is longer than 100 characters
+  if (event.description.length > 100) {
+    readMoreLink.style.display = 'inline';
+  }
+    div.appendChild(textDiv);
+  
+
   return div;
 }
+
+function toggleReadMore(event) {
+  event.stopPropagation(); // Stop the click event from propagating to the parent div
+  var textDiv = event.currentTarget.parentNode;
+  var truncatedDescription = textDiv.querySelector('.event-description-explore');
+  var additionalText = textDiv.querySelector('.additional-text');
+  var readMoreLink = textDiv.querySelector('.read-more-link');
+
+  if (additionalText) {
+    if (additionalText.style.display === 'none' || additionalText.style.display === '') {
+      truncatedDescription.style.display = 'none';
+      additionalText.style.display = 'block';
+      additionalText.className = 'grey-text';
+      readMoreLink.style.display = 'none';
+    } 
+  }
+}
+
+
+
 
 
 

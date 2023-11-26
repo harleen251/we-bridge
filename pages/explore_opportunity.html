@@ -124,12 +124,11 @@
       class="horizontal-inputs-explore"
       style="margin-left: 150px">
       <h1 id="find-opportunity-heading-explore">Find Opportunities</h1>
-      <div class="search-container">
-        <!-- todo: Add search icon -->
-        <input type="text" id="searchInput" placeholder="Search..." >
+      <div class="search-container grid-desktop-horizontal search-input-desktop">
+        <input type="text" id="searchInput" placeholder="Enter Keywords" class="grid-search-input-desktop">
       </div>
-      <label for="interests"></label>
-      <select name="interests" id="interests">
+      <label for="interests" class="grid-desktop"></label>
+      <select name="interests" id="interests" class="grid-desktop-horizontal">
         <option value="Interests" selected>Interests</option>
         <option value="Advocacy and Law">Advocacy and Law</option>
         <option value="Anti-Racism">Anti-Racism</option>
@@ -178,7 +177,8 @@
         <option value="Refugee and Settlement">Refugee and Settlement</option>
         <option value="Spirituality and Faith">Spirituality and Faith</option>
       </select>
-      <select name="skills" id="skills">
+      <label for="skills" class="grid-desktop"></label>
+      <select name="skills" id="skills" class="grid-desktop-horizontal">
         <option value="Skills" selected>Skills</option>
         <option value="Budgeting">Budgeting</option>
         <option value="Forecasting">Forecasting</option>
@@ -240,20 +240,41 @@
         <option value="Counselling">Counselling</option>
         <option value="Mentoring">Mentoring</option>
       </select>
-      <input type="submit" value="Search" id="search" /><br />
-      <button
-        class="more-filters-btn-mobile"
-        id="more-filters"
-        onclick="openModal()">
-        More filters
-      </button>
+      <input type="submit" value="Search" id="search" class="grid-desktop grid-desktop-horizontal"/><br />
+      <button class="more-filters-btn-mobile" id="more-filters" onclick="openModal()">More filters</button>
     </div>
+    <div class="desktop-view-container">
+    <!-- <div id="vertical-inputs-desktop" class="aside-for-desktop"> -->
+      <div class="radius-radio-buttons" id="vertical-filter">
+        <h3 id="heading-distance-id" class="heading-distance">Distance:</h3>
+        <div class="radio-button-and-label">
+          <input type="radio" name="radius" id="radius-10" value="10" checked />
+          <label for="10" class="radio-label" id="within-10-km">within 10 km</label><br />
+        </div>
+        <div class="radio-button-and-label">
+          <input type="radio" name="radius" id="20" value="20" />
+          <label for="20" class="radio-label">within 20 km</label><br />
+        </div>
+        <div class="radio-button-and-label">
+          <input type="radio" name="radius" id="30" value="30" />
+          <label for="30" class="radio-label">within 30 km</label><br />
+        </div>
+        <div class="radio-button-and-label">
+          <input type="radio" name="radius" id="40" value="40" />
+          <label for="40" class="radio-label">within 40 km</label><br />
+        </div>
+        <div class="radio-button-and-label">
+          <input type="radio" name="radius" id="50" value="50" />
+          <label for="50" class="radio-label">within 50 km</label><br />
+        </div>
+      </div>
+    <!-- </div>  -->
     <div class="overlay" id="overlay" onclick="closeModal()"></div>
     <div class="modal" id="modal">
       <div id="vertical-inputs">
         <h2 id="more-filters-pop-up-heading">More Filters</h2>
-        <div class="radius-radio-buttons">
-          <h3 id="heading-distance">Distance:</h3>
+        <div class="radius-radio-buttons-mobile">
+          <h3 id="heading-distance" class="heading-distance">Distance:</h3>
           <div class="radio-button-and-label">
             <input type="radio" name="radius" id="radius-10" value="10" checked />
             <label for="10" class="radio-label" id="within-10-km">within 10 km</label><br />
@@ -270,12 +291,12 @@
       </div>
       <button onclick="closeModal()" id="pop-up-close-button">Close</button>
     </div>
-    <div id="eventDetails" ></div>
+    <div id="eventDetails" class="desktop-view"></div>
+  </div>
     <script>
       // JavaScript functions to open and close the modal
       function openModal() {
         document.getElementById("modal").style.display = "block";
-        console.log("I'm a pop up");
         document.getElementById("overlay").style.display = "block";
       }
       function closeModal() {
