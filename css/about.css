@@ -28,7 +28,7 @@ font-size: 16px;
 }
 
 section{
-    margin-bottom: 56px;
+    margin-bottom: 52px;
 }
 /* **********************************************
     Main Declarations
@@ -76,7 +76,12 @@ section{
     font-size: 16px;
     color: var(--purple-primary);
 }
-
+.vision_right_container img{
+    width: 302px;
+    height: 232px;
+    overflow: hidden;
+    clip-path: inset(0 0 0 0 round 50px);
+} 
 /************* Team Section ********************/
 .team_container img{
     width: 300px;
@@ -103,4 +108,8 @@ section{
     padding: 5px 10px 5px 10px;
     border-radius: 10px;
     margin-right: 12px;
+}
+
+.contact_link{
+    color: var(--purple-light);
 }
