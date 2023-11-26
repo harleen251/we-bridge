@@ -12,3 +12,84 @@ main {
     padding: 20px;
     background: var(--grey-lighter);
 }
+
+.border{
+    border-bottom: 6px solid var(--purple-primary);
+    width: 6rem;
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.about h2{
+    font-size: 24px;
+}
+
+.about p{
+font-size: 16px;
+}
+
+section{
+    margin-bottom: 56px;
+}
+/* **********************************************
+    Main Declarations
+********************************************** */
+
+/************* Hero Section ********************/
+#h1_webridge{
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.h1_vol_org{
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.circle{
+    height: 275px;
+    width: 275px;
+    border-radius: 50%;
+    margin: auto;
+}
+
+#circle1{
+    background-color: var(--yellow-light);
+}
+
+#circle2{
+    background-color: var(--purple-light);
+}
+
+/************* Mission Section ********************/
+
+.mission_h3{
+    font-size: 16px;
+    color: var(--purple-primary);
+}
+
+.team_h3{
+    font-size: 16px;
+}
+
+/************* Contact Section ********************/
+.social-media ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right:12px ;
+
+}
+
+.social-media ul {
+    margin: 0;
+    padding: 0;
+}
+.social-media a{
+    color: white;
+    background-color: var(--purple-primary);
+    width: 28px;
+    height: 28px;
+    padding: 6px 10px 6px 10px;
+    border-radius: 10px;
+}
