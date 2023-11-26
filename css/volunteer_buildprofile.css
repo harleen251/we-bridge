@@ -151,11 +151,11 @@ button:hover {
 }
 
 #wrap_option_interest {
-    background-color: #fefefe;
+    background-color:var(--white);
     padding: 20px;
     margin: 5% auto 15% auto;
     /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
+    border: 1px solid var(--grey-middle-placeholdertext);
     width: 80%;
     /* Could be more or less, depending on screen size */
 }
@@ -172,7 +172,7 @@ button:hover {
     /* Full width */
     height: 100%;
     /* Full height */
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color:var(--white);
     /* Black w/ opacity */
     padding-top: 60px;
     overflow: auto;
@@ -237,17 +237,18 @@ button:hover {
   }
 
 @media screen and (min-width: 800px) {
-    body{
+    main{
         margin: auto;
         width: 650px;
     }
-    #header1 {
+
+    #header6 {
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
     }
 
-    #header1 h1 {
+    #header6 h1 {
         grid-column: 1/2;
         font-size: 16px;
         text-align: left;
@@ -255,17 +256,18 @@ button:hover {
         margin-right: auto;
     }
 
-    #header1 h2{
+    #header6 h2{
         grid-column: 2/3;
         text-align: center;
         height: 15%;
         width: 60%;
     }
-    #header4 {
+   #header4 {
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
     }
+
     #header4 h1 {
         grid-column: 1/2;
         font-size: 16px;
@@ -273,7 +275,8 @@ button:hover {
         margin-left: 0;
         margin-right: auto;
     }
-    #header4 h2 {
+
+    #header4 h2{
         grid-column: 2/3;
         text-align: center;
         height: 15%;

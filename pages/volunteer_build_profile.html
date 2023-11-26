@@ -27,26 +27,28 @@
                 <button class="btn" id="btnLogin">Log In <i class="fa-solid fa-caret-down" id="arrow"></i></button>
                 <div class="dropdown" id="dropdown">
                     <a href="volunteer_login.html">
-                    <i class="bx bx-plus-circle"></i>
+                        <i class="bx bx-plus-circle"></i>
                         As Volunteer
                     </a>
                     <a href="organization_login.html">
-                    <i class="bx bx-book"></i>
+                        <i class="bx bx-book"></i>
                         As Organization
                     </a>
                 </div>
-                <button class="btn" id="btnSignUp">Sign Up<i class="fa-solid fa-caret-down" id="arrowSignup"></i></button>
+                <button class="btn" id="btnSignUp">Sign Up<i class="fa-solid fa-caret-down"
+                        id="arrowSignup"></i></button>
                 <div class="dropdown" id="dropdownSignUp">
                     <a href="volunteer_signup.html">
-                    <i class="bx bx-plus-circle"></i>
+                        <i class="bx bx-plus-circle"></i>
                         As Volunteer
                     </a>
                     <a href="organization_signup.html">
-                    <i class="bx bx-book"></i>
+                        <i class="bx bx-book"></i>
                         As Organization
                     </a>
                 </div>
-                <button class="btn" id="btnAccount" style="display: none;">Account <i class="fa-solid fa-caret-down" id="arrowAcc"></i></button>
+                <button class="btn" id="btnAccount" style="display: none;">Account <i class="fa-solid fa-caret-down"
+                        id="arrowAcc"></i></button>
                 <div class="dropdown" id="dropdownAcc">
                     <div class="org">
                         <a id="orgLink1">Organization Profile</a>
@@ -63,7 +65,7 @@
                 </div>
             </div>
         </div>
-                <!-- 汉堡按钮 -->
+        <!-- 汉堡按钮 -->
         <div class="mobile">
             <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
             <div class="hamburger-menu">
@@ -71,176 +73,179 @@
                 <div class="bar bar2"></div>
                 <div class="bar bar3"></div>
             </div>
-            
+
             <!-- 要显示/隐藏的菜单 -->
             <nav class="menu">
-                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="white_mobile_logo"></a>
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_white_mobile nav.svg"
+                        alt="white_mobile_logo"></a>
                 <ul>
                     <li><a href="../pages/explore_opportunity.html">Find opportunities</a></li>
                     <li><a href="../pages/about.html">About Us</a></li>
                     <li>
                         <a href="#" class="login">Log in <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
-                        <ul class="submenu1" >
+                        <ul class="submenu1">
                             <li><a href="../pages/volunteer_login.html">As Volunteer</a></li>
                             <li><a href="../pages/organization_login.html">As Organization</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#" class="signUp">Sign Up <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
-                        <ul class="submenu2" >
+                        <ul class="submenu2">
                             <li><a href="../pages/volunteer_signup.html">As Volunteer</a></li>
                             <li><a href="../pages/organization_signup.html">As Organization</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="account" style="display: none;">Account<i class="fa-solid fa-caret-down" id="arrowAcc"></i></a>
+                        <a href="#" class="account" style="display: none;">Account<i class="fa-solid fa-caret-down"
+                                id="arrowAcc"></i></a>
                         <ul class="submenu3">
                             <div class="org">
-                                <li ><a id="orgLink2">Organization Profile</a></li>
-                                <li ><a id="postLink2">Posting</a></li>
-                                <li ><a id="appLink2">Application</a></li>
+                                <li><a id="orgLink2">Organization Profile</a></li>
+                                <li><a id="postLink2">Posting</a></li>
+                                <li><a id="appLink2">Application</a></li>
                             </div>
                             <div class="vol">
-                                <li ><a id="myLink2">My Profile</a></li>
-                                <li ><a id="appHisLink2">Appocation History</a></li>
-                                <li ><a id="regLink2">Registered Event</a></li>
-                                <li ><a id="volRecLink2">Volunteer Record</a></li>
+                                <li><a id="myLink2">My Profile</a></li>
+                                <li><a id="appHisLink2">Appocation History</a></li>
+                                <li><a id="regLink2">Registered Event</a></li>
+                                <li><a id="volRecLink2">Volunteer Record</a></li>
                             </div>
-                            
+
                             <li><a id="btnLogout2">LogOut</a></li>
                         </ul>
                     </li>
                 </ul>
             </nav>
         </div>
-       
+
     </header>
     <div id="header">
         <header>
             <a href="index.html" style="text-align: right; display: block;">Home</a>
         </header>
     </div>
-        <main>           
-            <form id="profile_Form">
-                <div id="personal_Info">
-                    <h1>BUILD YOUR PROFILE</h1>
-                    <div id="header1">
-                            <div class="right">
-                                <h2 class="h2_personalInfo">Personal Information</h2>
-                            </div>
+    <main>
+        <form id="profile_Form">
+            <div id="personal_Info">
+                <div id="header6">
+                <h1>BUILD YOUR PROFILE</h1>
+                <div class="right">
+                    <h2 class="h2_personalInfo">Personal Information</h2>
+                </div>
+            </div>
+            <div id="photoContainer">
+                <img id="profilePic" src="" alt="Profile Picture">
+                <label for="txtPhotoLink">Add a profile picture</label>
+                <input type="file" id="txtPhotoLink">
+            </div>
+            <!-- <button id="uploadButton">Upload Image</button> -->
+
+
+            <section>
+                <h3>About You</h3>
+                <div id="line1">
+                    <div class="firstname-and-label">
+                        <label for="txtFirstName">First Name</label>
+                        <input type="text" id="txtFirstName">
                     </div>
-                    <div id="photoContainer">
-                        <img id="profilePic" src="" alt="Profile Picture">
-                        <label for="txtPhotoLink">Add a profile picture</label>
-                        <input type="file" id="txtPhotoLink">
+                    <div class="lastname-and-label">
+                        <label for="txtLastName">Last Name</label>
+                        <input type="text" id="txtLastName">
                     </div>
-                    <!-- <button id="uploadButton">Upload Image</button> -->
-        
-        
-                        <section>
-                            <h3>About You</h3>
-                            <div id="line1">
-                                <div class="firstname-and-label">
-                                    <label for="txtFirstName">First Name</label>
-                                    <input type="text" id="txtFirstName">
-                                </div>
-                                <div class="lastname-and-label">
-                                    <label for="txtLastName">Last Name</label>
-                                    <input type="text" id="txtLastName">
-                                </div>
-                            </div>
-        
-                            <div id="line2">
-                                <div class="age1">
-                                    <label for="txtAge">Age</label>
-                                    <select id="txtAge">
-                                        <option value="Select">Select</option>
-                                        <option value="Teenagers (13-17)">Teenagers (13-17)</option>
-                                        <option value="Young Adults (18-30)">Young Adults (18-30)</option>
-                                        <option value="Middle-aged Adults (31-45)">Middle-aged Adults (31-45)</option>
-                                        <option value="Old Adults (Above 45)">Old Adults (Above 45)</option>
-                                    </select>
-                                </div>
-                                <div class="gender1">
-                                    <label for="txtGender">Gender</label>
-                                    <select id="txtGender">
-                                        <option value="Select">Select</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
-                                </div>
-                            </div>
-        
-                            <label for="txtBio">Bio</label>
-                            <textarea id="txtBio" cols="20" rows="5"></textarea>
-        
-                            <div id="line3">
-                                <div class="address1">
-                                    <label for="txtAddress">Address</label>
-                                    <input type="text" id="txtAddress">
-                                </div>
-                                <div class="city1">
-                                    <label for="txtCity">City</label>
-                                    <input type="text" id="txtCity">
-                                </div>
-                            </div>
-        
-                            <div id="line4">
-                                <div class="province1">
-                                    <label for="txtProvince">Province</label>
-                                    <input type="text" id="txtProvince">
-                                </div>
-                                <div class="postal1">
-                                    <label for="txtPostalCode">Postal Code</label>
-                                    <input type="text" id="txtPostalCode">
-                                </div>
-                            </div>
-                        </section>
-        
-                        <section>
-                            <h3>Contact Information</h3>
-                            <div id="line5">
-                                <div class="email1">
-                                    <label for="txtEmail">Email</label>
-                                    <input type="email" id="txtEmail">
-                                </div>
-                                <div class="number1">
-                                    <label for="txtPhoneNumber">Phone Number</label>
-                                    <input type="tel" id="txtPhoneNumber">
-                                </div>
-                            </div>
-                        </section>
-        
-                        <div id="button1">
-                            <button id="next_Info">Next</button>
-                        </div>
-                        <p><a id="edit_preference_background" href="#preference_background">Edit Preference and Background</a>
-                        </p>
+                </div>
+
+                <div id="line2">
+                    <div class="age1">
+                        <label for="txtAge">Age</label>
+                        <select id="txtAge">
+                            <option value="Select">Select</option>
+                            <option value="Teenagers (13-17)">Teenagers (13-17)</option>
+                            <option value="Young Adults (18-30)">Young Adults (18-30)</option>
+                            <option value="Middle-aged Adults (31-45)">Middle-aged Adults (31-45)</option>
+                            <option value="Old Adults (Above 45)">Old Adults (Above 45)</option>
+                        </select>
                     </div>
-           
-        
-        
+                    <div class="gender1">
+                        <label for="txtGender">Gender</label>
+                        <select id="txtGender">
+                            <option value="Select">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label for="txtBio">Bio</label>
+                <textarea id="txtBio" cols="20" rows="5"></textarea>
+
+                <div id="line3">
+                    <div class="address1">
+                        <label for="txtAddress">Address</label>
+                        <input type="text" id="txtAddress">
+                    </div>
+                    <div class="city1">
+                        <label for="txtCity">City</label>
+                        <input type="text" id="txtCity">
+                    </div>
+                </div>
+
+                <div id="line4">
+                    <div class="province1">
+                        <label for="txtProvince">Province</label>
+                        <input type="text" id="txtProvince">
+                    </div>
+                    <div class="postal1">
+                        <label for="txtPostalCode">Postal Code</label>
+                        <input type="text" id="txtPostalCode">
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Contact Information</h3>
+                <div id="line5">
+                    <div class="email1">
+                        <label for="txtEmail">Email</label>
+                        <input type="email" id="txtEmail">
+                    </div>
+                    <div class="number1">
+                        <label for="txtPhoneNumber">Phone Number</label>
+                        <input type="tel" id="txtPhoneNumber">
+                    </div>
+                </div>
+            </section>
+
+            <div id="button1">
+                <button id="next_Info">Next</button>
+            </div>
+            <p><a id="edit_preference_background" href="#preference_background">Edit Preference and Background</a>
+            </p>
+            </div>
+
+
+
             <div id="preference_background">
                 <div id="header4">
                     <h1>BUILD YOUR PROFILE</h1>
-                    <div class="right1">
+                    <div class="right">
                         <h2 class="h2_personalInfo">Preference and Background</h2>
                     </div>
                 </div>
-        
+
+
                 <p>To connect you with the right opportunities,
                     we need some additional information from you.</p>
-        
+
                 <section id="interest">
                     <h2 class="header2"><span class="header3">1</span> Let us know your volunteer interests</h2>
                     <p>Select up to 5 Interests</p>
                     <button id="choose_interest">Choose</button>
-        
+
                     <div id="option_interest">
                         <section id="wrap_option_interest">
                             <div class="imgcontainer">
-                                <span onclick="document.getElementById('option_interest').style.display='none'" class="close"
-                                    title="Close Modal">&times;</span>
+                                <span onclick="document.getElementById('option_interest').style.display='none'"
+                                    class="close" title="Close Modal">&times;</span>
                             </div>
                             <h3>Select Your Interests</h3>
                             <p>Please select up to 5 interests</p>
@@ -340,9 +345,9 @@
                             <button id="save_interests">Save</button>
                         </section>
                     </div>
-        
+
                 </section>
-        
+
                 <section id="availability">
                     <h2 class="header2"><span class="header3">2</span> What is your availability?</h2>
                     <div id="line9">
@@ -358,9 +363,10 @@
                         </div>
                     </div>
                 </section>
-        
+
                 <section>
-                    <h2 class="header2"><span class="header3">3</span> Add your experience, certificates, and skills </h2>
+                    <h2 class="header2"><span class="header3">3</span> Add your experience, certificates, and skills
+                    </h2>
                     <div id="experience_container">
                         <p>Work/ Volunteer Experience</p>
                         <div id="inputGroup">
@@ -375,10 +381,10 @@
                                         <input type="text" id="txtCompany0">
                                     </div>
                                 </div>
-        
+
                                 <label for="txtLocation0">Location</label>
                                 <input type="text" id="txtLocation0">
-        
+
                                 <div id="line7">
                                     <div class="start1">
                                         <label for="txtStartDate0">Start Date</label>
@@ -393,7 +399,7 @@
                         </div>
                         <button id="addNewExpBtn">Add New</button>
                     </div>
-        
+
                     <div id="certificate_container">
                         <p>Professional Certificate</p>
                         <div id="inputGroupCert">
@@ -415,7 +421,7 @@
                         <button id="addNewCertBtn">Add New</button>
                     </div>
                 </section>
-        
+
                 <div id="skill">
                     <p>Skills</p>
                     <p>Select up to 5 Skills</p>
@@ -423,8 +429,8 @@
                     <div id="option_skill">
                         <section id="wrap_skill">
                             <div class="imgcontainer">
-                                <span onclick="document.getElementById('option_skill').style.display='none'" class="close"
-                                    title="Close Modal">&times;</span>
+                                <span onclick="document.getElementById('option_skill').style.display='none'"
+                                    class="close" title="Close Modal">&times;</span>
                             </div>
                             <h3>Select Your Skills</h3>
                             <p>Please select up to 5 skills</p>
@@ -438,7 +444,7 @@
                                 <br>
                                 <label for="skill3">Invoicing</label>
                                 <input type="checkbox" id="skill3" value="Invoicing">
-        
+
                                 <p>Administration</p>
                                 <label for="skill4">File Management</label>
                                 <input type="checkbox" id="skill4" value="File Management">
@@ -448,7 +454,7 @@
                                 <br>
                                 <label for="skill6">Secretary</label>
                                 <input type="checkbox" id="skill6" value="Secretary">
-        
+
                                 <p>Caregiving</p>
                                 <label for="skill7">Animal Care</label>
                                 <input type="checkbox" id="skill7" value="Animal Care">
@@ -470,7 +476,7 @@
                                 <br>
                                 <label for="skill13">Patient Care</label>
                                 <input type="checkbox" id="skill13" value="Patient Care">
-        
+
                                 <p>Construction, Transportation, Maintenance</p>
                                 <label for="skill14">Carpentry</label>
                                 <input type="checkbox" id="skill14" value="Carpentry">
@@ -480,7 +486,7 @@
                                 <br>
                                 <label for="skill16">Driving</label>
                                 <input type="checkbox" id="skill16" value="Driving">
-        
+
                                 <p>Creative and Art</p>
                                 <label for="skill17">Dance/ Theatre</label>
                                 <input type="checkbox" id="skill17" value="Dance/ Theatre">
@@ -493,7 +499,7 @@
                                 <br>
                                 <label for="skill20">Visual Arts</label>
                                 <input type="checkbox" id="skill20" value="Visual Arts">
-        
+
                                 <p>Design and Journalism</p>
                                 <label for="skill21">Copy Writing</label>
                                 <input type="checkbox" id="skill21" value="Copy Writing">
@@ -509,14 +515,14 @@
                                 <br>
                                 <label for="skill25">Website Production</label>
                                 <input type="checkbox" id="skill25" value="Website Production">
-        
+
                                 <p>Education and Language</p>
                                 <label for="skill26">Bilingual</label>
                                 <input type="checkbox" id="skill26" value="Bilingual">
                                 <br>
                                 <label for="skill27">Teaching/ Tutoring</label>
                                 <input type="checkbox" id="skill27" value="Teaching/ Tutoring">
-        
+
                                 <p>Environmental</p>
                                 <label for="skill28">Agricultural Planning</label>
                                 <input type="checkbox" id="skill28" value="Agricultural Planning">
@@ -524,13 +530,13 @@
                                 <label for="skill29">Environmental Planning</label>
                                 <input type="checkbox" id="skill29" value="Environmental Planning">
                                 <br>
-        
+
                             </fieldset>
                             <button id="save_skill">Save</button>
                         </section>
                     </div>
                 </div>
-        
+
                 <label for="txtLanguage">Language</label>
                 <select id="txtLanguage">
                     <option value="0">Select the language you speak</option>
@@ -546,14 +552,14 @@
                     <option value="Vietnamese">Vietnamese</option>
                     <option value="Russian">Russian</option>
                 </select>
-        
+
                 <div id="button2">
                     <input type="submit" value="Save Profile" id="saveBtn">
                 </div>
                 <p><a id="edit_personal_Info" href="#personal_Info">Edit Personal Info</a></p>
             </div>
-            </form>
-        </main>
+        </form>
+    </main>
 </body>
 
 </html>
