@@ -13,8 +13,7 @@
         <link rel="stylesheet" href="../css/header.css">
         <script type="module" src="../js/volunteer_record.js" defer></script>
         <script type="module" src="../js/html2pdf.bundle.min.js"></script>
-        <script type="module" src="../js/html2canvas.min.js"></script> 
-        <link rel="stylesheet" href="../css/volunteer_record2.css">   
+        <script type="module" src="../js/html2canvas.min.js"></script>  
   
     </head>
     <body>
@@ -120,7 +119,7 @@
            
         </header>
         
-        <main>
+        <main id="mainAccount">
             <h1 id="welcome_tag"></h1>
             <section id="vol_profile">
                 <div id="profile_info"></div>   
@@ -149,7 +148,7 @@
                             <option value="applied">Applied</option>
                             <option value="all" selected>All</option>
                         </select>            
-                        <div id="containerRec" style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 20px;"></div>            
+                        <div id="containerRec"></div>            
                     </session>
                 </div>            
                 <div class="page" id="commitment" >

@@ -2,7 +2,13 @@
 
 body {
     margin: 0;
-    padding: 15px;
+}
+
+#mainAccount{
+    margin: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+    max-width: 1000px;
 }
 
 #welcome_tag {
@@ -236,8 +242,8 @@ body div.page:nth-child(even) {
 /* For Desktop { */
     @media screen and (min-width: 800px) {
 
-        main, header {
-            max-width: 900px;
+        #mainAccount{
+            max-width: 1000px;
             margin: auto;
         }
     
