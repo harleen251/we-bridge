@@ -1,4 +1,14 @@
 @import url('../css/style.css');
+
+:root {
+    --grey-text: var(--grey-middle-placeholdertext);
+    --grey-border: var( --grey-light);
+    --skill-background: var( --green-lighter);
+    --card-background: var( --white);
+    --primary-button: var( --purple-primary);
+    --status-backgroud: var( --purple-primary);
+    --secondary-button: var(--purple-light);
+}
  html {
     width: 100%;
     margin-left: auto;
@@ -157,9 +167,12 @@ thead {
 tr {
     border-bottom: 1px solid var(--grey-light);
 }
-#sortOrder {
-    display: none;
-}
+
+/* #sortOrder {
+    padding-left: auto;
+    padding-right: 0;
+} */
+
 /* .stack {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -170,9 +183,115 @@ tr {
 .bottom {
     grid-row: 2/3;
 }  */
+
+/* #data-table {
+    display: none;
+} */
+/* div.header-cell{
+    display: none;
+} */
+
+div#volunteer-record-mobile{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.positionTitle {
+    grid-column: 1/4;
+}
+div.header-cell {
+    display: none;
+}
+
+.grid-container-two {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    border-bottom: 1px solid var(--grey-border);
+}
+div.cell-two.positionTitle {
+    margin-top: 1rem;
+    margin-bottom: 5px;
+    grid-column: 1/4;
+    grid-row: 1/2;
+    font-weight: bold;
+    font-size: 20px;
+}
+/* div.header-cell-mobile.position-title {
+    grid-row: 2/3;
+}  */
+div.cell-two.common-date{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+div.cell-two.common-organization{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+div.cell-two.common-hours {
+    grid-column: 3/4;
+    grid-row: 2/3;
+}
+div.cell-two.date {
+    grid-column: 1/2;
+    grid-row: 3/4;
+
+} 
+ div.cell-two.organizationName {
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+
+div.cell-two.hours {
+    grid-column: 3/4;
+    grid-row: 3/4;
+}
+.cell-two {
+    padding: 0.5rem;
+}
+.common {
+    font-size: 14px;
+    font-weight: 600;
+    padding-top: 0.1rem;
+}
+.data-row {
+    padding-top: 0;
+}
+
 /* /////////////////////////////////////////////////////////////// */
 /* DESKTOP VIEW */
 @media screen and ( min-width: 800px) {
+    
+    div#sort-div {
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+     select#sortOrder {
+        margin-right: auto;
+        margin-left: auto;
+        /* display: flex;
+        justify-content: center; */
+    } 
+    div.cell-two {
+        border: none;
+    }
+    div.header-cell {
+        display: inline-block;
+        font-weight: bold;
+        color: var(--card-background);
+        padding-left: 8px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+
+    }
+    div.header-cell-mobile {
+        display: none;
+    }
+    div.grid-container{
+        background-color: var(--secondary-button);
+        margin-left: auto;
+        margin-right: auto;
+    }
     
 
     /* profile card setting  */
@@ -261,6 +380,58 @@ tr {
     tr {
     text-align: left;
     }
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr; /* Adjust the number of columns as needed */
+        gap: 16px; /* Adjust the gap between grid items */
+    }
+    
+    .grid-item {
+        border: 1px solid #ccc; /* Add styling for the grid items */
+        padding: 12px;
+    }
+    .grid-container-two {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr; /* Adjust the number based on the number of columns */
+        gap: 8px; /* Adjust the gap between cells */
+        /* width: 100%; */
+    }
+/*     
+    .cell-two {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        padding: 8px;
+        border: 1px solid #ccc;
+    } */
+    div.cell-two.positionTitle {
+        grid-column: 1/2;
+        font-size: 16px;
+        font-weight: normal;
+        margin: 0;
+        padding: 1rem;
+    }
+    div.cell-two.organizationName {
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+    div.cell-two.date {
+        grid-column: 3/4;
+        grid-row: 1/2;
+    }
+    div.cell-two.hours {
+        grid-column: 4/5;
+        grid-row: 1/2;
+    }
+
+    div.common {
+        display: none;
+    } 
+    .cell-two {
+        padding: 1rem;
+    }
+    
+    
+    
     
 
 }
