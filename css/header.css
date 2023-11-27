@@ -57,6 +57,7 @@ header {
 header ul  {
     list-style: none;
     padding-left: 1.3rem;
+    margin-top: 48px;
 }
 
 header li {
@@ -65,7 +66,8 @@ header li {
 header a {
     text-decoration: none;
     color: white;
-    font-weight: 500;
+    /* font-weight: 500; */
+    font-weight: 600;
     font-size: 24px;
 }
 
@@ -170,6 +172,8 @@ header a {
         color: black;
         margin-right: 70px;
         font-size: 1.3rem;
+        font-size: 18px;
+        font-weight: 500;
       }
 
       .left-section,
@@ -207,7 +211,9 @@ header a {
           border: none;
           /* box-shadow: var(--shadow); */
           position: relative;
-          font-size: 1.3rem;
+          /* font-size: 1.3rem */
+          font-size: 18px;
+          font-weight: 500;
           width: 150px;
           color: black;
       }
@@ -217,7 +223,8 @@ header a {
         color: white;
       }
       .bx {
-        font-size: 1.1rem;
+        /* font-size: 1.1rem; */
+        font-size: 18px;
       }
       
       .dropdown {
