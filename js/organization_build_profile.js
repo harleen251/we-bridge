@@ -41,7 +41,7 @@ async function getOrganizationInfo(){
         document.getElementById('txtProvince').value = (organizationData.province == null ? " " : organizationData.province);
         document.getElementById('txtCity').value = (organizationData.city == null ? " " : organizationData.city);
         document.getElementById('txtPostalCode').value = (organizationData.postalCode == null ? " " : organizationData.postalCode);
-        document.getElementById('txtDescription').value = (organizationData.description == null ? " " : organizationData.description);
+        document.getElementById('txtBio').value = (organizationData.description == null ? " " : organizationData.description);
         document.getElementById('txtWebsiteLink').value = (organizationData.websiteLink == null ? " " : organizationData.websiteLink);
         document.getElementById('txtPhoneNumber').value = (organizationData.phoneNumber == null ? " " : organizationData.phoneNumber);
 
@@ -74,7 +74,7 @@ class Organization {
         txtProvince,
         txtCity,
         txtPostalCode,
-        txtDescription,
+        txtBio,
         txtWebsiteLink,
         service,
         txtFirstName,
@@ -88,7 +88,7 @@ class Organization {
         this.province = txtProvince;
         this.city = txtCity;
         this.postalCode = txtPostalCode;
-        this.description = txtDescription;
+        this.description = txtBio;
         this.websiteLink = txtWebsiteLink;
         this.service = service;
         this.firstName = txtFirstName;
@@ -165,7 +165,7 @@ async function saveOrganization(){
     const txtProvince = form_Profile.querySelector("#txtProvince");
     const txtCity = form_Profile.querySelector("#txtCity");
     const txtPostalCode = form_Profile.querySelector("#txtPostalCode");
-    const txtDescription = form_Profile.querySelector("#txtDescription");
+    const txtBio = form_Profile.querySelector("#txtBio");
     const txtWebsiteLink = form_Profile.querySelector("#txtWebsiteLink");
     const txtFirstName = form_Profile.querySelector("#txtFirstName");
     const txtLastName = form_Profile.querySelector("#txtLastName");
@@ -179,7 +179,7 @@ async function saveOrganization(){
         }
     }
 
-    const org = new Organization(txtOrgName.value,txtRegNumber.value,txtAddress.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtDescription.value,txtWebsiteLink.value,serviceArray,txtFirstName.value,txtLastName.value,txtEmail.value,txtPhoneNumber.value,);
+    const org = new Organization(txtOrgName.value,txtRegNumber.value,txtAddress.value,txtProvince.value,txtCity.value,txtPostalCode.value,txtBio.value,txtWebsiteLink.value,serviceArray,txtFirstName.value,txtLastName.value,txtEmail.value,txtPhoneNumber.value,);
 
     const docRef = doc(organizationCollection, organizationId).withConverter(organizationConverter);
     await setDoc(docRef, org, { merge: true }).then(() => {
@@ -192,9 +192,11 @@ async function saveOrganization(){
     });
 }
 
-choose_service.addEventListener("click", function (event) {
+
+document.getElementById("choose_service").addEventListener("click", function (event) {
     event.preventDefault();
-    option_service.style.display = "block";
+    console.log("test choode");
+    document.getElementById("option_service").style.display = 'block';
 })
 
 save_service.addEventListener("click", function (event) {

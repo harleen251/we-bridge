@@ -121,7 +121,6 @@ button:hover {
     display: none;
 }
 
-
 #option_service {
     display: none;
     position: fixed;
@@ -143,6 +142,7 @@ button:hover {
 .header5{
     text-align: center;
 }
+
 #save_service {
     width: 50%; /* Make the button take full width of its container */
     height: 40px;
@@ -169,6 +169,7 @@ button:hover {
     vertical-align: middle;
     display: inline-block;
 }
+
 fieldset {
     /* display: flex;
     flex-wrap: wrap; Allow items to wrap onto the next line */
@@ -226,27 +227,7 @@ fieldset input {
     /* Could be more or less, depending on screen size */
 }
 
-
-
-#option_skill {
-    display: none;
-    position: fixed;
-    /* Stay in place */
-    z-index: 1;
-    /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    background-color:var(--white);
-    /* Black w/ opacity */
-    padding-top: 60px;
-    overflow: auto;
-}
-
-#next_Info, #saveBtn, #choose_service, #choose_skill{
+#next_Info, #saveBtn, #choose_service{
     width: 100%;
     padding: 12px 10px;
     /* Adjust padding as needed */
