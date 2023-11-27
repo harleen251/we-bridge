@@ -258,7 +258,9 @@ body div.page:nth-child(even) {
     
         .profile_pic {
             width: 16rem;
-            transform: translateY(20%);
+
+            /* kim commented this */
+            /* transform: translateY(20%); */
         }
     
         #profile_info div:last-of-type {
@@ -377,6 +379,32 @@ body div.page:nth-child(even) {
         }
     
         #application-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+
+        /* Kim added */
+        #skillList_vol {
+            display: block;
+        }
+
+        #skillList_vol p {
+            display: inline-block;
+            margin: 0.3rem;
+            background-color: #b2dad7;
+            padding: 6px 15px;
+            border-radius: 25px;
+        }
+
+        #containerRec {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        #containerRegistered {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 10px;
