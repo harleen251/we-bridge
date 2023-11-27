@@ -120,6 +120,7 @@ async function getPostList() {
                 console.log(postId);
                 const div = document.createElement('div');
                 div.setAttribute("id", postId);
+                div.setAttribute("class", "card");
                 div.addEventListener('click', handleManageButton)
 
                 const imgElement = document.createElement('img');
@@ -195,17 +196,12 @@ async function getPostList() {
                             div.append(manageButton);
                             console.log("manage button appened");
                             manageButton.addEventListener('click', handleManageButtonEvent);  
-
-                            
-
                         })
                         .catch(err => {
                             console.log(err.message)
                         })
                 }
-                getAppliedAndApprovedNumber();
-    
-                
+                getAppliedAndApprovedNumber();  
             })
     
       })
@@ -298,6 +294,7 @@ async function getApplicationList() {
                 applicationList.appendChild(div);
                 div.setAttribute("data-volunteerID", event.volunteerID);
                 div.setAttribute("data-postID", event.postsID);
+                div.setAttribute("class", "card");
                 div.addEventListener('click', handleViewButton); 
 
                 const imgElement = document.createElement('img');

@@ -130,13 +130,21 @@ select {
     margin: 5px 0px;
 }
 
-#post-list div, #application-list div{
+.card {
     border: 1px solid var(--grey-border);
     padding: 15px;
     margin: 10px 0px;
     border-radius: 15px;
     background-color: var(--card-background);
     position: relative;
+    transition: all .2s linear;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
+    transform: translate3D(0, -2px, 0);
+    border:1.5px solid var(--purple-lighter);
 }
 
 #post-list img {
