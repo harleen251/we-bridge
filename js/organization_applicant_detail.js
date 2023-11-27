@@ -283,6 +283,23 @@ async function getAppliedAndApprovedNumber() {
         })
 }
 
+function showLoading() {
+    // window.scrollTo(0, 0);
+    const loadingPopup = document.getElementById('loading-popup');
+    // loadingPopup.style.display = 'block';
+    loadingPopup.style.visibility = 'visible';
+    
+    const iconLoader = document.querySelector('#icon_loader img');
+    iconLoader.style.width = '55px';
+    iconLoader.style.transition = 'transform 2s ease-in-out';
+    iconLoader.style.transform = 'scale(1.5)';
+  
+    // Set a timeout to hide the loading popup
+    setTimeout(function() {
+      window.location.href = "organization_account.html"; 
+    }, 3000);
+  }
+
 async function handleApproveButtonEvent() {
     const q = query(applicationRef, where( "volunteerID", "==" , idVolunteer ), where( "postsID", "==" , idPost ));
 
@@ -300,7 +317,9 @@ async function handleApproveButtonEvent() {
             .then(() => {
             console.log('Document field updated successfully.');
             // alert(' Successfully Approved the Applicant');
-            window.location.href = "organization_account.html";
+            
+            showLoading();
+            // window.location.href = "organization_account.html";
             })
             .catch((error) => {
             console.error('Error updating document field:', error);
