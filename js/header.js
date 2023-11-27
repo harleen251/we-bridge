@@ -17,8 +17,10 @@ const account = document.querySelector('.account');
 const submenu1 = document.querySelector('.submenu1');
 const submenu2 = document.querySelector('.submenu2');
 const submenu3 = document.querySelector('.submenu3');
-const org = document.querySelector('.org');
-const vol = document.querySelector('.vol');
+const org1 = document.querySelector('.org1');
+const vol1 = document.querySelector('.vol1');
+const org2 = document.querySelector('.org2');
+const vol2 = document.querySelector('.vol2');
 login.addEventListener('click', function(e) {
   e.preventDefault(); 
   submenu1.classList.toggle('active');
@@ -76,8 +78,10 @@ getCookie('volunteerId')
         account.style.display = "block";
         login.style.display = "none";
         signUp.style.display = "none";
-        vol.style.display = "block";
-        org.style.display = "none"
+        vol1.style.display = "block";
+        org1.style.display = "none"
+        vol2.style.display = "block";
+        org2.style.display = "none"
         myLink1.href = "volunteer_account.html"
         appHisLink1.href = "volunteer_account.html#history";
         regLink1.href = "volunteer_account.html#commitment";
@@ -101,8 +105,10 @@ getCookie('volunteerId')
                     account.style.display = "block";
                     login.style.display = "none";
                     signUp.style.display = "none";
-                    org.style.display = "block";
-                    vol.style.display = "none"
+                    vol1.style.display = "none";
+                    org1.style.display = "block"
+                    vol2.style.display = "none";
+                    org2.style.display = "block"
                     orgLink1.href  = "organization_account.html";
                     postLink1.href = "organization_account.html#post";
                     appLink1.href = "organization_account.html#application";

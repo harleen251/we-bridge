@@ -143,13 +143,13 @@ header a {
     display: block;
 }
 
-.mobile .org {
+/* .mobile .org , .mobile .org1{
   display: none;
 }
 
-.mobile #vol {
+.mobile .vol, .mobile .vol1 {
   display: none;
-}
+} */
 
 @media screen and (min-width: 1024px) {
     
