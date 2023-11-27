@@ -481,10 +481,12 @@ label {
     .kim-h2 {
         text-align: left;
         font-size: 38px;
+        margin-top: 0;
     }
 
     .kim-container-login {
         padding-left: 6rem;
+        padding-top: 0;
     }
 
     .kim-container-emailandpassword, .kim-submitbutton {
