@@ -209,6 +209,13 @@ fieldset {
     align-items: center;
     justify-content: center;
 }
+.interest-container.selected {
+    border: 1px solid var(--purple-dark);
+    opacity: 0.9;
+    color: var(--purple-light);
+    font-weight: bold;
+}
+
 
 /* Style labels within the two-column layout */
 fieldset label {
@@ -457,10 +464,13 @@ fieldset input {
         justify-content: center;
         margin: 0;
     }
-
+    #wrap_option_interest {
+        width: 40%;
+        /* Could be more or less, depending on screen size */
+    }
     /* added by kim */
     #save_interests {
-        width: 30%;
+        width: 20%;
     }
     
 }

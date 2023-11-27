@@ -515,3 +515,31 @@ document.addEventListener('DOMContentLoaded', function () {
         handleCheckboxChange('availability2', 'day2');
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var checkboxes = document.querySelectorAll('.interest-checkbox');
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            updateStyles(checkbox);
+        });
+    });
+});
+
+function updateStyles(checkbox) {
+    var container = checkbox.closest('.interest-container');
+
+    if (container) {
+        if (checkbox.checked) {
+            container.classList.add('selected');
+        } else {
+            container.classList.remove('selected');
+        }
+    } else {
+        console.error('No parent with class "interest-container" found for the checkbox.');
+    }
+}
+
+
+
+
