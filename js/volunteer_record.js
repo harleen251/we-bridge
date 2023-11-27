@@ -289,10 +289,15 @@ async function getVolunteerRecordDetails() {
 // Function to sort data based on the date
 function sortDataByDate(data, newestFirst) {
     return data.slice().sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
+      const dateA = new Date(parseDate(a.date));
+      const dateB = new Date(parseDate(b.date));
       return newestFirst ? dateB - dateA : dateA - dateB;
     });
+  }
+  function parseDate(dateString) {
+    const [day, month, year] = dateString.split("/");
+    // Construct a new date string in the "YYYY-MM-DD" format
+    return `${year}-${month}-${day}`;
   }
   
   // Handle the sort dropdown change event
@@ -300,16 +305,20 @@ function sortDataByDate(data, newestFirst) {
     const sortOrder = document.getElementById("sortOrder").value;
     const isSortingNewestFirst = sortOrder === "newest";
     const sortedData = sortDataByDate(volunteerEntryArray, isSortingNewestFirst);
-    populateTable(sortedData);
+    // populateTable(sortedData);
+    populateGridTable(initialSortedData);
+
   });
   
   // Initialize the table with sorted data (newest first by default)
   const initialSortedData = sortDataByDate(volunteerEntryArray, true);
-  populateTable(initialSortedData);
+  // populateTable(initialSortedData);
+  populateGridTable(initialSortedData);
   
   function populateTable(data) {
     // Clear the table
     const table = document.getElementById("data-table");
+    // let div_mobile = document.getElementById("volunteer-record-mobile");
     const tbody = table.getElementsByTagName("tbody")[0];
     // Clear the existing rows in the tbody
     tbody.innerHTML = "";  
@@ -321,8 +330,9 @@ function sortDataByDate(data, newestFirst) {
       columns.forEach((column) => {
         const cell = document.createElement("td");
         cell.textContent = item[column];
-        cell.classList.add(column);
+        cell.classList.add("cell", column);
         row.appendChild(cell);
+        // div_mobile.appendChild()
       });
   
       // const checkboxCell = document.createElement("td");
@@ -331,8 +341,75 @@ function sortDataByDate(data, newestFirst) {
       // row.appendChild(checkboxCell);
   
       tbody.appendChild(row);
+      
     });
   }
+
+  function populateGridTable(data) {
+    // Clear the table
+    const table = document.getElementById("data-table");
+    const tbody = table.getElementsByTagName("tbody")[0];
+    // Clear the existing rows in the tbody
+    tbody.innerHTML = "";  
+    // Create the header row
+    // const outerDiv = document.createElement('div');
+    // outerDiv.className = "outer-div";
+    const headerRow = document.createElement("div");
+    headerRow.classList.add("grid-container", "header-row");
+
+    const columns = ["Position Title", "Organization Name", "Date", "Hours"];
+
+    columns.forEach((column) => {
+        const headerCell = document.createElement("div");
+        headerCell.textContent = column;
+        headerCell.classList.add("header-cell");
+        headerRow.appendChild(headerCell);
+    });
+  //   columns.forEach((column) => {
+  //     const headerCell = document.createElement("div");
+  //     headerCell.textContent = column;
+  //     headerCell.classList.add("header-cell-mobile", column.replace(/\s+/g, '-').toLowerCase()); // Convert spaces to hyphens and convert to lowercase
+  //     headerRow.appendChild(headerCell);
+  // });
+
+    tbody.appendChild(headerRow);
+
+    // Re-create the table with sorted data
+    data.forEach((item) => {
+        const gridContainer = document.createElement("div");
+        gridContainer.classList.add("grid-container-two");
+
+        const columns = ["positionTitle", "organizationName", "date", "hours"];
+        let iterator = 1;
+        columns.forEach((column) => {
+            if (iterator===2) {
+              const commonOrganizationName = document.createElement("div");
+              commonOrganizationName.textContent = "Organization";
+              commonOrganizationName.classList.add("cell-two", "common-organization", "common");
+              gridContainer.appendChild(commonOrganizationName);
+            } else if(iterator===3){
+              const commonDate = document.createElement("div");
+              commonDate.textContent = "Date";
+              commonDate.classList.add("cell-two", "common-date", "common");
+              gridContainer.appendChild(commonDate);
+            } else if(iterator ===4){
+              const commonHours = document.createElement("div");
+              commonHours.textContent = "Hours";
+              commonHours.classList.add("cell-two", "common-hours", "common");
+              gridContainer.appendChild(commonHours);
+            }
+            const cell = document.createElement("div");
+            cell.textContent = item[column];
+            cell.classList.add("cell-two", column, "data-row");
+            gridContainer.appendChild(cell);
+            iterator++;
+
+        });
+
+        tbody.appendChild(gridContainer);
+    });
+    // outerDiv.appendChild(tbody);
+}
 
   // function populateTable(data) {
   //   // Clear the table

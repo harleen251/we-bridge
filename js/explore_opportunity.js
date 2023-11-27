@@ -114,6 +114,7 @@ async function performSearch(e) {
     const event = { ...doc.data(), id: doc.id };
     if (filteredPostWithinRadius(event, radius)) {
       const div = createEventDiv(event);
+      div.className = "card";
       output.appendChild(div);
     }
   });
