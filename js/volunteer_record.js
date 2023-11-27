@@ -53,6 +53,13 @@ document.getElementById('btnDownload').addEventListener("click", async function 
   generateAndDownloadPDF(htmlContent, "my-record.pdf");
   await shareAsImage();
 });
+document.getElementById('btnDownloadMobile').addEventListener("click", async function (event) {
+  event.preventDefault();
+  const htmlContent = document.documentElement;
+  //const htmlContent = document.querySelector('#data-table');
+  generateAndDownloadPDF(htmlContent, "my-record.pdf");
+  await shareAsImage();
+});
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -172,6 +179,16 @@ document.getElementById('btnShare').addEventListener('click', async function (ev
   await handleLinkedinShare(); 
 
 });
+
+document.getElementById('btnShareMobile').addEventListener('click', async function (event){
+  event.preventDefault();
+  //await handleExport();
+ 
+  await handleLinkedinShare(); 
+
+});
+
+
 
 async function handleLinkedinShare() {
   let oathSuccess = await getLinkedinAuth();
