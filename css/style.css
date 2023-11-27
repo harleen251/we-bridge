@@ -271,17 +271,17 @@ label {
 }
 
 .kim-htmllogin {
-    background-color: #3d0080;
+    background-color: #360B83;
 }
 
 .kim-bodylogin {
     font-family: "Poppins", sans-serif;
-    background-color: #3d0080;
+    background-color: #360B83;
     margin: 0;
 }
 
 .kim-wrapper {
-    background-color: #3d0080;
+    background-color: #360B83;
     width: auto;
     margin: 0;
     padding: 1rem;
@@ -319,7 +319,7 @@ label {
 
  .kim-submitbutton {
     background-color: #FFC107;
-    color: #3d0080;
+    color: #360B83;
     padding: 15px 20px;
     margin: 20px 0;
     border: none;
@@ -393,7 +393,7 @@ label {
 }
 
 .kim1-webridge {
-    color: #3d0080;
+    color: #360B83;
 }
 
 .kim1-h2-2 {
@@ -430,11 +430,11 @@ label {
 }
 
 .kim1-link1, .kim1-link2 {
-    color: #3d0080;
+    color: #360B83;
 }
 
 .kim1-submitbutton {
-    background-color: #3d0080;
+    background-color: #360B83;
     color: var(--grey-lighter);
     padding: 15px 20px;
     margin: 20px 0;
@@ -454,7 +454,7 @@ label {
 }
 
 .kim1-loginlink {
-    color: #3d0080;
+    color: #360B83;
     text-decoration: none;
 }
 
@@ -470,6 +470,7 @@ label {
     .kim-wrapper {
         width: auto;
         padding: 3rem;
+        padding-bottom: 8rem;
     }
     
     .kim-addimage {
@@ -480,10 +481,12 @@ label {
     .kim-h2 {
         text-align: left;
         font-size: 38px;
+        margin-top: 0;
     }
 
     .kim-container-login {
         padding-left: 6rem;
+        padding-top: 0;
     }
 
     .kim-container-emailandpassword, .kim-submitbutton {
@@ -590,7 +593,7 @@ label {
     }
 
     .kim1-webridge2 {
-        color: #3d0080;
+        color: #360B83;
     }
 }
 
