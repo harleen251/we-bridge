@@ -89,17 +89,17 @@ section{
 
 
 /************* Contact Section ********************/
-.social-media ul li {
+.contact_social-media ul li {
     list-style-type: none;
     display: inline-block;
 }
 
-.social-media ul {
+.contact_social-media ul {
     margin: 0;
     padding: 0;
 }
 
-.social-media a{
+.contact_social-media a{
     font-size: 20px;
     color: white;
     width: 28px;

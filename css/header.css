@@ -24,9 +24,6 @@ header {
     width: 30px; /* 汉堡按钮的宽度 */
     height: 20px; /* 汉堡按钮的高度 */
     z-index: 100;
-    position: fixed;
-    top: 20px;
-    right: 35px;
 }
 
 .deskTop {
