@@ -44,9 +44,16 @@
 body {
     font-family: "Poppins", sans-serif;
     background-color: var(--grey-lighter);
-    margin-left: 2rem;
-    margin-right: 2rem;
+    margin: 0;
+    padding: 0;
     font-size: 12px;
+}
+
+#main_wrap {
+    margin: 20px;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 100px;
 }
 
 h1 {
@@ -87,7 +94,7 @@ option,
     margin: 0 auto;
 }
 
-#personal_Info label[for="txtPhotoLink"] {
+#photoContainer label[for="txtPhotoLink"] {
     display: block;
     text-align: center;
     margin: 10px auto;
@@ -154,6 +161,20 @@ button:hover {
     color: var(--white);
     cursor: pointer;
     margin-top: 20px; /* Add some top margin to separate it from the checkboxes */
+}
+
+#wrap-save-service-button,#wrap-choose-service-button, #wrap-saveBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.close {
+    font-size: 40px;
+}
+
+.imgcontainer {
+    display: flex;
+    justify-content: end;
 }
 
 /* Center the button text vertically and horizontally */
@@ -296,9 +317,10 @@ fieldset input {
 /* end added by kim */
 
 @media screen and (min-width: 800px) {
-    main{
+    #main_wrap {
         margin: auto;
         width: 650px;
+        margin-top: 30px;
     }
 
     #header6 {
