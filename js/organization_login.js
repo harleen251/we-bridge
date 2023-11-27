@@ -52,7 +52,7 @@ async function signIn() {
   }
 }
 
-document.getElementById("btnLogin").addEventListener("click", function (event) {
+document.getElementById("btnLoginOrg").addEventListener("click", function (event) {
   event.preventDefault();
   signIn();  
 });
