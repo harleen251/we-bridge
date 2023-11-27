@@ -228,10 +228,21 @@ h1 {
     margin: 0px 10px;
 }
 
+#button button:hover {
+    opacity: 100%;
+    background-color: var(--yellow-primary);
+}
+
 #button button:first-of-type {
    background-color: var(--grey-lighter);
    color: var(--primary-button);
    border: 2px solid var(--primary-button);
+}
+
+#button button:first-of-type:hover {
+    opacity: 100%;
+    color: var(--yellow-primary);
+    border: 2px solid var(--yellow-primary);
 }
 
 #section_decline_wrap {
@@ -452,6 +463,10 @@ h1 {
 
     #total p {
         margin-top: .2rem;
+    }
+
+    #decline_wrap {
+        width: 45%; 
     }
     
     /* Styles for the loader */

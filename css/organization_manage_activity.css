@@ -76,6 +76,11 @@ body {
     width: 130px;
 }
 
+#Post_info_wrap button:hover{
+    opacity: 100%;
+    background-color: var(--yellow-primary);
+}
+
 #Post_info_wrap button a{
     color: var(--white);
     text-decoration: none;
@@ -146,6 +151,11 @@ th, td {
     margin-bottom: 50px;
 }
 
+#qrcode_button_wrap button:hover{
+    opacity: 100%;
+    background-color: var(--yellow-primary);
+}
+
 /* QR CODE Popup */
 
 #wrap_qrcode {
@@ -161,6 +171,7 @@ th, td {
     overflow: auto;
   
 }
+
 #wrap_close_qrcode {
     display: flex;
     flex-direction: column;
@@ -213,7 +224,8 @@ th, td {
         display: block;
         width: 193px;
         height: 179px;
-        clip-path: none;
+        overflow: hidden;
+        clip-path: inset(0 0 0 0 round 10px);
         margin-right: 20px;
     }
 
@@ -255,5 +267,10 @@ th, td {
         bottom: 20px;
         width: 13vw;
         max-width: 130px;
+    }
+
+    #wrap_close_qrcode {
+        width: 45%; /* Could be more or less, depending on screen size */
+        height: 65%;
     }
 }
