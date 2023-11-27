@@ -4,16 +4,13 @@ import { getCookie, setCookie} from "./backend.js"
 
 // // Retrieve the user's ID from the cookie
 const idOrganization = await getCookie("idOrganization");
-// const idOrganization = "hNEr10bBz2HUA0QlKkV0";
-console.log(idOrganization);
+// console.log(idOrganization);
 
-// window.addEventListener("pageshow", function(event) {
-//     if (event.persisted) {
-//       const dropdown = document.getElementById("postFilter");
-//       dropdown.selectedIndex = 0;
-//     }
-// });
-  
+if (window.location.href.includes('#')) {
+    // Remove the hash value using history.replaceState()
+    const urlWithoutHash = window.location.href.split('#')[0];
+    history.replaceState(null, '', urlWithoutHash);
+}
 
 const firebaseConfig = {
     apiKey: "AIzaSyBiW_sL8eKxcQ7T9xKqQJxxRaIHmizOBoE",
@@ -24,7 +21,6 @@ const firebaseConfig = {
     appId: "1:950961168294:web:1cc48025ccfb341ea93967",
     measurementId: "G-VWM7GNP66X"
 };
-
 
 initializeApp( firebaseConfig );
 
