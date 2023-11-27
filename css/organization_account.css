@@ -17,6 +17,7 @@ body {
 #main_wrap {
     padding: 20px;
     margin: 20px;
+    padding-bottom: 100px;
 }
 
 #welcome_tag {
