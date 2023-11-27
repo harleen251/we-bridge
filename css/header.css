@@ -160,7 +160,7 @@ header a {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px; 
+        padding: 10px 50px; 
         background-color: #F5F6F8; 
         position: relative;
       }
@@ -174,7 +174,7 @@ header a {
       .left-section,
       .right-section {
         display: flex;
-        margin-right: 70px;
+        /* margin-right: 70px; */
       }
       
       header img {
@@ -222,7 +222,7 @@ header a {
       .dropdown {
         position: absolute;
         top: 30px;
-        right: 265px;
+        right: 225px;
         width: 280px;
         height: 130px;
         box-shadow: var(--shadow);
@@ -239,7 +239,7 @@ header a {
 
       #dropdownSignUp, #dropdownAcc {
         position: absolute;
-        right: 95px;
+        right: 45px;
         background: black;
       }
 
