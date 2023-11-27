@@ -160,7 +160,7 @@ button:hover {
     text-align: center;
 }
 #save_interests {
-    width: 100%; /* Make the button take full width of its container */
+    width: 50%; /* Make the button take full width of its container */
     height: 40px;
     text-align: center;
     border: 1px solid var(--grey-middle-placeholdertext);
@@ -186,9 +186,9 @@ button:hover {
     display: inline-block;
 }
 fieldset {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap onto the next line */
-    width: 90%;
+    /* display: flex;
+    flex-wrap: wrap; Allow items to wrap onto the next line */
+    /* width: 50%; */
     gap: 10px;
     margin: auto;
     border: none;
@@ -199,19 +199,21 @@ fieldset {
     display: grid;
     grid-template-columns: 4fr 1fr;
     box-sizing: border-box; /* Include padding and border in the width and height of the elements */
-    width: 90%; 
+    width: 100%; 
     border: 1px solid var(--grey-middle-placeholdertext);
     padding: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     border-radius: 10px;
     margin-left: 0;
     margin-right: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Style labels within the two-column layout */
 fieldset label {
     display: block;
-    margin-bottom: 5px;
+    margin-left: 5px;
 }
 input[type="checkbox"]{
     height: 15px;
@@ -310,6 +312,16 @@ fieldset input {
     color: var(--black);
     font-size: 14px;
   }
+
+
+  /* added by kim */
+  .save-interest-button-sec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+/* end added by kim */
 
 @media screen and (min-width: 800px) {
     main{
@@ -425,14 +437,30 @@ fieldset input {
         margin-bottom: .5rem;
     }
     fieldset {
+        /* justify-content: center;
+        align-items: center; Align items in the center vertically */
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap onto the next line */
+        /* width: 100%;
+        gap: 10px; */
+        box-sizing: border-box;
+        align-items: center;
         justify-content: center;
-        align-items: center; /* Align items in the center vertically */
+        margin: auto;
     }
     
     /* Style each interest-input pair container within the two-column layout */
     fieldset .interest-container {
-        width: 500px; /* Set width to 20px */
-        height: auto; /* Set height to 20px */
+        width: 40%; /* Set width to 20px */
+        /* height: auto; Set height to 20px */
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    /* added by kim */
+    #save_interests {
+        width: 30%;
     }
     
 }
