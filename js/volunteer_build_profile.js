@@ -492,4 +492,26 @@ fileInput.addEventListener("change", function (event) {
     // );
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to handle checkbox change event
+    function handleCheckboxChange(checkboxId, targetClass) {
+        const checkbox = document.getElementById(checkboxId);
+        const targetElement = document.querySelector(`.${targetClass}`);
 
+        // Add or remove 'selected' class based on checkbox state
+        if (checkbox.checked) {
+            targetElement.classList.add('selected');
+        } else {
+            targetElement.classList.remove('selected');
+        }
+    }
+
+    // Add event listeners for checkbox change
+    document.getElementById('availability1').addEventListener('change', function () {
+        handleCheckboxChange('availability1', 'day1');
+    });
+
+    document.getElementById('availability2').addEventListener('change', function () {
+        handleCheckboxChange('availability2', 'day2');
+    });
+});

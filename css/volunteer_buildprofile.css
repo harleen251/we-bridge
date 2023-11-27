@@ -87,6 +87,11 @@ option,
     opacity: 85%;
     border-radius: 10px;
 }
+.day1.selected, .day2.selected {
+    background-color: var(--yellow-lighter);
+    border: 1px solid var(--yellow-lighter);
+    opacity: 90%;
+}
 
 /*Profile pic*/
 #profilePic {
@@ -150,6 +155,45 @@ button:hover {
     overflow: auto;
 }
 
+
+fieldset {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap onto the next line */
+    width: 90%;
+    gap: 10px;
+    margin: auto;
+    border: none;
+}
+
+/* Style each interest-input pair container within the two-column layout */
+.interest-container {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    box-sizing: border-box; /* Include padding and border in the width and height of the elements */
+    width: 90%; 
+    border: 1px solid var(--grey-middle-placeholdertext);
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Style labels within the two-column layout */
+fieldset label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="checkbox"]{
+    height: 15px;
+    margin-right: 0;
+    margin-left: auto;
+}
+/* Style inputs within the two-column layout */
+fieldset input {
+    padding: 5px;
+}
+
 #wrap_option_interest {
     background-color:var(--white);
     padding: 20px;
@@ -159,6 +203,8 @@ button:hover {
     width: 80%;
     /* Could be more or less, depending on screen size */
 }
+
+
 
 #option_skill {
     display: none;
@@ -349,7 +395,16 @@ button:hover {
         width: 50%;
         margin-bottom: .5rem;
     }
-
+    fieldset {
+        justify-content: center;
+        align-items: center; /* Align items in the center vertically */
+    }
+    
+    /* Style each interest-input pair container within the two-column layout */
+    fieldset .interest-container {
+        width: 500px; /* Set width to 20px */
+        height: auto; /* Set height to 20px */
+    }
     
 }
 
