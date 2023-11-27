@@ -337,7 +337,6 @@ main {
         text-decoration: none;
     }
 
-
     #explore_button {
         font-size: 18px;
         width: 305px;
@@ -345,6 +344,7 @@ main {
         gap: 12px;
         position:static;
     }
+
     #explore-arrow{
         height: 22px;
     }

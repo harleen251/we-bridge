@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/about.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
 
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
 </head>
@@ -99,7 +100,7 @@
                             </div>
                             <div class="vol">
                                 <li ><a id="myLink2">My Profile</a></li>
-                                <li ><a id="appHisLink2">Appocation History</a></li>
+                                <li ><a id="appHisLink2">Application History</a></li>
                                 <li ><a id="regLink2">Registered Event</a></li>
                                 <li ><a id="volRecLink2">Volunteer Record</a></li>
                             </div>
@@ -110,7 +111,6 @@
                 </ul>
             </nav>
         </div>
-       
     </header>
 
     <main class="about">
@@ -120,7 +120,7 @@
             <div class="circle" id="circle1"><h1 class="h1_vol_org" id="h1_vol">Volunteers</h1></div>
             <div class="circle" id="circle2"><h1 class="h1_vol_org" id="h1_org">Organizations</h1></div>
         </section>
-        <section id="about">
+        <section id="who">
             <h2>Who We Are</h2>
             <div class="border"> </div>
             <p>
@@ -207,6 +207,10 @@
                     <p class="team_p">Developerr</p>
                 </div> -->  
             </div>
+            <div class="arrow_button_container">
+                <img class="arrow_button" id="left-arrow" src="../images/icons/circle-arrow-left(outline).svg" alt="Go Back">
+                <img class="arrow_button" id="right-arrow" src="../images/icons/circle-arrow-right(purple_filled).svg" alt="Go Next">
+            </div>
         </section>
         <section id="contact">
             <h2>Contact Us</h2>
@@ -241,9 +245,41 @@
         </section>
 
     </main>
-
     <footer>
-
+        <div class="footerContainer">
+            <div class="footerInsidecontainer">
+                <div class="footer-logo">
+                    <a href="../pages/index.html"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="Logo" class="footerImg"></a>
+                </div>
+                <div class="social-media">
+                    <ul>
+                        <li>
+                            <a aria-label="Link to our LinkedIn" target="_blank" href="https://LinkedIn.com">
+                                <i aria-hidden="true" class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>                
+                        <li>
+                            <a aria-label="Link to our Facebook profile" target="_blank" href="https://facebook.com">
+                                <i aria-hidden="true" class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Instagram profile" target="_blank" href="https://instagram.com">
+                                <i aria-hidden="true" class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Twitter profile" target="_blank" href="https://twitter.com">
+                                <i aria-hidden="true" class="fa-brands fa-x-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <p>Copyright &copy; 2023 WeBridge</p>
+                    </div>
+                </div>
+            </div>            
+        </div> 
     </footer>
 </body>
 </html>
