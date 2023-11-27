@@ -63,6 +63,7 @@ header ul  {
 header li {
     margin-bottom: 30px;
 }
+
 header a {
     text-decoration: none;
     color: white;
@@ -129,6 +130,7 @@ header a {
   width: 150px;
   height: auto;
 }
+
 .submenu1, .submenu2, .submenu3 {
     display: none;
 }
@@ -154,7 +156,7 @@ header a {
   display: none;
 } */
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 800px) {
     
       .mobile {
         display: none;
@@ -170,9 +172,9 @@ header a {
       
       header a {
         color: black;
-        margin-right: 70px;
+        margin-right: 30px;
         font-size: 1.3rem;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 500;
       }
 
@@ -192,7 +194,7 @@ header a {
         left: 53%;
         transform: translateX(-50%);
       }
-      
+  
       
       /* .container {
         display: flex;
@@ -294,6 +296,15 @@ header a {
         transform: rotate(180deg);
         transition: 0.2s ease;
       }
-    
       
 }
+
+@media screen and (min-width: 1000px) {
+
+  header a {
+    color: black;
+    margin-right: 70px;
+    font-size: 18px;
+  }
+
+} 
