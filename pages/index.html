@@ -23,21 +23,25 @@
         }
 
         #offlineAnimationContainer {
-            z-index: 1000;
+            z-index: 10000;
         }
     
         .offline-animation {
+          margin: 0px auto;
           display: none;
+          width: 50%;
+          text-align: center;
           position: fixed;
           top: 50px;
-          left: 30%;
-          transform: translateX(-50%);
+          left: 25%;
+          transform: translateX(-25%);
           background-color: #f44336;
           color: white;
           padding: 10px;
           border-radius: 5px;
           animation: offlineAnimation 1s infinite;
         }
+
     </style>
 </head>
 <body>
@@ -144,9 +148,9 @@
        
     </header>
     <div class="offline-animation" id="offlineAnimationContainer">
-        You are currently offline. Please check your internet connection.
+        <p>You are currently offline. Please check your internet connection.</p>
     </div>
-    <main class="homepage">
+    <main class="homepage">        
         <section id="hero">
             <div id="hero_container">
             <div class="hero_title_container">

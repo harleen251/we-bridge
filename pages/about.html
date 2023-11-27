@@ -6,51 +6,152 @@
     <title>About Us</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/about.css">
+    <link rel="stylesheet" href="../css/header.css">
+
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-
+    <header class="main-header">
+        <div class="deskTop">
+            <div class="left-section">
+                <a href="../pages/explore_opportunity.html">Find opportunities</a>
+                <a href="../pages/about.html">About us</a>
+            </div>
+            <div class="center-section">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            </div>
+            <div class="right-section">
+                <button class="btn" id="btnLogin">Log In <i class="fa-solid fa-caret-down" id="arrow"></i></button>
+                <div class="dropdown" id="dropdown">
+                    <a href="volunteer_login.html">
+                    <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_login.html">
+                    <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnSignUp">Sign Up<i class="fa-solid fa-caret-down" id="arrowSignup"></i></button>
+                <div class="dropdown" id="dropdownSignUp">
+                    <a href="volunteer_signup.html">
+                    <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_signup.html">
+                    <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnAccount" style="display: none;">Account <i class="fa-solid fa-caret-down" id="arrowAcc"></i></button>
+                <div class="dropdown" id="dropdownAcc">
+                    <div class="org">
+                        <a id="orgLink1">Organization Profile</a>
+                        <a id="postLink1">Posting</a>
+                        <a id="appLink1">Application</a>
+                    </div>
+                    <div class="vol">
+                        <a id="myLink1">My Profile</a>
+                        <a id="appHisLink1">Appocation History</a>
+                        <a id="regLink1">Registered Event</a>
+                        <a id="volRecLink1">Volunteer Record</a>
+                    </div>
+                    <a id="btnLogout1">LogOut</a>
+                </div>
+            </div>
+        </div>
+                <!-- 汉堡按钮 -->
+        <div class="mobile">
+            <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            <div class="hamburger-menu">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </div>
+            
+            <!-- 要显示/隐藏的菜单 -->
+            <nav class="menu">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="white_mobile_logo"></a>
+                <ul>
+                    <li><a href="../pages/explore_opportunity.html">Find opportunities</a></li>
+                    <li><a href="../pages/about.html">About Us</a></li>
+                    <li>
+                        <a href="#" class="login">Log in <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu1" >
+                            <li><a href="../pages/volunteer_login.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_login.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="signUp">Sign Up <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu2" >
+                            <li><a href="../pages/volunteer_signup.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_signup.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="account" style="display: none;">Account<i class="fa-solid fa-caret-down" id="arrowAcc"></i></a>
+                        <ul class="submenu3">
+                            <div class="org">
+                                <li ><a id="orgLink2">Organization Profile</a></li>
+                                <li ><a id="postLink2">Posting</a></li>
+                                <li ><a id="appLink2">Application</a></li>
+                            </div>
+                            <div class="vol">
+                                <li ><a id="myLink2">My Profile</a></li>
+                                <li ><a id="appHisLink2">Appocation History</a></li>
+                                <li ><a id="regLink2">Registered Event</a></li>
+                                <li ><a id="volRecLink2">Volunteer Record</a></li>
+                            </div>
+                            
+                            <li><a id="btnLogout2">LogOut</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+       
     </header>
 
     <main class="about">
         <!-- section#hero+section#about+section#mission+section#vision+section#team+section#contact -->
         <section id="hero">
             <h1 id="h1_webridge">We bridge:</h1>
-            <h1 class="h1_vol_org">Volunteers</h1>
-            <div class="circle" id="circle1"></div>
-            <h1 class="h1_vol_org">Organizations</h1>
-            <div class="circle" id="circle2"></div>
+            <div class="circle" id="circle1"><h1 class="h1_vol_org" id="h1_vol">Volunteers</h1></div>
+            <div class="circle" id="circle2"><h1 class="h1_vol_org" id="h1_org">Organizations</h1></div>
         </section>
-        <section id="about"></section>
+        <section id="about">
             <h2>Who We Are</h2>
             <div class="border"> </div>
             <p>
-                WeBridge is a dedicated and comprehensive digital volunteer platform serving Canada, 
-                connecting volunteers with organizations to create effortless and impactful volunteering experiences.
+                WeBridge is a comprehensive digital volunteer platform which connects volunteers with organizations to create effortless and impactful volunteering experiences.
             </p>
-        <section id="mission"></section>
+        </section>
+        <section id="mission">
             <h2>Our Mission</h2>
             <div class="border"> </div>
-            <div id="bridge">
-                <h3 class="mission_h3">We Bridge</h3>
-                <p class="mission_p">
-                    We connect passionate individuals with meaningful opportunities, simplifying the path to volunteering by bringing volunteers and organizations together.
-                </p>
+            <div class="mission_content_container">
+                <div id="bridge">
+                    <h3 class="mission_h3">We Bridge</h3>
+                    <p class="mission_p">
+                        We connect passionate individuals with meaningful opportunities, simplifying the path to volunteering by bringing volunteers and organizations together.
+                    </p>
+                </div>
+                <div id="empower">
+                    <h3 class="mission_h3">We Empower</h3>
+                    <p class="mission_p">
+                        We believe in each individual's potential to make a difference, offering the tools and resources needed to turn passion into action.
+                    </p>
+                </div>
+                <div id="ease">
+                    <h3 class="mission_h3">We Ease</h3>
+                    <p class="mission_p">
+                        We make volunteering easy and enjoyable, streamlining the entire experience from opportunity discovery to impact tracking.
+                    </p>
+                </div>
             </div>
-            <div id="empower">
-                <h3 class="mission_h3">We Empower</h3>
-                <p class="mission_p">
-                    We believe in each individual's potential to make a difference, offering the tools and resources needed to turn passion into action.
-                </p>
-            </div>
-            <div id="ease">
-                <h3 class="mission_h3">We Ease</h3>
-                <p class="mission_p">
-                    We make volunteering easy and enjoyable, streamlining the entire experience from opportunity discovery to impact tracking.
-                </p>
-            </div>        
-        <section id="vision"></section>
+        </section>    
+        <section id="vision">
         <div class="vision_left_container">
             <h2>Our Vision</h2>
             <div class="border"> </div>
@@ -60,67 +161,57 @@
                     WeBridge aspires to be the go-to platform for volunteering, making the world a better place through the power of giving back.
                 </p>
             </div>
-        </div>
-        <div class="vision_right_container">
-            <img src="" alt="happy volunteers">
-        </div>
+            <div class="vision_right_container">
+                <img src="../images/photo/pexels-rdne-stock-project-6647006.jpg" alt="happy volunteers">
+                <!-- Photo by RDNE Stock project: https://www.pexels.com/photo/volunteers-taking-selfie-6647006/ -->
+            </div>
+        </section>
+
         <section id="team">
             <h2>Our Team</h2>
             <div class="border"> </div>
             <div class="team_container">
-                <img src="../images/team/celine.svg" alt="celine's portrait " class="team_img">
-                <h3 class="team_h3">
-                    Hong Ngoc Tran <br>
-                    Project Manager, Designer
-                </h3>
-            </div>
-            <div class="team_container">
-                <img src="../images/team/adrian.svg" alt="adrian's portrait" class="team_img">
-                <h3 class="team_h3">
-                    Cheuk Yan Li <br>
-                    UI Lead, Designer
-                </h3>
-            </div>
-            <div class="team_container">
-                <img src="../images/team/kim.svg" alt="kim's portrait" class="team_img">
-                <h3 class="team_h3">
-                    Kim David Camaongay<br>
-                    UX Lead, Designer
-                </h3>
-            </div>
-            <div class="team_container">
-                <img src="../images/team/harleen.svg" alt="harleen's portrait" class="team_img">
-                <h3 class="team_h3">
-                    Harleen Kaur <br>
-                    Dev Lead, Developer
-                </h3>
-            </div>
-            <div class="team_container">
-                <img src="../images/team/piang.svg" alt="piang's portrait" class="team_img">
-                <h3 class="team_h3">
-                    Tin Zar Paing<br>
-                    Developer
-                </h3>
-            </div>
-            <div class="team_container">
-                <img src="../images/team/greeshma.svg" alt="greeshma's portrait" class="team_img">
-                <h3 class="team_h3">
-                    Greeshma Dharmapalan<br>
-                    Developer
-                </h3>
-            </div>
-            <div class="team_container">
-                <img src="../images/team/charles.svg" alt="charles's portrait" class="team_img">
-                <h3 class="team_h3">
-                    Chang Duan<br>
-                    Developer
-                </h3>
+                <img src="../images/team/ver2/celine.svg" alt="celine's portrait " class="team_img">
+                <!-- <div class="team_text_container">
+                    <h3 class="team_h3">Hong Ngoc Tran</h3>
+                    <p class="team_p">Project Manager,<br>Designer</p>
+                </div> -->
+                <img src="../images/team/ver2/adrian.svg" alt="adrian's portrait" class="team_img">
+                <!-- <div class="team_text_container">
+                    <h3 class="team_h3">Cheuk Yan Li</h3>
+                    <p class="team_p">UI Lead, <br>Designer</p>
+                </div> -->
+                <img src="../images/team/ver2/kim.svg" alt="kim's portrait" class="team_img">
+                <!-- <div class="team_text_container">
+                    <h3 class="team_h3">Kim David Camaongay</h3>
+                    <p class="team_p">UX Lead, <br>Designer</p>
+                </div> -->
+                <img src="../images/team/ver2/harleen.svg" alt="harleen's portrait" class="team_img">
+                 <!-- <div class="team_text_container">
+                    <h3 class="team_h3">Harleen Kaur</h3>
+                    <p class="team_p">Dev Lead, Developer</p>
+                </div> -->
+                <img src="../images/team/ver2/piang.svg" alt="piang's portrait" class="team_img">
+                <!-- <div class="team_text_container">
+                    <h3 class="team_h3">Tin Zar Paing</h3>
+                    <p class="team_p">Developerr</p>
+                </div> -->    
+                <img src="../images/team/ver2/greeshma.svg" alt="greeshma's portrait" class="team_img">
+                 <!-- <div class="team_text_container">
+                    <h3 class="team_h3">Greeshma Dharmapalan</h3>
+                    <p class="team_p">Developerr</p>
+                </div> -->  
+                <img src="../images/team/ver2/charles.svg" alt="charles's portrait" class="team_img">
+                <!-- <div class="team_text_container">
+                    <h3 class="team_h3">Chang Duan/h3>
+                    <p class="team_p">Developerr</p>
+                </div> -->  
             </div>
         </section>
         <section id="contact">
             <h2>Contact Us</h2>
             <div class="border"> </div>
-            <p class="contact_p">For any inquiries or assistance, please feel free to reach out to us via email at <a href="mailto:webridge@email.com">WeBridge@email.com</a>.
+            <p class="contact_p">For any inquiries or assistance, please feel free to reach out to us via email at <a href="mailto:webridge@email.com" class="contact_link">WeBridge@email.com</a>.
                 We're here to help!</p>
             <p class="contact+p">Find us on social media:</p>
             <div class="social-media">

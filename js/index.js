@@ -295,6 +295,15 @@ async function handleViewButtonEvent(event) {
    window.location.href = "post_detail.html";
 }
 
+async function handleViewButtonEvent2(event) {
+    let postId = event.currentTarget.getAttribute('data-postId');
+    
+   await setCookie("postId", postId, 1);
+   await setCookie("vol_postId", postId, 1);
+   await setCookie("signal", "false", 1)
+   window.location.href = "post_detail.html";
+}
+
 
 window.addEventListener('offline', () => {
     //alert('You are now offline!'); // Customize the alert as needed
@@ -302,7 +311,7 @@ window.addEventListener('offline', () => {
     const offlineAnimationContainer = document.getElementById('offlineAnimationContainer');
     offlineAnimationContainer.style.display = 'block';
     offlineAnimationContainer.style.background = '#f44336';
-    offlineAnimationContainer.innerHTML = ' You are currently offline. Please check your internet connection.';
+    offlineAnimationContainer.innerHTML = '<p>You are currently offline. Please check your internet connection.</p>';
 
     // You can customize the duration the animation is displayed
     setTimeout(() => {
@@ -316,7 +325,7 @@ window.addEventListener('online', () => {
     const offlineAnimationContainer = document.getElementById('offlineAnimationContainer');
     offlineAnimationContainer.style.display = 'block';
     offlineAnimationContainer.style.background = 'green';
-    offlineAnimationContainer.innerHTML = 'You are now back online!';
+    offlineAnimationContainer.innerHTML = '<p>You are now back online!</p>';
 
     // You can customize the duration the animation is displayed
     setTimeout(() => {
