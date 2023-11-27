@@ -117,8 +117,9 @@ option,
 
 
 /*Button*/
-button {
+/* button {
     background-color: var(--purple-dark);
+    border-radius: 10px;
     color: var(--white);
     padding: 14px 20px;
     margin: 8px 0;
@@ -126,7 +127,7 @@ button {
     cursor: pointer;
     width: 30%;
     display: block;
-}
+} */
 
 button:hover {
     opacity: 0.8;
@@ -155,7 +156,35 @@ button:hover {
     overflow: auto;
 }
 
+.header5{
+    text-align: center;
+}
+#save_interests {
+    width: 100%; /* Make the button take full width of its container */
+    height: 40px;
+    text-align: center;
+    border: 1px solid var(--grey-middle-placeholdertext);
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: var(--purple-dark);
+    color: var(--white);
+    cursor: pointer;
+    margin-top: 20px; /* Add some top margin to separate it from the checkboxes */
+}
 
+/* Center the button text vertically and horizontally */
+#save_interests::before {
+    content: ""; /* Create an empty pseudo-element */
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjust for spacing */
+}
+
+#save_interests span {
+    vertical-align: middle;
+    display: inline-block;
+}
 fieldset {
     display: flex;
     flex-wrap: wrap; /* Allow items to wrap onto the next line */
@@ -224,7 +253,7 @@ fieldset input {
     overflow: auto;
 }
 
-#next_Info, #saveBtn, #choose_interest, #choose_skill {
+#next_Info, #saveBtn, #choose_interest, #choose_skill{
     width: 100%;
     padding: 12px 10px;
     /* Adjust padding as needed */
