@@ -234,7 +234,7 @@ header a {
         top: 30px;
         right: 225px;
         width: 280px;
-        height: 130px;
+        height: 122px;
         box-shadow: var(--shadow);
         border-radius: 20px;
         margin-top: 2.2rem;
@@ -254,8 +254,8 @@ header a {
       }
 
       #dropdownAcc {
-        height: 500px;
-        padding-left: 10px;
+        height: 308px;
+        padding: 18px;
       }  
 
       #dropdownSignUp a, #dropdownAcc a {
@@ -271,6 +271,10 @@ header a {
         padding: 0.8rem 1rem;
         text-decoration: none;
         color: black;
+      }
+
+      .org1, .vol1 {
+        margin-bottom: 12px;
       }
 
       #btnLogout1 {
