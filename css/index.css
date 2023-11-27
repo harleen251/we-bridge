@@ -265,14 +265,24 @@ body{
     cursor: pointer;
 }
 
+
+@media screen and (min-width: 800px){
+    .homepage{
+        width: 95%;
+        max-width: 1000px;
+        margin: auto;
+    }
+}
+
 /* **********************************************
     Tablet/ Small desktop View
 ********************************************** */
 @media screen and (min-width: 1000px){
-    .homepage{
+    /* .homepage{
         width: 95%;
+        max-width: 1000px;
         margin: auto;
-    }
+    } */
 
     #hero_title{
         font-size: 44px;
@@ -402,6 +412,7 @@ body{
         width: 90%;
         margin: auto;
     }
+    
     #hero_title{
         font-size: 66px;
         margin-bottom: 40px;
