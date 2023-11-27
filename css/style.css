@@ -87,11 +87,7 @@ span.psw {
 }
 
 /* For Desktop { */
-@media screen and (max-width: 800px) {}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {}
-
+/* @media screen and (max-width: 800px) {} */
 /* END */
 
 /* Volunteer and Organization Sign Up */
@@ -461,7 +457,7 @@ label {
 /************************* End of Mobile View ********************************/
 
 /************************* Start of Desktop View *****************************/
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 800px) {
 
 /*****************************************************************************/
 /******************************* Login Page **********************************/
