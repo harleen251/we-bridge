@@ -10,8 +10,128 @@
     <!-- <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script> -->
+    
+    <!------------------------------------------------------------------------>
+    <!-------------------------- header & footer ----------------------------->
+    <!------------------------------------------------------------------------>
+    <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <!------------------------------------------------------------------------>
+    <!-------------------------- end of header & footer ---------------------->
+    <!------------------------------------------------------------------------>
+
 </head>
 <body class="kim-bodylogin">
+
+    <!------------------------------------------------------------------------>
+    <!------------------------------ header ---------------------------------->
+    <!------------------------------------------------------------------------>
+    <header class="main-header">
+        <div class="deskTop">
+            <div class="left-section">
+                <a href="../pages/explore_opportunity.html">Find opportunities</a>
+                <a href="../pages/about.html">About us</a>
+            </div>
+            <div class="center-section">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            </div>
+            <div class="right-section">
+                <button class="btn" id="btnLogin">Log In <i class="fa-solid fa-caret-down" id="arrow"></i></button>
+                <div class="dropdown" id="dropdown">
+                    <a href="volunteer_login.html">
+                    <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_login.html">
+                    <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnSignUp">Sign Up<i class="fa-solid fa-caret-down" id="arrowSignup"></i></button>
+                <div class="dropdown" id="dropdownSignUp">
+                    <a href="volunteer_signup.html">
+                    <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_signup.html">
+                    <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnAccount" style="display: none;">Account <i class="fa-solid fa-caret-down" id="arrowAcc"></i></button>
+                <div class="dropdown" id="dropdownAcc">
+                    <div class="org">
+                        <a id="orgLink1">Organization Profile</a>
+                        <a id="postLink1">Posting</a>
+                        <a id="appLink1">Application</a>
+                    </div>
+                    <div class="vol">
+                        <a id="myLink1">My Profile</a>
+                        <a id="appHisLink1">Appocation History</a>
+                        <a id="regLink1">Registered Event</a>
+                        <a id="volRecLink1">Volunteer Record</a>
+                    </div>
+                    <a id="btnLogout1">LogOut</a>
+                </div>
+            </div>
+        </div>
+                <!-- 汉堡按钮 -->
+        <div class="mobile">
+            <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            <div class="hamburger-menu">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </div>
+            
+            <!-- 要显示/隐藏的菜单 -->
+            <nav class="menu">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="white_mobile_logo"></a>
+                <ul>
+                    <li><a href="../pages/explore_opportunity.html">Find opportunities</a></li>
+                    <li><a href="../pages/about.html">About Us</a></li>
+                    <li>
+                        <a href="#" class="login">Log in <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu1" >
+                            <li><a href="../pages/volunteer_login.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_login.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="signUp">Sign Up <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu2" >
+                            <li><a href="../pages/volunteer_signup.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_signup.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="account" style="display: none;">Account<i class="fa-solid fa-caret-down" id="arrowAcc"></i></a>
+                        <ul class="submenu3">
+                            <div class="org">
+                                <li ><a id="orgLink2">Organization Profile</a></li>
+                                <li ><a id="postLink2">Posting</a></li>
+                                <li ><a id="appLink2">Application</a></li>
+                            </div>
+                            <div class="vol">
+                                <li ><a id="myLink2">My Profile</a></li>
+                                <li ><a id="appHisLink2">Appocation History</a></li>
+                                <li ><a id="regLink2">Registered Event</a></li>
+                                <li ><a id="volRecLink2">Volunteer Record</a></li>
+                            </div>
+                            
+                            <li><a id="btnLogout2">LogOut</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+       
+    </header>
+    <!------------------------------------------------------------------------>
+    <!------------------------------ end of header --------------------------->
+    <!------------------------------------------------------------------------>
+
     <div class="kim-wrapper">
         <main class="kim-main">
             <div class="kim-addimage">
@@ -35,6 +155,52 @@
                 </div>
             </div>
         </main>
-    </div> 
+    </div>
+    
+    <!------------------------------------------------------------------------>
+    <!------------------------------ footer ---------------------------------->
+    <!------------------------------------------------------------------------>
+    <footer>
+        <div class="footerContainer">
+            <div class="footerInsidecontainer">
+                <div class="footer-logo">
+                    <a href="../pages/index.html"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="Logo" class="footerImg"></a>
+                </div>
+                <div class="social-media">
+                    <ul>
+                        <li>
+                            <a aria-label="Link to our LinkedIn" target="_blank" href="https://LinkedIn.com">
+                                <i aria-hidden="true" class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>                
+                        <li>
+                            <a aria-label="Link to our Facebook profile" target="_blank" href="https://facebook.com">
+                                <i aria-hidden="true" class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Instagram profile" target="_blank" href="https://instagram.com">
+                                <i aria-hidden="true" class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Twitter profile" target="_blank" href="https://twitter.com">
+                                <i aria-hidden="true" class="fa-brands fa-x-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <p>Copyright &copy; 2023 WeBridge</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        
+        
+    </footer>
+    <!------------------------------------------------------------------------>
+    <!------------------------------ end of footer --------------------------->
+    <!------------------------------------------------------------------------>
+
 </body>
 </html>
