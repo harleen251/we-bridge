@@ -31,11 +31,6 @@ getCookie('volunteerId')
       // Cookie found, use cookieValue
       if (cookieValue !== "") {
         volunteerId = cookieValue;
-        // console.log(`volunteerId value: ${cookieValue}`);
-        // btnAccount.style.display = "block";
-        // btnLogin.style.display = "none";
-        // btnSignUp.style.display = "none";
-        // linkAccount.href  = "volunteer_account.html";
       } else {
         // Cookie not found
         getCookie('organizationId')
@@ -44,26 +39,12 @@ getCookie('volunteerId')
               // Cookie found, use cookieValue
                 if (cookieValue !== "") {
                     organizationId = cookieValue;
-                    // console.log(`organizationId value: ${cookieValue}`);
-                    // btnAccount.style.display = "block";
-                    // btnLogin.style.display = "none";
-                    // btnSignUp.style.display = "none";
-                    // linkAccount.href  = "organization_account.html";
-                   
+                                       
                 } else {
-                    // btnAccount.style.display = "none";
-                    // btnSignUp.style.display = "block";
-                    // btnLogin.style.display = "block";
-                    // console.log('organizationId not found.');
-                    // console.log('volunteerId not found.');
                 }              
               } 
           })
           .catch((error) => {
-            //   btnLogin.style.display = "block";
-            //   btnSignUp.style.display = "block";
-            //   btnAccount.style.display = "none";
-              //console.error('An error occurred while retrieving the cookie:', error);
           });
       }      
     } 
@@ -73,58 +54,7 @@ getCookie('volunteerId')
   });
 
 
-// const dropdownBtn = document.getElementById("btnLogin");
-// const dropdownMenu = document.getElementById("dropdown");
-// const toggleArrow = document.getElementById("arrow");
 
-// const dropdownSignUp = document.getElementById("btnSignUp");
-// const dropdownMenuSignUp = document.getElementById("dropdownSignUp");
-// const toggleArrowSignUp = document.getElementById("arrowSignup");
-
-// const dropdownAcc = document.getElementById("btnAccount");
-// const dropdownMenuAcc = document.getElementById("dropdownAcc");
-// const toggleArrowAcc = document.getElementById("arrowAcc");
-
-// const toggleDropdown = function () {
-//     if (volunteerId !== "" || organizationId !== ""){
-//         dropdownMenuAcc.classList.toggle("show");
-//         toggleArrowAcc.classList.toggle("arrow");
-//     }else if (volunteerId === "" && organizationId === ""){
-//         dropdownMenu.classList.toggle("show");
-//         toggleArrow.classList.toggle("arrow");
-//     }   
-// };
-
-// const toggleDropdownSignUp = function () {
-//     if (volunteerId === "" && organizationId === ""){
-//         dropdownMenuSignUp.classList.toggle("show");
-//         toggleArrowSignUp.classList.toggle("arrow");
-//     }   
-// };
-
-// dropdownBtn.addEventListener("click", function (e) {
-//     e.stopPropagation();
-//     toggleDropdown();
-// });
-
-// dropdownSignUp.addEventListener("click", function (e) {
-//     e.stopPropagation();
-//     toggleDropdownSignUp();
-// });
-
-// dropdownAcc.addEventListener("click", function (e) {
-//     e.stopPropagation();
-//     toggleDropdown();
-// });
-
-// document.documentElement.addEventListener("click", function () {
-//     if (dropdownMenu.classList.contains("show")) {
-//         toggleDropdown();
-//     }
-//     if (dropdownMenuAcc.classList.contains("show")) {
-//         toggleDropdown();
-//     }
-// });
 
 const today = Timestamp.now();
 // const expireDate = Timestamp.fromDate(today);
@@ -133,7 +63,7 @@ const q = query(postCollection,
     where('expireDate', '>', today),
     orderBy('expireDate','desc'),
     orderBy('posted_on_date','desc'),
-    limit(20));
+    limit(5));
 let i = 1;
 
 await getDocs(q)
@@ -187,7 +117,7 @@ async function getVolunteerInfo(volunteerId){
     if (docSnap.exists()) {
         const volunteerData = docSnap.data();
         console.log("Document data:", volunteerData);
-        let qPost = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(3)); 
+        let qPost = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(5)); 
         let interestArr = [];
         console.log("Vol Interest Arr : ", volunteerData.interest.length);
         if ( volunteerData.interest.length > 0 ){
