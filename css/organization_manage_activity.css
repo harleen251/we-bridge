@@ -1,0 +1,284 @@
+@import url('/css/style.css');
+
+:root {
+    --grey-text: var(--grey-middle-placeholdertext);
+    --grey-border: var( --grey-light);
+    --card-background: var( --white);
+    --table-head-background: var(--yellow-lighter);
+    --primary-button: var( --purple-primary);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#main_wrap {
+    padding: 20px;
+    margin: 20px;
+    padding-bottom: 100px;
+}
+
+#Post_info_wrap {
+    background-color: var(--card-background);
+    padding: 20px;
+    border: 1px solid var(--grey-border);
+    border-radius: 15px;
+}
+
+#profile_img {
+    display: none;
+    width: 9rem;
+    clip-path: circle(40% at 50% 50%);
+}
+
+#description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+#Post_info  p {
+    font-size: 16px;
+    padding-bottom: .2rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    
+}
+
+#wrap_data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#wrap_data img {
+    width: 22px;
+    height: 22px;
+    padding-left: .3rem;
+}
+
+#wrap_data p{
+    padding: 0 1rem 0 .5rem;
+    font-size: 12px;
+}
+
+#wrap_data div{
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+}
+
+#button_wrap {
+    display: flex;
+    justify-content: center;
+    /* margin-left: 30%; */
+    
+}
+
+#Post_info_wrap button {
+    border-radius: 8px;
+    width: 130px;
+}
+
+#Post_info_wrap button:hover{
+    opacity: 100%;
+    background-color: var(--yellow-primary);
+}
+
+#Post_info_wrap button a{
+    color: var(--white);
+    text-decoration: none;
+}
+
+#volunteerTracking {
+    display: none;
+}
+
+#table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    /* padding: 50px; */
+}
+
+#table tr {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+thead {
+    background-color: var(--table-head-background);
+}
+
+#tbody {
+    background-color: var(--card-background);
+}
+
+#tbody td {
+    padding-bottom: .5rem;
+}
+
+.vol_profile {
+    /* width: 3rem; */
+    width: 50px;
+    height: 50px;
+    clip-path: circle(40% at 50% 50%);
+}
+
+th {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+th, td {
+    font-size: 12px;
+    text-align: center;
+}
+
+#tbody img+p {
+    margin: 0;
+}
+
+#qrcode_button_wrap button{
+    width: 90%;
+    border-radius: 8px;
+    margin: 10px 20px;
+    font-size: 16px;
+}
+
+#qrcode_button_wrap button:first-of-type {
+    margin-top: 30px;
+    background-color: var(--purple-light);
+}
+
+#qrcode_button_wrap button:last-of-type {
+    margin-bottom: 50px;
+}
+
+#qrcode_button_wrap button:hover{
+    opacity: 100%;
+    background-color: var(--yellow-primary);
+}
+
+/* QR CODE Popup */
+
+#wrap_qrcode {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+    overflow: auto;
+  
+}
+
+#wrap_close_qrcode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fefefe;
+    padding: 10px;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    height: 50%;
+    position: relative;
+}
+
+#qrcode img{
+    
+    width: 50vw;
+    max-width: 200px;
+    height: 50vw;
+    max-height: 200px;
+}
+
+.imgcontainer {
+    position: absolute;
+    right: 10px;
+    top:10px;
+}
+
+.close {
+    font-size: 40px;
+}
+
+@media screen and (min-width: 800px) {
+
+    #main_wrap {
+        max-width: 1000px;
+        margin: auto;
+        padding-top: 30px;
+    }
+
+    #Post_info {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    #profile_img {
+        display: block;
+        width: 193px;
+        height: 179px;
+        overflow: hidden;
+        clip-path: inset(0 0 0 0 round 10px);
+        margin-right: 20px;
+    }
+
+    #description {
+        /* overflow: hidden; */
+        /* display: -webkit-box; */
+        -webkit-line-clamp: 3; 
+        /* -webkit-box-orient: vertical; */
+        /* text-overflow: ellipsis; */
+        
+    }
+
+    #wrap_data {
+        margin-top: 1.8rem;
+        width: 54vw;
+        max-width: 580px;
+    }
+
+    #qrcode_button_wrap button{
+        display: inline;
+        width: 350px;
+    }
+
+    #qrcode_button_wrap button:first-of-type {
+        margin-left: 0px;
+    }
+
+    #qrcode_button_wrap button:last-of-type {
+        margin-left: 0px;
+    }
+
+    #Post_info_wrap {
+        position: relative;
+    }
+
+    #button_wrap button {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        width: 13vw;
+        max-width: 130px;
+    }
+
+    #wrap_close_qrcode {
+        width: 45%; /* Could be more or less, depending on screen size */
+        height: 65%;
+    }
+}

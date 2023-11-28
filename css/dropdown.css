@@ -5,7 +5,7 @@
     font-family: "Inter", sans-serif;
     --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,
       rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
-    --color: #04AA6D;
+    --color: #4410A5;
     --gap: 0.5rem;
     --radius: 5px;
   }
@@ -16,19 +16,24 @@
     font-size: 0.9rem;
     color: black;
   }
+
+  .container {
+    display: flex;
+  }
   
   .btn {
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    column-gap: var(--gap);
-    padding: 0.6rem;
-    cursor: pointer;
-    border-radius: var(--radius);
-    border: none;
-    box-shadow: var(--shadow);
-    position: relative;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: var(--gap);
+      padding: 0.6rem;
+      margin-left: 0.6rem;
+      cursor: pointer;
+      border-radius: var(--radius);
+      border: none;
+      box-shadow: var(--shadow);
+      position: relative;
   }
   
   .bx {
@@ -40,7 +45,7 @@
     width: 250px;
     box-shadow: var(--shadow);
     border-radius: var(--radius);
-    margin-top: 0.3rem;
+    margin-top: 2.2rem;
     background: white;
   
     visibility: hidden;
@@ -73,3 +78,149 @@
     transform: rotate(180deg);
     transition: 0.2s ease;
   }
+
+    /* For Card Container */
+
+  #containerOpp, #containerRec {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .card {
+    width: 100%;
+    margin: 1rem;
+    background: white;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, .1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all .2s linear;
+  }
+  
+  .card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
+    transform: translate3D(0, -2px, 0);
+  }
+
+  img {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 400px;
+    width: 90%;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-style: solid;
+    border-width: 15px;
+    border-top-color: #333333;
+    border-right-color: black;
+    border-bottom-color: #333333;
+    border-left-color: black;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    margin-bottom: 1.5rem;
+  }
+  
+  @media screen and (min-width: 600px) {
+    .card {
+      flex: 1 1 calc(50% - 2rem);
+    }
+  }
+  
+  @media screen and (min-width: 900px) {
+    .card {
+      flex: 1 1 calc(33% - 2rem);
+    }
+  }
+
+  /* For Divs */
+
+  .toolbar {
+    position: sticky;
+    height: var(--header-h);
+    background-color: #999;
+    color: white;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  
+  .toolbar a {
+    background-color: #4410A5;
+    text-decoration: none;
+    color: white;
+    flex: 0 0 30%;
+    margin: 1rem;
+    line-height: 2.5em;
+    text-align: center;
+    border: 2px solid rgb(250, 248, 246);
+    border-radius: 5px;
+  }
+  
+  .toolbar a:active {
+    background-color: #a50;
+  }
+  
+  div.page {
+    display: none;
+    text-align: center;
+    padding: 0.44em;
+    height: calc(100vh - 5.7em);
+  
+  }
+  
+  body div.page:nth-child(odd) {
+    background-color: beige;
+  }
+  body div.page:nth-child(even) {
+    background-color: bisque;
+  }
+
+  /* End Divs */
+
+
+  /* For Login Dropdown (Temporary) START */
+
+.dropdown {
+  position: absolute;
+  width: 250px;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  margin-top: 2.2rem;
+  background: white;
+
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: all 0.1s cubic-bezier(0.16, 1, 0.5, 1);
+  z-index: 1;
+}
+
+.dropdown a {
+  display: flex;
+  align-items: center;
+  column-gap: var(--gap);
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+.dropdown a:hover {
+  background-color: var(--color);
+  color: white;
+}
+
+.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0rem);
+}
+
+.arrow {
+  transform: rotate(180deg);
+  transition: 0.2s ease;
+}
+
+/* For Login Dropdown (Temporary) END */

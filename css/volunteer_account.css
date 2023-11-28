@@ -1,0 +1,412 @@
+@import url('/css/style.css');
+
+body {
+    margin: 0;
+}
+
+#mainAccount{
+    margin: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+    max-width: 1000px;
+}
+
+#welcome_tag {
+    font-size: 16px;
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+}
+
+.profile_pic {
+    width: 9rem;
+    clip-path: circle(40% at 50% 50%);
+}
+
+#vol_profile img {
+    margin: auto;
+}
+
+#vol_profile {
+    border: 1px solid var(--grey-light);
+    border-radius: 15px;
+    padding: 20px;
+    background-color: var(--white);
+    text-align: center;
+    box-shadow: 1px 3px 5px  rgba(0, 0, 0, 0.4);
+}
+
+#profile_info h2 {
+    margin-bottom: 0px;
+}
+
+#profile_info h2+p{
+ margin-top: 0;
+ color: var(--grey-text);
+}
+
+#skillList_vol {
+    margin-bottom: 1.5rem;
+}
+
+#vol_description, #skillList_vol {
+    display: none;
+}
+
+#skillList_vol p {
+    display: inline-block;
+    margin: .3rem;
+    background-color: var(--skill-background);
+    padding: 6px 15px;
+    border-radius: 25px;
+}
+
+#btnEditProfile {
+    width: 80vw;
+    max-width: 250px;
+    margin: 10px auto ;
+    background-color: var(--white);
+    border: 2px solid var(--black); 
+    border-radius: 8px;
+}    
+
+#btnEditProfile a {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+div .page {
+    display: none;
+    /* text-align: center;*/
+    padding: 0.44em; 
+    height: calc(200vh - 5.7em); 
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 15px;
+    margin: 15px 0px;
+    /* appearance:none; */
+}
+
+
+.btnDiv {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;    
+    justify-content: center;
+    text-align: center;
+}
+
+.btnDiv2 {
+    margin: 0 auto;
+    flex-wrap: wrap; 
+    flex-flow: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.btnDiv2 button {
+    margin: 10px auto;
+}
+
+
+
+.viewButton {
+    width: 40%;
+    background-color: var( --purple-primary);
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 13px;
+}
+
+
+/* body div.page:nth-child(odd) {
+    background-color: beige;
+}
+
+body div.page:nth-child(even) {
+    background-color: bisque;
+} */
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid var(--grey-light);
+    margin-bottom: 1rem;
+}
+
+.toolbar .item {
+    text-align: center;
+    flex-grow:  1;
+    color: black;
+    text-decoration: none;
+    padding: 1rem 0rem .8rem 0rem;
+    background-color: var(--lighter-grey);
+    margin: 1rem 0rem 0rem 0rem;
+    
+}
+
+#btnHistory {
+    border-bottom: 2px solid var(--black);
+    font-weight: 600;
+}
+
+#containerRec, #h1Application, #h1Register, #h1Record {
+    padding: 0;
+    margin: 0;
+}
+
+#h1Application, #h1Register, #h1Record {
+    text-transform: uppercase;
+}
+
+  /* Card Settings */
+.card {
+    border: 1px solid var(--grey-light); 
+    border-radius: 15px;
+    background-color: var(--white);
+    padding:16px; 
+    margin-bottom: 12px;
+    width: 100%;
+    transition: all .2s linear;
+    overflow: hidden;
+    /* margin: 1rem; */
+    box-sizing: border-box;
+    /* display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    text-align: center;*/
+}
+  
+.card:hover {
+    box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
+    transform: translate3D(0, -2px, 0);
+} 
+
+.card a {
+    text-decoration: none;
+}
+
+.card_icons{
+    width: 14px;
+}
+
+#card_date_container{
+    display:flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#card_location_container{
+    display:flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.post_date{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.post_location{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.post_description_excerpt,
+.post_date,
+.post_location {
+    font-size: 12px;
+    color: var(--grey-middle-placeholdertext);
+}
+
+@media screen and (min-width: 600px) {
+    .card {
+        flex: 1 1 calc(50% - 2rem);
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .card {
+        flex: 1 1 calc(33% - 2rem);
+    }
+}
+
+/* For Desktop { */
+    @media screen and (min-width: 800px) {
+
+        #mainAccount{
+            max-width: 1000px;
+            margin: auto;
+        }
+    
+        #welcome_tag {
+            text-align: left;
+        }
+    
+        #profile_info {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+        }
+    
+        .profile_pic {
+            width: 16rem;
+
+            /* kim commented this */
+            /* transform: translateY(20%); */
+        }
+    
+        #profile_info div:last-of-type {
+            text-align: left;
+            padding-right: 20px;
+            
+        }
+    
+        #profile_info div:last-of-type h2+p {
+            font-size: 16px;
+        }
+    
+        #profile_info>div:last-of-type h2+p+p {
+            font-size: 12px;
+        }
+    
+        #vol_description, #skillList_Org {
+            display: block;
+        }
+    
+        #post-list button {
+            display: block;
+        }
+    
+        #vol_profile {
+            position: relative;
+        }
+    
+        #btnEditProfile {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            width: 170px;
+        }
+    
+        #btnEditProfile a {
+            font-size: 14px;
+        }
+    
+        .nav_tab .item {
+            text-align: left;
+        }
+    
+        .posting {
+            position: relative;
+        }
+    
+        #create-post-button {
+            width: 200px;
+            position: absolute;
+            right: 0px;
+        }
+    
+        select {
+            width: 375px;
+            margin-bottom: 20px;
+        }
+    
+        #post-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+    
+        #post-list p+div {
+            display: inline-block;
+            text-align: left;
+            margin-left: 0;
+            margin-top: 0;
+        }
+    
+        #post-list > div > div > div:nth-of-type(-n+2) {
+            border: none;
+        }
+    
+        #post-list p+div p {
+            text-align: left;
+            font-size: 17px;
+        }
+    
+        #post-list p+div div {
+            display: flex;
+        }
+    
+        #post-list > div > div  p:nth-of-type(odd) {
+            font-weight: normal;
+            margin-left: 0;
+        }
+    
+        #post-list h3 {
+            font-size: 24px;
+        }
+    
+        #post-list h3+p {
+          font-size: 16px;
+        }
+    
+        #post-list > div > div  p:nth-of-type(even) {
+            color: var(--black);
+        }
+    
+        span {
+            display: inline;
+        }
+    
+        #post-list div {
+            position: relative;
+        }
+    
+        #post-list button {
+            position: absolute;
+            right: 15px;
+            bottom: 25px;
+            width: 17vw;
+            max-width: 200px;
+        }
+    
+        #application-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+
+        /* Kim added */
+        #skillList_vol {
+            display: block;
+        }
+
+        #skillList_vol p {
+            display: inline-block;
+            margin: 0.3rem;
+            background-color: #b2dad7;
+            padding: 6px 15px;
+            border-radius: 25px;
+        }
+
+        #containerRec {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+
+        #containerRegistered {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 10px;
+        }
+    }

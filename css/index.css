@@ -1,0 +1,471 @@
+
+@import url(style.css);
+
+/* **********************************************
+    Base Declarations
+********************************************** */
+
+/* Font Setting */
+.homepage h1,
+.homepage h2,
+.homepage h3,
+.homepage h4{
+    color: var(--black);
+    text-align: left;
+    font-family: "Poppins", sans-serif;
+}
+ 
+
+body{
+    margin: 0;
+}
+
+.homepage {
+    padding: 20px;
+    background: var(--grey-lighter);
+}
+
+/* Pseudo Settings */
+.homepage button:hover{
+    opacity: 100%;
+    background-color: var(--yellow-primary);
+}
+
+.card:hover{
+    opacity: 100%;
+    border:1.5px solid var(--purple-lighter);
+    box-shadow: 0 0 8px rgba(0,0,0,.125);
+}
+
+.homepage button:active{
+    opacity: 100%;
+    background-color: var(--yellow-primary);
+    /* background-color: var(--purple-light); */
+}
+
+/* **********************************************
+    Main Declarations
+********************************************** */
+
+/************* Hero Section ********************/
+#hero_title{
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 36px; /* 36px or 8vw or 2.3rem */
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+#hero_description {
+    font-size: 14px;
+    line-height: 1.3;
+    max-width: 80%;
+}
+
+.hero_icon {
+    height: 30px; /* 30px or 6vw */
+}
+
+#hero_img{
+    height: 132px;
+    width: 240px;
+    border-radius: 20px;
+    overflow: hidden;
+    object-fit: cover;
+    position: relative;
+    z-index:2;
+}
+
+.hero_img_container {
+    position: relative;
+    margin-top: 44px;
+}
+
+#hero_rect{
+    height: 132px;
+    width: 240px;
+    background-color: var(--purple-primary); 
+    border-radius: 20px; 
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+
+}
+
+#explore_button_container{
+    position: relative;
+    z-index: 3;
+}
+
+#explore_button {
+    /* button text */
+    text-align: left;
+    font-family: "Poppins", sans-serif;
+    line-height: 1.3;
+    font-size: 14px;
+    font-weight: 500;
+    /* button shape */
+    height: 68px;
+    width: 180px ;
+    border-radius: 35px;
+    /* alignment */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22px;
+    /* position */
+    position: absolute;
+    bottom: 40px;
+    left: 180px;
+}
+
+#explore-arrow{
+    height: 18px;
+}
+
+/************* Client Section ************/
+#client {
+    margin-top: 72px;
+    margin-bottom: 76px;
+}
+
+#client_h5 {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--grey-light);
+}
+
+#carousel {
+    display: flex;
+    gap:10%;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel_logo{
+    height: 50px;
+}
+
+/*** Latest Opportunity and Recommendation Section ***/
+.homepage h2 {
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.homepage p {
+    font-size: 12px;
+}
+
+.border{
+    border-bottom: 6px solid var(--purple-primary);
+    width: 6rem;
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+/* Card Settings */
+.card {
+    border: 1px solid var(--grey-light); 
+    border-radius: 15px;
+    background-color: var(--white);
+    padding: 18px; 
+    margin-bottom: 12px;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 8%;
+}
+
+.card_img{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    clip-path: inset(0 0 0 0 round 10px); 
+}
+
+#card_org{
+    grid-column: 1/2;
+    text-align: center;
+}
+
+.card_org_name{
+    margin: 0;
+}
+
+.card a{
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    text-decoration: none;
+}
+
+#card_post_info{
+    grid-column: 2/3;
+}
+
+.post_description_excerpt,
+.post_date,
+.post_location {
+    font-size: 12px;
+    color: var(--grey-middle-placeholdertext);
+}
+
+.post_description_excerpt{
+    /* white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;  */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-top: 8px;
+}
+
+.card_icons{
+    width: 14px;
+}
+
+#card_date_container{
+    display:flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#card_location_container{
+    display:flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.post_date{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.post_location{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+/* Button Settings */
+.arrow_button_container {
+    margin-top: 24px;
+    margin-bottom: 84px;
+    text-align: center;
+    position: relative;
+
+}
+
+.arrow_button{
+    margin-left: 4px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+
+
+@media screen and (min-width: 800px){
+    .homepage{
+        width: 95%;
+        margin: auto;
+    }
+}
+
+/* **********************************************
+    Tablet/ Small desktop View
+********************************************** */
+@media screen and (min-width: 1000px){
+    /* .homepage{
+        width: 95%;
+        max-width: 1000px;
+        margin: auto;
+    } */
+
+    #hero_title{
+        font-size: 44px;
+        margin-bottom: 36px;
+        line-height: 1.2;
+    }
+
+    .hero_icon {
+        height: 32px;
+    }
+
+    #hero_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 28px;
+        align-items:start;
+    }
+
+    #hero_img{
+        width: 540px;
+        height: 406px;
+        border-radius: 50px;
+        overflow: hidden;
+        object-fit: cover;
+
+        /* added relative and index */
+        position: relative;
+        z-index: 2;
+    }
+
+    #hero_rect{
+        width: 540px;
+        height: 406px;
+        border-radius: 50px; 
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        /* changed it fr. -1 to 1 */
+        z-index: 1;
+    }
+    
+    .hero_title_container{
+        grid-column: 1/2;
+    }
+    
+    .hero_img_container{
+        width:50%;
+        margin: 0;
+        margin-right: 20px;
+        grid-column: 2/3;
+        grid-row: 1/3;
+    }
+
+    #explore_button_container{
+        grid-row: 2/3;
+        margin: 0;
+    }
+
+    #explore_button_container a{
+        text-decoration: none;
+    }
+
+    #explore_button {
+        font-size: 18px;
+        width: 305px;
+        border-radius: 35px;
+        gap: 12px;
+        position:static;
+    }
+
+    #explore-arrow{
+        height: 22px;
+    }
+
+    /*** Latest Opportunity and Recommendation Section ***/
+    .card {
+        padding: 28px;
+        margin: 0;
+    }
+
+    .homepage h2 {
+        font-size: 32px;
+    }
+
+    .card a{
+        font-size: 20px;
+    }
+
+    .post_description_excerpt,
+    .post_date,
+    .post_location{
+        font-size: 14px;
+    }
+
+    #Latest,
+    #h1Recomm {
+        width: 90%;
+        margin: auto;
+    }
+
+    .border{
+        border-bottom: 8px solid var(--purple-primary);
+        margin-bottom: 44px;
+    }
+
+    #containerOpp {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+    #containerRec{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+}
+
+
+/* **********************************************
+    Desktop View
+********************************************** */
+
+/************* Hero Section ********************/
+@media screen and (min-width: 1400px){
+    .homepage{
+        width: 90%;
+        margin: auto;
+    }
+    
+    #hero_title{
+        font-size: 66px;
+        margin-bottom: 40px;
+        line-height: 1.2;
+    }
+
+    .hero_icon {
+        height: 50px;
+    }
+
+    #hero_description {
+        font-size: 16px;
+    }
+
+    #hero_img{
+        width: 660px;
+        height: 526px;
+        border-radius: 50px;
+        overflow: hidden;
+        object-fit: cover;
+
+        /* added relative and index */
+        position: relative;
+        z-index: 2;
+    }
+
+    #hero_rect{
+        width: 660px;
+        height: 526px;
+        border-radius: 50px; 
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        /* changed it fr. -1 to 1 */
+        z-index: 1;
+    }
+
+    /*************** Client Section **************/
+    #client {
+        margin-top: 104px;
+        margin-bottom: 92px;
+    }
+
+    #client_h5 {
+        font-size: 20px;
+    }
+
+    .carousel_logo{
+        height: 70px;
+    }
+
+    #carousel {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+}

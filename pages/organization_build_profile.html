@@ -1,177 +1,474 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>WeBridge - Organization Sign Up</title>
-        <script type="module" src="../js/organization_build_profile.js" defer></script>
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
-    <body>
-        <header>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBridge - Organization Sign Up</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/icon-96x96.png">
+    <script type="module" src="../js/organization_build_profile.js" defer></script>
+    <link rel="stylesheet" href="../css/organization_buildprofile.css">
+    <script type="module" src="../js/header.js" defer></script>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="deskTop">
+            <div class="left-section">
+                <a href="../pages/explore_opportunity.html">Find opportunities</a>
+                <a href="../pages/about.html">About us</a>
+            </div>
+            <div class="center-section">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            </div>
+            <div class="right-section">
+                <button class="btn" id="btnLogin">Log In <i class="fa-solid fa-caret-down" id="arrow"></i></button>
+                <div class="dropdown" id="dropdown">
+                    <a href="volunteer_login.html">
+                        <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_login.html">
+                        <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnSignUp">Sign Up<i class="fa-solid fa-caret-down"
+                        id="arrowSignup"></i></button>
+                <div class="dropdown" id="dropdownSignUp">
+                    <a href="volunteer_signup.html">
+                        <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_signup.html">
+                        <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnAccount" style="display: none;">Account <i class="fa-solid fa-caret-down"
+                        id="arrowAcc"></i></button>
+                <div class="dropdown" id="dropdownAcc">
+                    <div class="org1">
+                        <a id="orgLink1">Organization Profile</a>
+                        <a id="postLink1">Posting</a>
+                        <a id="appLink1">Application</a>
+                    </div>
+                    <div class="vol1">
+                        <a id="myLink1">My Profile</a>
+                        <a id="appHisLink1">Appocation History</a>
+                        <a id="regLink1">Registered Event</a>
+                        <a id="volRecLink1">Volunteer Record</a>
+                    </div>
+                    <a id="btnLogout1">LogOut</a>
+                </div>
+            </div>
+        </div>
+        <!-- 汉堡按钮 -->
+        <div class="mobile">
+            <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            <div class="hamburger-menu">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </div>
+
+            <!-- 要显示/隐藏的菜单 -->
+            <nav class="menu">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_white_mobile nav.svg"
+                        alt="white_mobile_logo"></a>
+                <ul>
+                    <li><a href="../pages/explore_opportunity.html">Find opportunities</a></li>
+                    <li><a href="../pages/about.html">About Us</a></li>
+                    <li>
+                        <a href="#" class="login">Log in <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu1">
+                            <li><a href="../pages/volunteer_login.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_login.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="signUp">Sign Up <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu2">
+                            <li><a href="../pages/volunteer_signup.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_signup.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="account" style="display: none;">Account<i class="fa-solid fa-caret-down"
+                                id="arrowAcc"></i></a>
+                        <ul class="submenu3">
+                            <div class="org2">
+                                <li><a id="orgLink2">Organization Profile</a></li>
+                                <li><a id="postLink2">Posting</a></li>
+                                <li><a id="appLink2">Application</a></li>
+                            </div>
+                            <div class="vol2">
+                                <li><a id="myLink2">My Profile</a></li>
+                                <li><a id="appHisLink2">Appocation History</a></li>
+                                <li><a id="regLink2">Registered Event</a></li>
+                                <li><a id="volRecLink2">Volunteer Record</a></li>
+                            </div>
+
+                            <li><a id="btnLogout2">LogOut</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+    <main id="main_wrap">
+
+        <form id="form_Profile">
+        <div id="header6">
             <h1>BUILD ORGANIZATION PROFILE</h1>
-        </header>
-        <main>
-            <form id="form_Profile">
-                <label for="txtPhotoLink">Add a profile picture</label>
-                <input type="file" id="txtPhotoLink">
+            <div class="right">
+                <h2 class="h2_personalInfo">Organization Information</h2>
+            </div>
+        </div>
+        <div id="photoContainer">
+            <img id="profilePic" src="" alt="Profile Picture">
+            <label for="txtPhotoLink">Add a profile picture</label>
+            <input type="file" id="txtPhotoLink">
+        </div>
 
-                <section>
-                    <h2>About the Organization</h2>
+        <section>
+            <h3>About the Organization</h3>
 
+            <div id="line1">
+                <div class="firstname-and-label">
                     <label for="txtOrgName">Organization Name</label>
                     <input type="text" id="txtOrgName">
-
+                </div>
+                <div class="lastname-and-label">
                     <label for="txtRegNumber">Charitable Registration Number</label>
                     <input type="text" id="txtRegNumber">
+                </div>
+            </div>
 
+            <div id="line3">
+                <div class="address1">
                     <label for="txtAddress">Address</label>
                     <input type="text" id="txtAddress">
-                    <label for="txtProvince">Province</label>
-                    <input type="text" id="txtProvince">
+                </div>
+                <div class="city1">
                     <label for="txtCity">City</label>
                     <input type="text" id="txtCity">
+                </div>
+            </div>
+
+            <div id="line4">
+                <div class="province1">
+                    <label for="txtProvince">Province</label>
+                    <input type="text" id="txtProvince">
+                </div>
+                <div class="postal1">
                     <label for="txtPostalCode">Postal Code</label>
                     <input type="text" id="txtPostalCode">
+                </div>
+            </div>
 
-                    <label for="txtDescription">Description</label>
-                    <textarea id="txtDescription" cols="20" rows="5"></textarea>
+            <label for="txtBio">Description</label>
+            <textarea id="txtBio" cols="20" rows="5"></textarea>
 
-                    <label for="txtWebsiteLink">Website</label>
-                    <input type="text" id="txtWebsiteLink">
+            <label for="txtWebsiteLink">Website</label>
+            <input type="text" id="txtWebsiteLink">
 
-                </section>
+        </section>
 
-                <section id="service">
-                    <h2>Service Field</h2>
-                    <p>Select up to 5 Fields..</p>
-                    <button id="choose_service">Choose</button>
+        <section id="service">
+            <h3>Service Field</h3>
+            <p>Select up to 5 Fields..</p>
+            <div id="wrap-choose-service-button">
+                <button id="choose_service">Choose</button>
+            </div>
 
-                    <div id="option_service">
-                        <section id="wrap_service">
-                            <div class="imgcontainer">
-                                <span onclick="document.getElementById('option_service').style.display='none'" class="close" title="Close Modal">&times;</span>
-                            </div>
-                            <h3>Select Your Service Fields</h3>
-                            <p>Please select up to 5 fields</p>
-                            <fieldset>
-                                <label for="service1">Advocacy and Law</label>
-                                <input type="checkbox" id="service1" value="Advocacy and Law">
-                                <br>
-                                <label for="service2">Anti-Racism</label>
-                                <input type="checkbox" id="service2" value="Anti-Racism"> 
-                                <br>
-                                <label for="service3">Community Development
-                                </label>
-                                <input type="checkbox" id="service3" value="Community Development"> 
-                                <br>
-                                <label for="service4">Disability Services</label>
-                                <input type="checkbox" id="service4" value="Disability Services"> 
-                                <br>
-                                <label for="service5">Elections</label>
-                                <input type="checkbox" id="service5" value="Elections"> 
-                                <br>
-                                <label for="service6">Food Security</label>
-                                <input type="checkbox" id="service6" value="Food Security"> 
-                                <br>
-                                <label for="service7">Indigenous</label>
-                                <input type="checkbox" id="service7" value="Indigenous"> 
-                                <br>
-                                <label for="service8">Literacy, Libtaries, Learning</label>
-                                <input type="checkbox" id="service8" value="Literacy, Libtaries, Learning"> 
-                                <br>
-                                <label for="service9">Poverty and Homelessness</label>
-                                <input type="checkbox" id="service9" value="Poverty and Homelessness"> 
-                                <br>
-                                <label for="service10">Seniors</label>
-                                <input type="checkbox" id="service10" value="Seniors"> 
-                                <br>
-                                <label for="service11">Sports and Recreation</label>
-                                <input type="checkbox" id="service11" value="Sports and Recreation"> 
-                                <br>
-                                <label for="service12">Agriculture, Horticulture, Gardening</label>
-                                <input type="checkbox" id="service12" value="Agriculture, Horticulture, Gardening"> 
-                                <br>
-                                <label for="service13">Arts and Culture</label>
-                                <input type="checkbox" id="service13" value="Arts and Culture"> 
-                                <br>
-                                <label for="service14">Computers and IT</label>
-                                <input type="checkbox" id="service14" value="Computers and IT"> 
-                                <br>
-                                <label for="service15">Disaster Relief</label>
-                                <input type="checkbox" id="service15" value="Disaster Relief"> 
-                                <br>
-                                <label for="service16">Employment and Career Mentorship</label>
-                                <input type="checkbox" id="service16" value="Employment and Career Mentorship"> 
-                                <br>
-                                <label for="service17">Gender and Identity</label>
-                                <input type="checkbox" id="service17" value="Gender and Identity"> 
-                                <br>
-                                <label for="service18">International Development</label>
-                                <input type="checkbox" id="service18" value="International Development"> 
-                                <br>
-                                <label for="service19">Nonprofit Services</label>
-                                <input type="checkbox" id="service19" value="Nonprofit Services"> 
-                                <br>
-                                <label for="service20">Professional Associations</label>
-                                <input type="checkbox" id="service20" value="Professional Associations"> 
-                                <br>
-                                <label for="service21">Special Events and Festivals</label>
-                                <input type="checkbox" id="service21" value="Special Events and Festivals"> 
-                                <br>
-                                <label for="service22">Animal Services</label>
-                                <input type="checkbox" id="service22" value="Animal Services"> 
-                                <br>
-                                <label for="service23">Children, Youth, Family</label>
-                                <input type="checkbox" id="service23" value="Children, Youth, Family"> 
-                                <br>
-                                <label for="service24">Diversity and Immigration</label>
-                                <input type="checkbox" id="service24" value="Diversity and Immigration"> 
-                                <br>
-                                <label for="service25">Environment</label>
-                                <input type="checkbox" id="service25" value="Environment"> 
-                                <br>
-                                <label for="service26">Health and Wellness</label>
-                                <input type="checkbox" id="service26" value="Health and Wellness"> 
-                                <br>
-                                <label for="service27">LGBTQ+</label>
-                                <input type="checkbox" id="service27" value="LGBTQ+"> 
-                                <br>
-                                <label for="service28">Older Adults</label>
-                                <input type="checkbox" id="service28" value="Older Adults"> 
-                                <br>
-                                <label for="service29">Refugee and Settlement</label>
-                                <input type="checkbox" id="service29" value="Refugee and Settlement"> 
-                                <br>
-                                <label for="service30">Spirituality and Faith</label>
-                                <input type="checkbox" id="service30" value="Spirituality and Faith"> 
-                                <br>
-                            </fieldset>
-                            <button id="save_service">Save</button>
-                        </section>
+            <div id="option_service">
+                <section id="wrap_service">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('option_service').style.display='none'" class="close"
+                            title="Close Modal">&times;</span>
+                    </div>
+                    <h2 class="header2"><span class="header3">1</span> Select Your Service Fields</h2>
+                    <p>Select up to 5 Interests</p>
+                    <fieldset>
+                        <div class="service-container">
+                            <label for="interest1">Advocacy and Law</label>
+                            <input type="checkbox" id="interest1" class="service-checkbox" value="Advocacy and Law">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest2">Anti-Racism</label>
+                            <input type="checkbox" id="interest2" class="service-checkbox" value="Anti-Racism">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest3">Community Development
+                            </label>
+                            <input type="checkbox" id="interest3" class="service-checkbox"
+                                value="Community Development">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest4">Disability Services</label>
+                            <input type="checkbox" id="interest4" class="service-checkbox" value="Disability Services">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest5">Elections</label>
+                            <input type="checkbox" id="interest4" class="service-checkbox" value="Elections">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest4">Food Security</label>
+                            <input type="checkbox" id="interest5" class="service-checkbox" value="Food Security">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest6">Indigenous</label>
+                            <input type="checkbox" id="interest6" class="service-checkbox" value="Indigenous">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest7">Literacy, Libtaries, Learning</label>
+                            <input type="checkbox" id="interest7" class="service-checkbox"
+                                value="Literacy, Libtaries, Learning">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest8">Poverty and Homelessness</label>
+                            <input type="checkbox" id="interest8" class="service-checkbox"
+                                value="Poverty and Homelessness">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest9">Seniors</label>
+                            <input type="checkbox" id="interest9" class="service-checkbox" value="Seniors">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest10">Sports and Recreation</label>
+                            <input type="checkbox" id="interest10" class="service-checkbox"
+                                value="Sports and Recreation">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest11">Agriculture, Horticulture, Gardening</label>
+                            <input type="checkbox" id="interest11" class="service-checkbox"
+                                value="Agriculture, Horticulture, Gardening">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest12">Arts and Culture</label>
+                            <input type="checkbox" id="interest12" class="service-checkbox" value="Arts and Culture">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest13">Computers and IT</label>
+                            <input type="checkbox" id="interest13" class="service-checkbox" value="Computers and IT">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest14">Disaster Relief</label>
+                            <input type="checkbox" id="interest14" class="service-checkbox" value="Disaster Relief">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest15">Employment and Career Mentorship</label>
+                            <input type="checkbox" id="interest15" class="service-checkbox"
+                                value="Employment and Career Mentorship">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest16">Gender and Identity</label>
+                            <input type="checkbox" id="interest16" class="service-checkbox"
+                                value="Gender and Identity">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest17">International Development</label>
+                            <input type="checkbox" id="interest17" class="service-checkbox"
+                                value="International Development">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest18">Nonprofit Services</label>
+                            <input type="checkbox" id="interest18" class="service-checkbox" value="Nonprofit Services">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest19">Professional Associations</label>
+                            <input type="checkbox" id="interest19" class="service-checkbox"
+                                value="Professional Associations">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest20">Special Events and Festivals</label>
+                            <input type="checkbox" id="interest20" class="service-checkbox"
+                                value="Special Events and Festivals">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest21">Animal Services</label>
+                            <input type="checkbox" id="interest21" class="service-checkbox" value="Animal Services">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest23">Children, Youth, Family</label>
+                            <input type="checkbox" id="interest23" class="service-checkbox"
+                                value="Children, Youth, Family">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest24">Diversity and Immigration</label>
+                            <input type="checkbox" id="interest24" class="service-checkbox"
+                                value="Diversity and Immigration">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest25">Environment</label>
+                            <input type="checkbox" id="interest25" class="service-checkbox" value="Environment">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest26">Health and Wellness</label>
+                            <input type="checkbox" id="interest26" class="service-checkbox"
+                                value="Health and Wellness">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest27">LGBTQ+</label>
+                            <input type="checkbox" id="interest27" class="service-checkbox" value="LGBTQ+">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest28">Older Adults</label>
+                            <input type="checkbox" id="interest28" class="service-checkbox" value="Older Adults">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest29">Refugee and Settlement</label>
+                            <input type="checkbox" id="interest29" class="service-checkbox"
+                                value="Refugee and Settlement">
+                        </div>
+                        <br>
+
+                        <div class="service-container">
+                            <label for="interest30">Spirituality and Faith</label>
+                            <input type="checkbox" id="interest30" class="service-checkbox"
+                                value="Spirituality and Faith">
+                        </div>
+                        <br>
+                    </fieldset>
+                    <div id="wrap-save-service-button">
+                        <button id="save_service">Save</button>
                     </div>
                     
                 </section>
+            </div>
 
-                <section>
-                    <h2>Contact Information</h2>
+        </section>
 
+        <section>
+            <h3>Contact Information</h3>
+
+            <div id="line2">
+                <div class="name10">
                     <label for="txtFirstName">First Name</label>
                     <input type="text" id="txtFirstName">
+                </div>
+                <div class="name10">
                     <label for="txtLastName">Last Name</label>
                     <input type="text" id="txtLastName">
+                </div>
+            </div>
 
+            <div id="line5">
+                <div class="email1">
                     <label for="txtEmail">Email</label>
                     <input type="email" id="txtEmail">
-
+                </div>
+                <div class="number1">
                     <label for="txtPhoneNumber">Phone Number</label>
                     <input type="tel" id="txtPhoneNumber">
+                </div>
+            </div>
 
-                </section>
+        </section>
+        <div id="wrap-saveBtn">
+            <input type="submit" value="Save Profile" id="saveBtn">
+        </div>
+        
 
-                <input type="submit" value="Save Profile" id="saveBtn">
+        </form>
+    </main>
+    <footer>
+        <div class="footerContainer">
+            <div class="footerInsidecontainer">
+                <div class="footer-logo">
+                    <a href="../pages/index.html"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="Logo" class="footerImg"></a>
+                </div>
+                <div class="social-media">
+                    <ul>
+                        <li>
+                            <a aria-label="Link to our LinkedIn" target="_blank" href="https://LinkedIn.com">
+                                <i aria-hidden="true" class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>                
+                        <li>
+                            <a aria-label="Link to our Facebook profile" target="_blank" href="https://facebook.com">
+                                <i aria-hidden="true" class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Instagram profile" target="_blank" href="https://instagram.com">
+                                <i aria-hidden="true" class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Twitter profile" target="_blank" href="https://twitter.com">
+                                <i aria-hidden="true" class="fa-brands fa-x-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <p>Copyright &copy; 2023 WeBridge</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </footer>
+</body>
 
-            </form>
-        </main>        
-    </body>
 </html>

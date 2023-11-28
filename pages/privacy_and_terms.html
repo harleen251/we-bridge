@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBridge - Privacy</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/icon-96x96.png">
+    <link rel="stylesheet" href="../css/privacy.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <style>
+
+        h1 {
+            font-size: 1.9rem;
+        }
+        h2 {
+            font-size: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="deskTop">
+            <div class="left-section">
+                <a href="../pages/explore_opportunity.html">Find opportunities</a>
+                <a href="../pages/about.html">About us</a>
+            </div>
+            <div class="center-section">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            </div>
+            <div class="right-section">
+                <button class="btn" id="btnLogin">Log In <i class="fa-solid fa-caret-down" id="arrow"></i></button>
+                <div class="dropdown" id="dropdown">
+                    <a href="volunteer_login.html">
+                    <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_login.html">
+                    <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnSignUp">Sign Up<i class="fa-solid fa-caret-down" id="arrowSignup"></i></button>
+                <div class="dropdown" id="dropdownSignUp">
+                    <a href="volunteer_signup.html">
+                    <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_signup.html">
+                    <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnAccount" style="display: none;">Account <i class="fa-solid fa-caret-down" id="arrowAcc"></i></button>
+                <div class="dropdown" id="dropdownAcc">
+                    <div class="org1" >
+                        <a id="orgLink1" >Organization Profile</a>
+                        <a id="postLink1">Posting</a>
+                        <a id="appLink1">Application</a>
+                    </div>
+                    <div class="vol1" >
+                        <a id="myLink1" >My Profile</a>
+                        <a id="appHisLink1">Appocation History</a>
+                        <a id="regLink1">Registered Event</a>
+                        <a id="volRecLink1">Volunteer Record</a>
+                    </div>
+                    <a id="btnLogout1">LogOut</a>
+                </div>
+            </div>
+        </div>
+                <!-- 汉堡按钮 -->
+        <div class="mobile">
+            <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            <div class="hamburger-menu">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </div>
+            
+            <!-- 要显示/隐藏的菜单 -->
+            <nav class="menu">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="white_mobile_logo"></a>
+                <ul>
+                    <li><a href="../pages/explore_opportunity.html">Find opportunities</a></li>
+                    <li><a href="../pages/about.html">About Us</a></li>
+                    <li>
+                        <a href="#" class="login">Log in <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu1" >
+                            <li><a href="../pages/volunteer_login.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_login.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="signUp">Sign Up <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu2" >
+                            <li><a href="../pages/volunteer_signup.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_signup.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="account" style="display: none;">Account<i class="fa-solid fa-caret-down" id="arrowAcc"></i></a>
+                        <ul class="submenu3" >
+                            <div class="org2" >
+                                <li ><a id="orgLink2" >Organization Profile</a></li>
+                                <li ><a id="postLink2">Posting</a></li>
+                                <li ><a id="appLink2">Application</a></li>
+                            </div>
+                            <div class="vol2" >
+                                <li ><a id="myLink2" >My Profile</a></li>
+                                <li ><a id="appHisLink2">Appocation History</a></li>
+                                <li ><a id="regLink2">Registered Event</a></li>
+                                <li ><a id="volRecLink2">Volunteer Record</a></li>
+                            </div>
+                            
+                            <li><a id="btnLogout2">LogOut</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+       
+    </header>
+
+    <main>
+    <section id="privacy">
+        <h1>Privacy Policy</h1>
+        <p>At WeBridge, your privacy is our top priority. This Privacy Policy outlines how we use and protect your personal information when you use our platform. By using WeBridge, you consent to the practices described in this Privacy Policy.</p>
+    
+        <section>
+            <h2>Information We Collect:</h2>
+            <ul>
+                <li>Personal Information: We collect information you provide during registration, including your name, email address, and other identifying details.</li>
+                <li>User-Generated Content: We may collect data generated by your interactions with our platform, such as posts, comments, and messages.</li>
+            </ul>
+        </section>
+    
+        <section>
+            <h2>How We Use Your Information:</h2>
+            <ul>
+                <li>We use your personal information to create and maintain your account, provide you with the requested services.</li>
+                <li>We analyze user data to improve our platform, personalize content, and enhance your user experience.</li>
+            </ul>
+        </section>
+    
+        <section>
+            <h2>Sharing Your Information:</h2>
+            <ul>
+                <li>We may share your information with the organization or as required by law.</li>
+            </ul>
+        </section>
+    
+        <section>
+            <h2>Security:</h2>
+            <ul>
+                <li>We take reasonable steps to protect your personal information from unauthorized access or disclosure.</li>
+                <li>Please be aware that no method of transmission over the internet is entirely secure, and we cannot guarantee the security of your data.</li>
+            </ul>
+        </section>
+    
+        <section>
+            <h2>Your Choices:</h2>
+            <ul>
+                <li>You can review, edit, or delete your personal information through your account settings.</li>
+                <li>You have the right to not participate in marketing communications and data collection for personalization.</li>
+            </ul>
+        </section>
+    </section>
+    
+    
+    <section id="terms">
+        <h1>Terms of Service</h1>
+        <p>By accessing and using the WeBridge platform, you agree to the following Terms of Service:
+        </p> 
+
+        <section>
+            <h2>Eligibility:</h2>
+            <ul>
+                <li>You must be at least 18 years old to use WeBridge. If you are under 18, you may only use our platform with the consent of a parent or guardian.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>User Conduct:</h2>
+            <ul>
+                <li>You are responsible for your actions on WeBridge. Do not engage in any behavior that violates our community guidelines or infringes upon the rights of others.</li>
+                <li>Do not impersonate others or share false information.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Intellectual Property:</h2>
+            <ul>
+                <li>WeBridge retains ownership of all content and intellectual property on the platform.</li>
+                <li>You may not use, reproduce, or distribute our content without permission.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Privacy and Data Use:</h2>
+            <ul>
+                <li>WeBridge values your privacy. We collect and use your personal information in accordance with our Privacy Policy.</li>
+                <li>Do not misuse or share the personal information of other users without their consent.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Content Guidelines:</h2>
+            <ul>
+                <li>You are responsible for the content you post on WeBridge. Do not share harmful, offensive, or misleading information.</li>
+                <li>Respect the intellectual property rights of others when posting content.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Termination:</h2>
+            <ul>
+                <li>WeBridge reserves the right to suspend or terminate your account if you violate these Terms of Service or our community guidelines.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Changes to Terms:</h2>
+            <ul>
+                <li>We may update these Terms of Service, and any changes will be effective upon posting the updated version.</li>
+            </ul>
+        </section>
+
+    </section>
+
+    <p>Your trust is essential to us, and we are committed to providing a secure and respectful environment for all users. If you have any questions or concerns about our Privacy Policy or Terms of Service, please contact us at </p>
+    <p><a href="mailto:contact@webridge.com">contact@webridge.com</a></p>
+</main>
+
+    
+</body>
+</html>

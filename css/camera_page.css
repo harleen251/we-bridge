@@ -1,0 +1,74 @@
+@import url('/css/style.css');
+
+:root {
+    --grey-text: var(--grey-middle-placeholdertext);
+    --grey-border: var( --grey-light);
+    --skill-background: var( --green-lighter);
+    --card-background: var( --white);
+    --primary-button: var( --purple-primary);
+    --status-backgroud: var( --purple-primary);
+    --secondary-button: var(--purple-light);
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    padding: 50px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#reader {
+    width: 454px;
+    height: 454px;
+}
+
+#result {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+#qr-shaded-region {
+    width: 454px;
+    height: 340px;
+}
+div#reader {
+    width: 454px;
+    height: 454px;
+    border: none;
+}
+#back-button
+{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: auto;
+      margin-top: 0;
+      background: none;
+      color: var(--black);
+      padding: 10px;
+}
+button img {
+    margin-right: 8px;
+  }
+
+button#html5-qrcode-button-camera-permission{
+   margin-left: auto;
+   margin-right: auto;
+   border-radius: 15px;
+   width: 70%;
+}
+#html5-qrcode-anchor-scan-type-change {
+    background-color: var(--card-background);
+    
+}
+
+a#html5-qrcode-anchor-scan-type-change.html5-qrcode-element{
+    text-decoration: none;
+}

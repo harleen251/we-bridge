@@ -1,0 +1,470 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Login and Index */
+/*Color*/
+:root {
+    /*Primary Color Purple*/
+    --purple-lighter: #7952BF;
+    --purple-light: #5E31B1;
+    --purple-primary: #4410A5;
+    --purple-dark: #360B83;
+    --purple-darker: #290766;
+
+    /*Secondary Color Yellow*/
+    --yellow-lighter: #FFD25E;
+    --yellow-light: #FFC533;
+    --yellow-primary: #F2AD00;
+    --yellow-dark: #BF8900;
+
+    /*Accent Color 1 Green*/
+    --green-lighter: #B2DAD7;
+    --green-light: #79B6B2;
+    --green-primary: #4C948F;
+    --green-dark: #589792;
+    --green-darker: #196761;
+
+    /*Accent Color 2 Red*/
+    --red-lighter: #FDCED1;
+    --red-light: #FCA8AC;
+    --red-primary: #ED7A80;
+    --red-dark: #D26E73;
+    --red-darker: #A5292F;
+
+    /*Neutral color*/
+    --black: #212121;
+    --white: #FFFFFF;
+    --grey-lighter: #F5F6F8;
+    --grey-light: #8F8F8F;
+    --grey-middle-placeholdertext: #6A6A6A;
+
+}
+
+/* START */
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--grey-lighter);
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+#main_wrap {
+    margin: 20px;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 100px;
+}
+
+h1 {
+    font-size: 16px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 12px;
+}
+
+h3 {
+    font-size: 18px;
+    color: var(--purple-primary);
+}
+
+input,
+select,
+#txtBio,
+option,
+.h2_personalInfo {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 6px 0;
+    display: inline-block;
+    border: 1px solid var(--grey-middle-placeholdertext);
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/*Profile pic*/
+#profilePic {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+#photoContainer label[for="txtPhotoLink"] {
+    display: block;
+    text-align: center;
+    margin: 10px auto;
+}
+
+#txtPhotoLink {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+
+/*Button*/
+/* button {
+    background-color: var(--purple-dark);
+    border-radius: 10px;
+    color: var(--white);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    display: block;
+} */
+
+button:hover {
+    opacity: 0.8;
+}
+
+#preference_background {
+    display: none;
+}
+
+#option_service {
+    display: none;
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    padding-top: 60px;
+    overflow: auto;
+}
+
+.header5{
+    text-align: center;
+}
+
+#save_service {
+    width: 50%; /* Make the button take full width of its container */
+    height: 40px;
+    text-align: center;
+    border: 1px solid var(--grey-middle-placeholdertext);
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: var(--purple-dark);
+    color: var(--white);
+    cursor: pointer;
+    margin-top: 20px; /* Add some top margin to separate it from the checkboxes */
+}
+
+#wrap-save-service-button,#wrap-choose-service-button, #wrap-saveBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.close {
+    font-size: 40px;
+}
+
+.imgcontainer {
+    display: flex;
+    justify-content: end;
+}
+
+/* Center the button text vertically and horizontally */
+#save_service::before {
+    content: ""; /* Create an empty pseudo-element */
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjust for spacing */
+}
+
+#save_service span {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+fieldset {
+    /* display: flex;
+    flex-wrap: wrap; Allow items to wrap onto the next line */
+    /* width: 50%; */
+    gap: 10px;
+    margin: auto;
+    border: none;
+}
+
+/* Style each interest-input pair container within the two-column layout */
+.service-container {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    box-sizing: border-box; /* Include padding and border in the width and height of the elements */
+    width: 100%; 
+    border: 1px solid var(--grey-middle-placeholdertext);
+    padding: 5px;
+    margin-bottom: 0;
+    border-radius: 10px;
+    margin-left: 0;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}
+.service-container.selected {
+    border: 1px solid var(--purple-dark);
+    opacity: 0.9;
+    color: var(--purple-light);
+    font-weight: bold;
+}
+
+
+/* Style labels within the two-column layout */
+fieldset label {
+    display: block;
+    margin-left: 5px;
+}
+input[type="checkbox"]{
+    height: 15px;
+    margin-right: 0;
+    margin-left: auto;
+}
+/* Style inputs within the two-column layout */
+fieldset input {
+    padding: 5px;
+}
+
+#wrap_service {
+    background-color:var(--white);
+    padding: 20px;
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid var(--grey-middle-placeholdertext);
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+#next_Info, #saveBtn, #choose_service{
+    width: 100%;
+    padding: 12px 10px;
+    /* Adjust padding as needed */
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid var(--grey-middle-placeholdertext);
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: var(--purple-dark);
+    color: var(--white);
+    cursor: pointer;
+}
+
+#addNewExpBtn, #addNewCertBtn {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 2px solid var(--black);
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: var(--white);
+    color: var(--black);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#next_Info:hover {
+    opacity: 0.8;
+}
+#line7 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px
+}
+.header2{
+    background-color: var(--purple-primary);
+    color: var(--white);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.header3 {
+    display: inline-block;
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Make sure the height is the same as the width */
+    border-radius: 50%;
+    background-color: var(--yellow-light);
+    text-align: center;
+    line-height: 30px;
+    vertical-align: middle; /* Align the circle with the middle of the text */
+    margin-right: 10px; /* Adjust the margin to create a gap */
+    color: var(--black);
+    font-size: 14px;
+  }
+
+
+  /* added by kim */
+  .save-service-button-sec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+/* end added by kim */
+
+@media screen and (min-width: 800px) {
+    #main_wrap {
+        margin: auto;
+        width: 650px;
+        margin-top: 30px;
+    }
+
+    #header6 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+
+    #header6 h1 {
+        grid-column: 1/2;
+        font-size: 16px;
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    #header6 h2{
+        grid-column: 2/3;
+        text-align: center;
+        height: 15%;
+        width: 60%;
+    }
+   #header4 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+
+    #header4 h1 {
+        grid-column: 1/2;
+        font-size: 16px;
+        text-align: left;
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    #header4 h2{
+        grid-column: 2/3;
+        text-align: center;
+        height: 15%;
+        width: 60%;
+    }
+    .right {
+        text-align: right;
+    }
+
+
+    #photoContainer {
+        margin: auto;
+        width: 650px;
+        padding: 30px;
+        border: 1px solid var(--grey-middle-placeholdertext);
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+
+    #photoContainer img#profilePic {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #photoContainer label[for="txtPhotoLink"] {
+        display: block;
+        text-align: center;
+        margin: 10px auto;
+    }
+
+    #photoContainer input[type="file"] {
+        width: 100%;
+        padding: 12px 10px;
+        margin: 8px 0;
+        display: inline-block;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 10px;
+    }
+
+
+    #line1, #line2, #line3, #line4, #line5, #line6, #line8, #line9 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px
+    }
+
+    #next_Info, #saveBtn {  
+        width: 40%;
+    }
+    
+
+    #button1, #button2 {
+        margin: auto;
+        text-align: center;
+    }
+
+    #next_Info{
+        margin: auto;
+        width: 50%;
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+    }
+
+    #choose_service, #choose_skill{
+        margin: auto;
+        width: 50%;
+        margin-bottom: .5rem;
+    }
+    fieldset {
+        /* justify-content: center;
+        align-items: center; Align items in the center vertically */
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap onto the next line */
+        /* width: 100%;
+        gap: 10px; */
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+    
+    /* Style each interest-input pair container within the two-column layout */
+    fieldset .service-container {
+        width: 40%; /* Set width to 20px */
+        /* height: auto; Set height to 20px */
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+    #wrap_option_service {
+        width: 40%;
+        /* Could be more or less, depending on screen size */
+    }
+    /* added by kim */
+    #save_service {
+        width: 20%;
+    }
+    
+}
+
+
+
+
+
+/*End Page 1*/

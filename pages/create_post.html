@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBridge - Create Post</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/icon-96x96.png">
+    <script type="module" src="../js/create_post.js" defer></script>
+    <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
+    <script type="module" src="../js/header.js" defer></script>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/create_post.css">
+    
+</head>
+<body>
+    <header class="main-header">
+        <div class="deskTop">
+            <div class="left-section">
+                <a href="../pages/explore_opportunity.html">Find opportunities</a>
+                <a href="../pages/about.html">About us</a>
+            </div>
+            <div class="center-section">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            </div>
+            <div class="right-section">
+                <button class="btn" id="btnLogin">Log In <i class="fa-solid fa-caret-down" id="arrow"></i></button>
+                <div class="dropdown" id="dropdown">
+                    <a href="volunteer_login.html">
+                    <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_login.html">
+                    <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnSignUp">Sign Up<i class="fa-solid fa-caret-down" id="arrowSignup"></i></button>
+                <div class="dropdown" id="dropdownSignUp">
+                    <a href="volunteer_signup.html">
+                    <i class="bx bx-plus-circle"></i>
+                        As Volunteer
+                    </a>
+                    <a href="organization_signup.html">
+                    <i class="bx bx-book"></i>
+                        As Organization
+                    </a>
+                </div>
+                <button class="btn" id="btnAccount" style="display: none;">Account <i class="fa-solid fa-caret-down" id="arrowAcc"></i></button>
+                <div class="dropdown" id="dropdownAcc">
+                    <div class="org1" >
+                        <a id="orgLink1" >Organization Profile</a>
+                        <a id="postLink1">Posting</a>
+                        <a id="appLink1">Application</a>
+                    </div>
+                    <div class="vol1" >
+                        <a id="myLink1" >My Profile</a>
+                        <a id="appHisLink1">Appocation History</a>
+                        <a id="regLink1">Registered Event</a>
+                        <a id="volRecLink1">Volunteer Record</a>
+                    </div>
+                    <a id="btnLogout1">LogOut</a>
+                </div>
+            </div>
+        </div>
+                <!-- 汉堡按钮 -->
+        <div class="mobile">
+            <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_main.svg" alt="Logo"></a>
+            <div class="hamburger-menu">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </div>
+            
+            <!-- 要显示/隐藏的菜单 -->
+            <nav class="menu">
+                <a href="../pages/index.html" class="logoLink"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="white_mobile_logo"></a>
+                <ul>
+                    <li><a href="../pages/explore_opportunity.html">Find opportunities</a></li>
+                    <li><a href="../pages/about.html">About Us</a></li>
+                    <li>
+                        <a href="#" class="login">Log in <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu1" >
+                            <li><a href="../pages/volunteer_login.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_login.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="signUp">Sign Up <i class="fa-solid fa-caret-down" id="arrowSignup"></i></a>
+                        <ul class="submenu2" >
+                            <li><a href="../pages/volunteer_signup.html">As Volunteer</a></li>
+                            <li><a href="../pages/organization_signup.html">As Organization</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="account" style="display: none;">Account<i class="fa-solid fa-caret-down" id="arrowAcc"></i></a>
+                        <ul class="submenu3" >
+                            <div class="org2" >
+                                <li ><a id="orgLink2" >Organization Profile</a></li>
+                                <li ><a id="postLink2">Posting</a></li>
+                                <li ><a id="appLink2">Application</a></li>
+                            </div>
+                            <div class="vol2" >
+                                <li ><a id="myLink2" >My Profile</a></li>
+                                <li ><a id="appHisLink2">Appocation History</a></li>
+                                <li ><a id="regLink2">Registered Event</a></li>
+                                <li ><a id="volRecLink2">Volunteer Record</a></li>
+                            </div>
+                            
+                            <li><a id="btnLogout2">LogOut</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+       
+    </header>
+    <main class="createPost">
+        <h1>CREATE POST</h1>
+    <form   id="postForm">
+        <h2>Basic details</h2>
+        
+        <div class="formCon">
+        <label for="positionTitle">Position Title:</label>
+        <input type="text" id="txtPositionTitle" name="positionTitle" required>
+        <br>
+
+        <label for="description">Description:</label>
+        <textarea id="txtDescription" name="description" rows="4" required></textarea>
+        <br>
+
+        <div class="mobilediv1">
+            <div class="date">
+                <label for="date">Date:</label>
+                <input type="date" id="txtDate" name="date" required>
+             </div>
+             <div class="hours">
+                <label for="hours">Hours:</label>
+                <input type="text" id="txtHours" name="hours" required>
+            </div>
+        </div>
+
+        <label for="location">Activity Location:</label>
+        <input type="text" id="txtLocation" name="location" required>
+        <br>
+
+        <div class="mobileDiv2">
+            <div class="expireDate">
+                <label for="expireDate">Post Expire Date:</label>
+                <input type="date" id="txtExpireDate" name="expireDate" required>
+             </div>
+        
+             <div class="mode_of_work">
+                <label for="mode of work">Mode of Work</label>
+                <select name="mode_of_work" id="mode_of_work">
+                    <option value="Onsite_work">Onsite work</option>
+                    <option value="Remote_work">Remote Work</option>
+                    <option value="Hybrid_work">Hybrid Work</option>
+                </select>
+            </div>
+        </div>
+        
+        <label for="availbility">Availbility</label>
+        <select name="availbility" id="availbility">
+            <option value="weekdays" selected>weekdays</option>
+            <option value="weekends">weekends</option>
+        </select>
+        <br>
+        
+        <section id="interest">
+            <h3>Which categories best matches the volunteer work?</h2>
+            <div class="select-choose"></div>
+            <p>Select up to 3 Interests</p>
+            <button id="choose_interest">Choose</button>
+
+            <div id="option_interest">
+                <section id="wrap_option_interest">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('option_interest').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    </div>
+                    <h3>Select Your Interests</h3>
+                    <p>Please select up to 3 interests</p>
+                    <fieldset>
+                        <label for="interest1">Advocacy and Law</label>
+                        <input type="checkbox" id="interest1" value="Advocacy and Law">
+                        <br>
+                        <label for="interest2">Anti-Racism</label>
+                        <input type="checkbox" id="interest2" value="Anti-Racism"> 
+                        <br>
+                        <label for="interest3">Community Development
+                        </label>
+                        <input type="checkbox" id="interest3" value="Community Development"> 
+                        <br>
+                        <label for="interest4">Disability Services</label>
+                        <input type="checkbox" id="interest4" value="Disability Services"> 
+                        <br>
+                        <label for="interest5">Elections</label>
+                        <input type="checkbox" id="interest4" value="Elections"> 
+                        <br>
+                        <label for="interest4">Food Security</label>
+                        <input type="checkbox" id="interest5" value="Food Security"> 
+                        <br>
+                        <label for="interest6">Indigenous</label>
+                        <input type="checkbox" id="interest6" value="Indigenous"> 
+                        <br>
+                        <label for="interest7">Literacy, Libtaries, Learning</label>
+                        <input type="checkbox" id="interest7" value="Literacy, Libtaries, Learning"> 
+                        <br>
+                        <label for="interest8">Poverty and Homelessness</label>
+                        <input type="checkbox" id="interest8" value="Poverty and Homelessness"> 
+                        <br>
+                        <label for="interest9">Seniors</label>
+                        <input type="checkbox" id="interest9" value="Seniors"> 
+                        <br>
+                        <label for="interest10">Sports and Recreation</label>
+                        <input type="checkbox" id="interest10" value="Sports and Recreation"> 
+                        <br>
+                        <label for="interest11">Agriculture, Horticulture, Gardening</label>
+                        <input type="checkbox" id="interest11" value="Agriculture, Horticulture, Gardening"> 
+                        <br>
+                        <label for="interest12">Arts and Culture</label>
+                        <input type="checkbox" id="interest12" value="Arts and Culture"> 
+                        <br>
+                        <label for="interest13">Computers and IT</label>
+                        <input type="checkbox" id="interest13" value="Computers and IT"> 
+                        <br>
+                        <label for="interest14">Disaster Relief</label>
+                        <input type="checkbox" id="interest14" value="Disaster Relief"> 
+                        <br>
+                        <label for="interest15">Employment and Career Mentorship</label>
+                        <input type="checkbox" id="interest15" value="Employment and Career Mentorship"> 
+                        <br>
+                        <label for="interest16">Gender and Identity</label>
+                        <input type="checkbox" id="interest16" value="Gender and Identity"> 
+                        <br>
+                        <label for="interest17">International Development</label>
+                        <input type="checkbox" id="interest17" value="International Development"> 
+                        <br>
+                        <label for="interest18">Nonprofit Services</label>
+                        <input type="checkbox" id="interest18" value="Nonprofit Services"> 
+                        <br>
+                        <label for="interest19">Professional Associations</label>
+                        <input type="checkbox" id="interest19" value="Professional Associations"> 
+                        <br>
+                        <label for="interest20">Special Events and Festivals</label>
+                        <input type="checkbox" id="interest20" value="Special Events and Festivals"> 
+                        <br>
+                        <label for="interest21">Animal Services</label>
+                        <input type="checkbox" id="interest21" value="Animal Services"> 
+                        <br>
+                        <label for="interest23">Children, Youth, Family</label>
+                        <input type="checkbox" id="interest23" value="Children, Youth, Family"> 
+                        <br>
+                        <label for="interest24">Diversity and Immigration</label>
+                        <input type="checkbox" id="interest24" value="Diversity and Immigration"> 
+                        <br>
+                        <label for="interest25">Environment</label>
+                        <input type="checkbox" id="interest25" value="Environment"> 
+                        <br>
+                        <label for="interest26">Health and Wellness</label>
+                        <input type="checkbox" id="interest26" value="Health and Wellness"> 
+                        <br>
+                        <label for="interest27">LGBTQ+</label>
+                        <input type="checkbox" id="interest27" value="LGBTQ+"> 
+                        <br>
+                        <label for="interest28">Older Adults</label>
+                        <input type="checkbox" id="interest28" value="Older Adults"> 
+                        <br>
+                        <label for="interest29">Refugee and Settlement</label>
+                        <input type="checkbox" id="interest29" value="Refugee and Settlement"> 
+                        <br>
+                        <label for="interest30">Spirituality and Faith</label>
+                        <input type="checkbox" id="interest30" value="Spirituality and Faith"> 
+                        <br>
+                    </fieldset>
+                    <button id="save_interests">Save</button>
+                </section>
+            </div>
+            
+        </section>
+        <br>
+
+        
+        <div id="skill">
+            <h3>What skills do you need from Volunteers?</h2>
+            <p>Select up to 3 Skills</p>
+            <button id="choose_skill">Choose</button>
+            <div id="option_skill">
+                <section id="wrap_skill">
+                    <div class="imgcontainer">
+                        <span onclick="document.getElementById('option_skill').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    </div>
+                    <h3>Select Your Skills</h3>
+                    <p>Please select up to 3 skills</p>
+                    <fieldset>
+                        <h3>Accounting</h3>
+                        <label for="skill1">Budgeting</label>
+                        <input type="checkbox" id="skill1" value="Budgeting">
+                        <br>
+                        <label for="skill2">Forecasting</label>
+                        <input type="checkbox" id="skill2" value="Forecasting"> 
+                        <br>
+                        <label for="skill3">Invoicing</label>
+                        <input type="checkbox" id="skill3" value="Invoicing"> 
+                    
+                        <h3>Administration</h3>
+                        <label for="skill4">File Management</label>
+                        <input type="checkbox" id="skill4" value="File Management"> 
+                        <br>
+                        <label for="skill5">Administration</label>
+                        <input type="checkbox" id="skill5" value="Administration"> 
+                        <br>
+                        <label for="skill6">Secretary</label>
+                        <input type="checkbox" id="skill6" value="Secretary"> 
+                        
+                        <h3>Caregiving</h3>
+                        <label for="skill7">Animal Care</label>
+                        <input type="checkbox" id="skill7" value="Animal Care"> 
+                        <br>
+                        <label for="skill8">Child Care</label>
+                        <input type="checkbox" id="skill8" value="Child Care"> 
+                        <br>
+                        <label for="skill9">Cleaning</label>
+                        <input type="checkbox" id="skill9" value="Cleaning"> 
+                        <br>
+                        <label for="skill10">Cooking</label>
+                        <input type="checkbox" id="skill10" value="Cooking"> 
+                        <br>
+                        <label for="skill11">Elder Care</label>
+                        <input type="checkbox" id="skill11" value="Elder Care"> 
+                        <br>
+                        <label for="skill12">Fitness</label>
+                        <input type="checkbox" id="skill12" value="Fitness"> 
+                        <br>
+                        <label for="skill13">Patient Care</label>
+                        <input type="checkbox" id="skill13" value="Patient Care"> 
+                        
+                        <h3>Construction, Transportation, Maintenance</h3>
+                        <label for="skill14">Carpentry</label>
+                        <input type="checkbox" id="skill14" value="Carpentry"> 
+                        <br>
+                        <label for="skill15">Delivery</label>
+                        <input type="checkbox" id="skill15" value="Delivery"> 
+                        <br>
+                        <label for="skill16">Driving</label>
+                        <input type="checkbox" id="skill16" value="Driving"> 
+                        
+                        <h3>Creative and Art</h3>
+                        <label for="skill17">Dance/ Theatre</label>
+                        <input type="checkbox" id="skill17" value="Dance/ Theatre"> 
+                        <br>
+                        <label for="skill18">Music Performance</label>
+                        <input type="checkbox" id="skill18" value="Music Performance"> 
+                        <br>
+                        <label for="skill19">Photography</label>
+                        <input type="checkbox" id="skill19" value="Photography"> 
+                        <br>
+                        <label for="skill20">Visual Arts</label>
+                        <input type="checkbox" id="skill20" value="Visual Arts"> 
+                        
+                        <h3>Design and Journalism</h3>
+                        <label for="skill21">Copy Writing</label>
+                        <input type="checkbox" id="skill21" value="Copy Writing"> 
+                        <br>
+                        <label for="skill22">Editing</label>
+                        <input type="checkbox" id="skill22" value="Editing"> 
+                        <br>
+                        <label for="skill23">Graphic Design</label>
+                        <input type="checkbox" id="skill23" value="Graphic Design"> 
+                        <br>
+                        <label for="skill24">Video Production</label>
+                        <input type="checkbox" id="skill24" value="Video Production"> 
+                        <br>
+                        <label for="skill25">Website Production</label>
+                        <input type="checkbox" id="skill25" value="Website Production"> 
+                        
+                        <h3>Education and Language</h3>
+                        <label for="skill26">Bilingual</label>
+                        <input type="checkbox" id="skill26" value="Bilingual"> 
+                        <br>
+                        <label for="skill27">Teaching/ Tutoring</label>
+                        <input type="checkbox" id="skill27" value="Teaching/ Tutoring"> 
+                        
+                        <h3>Environmental</h3>
+                        <label for="skill28">Agricultural Planning</label>
+                        <input type="checkbox" id="skill28" value="Agricultural Planning"> 
+                        <br>
+                        <label for="skill29">Environmental Planning</label>
+                        <input type="checkbox" id="skill29" value="Environmental Planning"> 
+                        <br>
+                        
+                    </fieldset>
+                    <button id="save_skill">Save</button>
+                </section>
+            </div>
+        </div>
+        <br>
+
+        <label for="preferredLanguage">Preferred Language:</label>
+        <select id="txtPreferredLanguage" name="preferredLanguage" required>
+            <option value="" disabled selected>Select Language</option>
+            <option value="Chinese">Chinese</option>
+            <option value="English">English</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Spanish">French</option>
+            <option value="Spanish">Japanese</option>
+            <!-- Add more language options here -->
+        </select>
+        <br>
+        <!-- <h2>Contact Details</h2>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="txtPhoneNumber" name="phoneNumber" required>
+        <br> -->
+
+        <!-- <label for="email">Email:</label>
+        <input type="email" id="txtEmail" name="email" required>
+        <br> -->
+    </div> 
+        <div id="postBtn">
+        <button id="discord" onclick="goBack()">Discard</button>
+        <button id="submitPost">Publish</button>
+        </div>
+    
+    </form>
+
+    <div id="infoArea"></div>
+    </main>
+    <footer>
+        <div class="footerContainer">
+            <div class="footerInsidecontainer">
+                <div class="footer-logo">
+                    <a href="../pages/index.html"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="Logo" class="footerImg"></a>
+                </div>
+                <div class="social-media">
+                    <ul>
+                        <li>
+                            <a aria-label="Link to our LinkedIn" target="_blank" href="https://LinkedIn.com">
+                                <i aria-hidden="true" class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>                
+                        <li>
+                            <a aria-label="Link to our Facebook profile" target="_blank" href="https://facebook.com">
+                                <i aria-hidden="true" class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Instagram profile" target="_blank" href="https://instagram.com">
+                                <i aria-hidden="true" class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Twitter profile" target="_blank" href="https://twitter.com">
+                                <i aria-hidden="true" class="fa-brands fa-x-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <p>Copyright &copy; 2023 WeBridge</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </footer>
+
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+    </script>
+</body>
+</html>
+
+

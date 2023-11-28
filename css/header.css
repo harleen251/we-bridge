@@ -1,0 +1,314 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --shadow: rgba(0, 0, 0, 0.05) 0px 6px 10px 0px,
+      rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+    --color: #4410A5;
+    --gap: 0.5rem;
+    --radius: 20px;
+}
+header {
+  font-family: "Poppins", sans-serif;
+}
+
+.hamburger-menu {
+    display: none; 
+    cursor: pointer;
+
+  }
+
+
+.hamburger-menu {
+    display: block;
+    width: 30px; /* 汉堡按钮的宽度 */
+    height: 20px; /* 汉堡按钮的高度 */
+    z-index: 100;
+}
+
+.deskTop {
+    display: none;
+}
+
+.mobile {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #F5F6F8;
+}
+
+.menu {
+    display: none; /* 初始状态下隐藏 */
+/* 其他样式，比如定位、背景色等 */
+}
+
+
+.mobile img {
+  /* 这里可以设置 logo 的样式，例如居中、大小等 */
+  display: inline-block;
+  width: 150px;
+  
+}
+
+#btnLogout2{
+  color: #FCA8AC;
+}
+
+header ul  {
+    list-style: none;
+    padding-left: 1.3rem;
+    margin-top: 48px;
+}
+
+header li {
+    margin-bottom: 30px;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    /* font-weight: 500; */
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.menu li a:hover {
+  color: #FFD25E;
+}
+
+.bar {
+    width: 100%;
+    height: 3px; /* The height of each bar in the hamburger button */
+    background-color: #4410A5; /* bar color */
+    margin: 5px 0; /* Spacing between bars */
+    border-radius: 2px;
+    transition: 0.4s; /* Add transitions to make button animations smoother */
+}
+
+.bar2 {
+    width: 70%;
+}
+
+/* Use the pseudo-class selector :not(:last-child) to select all bars except the last one, in order to style */
+.bar:not(:last-child) {
+    margin-bottom: 4px; /* Spacing between bars */
+}
+
+/* Rotate and style the bar to create the effect of a hamburger button */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+    background-color: white;
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+    background-color: white;
+}
+
+.menu.active {
+    display: block;
+    background-color: #360B83;
+    border: 1px solid #ccc;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    padding: 60px 15px 150px 0;
+    z-index: 80;
+    top: 0;
+    left: 0;
+    /* ... */
+}
+
+.menu img {
+  position: absolute;
+  top: 20px;
+  left: 18px;
+  width: 150px;
+  height: auto;
+}
+
+.submenu1, .submenu2, .submenu3 {
+    display: none;
+}
+
+.submenu1 a, .submenu2 a , .submenu3 a {
+  font-size: 18px;
+}
+
+.submenu1.active, .submenu2.active, .submenu3.active {
+    display: block;
+    margin-top: 20px;
+}
+
+.logout.active {
+    display: block;
+}
+
+/* .mobile .org , .mobile .org1{
+  display: none;
+}
+
+.mobile .vol, .mobile .vol1 {
+  display: none;
+} */
+
+@media screen and (min-width: 800px) {
+    
+      .mobile {
+        display: none;
+      }
+      .deskTop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 50px; 
+        background-color: #F5F6F8; 
+        position: relative;
+      }
+      
+      header a {
+        color: black;
+        margin-right: 30px;
+        font-size: 1.3rem;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .left-section,
+      .right-section {
+        display: flex;
+        /* margin-right: 70px; */
+      }
+      
+      header img {
+        display: inline-block;
+        width: 150px;
+      }
+
+      .center-section {
+        position: absolute;
+        left: 53%;
+        transform: translateX(-50%);
+      }
+  
+      
+      /* .container {
+        display: flex;
+      } */
+      
+      header .btn {
+          background-color: white;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          column-gap: var(--gap);
+          padding: 0.6rem 1.5rem 0.6rem 1.5rem;
+          margin-left: 1.5rem;
+          cursor: pointer;
+          border-radius: var(--radius);
+          border: none;
+          /* box-shadow: var(--shadow); */
+          position: relative;
+          /* font-size: 1.3rem */
+          font-size: 18px;
+          font-weight: 500;
+          width: 150px;
+          color: black;
+      }
+      
+      #btnAccount, #btnSignUp {
+        background-color: black;
+        color: white;
+      }
+      .bx {
+        /* font-size: 1.1rem; */
+        font-size: 18px;
+      }
+      
+      .dropdown {
+        position: absolute;
+        top: 30px;
+        right: 225px;
+        width: 280px;
+        height: 122px;
+        box-shadow: var(--shadow);
+        border-radius: 20px;
+        margin-top: 2.2rem;
+        background: white;
+      
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(0.5rem);
+        transition: all 0.1s cubic-bezier(0.16, 1, 0.5, 1);
+        z-index: 99;
+      }
+
+      #dropdownSignUp, #dropdownAcc {
+        position: absolute;
+        right: 45px;
+        background: black;
+      }
+
+      #dropdownAcc {
+        height: 308px;
+        padding: 18px;
+      }  
+
+      #dropdownSignUp a, #dropdownAcc a {
+        color: white;
+      }
+
+      .dropdown a {
+        width: 249px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        column-gap: var(--gap);
+        padding: 0.8rem 1rem;
+        text-decoration: none;
+        color: black;
+      }
+
+      .org1, .vol1 {
+        margin-bottom: 12px;
+      }
+
+      #btnLogout1 {
+        border-top: 1px solid white;
+        color: #ED7A80 !important;
+      }
+
+      .left-section a:hover , .right-section a:hover{
+        /* background-color: var(--color);
+        color: white; */
+        /* border-bottom: 2px solid ; */
+        text-decoration: underline;
+        text-underline-offset: 8px;
+      }
+      
+      .show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0rem);
+      }
+      
+      .arrow {
+        transform: rotate(180deg);
+        transition: 0.2s ease;
+      }
+      
+}
+
+@media screen and (min-width: 1000px) {
+
+  header a {
+    color: black;
+    margin-right: 70px;
+    font-size: 18px;
+  }
+
+} 
