@@ -29,6 +29,7 @@ body{
 .homepage button:hover{
     opacity: 100%;
     background-color: var(--yellow-primary);
+    transition: all .2s linear;
 }
 
 .card:hover{
