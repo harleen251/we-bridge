@@ -311,11 +311,11 @@ function sortDataByDate(data, newestFirst) {
       return newestFirst ? dateB - dateA : dateA - dateB;
     });
   }
-  function parseDate(dateString) {
-    const [day, month, year] = dateString.split("/");
-    // Construct a new date string in the "YYYY-MM-DD" format
-    return `${year}-${month}-${day}`;
-  }
+  // function parseDate(dateString) {
+  //   const [day, month, year] = dateString.split("/");
+  //   // Construct a new date string in the "YYYY-MM-DD" format
+  //   return `${year}-${month}-${day}`;
+  // }
   
   // Handle the sort dropdown change event
   document.getElementById("sortOrder").addEventListener("change", () => {
@@ -323,7 +323,7 @@ function sortDataByDate(data, newestFirst) {
     const isSortingNewestFirst = sortOrder === "newest";
     const sortedData = sortDataByDate(volunteerEntryArray, isSortingNewestFirst);
     // populateTable(sortedData);
-    populateGridTable(initialSortedData);
+    populateGridTable(sortedData);
 
   });
   
@@ -331,6 +331,11 @@ function sortDataByDate(data, newestFirst) {
   const initialSortedData = sortDataByDate(volunteerEntryArray, true);
   // populateTable(initialSortedData);
   populateGridTable(initialSortedData);
+
+  function parseDate(dateString) {
+    const [day, month, year] = dateString.split("/");
+    return new Date(`${year}-${month}-${day}`);
+}
   
   function populateTable(data) {
     // Clear the table
