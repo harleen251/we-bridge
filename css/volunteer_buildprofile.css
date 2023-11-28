@@ -120,20 +120,6 @@ option,
     left: -9999px;
 }
 
-
-/*Button*/
-/* button {
-    background-color: var(--purple-dark);
-    border-radius: 10px;
-    color: var(--white);
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 30%;
-    display: block;
-} */
-
 button:hover {
     opacity: 0.8;
 }
@@ -190,6 +176,7 @@ button:hover {
     vertical-align: middle;
     display: inline-block;
 }
+
 fieldset {
     /* display: flex;
     flex-wrap: wrap; Allow items to wrap onto the next line */

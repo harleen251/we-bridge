@@ -188,6 +188,7 @@ body div.page:nth-child(even) {
 .card:hover {
     box-shadow: 2px 8px 45px rgba(0, 0, 0, .15);
     transform: translate3D(0, -2px, 0);
+    border:1.5px solid var(--purple-lighter);
 } 
 
 .card a {
