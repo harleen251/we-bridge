@@ -30,6 +30,7 @@ font-size: 16px;
 section{
     margin-bottom: 52px;
 }
+
 /* **********************************************
     Main Declarations
 ********************************************** */
@@ -39,25 +40,26 @@ section{
     font-size: 48px;
     font-weight: 700;
     margin: 0;
+    margin-bottom: 8px;
+    position: absolute;
+    z-index: 2;
+    top: 95px;
 }
 
 .h1_vol_org{
-    font-size: 36px;
+    font-size: 7vw;
     font-weight: 700;
     margin: 0;
 }
 
-#h1_vol{
-    text-align: left;
-}
-
+#h1_vol,
 #h1_org{
-    text-align: right;
+    text-align: center;
 }
 
 .circle{
-    height: 275px;
-    width: 275px;
+    height: 60vw;
+    width: 60vw;
     border-radius: 50%;
     margin: auto;
 }
@@ -70,18 +72,72 @@ section{
     background-color: var(--purple-light);
 }
 
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+#circle1 {
+  transform: translateY(0); /* Initial position on the top */
+  margin-bottom: 12px;
+}
+
+#circle2 {
+  transform: translateY(0); /* Initial position on the bottom */
+  margin-top: 12px;
+}
+
+.circle.active {
+    transform: translateY(20%); /* End position in the middle */
+  }
+
+#hero{
+    height: 85%;
+    padding-top: 30px;
+}
+
 /************* Mission Section ********************/
 
 .mission_h3{
     font-size: 16px;
     color: var(--purple-primary);
 }
-.vision_right_container img{
+
+/************* Vision Section ********************/
+
+#vision_img{
     width: 302px;
     height: 232px;
     overflow: hidden;
     clip-path: inset(0 0 0 0 round 50px);
+    z-index: 5;
+    position: relative;
 } 
+
+.vision_img_container{
+    position: relative;
+}
+
+#vision_rect1{
+    width: 302px;
+    height: 232px;
+    border: 1px solid var(--yellow-primary);
+    border-radius: 50px;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index:1;
+}
+
+/* #vision_rect2{
+    top: -20px;
+    left: -20px;
+    z-index: 0;
+} */
+
 /************* Team Section ********************/
 .team_container img{
     width: 300px;
@@ -112,4 +168,16 @@ section{
 
 .contact_link{
     color: var(--purple-light);
+}
+
+@media screen and (min-width: 800px) {
+    .about{
+        width: 90%;
+        margin: auto;
+    }
+
+    #hero{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
 }

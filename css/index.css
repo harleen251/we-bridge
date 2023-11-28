@@ -266,6 +266,10 @@ body{
 }
 
 
+/* **********************************************
+    Tablet/ Small desktop View
+********************************************** */
+
 @media screen and (min-width: 800px){
     .homepage{
         width: 95%;
@@ -273,9 +277,6 @@ body{
     }
 }
 
-/* **********************************************
-    Tablet/ Small desktop View
-********************************************** */
 @media screen and (min-width: 1000px){
     /* .homepage{
         width: 95%;
