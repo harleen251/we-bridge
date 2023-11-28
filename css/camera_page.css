@@ -11,9 +11,9 @@
 }
 
 body {
-    margin: 0;
+    /* margin: 0; */
     font-family: "Poppins", sans-serif;
-    padding: 50px;
+
 }
 
 main {
@@ -71,4 +71,10 @@ button#html5-qrcode-button-camera-permission{
 
 a#html5-qrcode-anchor-scan-type-change.html5-qrcode-element{
     text-decoration: none;
+}
+
+@media screen and ( min-width: 800px) {
+    main {
+        padding: 50px;
+    }
 }
