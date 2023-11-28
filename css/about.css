@@ -30,6 +30,7 @@ font-size: 16px;
 section{
     margin-bottom: 52px;
 }
+
 /* **********************************************
     Main Declarations
 ********************************************** */
@@ -39,25 +40,26 @@ section{
     font-size: 48px;
     font-weight: 700;
     margin: 0;
+    margin-bottom: 8px;
+    position: absolute;
+    z-index: 2;
+    top: 95px;
 }
 
 .h1_vol_org{
-    font-size: 36px;
+    font-size: 7vw;
     font-weight: 700;
     margin: 0;
 }
 
-#h1_vol{
-    text-align: left;
-}
-
+#h1_vol,
 #h1_org{
-    text-align: right;
+    text-align: center;
 }
 
 .circle{
-    height: 275px;
-    width: 275px;
+    height: 60vw;
+    width: 60vw;
     border-radius: 50%;
     margin: auto;
 }
@@ -70,23 +72,82 @@ section{
     background-color: var(--purple-light);
 }
 
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+#circle1 {
+  transform: translateY(0); /* Initial position on the top */
+}
+
+#circle2 {
+  transform: translateY(0); /* Initial position on the bottom */
+}
+
+.circle.active {
+    transform: translateY(20%); /* End position in the middle */
+  }
+
+#hero_container{
+    height: 50%;
+    padding-top: 30px;
+}
+
 /************* Mission Section ********************/
 
 .mission_h3{
     font-size: 16px;
     color: var(--purple-primary);
 }
-.vision_right_container img{
+
+/************* Vision Section ********************/
+
+#vision_img{
     width: 302px;
     height: 232px;
     overflow: hidden;
     clip-path: inset(0 0 0 0 round 50px);
+    z-index: 5;
+    position: relative;
 } 
+
+.vision_img_container{
+    position: relative;
+}
+
+#vision_rect1{
+    width: 302px;
+    height: 232px;
+    border: 1px solid var(--yellow-primary);
+    border-radius: 50px;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index:1;
+}
+
+.vision_right_container{
+    margin-bottom: 30px;
+}
+
 /************* Team Section ********************/
 .team_container img{
     width: 300px;
 }
 
+.team_container{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 12px;
+    overflow: scroll;
+}
 
 /************* Contact Section ********************/
 .contact_social-media ul li {
@@ -112,4 +173,70 @@ section{
 
 .contact_link{
     color: var(--purple-light);
+}
+
+/* **********************************************
+    Desktop View Declarations
+********************************************** */
+@media screen and (min-width: 800px) {
+    .about{
+        width: 90%;
+        margin: auto;
+        max-width: 900px;
+        padding: 0;
+    }
+
+    section{
+        margin-bottom: 68px;
+    }
+
+    /************* Hero Section ********************/
+    #hero_container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 24px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #h1_webridge{
+        font-size: 92px;
+        position: relative;
+        top: 0;
+    }
+
+    .circle{
+        height: 350px;
+        width: 350px;
+    }
+
+    .h1_vol_org{
+        font-size: 40px;
+    }
+
+    #hero{
+        height: 85%;
+        padding-top: 10px;
+    }
+
+    /************* Mission Section ********************/
+    .mission_content_container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 5%;
+    }
+
+    /************* Vision Section ********************/
+    .vision_wrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 40px;
+        align-content: center;
+    }
+
+    .vision_right_container{
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 0px;
+    }
 }

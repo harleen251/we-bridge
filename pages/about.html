@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <script type="module" src="../js/header.js"> defer</script>
     <link rel="stylesheet" href="../css/footer.css">
+    <script type="module"src="../js/about.js"></script>
 
 
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
@@ -119,9 +120,13 @@
     <main class="about">
         <!-- section#hero+section#about+section#mission+section#vision+section#team+section#contact -->
         <section id="hero">
-            <h1 id="h1_webridge">We bridge:</h1>
-            <div class="circle" id="circle1"><h1 class="h1_vol_org" id="h1_vol">Volunteers</h1></div>
-            <div class="circle" id="circle2"><h1 class="h1_vol_org" id="h1_org">Organizations</h1></div>
+            <div id="hero_container">
+                <div id="h1_webridge_container"><h1 id="h1_webridge">We bridge:</h1></div>
+                <div id="circles">
+                    <div class="circle" id="circle1"><h1 class="h1_vol_org" id="h1_vol">Volunteers</h1></div>
+                    <div class="circle" id="circle2"><h1 class="h1_vol_org" id="h1_org">Organizations</h1></div>
+                </div>
+            </div>
         </section>
         <section id="who">
             <h2>Who We Are</h2>
@@ -155,20 +160,25 @@
             </div>
         </section>    
         <section id="vision">
-        <div class="vision_left_container">
             <h2>Our Vision</h2>
             <div class="border"> </div>
-            <div id="vision_body">
-                <p class="vision_p">
-                    Our vision is to create a community where anyone can lend a helping hand, and organizations can have easy access the support they need. We aim to build a community of compassion and change, building stronger, more connected. 
-                    WeBridge aspires to be the go-to platform for volunteering, making the world a better place through the power of giving back.
-                </p>
-            </div>
+            <div class="vision_wrapper">
+            <div class="vision_left_container">
+                <div id="vision_body">
+                    <p class="vision_p">
+                        Our vision is to create a community where anyone can lend a helping hand, and organizations can have easy access the support they need. We aim to build a community of compassion and change, building stronger, more connected. 
+                        <br>
+                        <br>WeBridge aspires to be the go-to platform for volunteering, making the world a better place through the power of giving back.
+                    </p>
+                </div>
+            </div>  
             <div class="vision_right_container">
-                <img src="../images/photo/pexels-rdne-stock-project-6647006.jpg" alt="happy volunteers">
-                <!-- Photo by RDNE Stock project: https://www.pexels.com/photo/volunteers-taking-selfie-6647006/ -->
-                <div class="vision_rect" id="vision_rect1"></div>
-                <div class="vision_rect" id="hero_rect2"></div>
+                <div class="vision_img_container">
+                    <img id="vision_img" src="../images/photo/pexels-rdne-stock-project-6647006.jpg" alt="happy volunteers">
+                    <!-- Photo by RDNE Stock project: https://www.pexels.com/photo/volunteers-taking-selfie-6647006/ -->
+                <div class="vision_rect" id="vision_rect1"> </div>
+                </div>
+            </div>
             </div>
         </section>
 
@@ -212,10 +222,10 @@
                     <p class="team_p">Developerr</p>
                 </div> -->  
             </div>
-            <div class="arrow_button_container">
+            <!-- <div class="arrow_button_container">
                 <img class="arrow_button" id="left-arrow" src="../images/icons/circle-arrow-left(outline).svg" alt="Go Back">
                 <img class="arrow_button" id="right-arrow" src="../images/icons/circle-arrow-right(purple_filled).svg" alt="Go Next">
-            </div>
+            </div> -->
         </section>
         <section id="contact">
             <h2>Contact Us</h2>
