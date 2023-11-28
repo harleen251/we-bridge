@@ -247,13 +247,10 @@ const scanner = new Html5QrcodeScanner('reader', {
                         console.error("Error querying for documents for application collection:", error);
                     });
         }
-        const backButton = document.getElementById("back-button");
-    if (backButton) {
-      backButton.addEventListener("click", function() {
-        alert('hi');
-        window.location.href = "volunteer_account.html#commitment";
-      });
-    }
+    
+    
+        
+    
         
     
         

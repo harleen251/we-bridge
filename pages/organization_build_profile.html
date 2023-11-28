@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/organization_buildprofile.css">
     <script type="module" src="../js/header.js" defer></script>
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="https://kit.fontawesome.com/ba3889b115.js" crossorigin="anonymous"></script>
 </head>
 
@@ -119,7 +120,7 @@
         </div>
 
     </header>
-    <main>
+    <main id="main_wrap">
 
         <form id="form_Profile">
         <div id="header6">
@@ -181,7 +182,9 @@
         <section id="service">
             <h3>Service Field</h3>
             <p>Select up to 5 Fields..</p>
-            <button id="choose_service">Choose</button>
+            <div id="wrap-choose-service-button">
+                <button id="choose_service">Choose</button>
+            </div>
 
             <div id="option_service">
                 <section id="wrap_service">
@@ -388,7 +391,10 @@
                         </div>
                         <br>
                     </fieldset>
-                    <button id="save_service">Save</button>
+                    <div id="wrap-save-service-button">
+                        <button id="save_service">Save</button>
+                    </div>
+                    
                 </section>
             </div>
 
@@ -420,11 +426,49 @@
             </div>
 
         </section>
-
-        <input type="submit" value="Save Profile" id="saveBtn">
+        <div id="wrap-saveBtn">
+            <input type="submit" value="Save Profile" id="saveBtn">
+        </div>
+        
 
         </form>
     </main>
+    <footer>
+        <div class="footerContainer">
+            <div class="footerInsidecontainer">
+                <div class="footer-logo">
+                    <a href="../pages/index.html"><img src="../img/WeBridge_Logo_white_mobile nav.svg" alt="Logo" class="footerImg"></a>
+                </div>
+                <div class="social-media">
+                    <ul>
+                        <li>
+                            <a aria-label="Link to our LinkedIn" target="_blank" href="https://LinkedIn.com">
+                                <i aria-hidden="true" class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </li>                
+                        <li>
+                            <a aria-label="Link to our Facebook profile" target="_blank" href="https://facebook.com">
+                                <i aria-hidden="true" class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Instagram profile" target="_blank" href="https://instagram.com">
+                                <i aria-hidden="true" class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Link to our Twitter profile" target="_blank" href="https://twitter.com">
+                                <i aria-hidden="true" class="fa-brands fa-x-twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <p>Copyright &copy; 2023 WeBridge</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </footer>
 </body>
 
 </html>

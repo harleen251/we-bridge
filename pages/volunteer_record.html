@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="/assets/icons/icon-96x96.png">
     <script type="module" src="../js/html2pdf.bundle.min.js"></script>
     <script type="module" src="../js/html2canvas.min.js"></script>
+    <script type="module" src="../js/header.js" defer></script>
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/volunteer_record2.css"> 
     <script type="module" src="../js/volunteer_record.js" defer></script>
@@ -138,12 +139,15 @@
     </div> 
 </div>
 <div id="sort-div">
+    <div id="select-newest-oldest">
     <label for="sortOrder"></label>
     <select id="sortOrder">
     <option value="newest">Newest</option>
     <option value="oldest">Oldest</option>
+    </select>
+    </div>
 </div>
-</select>
+
 
 
 <table id="data-table" class="stack top ">

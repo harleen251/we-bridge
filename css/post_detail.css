@@ -219,9 +219,9 @@ body {
     background: #fff;
     z-index: 1000;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 80vw;
     max-width: 500px; /* Set the maximum width of the popup, adjust as needed */
+    border: 1px solid #6A6A6A;
     border-radius: 15px;
   }
   
@@ -235,11 +235,13 @@ body {
     grid-column: 1; /* Label in first column */
   }
   
-  .popup-content input,
   .popup-content textarea {
     width: 100%; /* Width spanning the entire column */
   }
-  
+  .popup-content input {
+    width: 40%;
+    height: 30px;
+  }
   /* Container set to flex and buttons evenly distributed */
   .popup-content .button-container {
     display: flex;
