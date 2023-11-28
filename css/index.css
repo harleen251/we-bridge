@@ -35,6 +35,7 @@ body{
     opacity: 100%;
     border:1.5px solid var(--purple-lighter);
     box-shadow: 0 0 8px rgba(0,0,0,.125);
+    transform: translate3d(0, -2px, 0);
 }
 
 .homepage button:active{
@@ -178,6 +179,7 @@ body{
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-gap: 8%;
+    transition: all .2s linear;
 }
 
 .card_img{

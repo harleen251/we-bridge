@@ -1,5 +1,6 @@
 @import url('/css/style.css');
 
+/* Base Colour Settings: */
 :root {
     --grey-text: var(--grey-middle-placeholdertext);
     --grey-border: var( --grey-light);
@@ -8,6 +9,7 @@
     --primary-button: var( --purple-primary);
 }
 
+/* Base Settings */
 body {
     padding: 0;
     margin: 0;
@@ -19,6 +21,11 @@ body {
     padding-bottom: 100px;
 }
 
+/*************************************************/
+/*********** Post Info Card Formatting **********/
+/*************************************************/
+
+/************ Card Background **********/
 #Post_info_wrap {
     background-color: var(--card-background);
     padding: 20px;
@@ -26,12 +33,14 @@ body {
     border-radius: 15px;
 }
 
+ /********** Clip the Image ***********/
 #profile_img {
     display: none;
     width: 9rem;
     clip-path: circle(40% at 50% 50%);
 }
 
+/******** Description Formating ********/
 #description {
     overflow: hidden;
     display: -webkit-box;
@@ -45,9 +54,9 @@ body {
     padding-bottom: .2rem;
     margin: 0;
     margin-bottom: 1rem;
-    
 }
 
+/********** Icons Formating ***********/
 #wrap_data {
     display: flex;
     flex-direction: row;
@@ -71,11 +80,11 @@ body {
     /* flex-wrap: wrap; */
 }
 
+/********* Post View Btn Formating *****/
 #button_wrap {
     display: flex;
     justify-content: center;
     /* margin-left: 30%; */
-    
 }
 
 #Post_info_wrap button {
@@ -93,15 +102,18 @@ body {
     text-decoration: none;
 }
 
+/*************************************************/
+/*********** Volunteer Tracking Formating ********/
+/*************************************************/
 #volunteerTracking {
     display: none;
 }
 
+/********** Table Formating ***********/
 #table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    /* padding: 50px; */
 }
 
 #table tr {
@@ -121,8 +133,8 @@ thead {
     padding-bottom: .5rem;
 }
 
+/********** Image Formating ***********/
 .vol_profile {
-    /* width: 3rem; */
     width: 50px;
     height: 50px;
     clip-path: circle(40% at 50% 50%);
@@ -142,6 +154,7 @@ th, td {
     margin: 0;
 }
 
+/********** QRcode Btn Formating *******/
 #qrcode_button_wrap button{
     width: 90%;
     border-radius: 8px;
@@ -163,20 +176,20 @@ th, td {
     background-color: var(--yellow-primary);
 }
 
-/* QR CODE Popup */
-
+/*************************************************/
+/*********** QR CODE Popup Formating *************/
+/*************************************************/
 #wrap_qrcode {
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed; 
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.4); 
     padding-top: 60px;
     overflow: auto;
-  
 }
 
 #wrap_close_qrcode {
@@ -186,15 +199,15 @@ th, td {
     align-items: center;
     background-color: #fefefe;
     padding: 10px;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 5% auto 15% auto;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%; 
     height: 50%;
     position: relative;
 }
 
-#qrcode img{
-    
+/********** QRcode Image Formating *****/
+#qrcode img{  
     width: 50vw;
     max-width: 200px;
     height: 50vw;
@@ -211,14 +224,19 @@ th, td {
     font-size: 40px;
 }
 
+/*************************************************/
+/*************** Desktop View ********************/
+/*************************************************/
 @media screen and (min-width: 800px) {
 
+    /********** General Formating ******/
     #main_wrap {
         max-width: 1000px;
         margin: auto;
         padding-top: 30px;
     }
 
+    /***** Post Info Formating Grid ****/
     #Post_info {
         display: grid;
         grid-template-columns: 1fr 3fr;
@@ -237,13 +255,9 @@ th, td {
         margin-right: 20px;
     }
 
+    /*** Description Lines Formating ****/
     #description {
-        /* overflow: hidden; */
-        /* display: -webkit-box; */
-        -webkit-line-clamp: 3; 
-        /* -webkit-box-orient: vertical; */
-        /* text-overflow: ellipsis; */
-        
+        -webkit-line-clamp: 3;    
     }
 
     #wrap_data {
@@ -252,6 +266,8 @@ th, td {
         max-width: 580px;
     }
 
+
+    /***** QRCode Btn Formating *******/
     #qrcode_button_wrap button{
         display: inline;
         width: 350px;
@@ -278,7 +294,7 @@ th, td {
     }
 
     #wrap_close_qrcode {
-        width: 45%; /* Could be more or less, depending on screen size */
+        width: 45%;
         height: 65%;
     }
 }
