@@ -22,6 +22,9 @@ body {
     margin-left: 40px;
 }
 
+#postForm {
+    padding-bottom: 80px;
+}
 /* #postForm :not(h2){
     margin-left: 1rem;
     margin-right: 1rem;
@@ -63,12 +66,14 @@ body {
 .createPost button {
     /* display: inline-block; */
     width: 80%;
-    height: 35px;
+    height: 45px;
     margin-right: 10%;
     border-radius: 8px;
     background-color: #360B83;
+    align-items: center;
     color: white;
     font-weight: bold;
+    border: 1px solid var(--grey-middle-placeholdertext);
 }
 
 #discord {
@@ -85,6 +90,7 @@ body {
 }
 #choose_interest, #choose_skill {
     width: 50%;
+    display: inline-block;
 }
 
 .createPost input, textarea {
@@ -124,57 +130,172 @@ body {
 #txtPreferredLanguage {
     width: 95% !important;
 }
-/* .mobilediv1 input {
-    width: 40% !important;
-}
-.mobilediv1 div {
-    display: inline;
-} */
+
 /* Interest and Skill pop up */
 #option_interest {
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
     padding-top: 60px;
     overflow: auto;
+}
+
+.header5{
+    width: 100% !important;
+    text-align: center !important;
+}
+#save_interests {
+    width: 50%; /* Make the button take full width of its container */
+    height: 40px;
+    text-align: center;
+    border: 1px solid var(--grey-middle-placeholdertext);
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: var(--purple-dark);
+    color: var(--white);
+    cursor: pointer;
+    margin-top: 20px; /* Add some top margin to separate it from the checkboxes */
+    margin-right: 0;
+}
+
+
+
+/* Center the button text vertically and horizontally */
+#save_interests::before {
+    content: ""; /* Create an empty pseudo-element */
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjust for spacing */
+}
+
+#save_interests span {
+    vertical-align: middle;
+    display: inline-block;
+}
+fieldset {
+    /* display: flex;
+    flex-wrap: wrap; Allow items to wrap onto the next line */
+    /* width: 50%; */
+    gap: 10px;
+    margin: auto;
+    border: none;
+}
+
+/* Style each interest-input pair container within the two-column layout */
+.interest-container {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    box-sizing: border-box; /* Include padding and border in the width and height of the elements */
+    width: 100%; 
+    border: 1px solid var(--grey-middle-placeholdertext);
+    padding: 5px;
+    margin-bottom: 0;
+    border-radius: 10px;
+    margin-left: 0;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.interest-container.selected {
+    border: 1px solid var(--purple-dark);
+    opacity: 0.9;
+    color: var(--purple-light);
+    font-weight: bold;
+}
+
+
+/* Style labels within the two-column layout */
+fieldset label {
+    display: block !important;
+    margin-left: 5px;
+    font-size: 12px !important;
+    width: 100% !important;
+}
+input[type="checkbox"]{
+    height: 15px !important;
+    margin-right: 0;
+    margin-left: auto;
+}
+/* Style inputs within the two-column layout */
+fieldset input {
+    padding: 5px;
 }
 
 #wrap_option_interest {
-    background-color: #fefefe;
+    background-color:var(--white);
     padding: 20px;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid var(--grey-middle-placeholdertext);
+    width: 80%;
+    /* Could be more or less, depending on screen size */
 }
+
+#wrap_skill {
+    background-color:var(--white);
+    padding: 20px;
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid var(--grey-middle-placeholdertext);
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+#wrap_option_interest h3, #wrap_skill h3 {
+    color: #4410a5;
+}
+
+.save-interest-button-sec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 #option_skill {
     display: none;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
     padding-top: 60px;
     overflow: auto;
 }
 
-#wrap_skill {
-    background-color: #fefefe;
-    padding: 20px;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+.skillCon div {
+    display: flex;
+    border: 1px solid var(--grey-middle-placeholdertext);
+    margin: 10px;
+    border-radius: 10px;
+    padding-top: 10px;
 }
 
-
-@media screen and (min-width: 1024px){
+#save_skill {
+    margin-right: 0;
+    width: 50%;
+}
+@media screen and (min-width: 800px){
     /* Creating post */
     .createPost{
         margin-top: 0;
@@ -227,7 +348,7 @@ body {
     }
 
     #postForm select {
-        width: 55%;
+        width: 55% !important;
     }
 
     #postForm textarea {
@@ -238,13 +359,101 @@ body {
 
     #postForm input[type="date"] {
         display: inline-block;
-        width: 60.5%;
+        width: 55% !important;
         height: 30px;
         border-radius: 8px;
     }
 
     .createPost button {
-        width: 100%;
+        width: 70%;
     }
-        
+
+    #postBtn {
+        margin-left: 0;
+        margin-right: 30px;
+    }
+    
+    #txtPreferredLanguage {
+        width: 53% !important;
+    }
+
+    fieldset {
+        /* justify-content: center;
+        align-items: center; Align items in the center vertically */
+        display: flex;
+        flex-wrap: wrap; /* Allow items to wrap onto the next line */
+        /* width: 100%;
+        gap: 10px; */
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+    }
+    
+    /* Style each interest-input pair container within the two-column layout */
+    fieldset .interest-container {
+        width: 40%; /* Set width to 20px */
+        /* height: auto; Set height to 20px */
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+    #wrap_option_interest {
+        width: 60%;
+        /* Could be more or less, depending on screen size */
+    }
+
+    #wrap_skill {
+        width: 80%;
+    }
+
+    #wrap_skill h3 {
+        font-size: 24px;
+    }
+    /* added by kim */
+    #save_interests {
+        width: 20%;
+    }
+
+    .skill-container {
+        display: grid;
+        grid-template-rows: 1fr auto ;
+        box-sizing: border-box; /* Include padding and border in the width and height of the elements */
+        width: 100%; 
+        border: 1px solid var(--grey-middle-placeholdertext);
+        padding: 5px;
+        margin-bottom: 0;
+        padding-right: 20px;
+        border-radius: 10px;
+        margin-left: 0;
+        margin-right: auto;
+        /* align-items: center;
+        justify-content: center; */
+    }
+
+    .skillCon {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 10px;
+        column-gap: 10px;
+    }
+
+    .skillCon div{
+        border: 1px solid var(--grey-middle-placeholdertext);
+        display: flex;
+        padding-top: 10px;
+        align-items: center;
+        width: 100%;
+        margin-right: 10px;
+        border-radius: 10px;
+    }
+    #skillField {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch; /* Let grid row height stretch automatically */ 
+    }
+    #save_skill {
+        margin-right: 0;
+        width: 40%;
+    }
 }
