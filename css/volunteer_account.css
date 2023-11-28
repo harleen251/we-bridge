@@ -256,12 +256,12 @@ body div.page:nth-child(even) {
             grid-template-columns: 1fr 3fr;
         }
     
-        .profile_pic {
-            width: 16rem;
+        /* .profile_pic { */
+            /* width: 16rem; */
 
             /* kim commented this */
             /* transform: translateY(20%); */
-        }
+        /* } */
     
         #profile_info div:last-of-type {
             text-align: left;
