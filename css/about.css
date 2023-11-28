@@ -77,25 +77,25 @@ section{
     align-items: center;
     justify-content: center;
     opacity: 1;
+    margin-bottom: 12px;
+    margin-top: 12px;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 #circle1 {
   transform: translateY(0); /* Initial position on the top */
-  margin-bottom: 12px;
 }
 
 #circle2 {
   transform: translateY(0); /* Initial position on the bottom */
-  margin-top: 12px;
 }
 
 .circle.active {
     transform: translateY(20%); /* End position in the middle */
   }
 
-#hero{
-    height: 85%;
+#hero_container{
+    height: 50%;
     padding-top: 30px;
 }
 
@@ -132,17 +132,22 @@ section{
     z-index:1;
 }
 
-/* #vision_rect2{
-    top: -20px;
-    left: -20px;
-    z-index: 0;
-} */
+.vision_right_container{
+    margin-bottom: 30px;
+}
 
 /************* Team Section ********************/
 .team_container img{
     width: 300px;
 }
 
+.team_container{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 12px;
+    overflow: scroll;
+}
 
 /************* Contact Section ********************/
 .contact_social-media ul li {
@@ -170,14 +175,68 @@ section{
     color: var(--purple-light);
 }
 
+/* **********************************************
+    Desktop View Declarations
+********************************************** */
 @media screen and (min-width: 800px) {
     .about{
         width: 90%;
         margin: auto;
+        max-width: 900px;
+        padding: 0;
+    }
+
+    section{
+        margin-bottom: 68px;
+    }
+
+    /************* Hero Section ********************/
+    #hero_container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 24px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #h1_webridge{
+        font-size: 92px;
+        position: relative;
+        top: 0;
+    }
+
+    .circle{
+        height: 350px;
+        width: 350px;
+    }
+
+    .h1_vol_org{
+        font-size: 40px;
     }
 
     #hero{
+        height: 85%;
+        padding-top: 10px;
+    }
+
+    /************* Mission Section ********************/
+    .mission_content_container{
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 5%;
+    }
+
+    /************* Vision Section ********************/
+    .vision_wrapper{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 40px;
+        align-content: center;
+    }
+
+    .vision_right_container{
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 0px;
     }
 }
