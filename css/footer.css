@@ -1,3 +1,4 @@
+/* basic setting */
 body {
     margin: 0;
     padding: 0;
@@ -26,11 +27,6 @@ footer {
     align-items: center;
     text-align: center;
     padding-bottom: 1rem;
-}
-
-.social-media {
-    align-items: center;
-    text-align: center;
 }
 
 .footerImg {
@@ -64,6 +60,16 @@ footer a{
     text-decoration: none;
     color: white;
     font-size: .9rem;
+}
+
+
+/*************************************************/
+/******** Social Media Icons Formatting **********/
+/*************************************************/
+
+.social-media {
+    align-items: center;
+    text-align: center;
 }
 
 .social-media ul li {
