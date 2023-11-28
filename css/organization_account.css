@@ -1,5 +1,6 @@
 @import url('/css/style.css');
 
+/* Base Colour Settings: */
 :root {
     --grey-text: var(--grey-middle-placeholdertext);
     --grey-border: var( --grey-light);
@@ -9,6 +10,7 @@
     --status-backgroud: var( --purple-primary);
 }
 
+/* Base Settings */
 body {
     padding: 0;
     margin: 0;
@@ -29,6 +31,12 @@ p {
     font-size: 14px;
 }
 
+
+/*************************************************/
+/*********** Profile Info Card Formatting ********/
+/*************************************************/
+
+ /********** Clip the Image ***********/
 .profile_pic {
     width: 9rem;
     clip-path: circle(40% at 50% 50%);
@@ -64,6 +72,7 @@ p {
     display: none;
 }
 
+ /******** Skills Formating ***************/
 #skillList_Org p {
     display: inline-block;
     margin: .3rem;
@@ -72,6 +81,8 @@ p {
     border-radius: 25px;
 }
 
+
+ /******** Edit Button Formating *********/
 #edit_profile_button {
     width: 80vw;
     max-width: 250px;
@@ -91,6 +102,7 @@ p {
     font-weight: 600;
 }
 
+ /******** Nav Tab Formating *************/
 .nav_tab {
     display: flex;
     flex-direction: row;
@@ -109,6 +121,27 @@ p {
     
 }
 
+ /******* Post View Btn Formating *******/
+#postTabViewButton {
+    border-bottom: 2px solid var(--black);
+    font-weight: 600;
+}
+
+
+/*************************************************/
+/*********** Tab Pages Formatting ****************/
+/*************************************************/
+div.page {
+    display: none;
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    margin: 5px 0px;
+}
+ /******** Create Post Btn Formating ******/
 #create-post-button {
     width: 100%;
     background-color: var(--primary-button);
@@ -126,22 +159,7 @@ p {
     font-size: 16px;
 }
 
-#postTabViewButton {
-    border-bottom: 2px solid var(--black);
-    font-weight: 600;
-}
-
-div.page {
-    display: none;
-}
-
-select {
-    width: 100%;
-    padding: 14px;
-    border-radius: 8px;
-    margin: 5px 0px;
-}
-
+ /******** General Formating on Cards *******/
 .card {
     border: 1px solid var(--grey-border);
     padding: 15px;
@@ -159,6 +177,11 @@ select {
     border:1.5px solid var(--purple-lighter);
 }
 
+/*************************************************/
+/*********** Postings Pages Formatting ***********/
+/*************************************************/
+
+ /******** Volunteer Img Formating *******/
 #post-list img {
     position: absolute;
     right: 30px;
@@ -219,6 +242,7 @@ span {
     display: none;
 }
 
+ /******** Manage Btn Formating *******/
 #post-list button {
     display: none;
     margin: auto;
@@ -233,12 +257,16 @@ span {
     background-color: var(--yellow-primary);
 }
 
+/*************************************************/
+/*********** Application Page Formatting *********/
+/*************************************************/
 #application-list img:nth-of-type(odd) {
     position: absolute;
     right: 50px;
     top: 25px;
 }
 
+ /************ Status Formating ********/
 #application-list .statusDiv {
     width: 110px;
     background-color: var(--status-backgroud);
@@ -256,6 +284,7 @@ span {
     padding: 0;
 }
 
+ /************** Image Formating *******/
 #application-list img:nth-of-type(even){
     width: 5rem;
     clip-path: circle(40% at 50% 50%);
@@ -311,9 +340,12 @@ span {
 }
 
 
-/* For Desktop { */
+/*************************************************/
+/**************** Desktop View *******************/
+/*************************************************/
  @media screen and (min-width: 800px) {
 
+     /*********** General Formating *******/
     #main_wrap {
         max-width: 1000px;
         margin: auto;
@@ -323,6 +355,7 @@ span {
         text-align: left;
     }
 
+     /****** Profile Info Formating *******/
     #Profile_info {
         display: grid;
         grid-template-columns: 1fr 3fr;
@@ -359,6 +392,7 @@ span {
         position: relative;
     }
 
+    /******** Edit Button Positioning ****/
     #edit_profile_button {
         position: absolute;
         top: 30px;
@@ -370,6 +404,7 @@ span {
         font-size: 14px;
     }
 
+    /************ Nav Tab Formating *******/
     .nav_tab .item {
         text-align: left;
     }
@@ -389,6 +424,7 @@ span {
         margin-bottom: 20px;
     }
 
+    /****** Formating Page as Grid*******/
     #post-list {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -440,6 +476,7 @@ span {
         position: relative;
     }
 
+     /******* Manage Btn Positioning ****/
     #post-list button {
         position: absolute;
         right: 15px;
