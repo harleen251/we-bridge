@@ -31,7 +31,7 @@ const defaultQuery = query(colRef, orderBy("date", "desc")); // Default query, o
 
 window.addEventListener('load', displayAllPosts);
 
-function displayAllPosts() {
+ function displayAllPosts() {
   // Execute the default query
   const q = defaultQuery;
 
@@ -45,10 +45,9 @@ function displayAllPosts() {
         const event = { ...doc.data(), id: doc.id };
         radius = getSelectedRadius();
         if (filteredPostWithinRadius(event, radius)) {
-          const div = createEventDiv(event);
-          div.setAttribute("class", "card");
+          callCreateDiv(event);
+          // div.className = "card";
 
-          output.appendChild(div);
         }
       });
       document.body.appendChild(document.createElement('script')).text = toggleReadMore.toString() + ';';
@@ -113,15 +112,21 @@ async function performSearch(e) {
   matchingDocs.forEach(doc => {
     const event = { ...doc.data(), id: doc.id };
     if (filteredPostWithinRadius(event, radius)) {
-      const div = createEventDiv(event);
-      div.className = "card";
-      output.appendChild(div);
+       callCreateDiv(event);
     }
   });
 
   resetSearchFields();
 }
+async function callCreateDiv(event){
+  const div = await createEventDiv(event);
+  div.setAttribute("class", "card");
+  output.appendChild(div);
 
+
+
+
+}
 
 
 function getSelectedRadius() {
@@ -227,15 +232,30 @@ function navigateToPostDetailPage(eventId){
   const postDetailPageURL = `../pages/post_detail.html`
   window.location.href = postDetailPageURL
 }
+const organizationCollection = collection(db, "organization"); //organizationId
 
-function createEventDiv(event) {
+async function createEventDiv(event) {
+  
   const div = document.createElement('div');
-  const date = new Date(event.date.toDate()); 
-  const expireDate = new Date(event.expireDate.toDate()); 
+  let img = " "
   const orgLogo = document.createElement('img');
 
-  orgLogo.src = "../images/organization logo/spca.png"
   orgLogo.className = "organization-logo"
+
+
+  const orgRef =  await doc(organizationCollection, event.organizationId);
+                                   getDoc(orgRef)
+                                        .then((orgsnapshot) => {
+                                            let organizationdata = orgsnapshot.data();
+                                            console.log('imaaaageeeee', organizationdata);
+                                            orgLogo.src = organizationdata.photoLink;
+                                            // console.log("img", img);
+                                            
+                                                
+                                    })
+  const date = new Date(event.date.toDate()); 
+  const expireDate = new Date(event.expireDate.toDate()); 
+ 
 
   div.appendChild(orgLogo);
   let textDiv = document.createElement('div');
@@ -271,6 +291,7 @@ function createEventDiv(event) {
 
   return div;
 }
+
 
 function toggleReadMore(event) {
   event.stopPropagation(); // Stop the click event from propagating to the parent div
