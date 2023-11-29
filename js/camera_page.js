@@ -84,14 +84,19 @@ const scanner = new Html5QrcodeScanner('reader', {
     if (checkInSuccessfulIndex !== -1) {
         const postIdMatch = decodedText.match(/Post:\s*([^\s]+)/);
         console.log("postIdMatch", postIdMatch);
-        // if (postIdMatch) {
-        //     const postId = postIdMatch[1];
-        //     return { checkInSuccessful: true, postId: postId };
-        // } else {
-        //     console.error("Post ID not found in the decoded text.");
-        //     return { checkInSuccessful: false, postId: null };
-        // }
-        return { checkInSuccessful: true}
+        if (postIdMatch && postIdMatch[1]) {
+            // if (postIdMatch) {
+                const postId = postIdMatch[1];
+            //     const postId = postIdMatch[1];
+                return { checkInSuccessful: true, postId: postId };
+            //     return { checkInSuccessful: true, postId: postId };
+            } else {
+            // } else {
+                console.error("Post ID not found in the decoded text.");
+            //     console.error("Post ID not found in the decoded text.");
+                return { checkInSuccessful: false, postId: null };
+            //     return { checkInSuccessful: false, postId: null };
+            }
     } else {
         console.error("Check-In Successful not found in the decoded text.");
         return { checkInSuccessful: false, postId: null };
@@ -149,7 +154,7 @@ const scanner = new Html5QrcodeScanner('reader', {
                     });
             
     
-                    // window.location.href = "volunteer_account.html#commitment";
+                    window.location.href = "volunteer_account.html#commitment";
                     // submitPost.reset();
                 } catch (error) {
                     console.error("Error adding document: ", error);
