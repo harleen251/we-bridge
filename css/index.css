@@ -375,6 +375,11 @@ body{
         font-size: 20px;
     }
 
+    #card_date_location_container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
     .post_description_excerpt,
     .post_date,
     .post_location{
