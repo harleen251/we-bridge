@@ -47,19 +47,22 @@ async function generateAndDownloadPDF(htmlContent,outputPath) {
 }
 
 document.getElementById('btnDownload').addEventListener("click", async function (event) {
-  event.preventDefault();
-  const htmlContent = document.documentElement;
-  //const htmlContent = document.querySelector('#data-table');
-  generateAndDownloadPDF(htmlContent, "my-record.pdf");
-  await shareAsImage();
+    event.preventDefault();
+    await downloadPDFRecord();
+    await shareAsImage();
 });
+
 document.getElementById('btnDownloadMobile').addEventListener("click", async function (event) {
   event.preventDefault();
-  const htmlContent = document.documentElement;
-  //const htmlContent = document.querySelector('#data-table');
-  generateAndDownloadPDF(htmlContent, "my-record.pdf");
+  await downloadPDFRecord();
   await shareAsImage();
 });
+
+async function downloadPDFRecord() {
+  //const htmlContent = document.documentElement;
+  const htmlContent = document.getElementById('htmlRecord'); 
+  generateAndDownloadPDF(htmlContent, "my-record.pdf");
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -127,7 +130,8 @@ async function uploadLinkedinFile() {
 }
 
 async function shareLinkedinPost() {
-  const postData = { shareData: document.getElementById("shareData").value };
+  let shareCaption = document.getElementById("shareDataMobile").value + document.getElementById("shareData").value;
+  const postData = { shareData: shareCaption };
   const response = await fetch("http://localhost:3000/share", {
     method: "POST",
     headers: {
@@ -139,11 +143,12 @@ async function shareLinkedinPost() {
   let resData = await response.json();
   console.log(resData);
   document.getElementById("shareData").value = "";
+  document.getElementById("shareDataMobile").value = "";
 }
 
 async function shareAsImage() {
-    const elementToCapture = document.documentElement;
-    //const elementToCapture = document.getElementById('contentToShare');    
+    //const elementToCapture = document.documentElement;
+    const elementToCapture = document.getElementById('htmlRecord');    
 
     // Capture image with html2canvas
     const canvas = await html2canvas(elementToCapture);

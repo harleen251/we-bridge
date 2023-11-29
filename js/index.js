@@ -63,7 +63,7 @@ const q = query(postCollection,
     where('expireDate', '>', today),
     orderBy('expireDate','desc'),
     orderBy('posted_on_date','desc'),
-    limit(5));
+    limit(4));
 let i = 1;
 
 await getDocs(q)
@@ -80,7 +80,7 @@ await getDocs(q)
             console.log("Organization photoLink:", organizationdata.photoLink); 
             // let txtInner = `<header><h1>${post.positionTitle}</h1></header>`;    
             let txtInner = ""; 
-            console.log(i);
+            console.log("Latest " + i);
             i++;
             let cardDiv = document.createElement("div"); // create new Div, cardDiv to display details data             
             cardDiv.setAttribute("class", "card"); // set the class, card to cardDiv ..... ${imgPath} .......           
@@ -119,7 +119,7 @@ async function getVolunteerInfo(volunteerId){
     if (docSnap.exists()) {
         const volunteerData = docSnap.data();
         console.log("Document data:", volunteerData);
-        let qPost = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(5)); 
+        let qPost = query(postCollection, where('expireDate', '>', today), orderBy('expireDate','desc'), orderBy('date', 'desc'), limit(4)); 
         let interestArr = [];
         console.log("Vol Interest Arr : ", volunteerData.interest.length);
         if ( volunteerData.interest.length > 0 ){
@@ -131,7 +131,7 @@ async function getVolunteerInfo(volunteerId){
                      where("interests", "array-contains-any", interestArr), 
                      where('expireDate', '>', today),
                      orderBy('expireDate','desc'),
-                     orderBy('date', 'desc'));       
+                     orderBy('date', 'desc'), limit(4));       
         }        
 
         await getDocs(qPost)
