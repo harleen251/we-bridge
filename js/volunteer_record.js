@@ -61,7 +61,7 @@ document.getElementById('btnDownloadMobile').addEventListener("click", async fun
 async function downloadPDFRecord() {
   //const htmlContent = document.documentElement;
   const htmlContent = document.getElementById('htmlRecord'); 
-  generateAndDownloadPDF(htmlContent, "my-record.pdf");
+  await generateAndDownloadPDF(htmlContent, "my-record.pdf");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

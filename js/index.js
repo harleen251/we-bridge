@@ -99,7 +99,7 @@ await getDocs(q)
                                     // onclick="handleViewButtonEvent(event)"
             cardDiv.innerHTML = txtInner;
             cardDiv.setAttribute("data-postId", postdoc.id);  
-            cardDiv.addEventListener('click', handleViewButtonEvent);
+            cardDiv.addEventListener('click', handleViewButtonEvent2);
             containerOpp.appendChild(cardDiv); // add cardDiv to orderDiv     
         })
         .catch((error) => {
@@ -138,17 +138,26 @@ async function getVolunteerInfo(volunteerId){
             .then((querySnapshot) => {
                 querySnapshot.forEach((postDoc) => {
                     const post = postDoc.data();
-                    
+                    let tempPostID = [];
                     let qApp = query(appCollection, where ('postsID', '==', postDoc.id));
+                    //let qApp = query(appCollection, where ('postsID', '!=', postDoc.id), where ('volunteerID', '!=', volunteerId));
+                    console.log("postsID :" + postDoc.id);
                     getDocs(qApp)
                         .then((appSnapshot) => {
                                 appSnapshot.forEach((appDoc) => {
                                 let appData = appDoc.data();
+                                console.log("appData.volunteerID :" + appData.volunteerID);
+                                console.log("volunteerId :" + volunteerId);
                                 if (appData.volunteerID != volunteerId){
-                                    console.log("NOT volunteerID and " + "postDoc.id : " + postDoc.id);
+                                    console.log("INSIDE postsID :" + postDoc.id);
+                                    console.log("INSIDE appData.volunteerID :" + appData.volunteerID);
+                                    console.log("INSIDE volunteerId :" + volunteerId);
+                                   
+                                    if(!tempPostID.includes(postDoc.id)){
+                                        tempPostID.push(postDoc.id);
                                     ////////////////////////////// Organization Info /////////////////////////////////////
-                                    
-                                    const orgRef = doc(organizationCollection, post.organizationId);
+                                    console.log("NOT volunteerID " + volunteerId +" and " + "postDoc.id : " + postDoc.id);
+                                    const orgRef = doc(organizationCollection, post.organizationId);                                    
                                     getDoc(orgRef)
                                         .then((orgsnapshot) => {
                                             let organizationdata = orgsnapshot.data();
@@ -171,13 +180,14 @@ async function getVolunteerInfo(volunteerId){
                                         
                                             card2Div.innerHTML = txt2Inner;     
                                             card2Div.setAttribute("data-postId", postDoc.id);  
-                                            card2Div.addEventListener('click', handleViewButtonEvent);
+                                            card2Div.addEventListener('click', handleViewButtonEvent2);
                                             containerRec.appendChild(card2Div); // add cardDiv to orderDiv      
                                     })
                                     .catch((error) => {
                                             console.error("Error getting document:", error);
                                     }); 
-                                    ////////////////////////////// Organization Info /////////////////////////////////////                                    
+                                    ////////////////////////////// Organization Info /////////////////////////////////////  
+                                    }                                  
                                 }
                             });
                         })
