@@ -62,6 +62,8 @@ const scanner = new Html5QrcodeScanner('reader', {
     },
     fps: 20,
     });
+    const applicationRef = collection( db, 'application');
+
      await scanner.render(successForCheckin, error);
     
     function error(err) {
@@ -82,13 +84,14 @@ const scanner = new Html5QrcodeScanner('reader', {
     if (checkInSuccessfulIndex !== -1) {
         const postIdMatch = decodedText.match(/Post:\s*([^\s]+)/);
         console.log("postIdMatch", postIdMatch);
-        if (postIdMatch && postIdMatch[1]) {
-            const postId = postIdMatch[1];
-            return { checkInSuccessful: true, postId: postId };
-        } else {
-            console.error("Post ID not found in the decoded text.");
-            return { checkInSuccessful: false, postId: null };
-        }
+        // if (postIdMatch) {
+        //     const postId = postIdMatch[1];
+        //     return { checkInSuccessful: true, postId: postId };
+        // } else {
+        //     console.error("Post ID not found in the decoded text.");
+        //     return { checkInSuccessful: false, postId: null };
+        // }
+        return { checkInSuccessful: true}
     } else {
         console.error("Check-In Successful not found in the decoded text.");
         return { checkInSuccessful: false, postId: null };
@@ -115,7 +118,6 @@ const scanner = new Html5QrcodeScanner('reader', {
         return { workCompleted: false, postId: null };
     }
     }
-    const applicationRef = collection( db, 'application');
 
 
      async function successForCheckin(decodedText) {
