@@ -474,4 +474,9 @@ body{
         overflow: revert;
     }
 
+    #card_date_location_container{
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+    }
+
 }

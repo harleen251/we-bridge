@@ -91,8 +91,10 @@ await getDocs(q)
                             ${post.positionTitle}
                             </a>
                             <p class="post_description_excerpt">${post.description}</p>
-                            <div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>
-                            <div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>
+                            <div id="card_date_location_container">
+                                <div id="card_date_container"><img class="card_icons" src="../images/icons/date.svg"><p class="post_date">${post.date.toDate().toLocaleDateString()}</p></div>
+                                <div id="card_location_container"><img class="card_icons" src="../images/icons/location.svg"><p class="post_location">${post.location}</p></div>
+                            </div>
                         </div>` 
                                     // onclick="handleViewButtonEvent(event)"
             cardDiv.innerHTML = txtInner;
