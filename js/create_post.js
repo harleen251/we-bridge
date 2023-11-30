@@ -44,10 +44,11 @@ const colRef = collection(db, 'posts');
 const submitPost = document.getElementById("submitPost");
 const skillArray = [];
 const interestArray = [];
+const postForm = document.getElementById("postForm")
 
 
 // Function to handle form submission
-submitPost.addEventListener("submit", async function (event) {
+submitPost.addEventListener("click", async function (event) {
     event.preventDefault();
     let docRef;
 
@@ -95,10 +96,10 @@ submitPost.addEventListener("submit", async function (event) {
                 orgName: orgName
             });
 
-            // alert("Post submitted successfully!");
+             alert("Post submitted successfully!");
 
             // 重置表单
-            submitPost.reset();
+            postForm.reset();
 
             // 如果有位置信息，保存到数据库
             if (location.trim() !== '') {
