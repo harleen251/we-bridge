@@ -97,8 +97,8 @@ app.post('/uploadImage', async (req, res) => {
   //console.log('public/'+ record_time +'.png');
   // Decode the base64 image data and save it as a file
   const base64Data = imageData.replace(/^data:image\/png;base64,/, '');
-  //fsPromises.writeFile('public/output.png', base64Data, 'base64');
-  fsPromises.writeFile('public/'+ record_time +'.png', base64Data, 'base64');
+  fsPromises.writeFile('public/output.png', base64Data, 'base64');
+  //fsPromises.writeFile('public/'+ record_time +'.png', base64Data, 'base64');
 
       res.status(200).send('Image saved successfully');
     } catch (error) {
@@ -287,8 +287,8 @@ app.post('/uploadFile', express.json(), async (req, res) => {
    * If file doesn't exist, fallback to the logo file or something else
    */
   const fileName = req.body.fileName;
-  //let absFilename = resolve("./public/output.png"); 'public/'+ record_time +'.png'
-  let absFilename = resolve('./public/'+ record_time +'.png');
+  let absFilename = resolve("./public/output.png");
+  //let absFilename = resolve('./public/'+ record_time +'.png');
   // if (!fs.existsSync(resolve(absFilename))) {
   //   absFilename = resolve(UPLOAD_FILES_REL_PATH + DEFAULT_LOGO_FILE);
   // }
