@@ -29,39 +29,75 @@ const volunteerId = await getCookie("volunteerId");
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const storage = getStorage();
-
+var imgLogo = document.createElement('img');
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function generateAndDownloadPDF(htmlContent,outputPath) {  
-  const options = {
-    filename: outputPath,
-    margin: 1,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
-  };
+  // const options = {
+  //   filename: outputPath,
+  //   margin: 1,
+  //   image: { type: 'jpeg', quality: 0.98 },
+  //   html2canvas: { scale: 2 },
+  //   jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+  // };
+
+  // // Create an instance of html2pdf
+  // const pdfGenerator = html2pdf();
+
+  // // Set the options for the PDF
+  // pdfGenerator.set(options);
+
+  // // Specify the HTML content for the PDF
+  // pdfGenerator.from(htmlContent);
+
+  // // Save the PDF
+  // await pdfGenerator.save();
 
   // Use html2pdf to generate PDF
-  html2pdf().set(options).from(htmlContent).save();
+  //await html2pdf().set(options).from(htmlContent).save();
+
+  const canvas = await html2canvas(htmlContent);
+    
+    // Convert the canvas to a data URL
+    const imageDataUrl = canvas.toDataURL('image/jpeg');
+
+    var a = document.createElement('a');
+    // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+    a.href = imageDataUrl.replace("image/jpeg", "image/octet-stream");
+    a.download = outputPath + '.jpg';
+    a.click();
 }
 
 document.getElementById('btnDownload').addEventListener("click", async function (event) {
     event.preventDefault();
-    await downloadPDFRecord();
-    await shareAsImage();
+    document.getElementById('sort-div').style.display= 'none';
+  await downloadPDFRecord();
+  await shareAsImage();
+  document.getElementById('sort-div').style.display= 'block';
+  imgLogo.style.display = 'none';
 });
 
 document.getElementById('btnDownloadMobile').addEventListener("click", async function (event) {
   event.preventDefault();
+  document.getElementById('sort-div').style.display= 'none';
   await downloadPDFRecord();
   await shareAsImage();
+  document.getElementById('sort-div').style.display= 'block';
+  imgLogo.style.display = 'none';
+
 });
 
 async function downloadPDFRecord() {
   //const htmlContent = document.documentElement;
-  const htmlContent = document.getElementById('htmlRecord'); 
-  await generateAndDownloadPDF(htmlContent, "my-record.pdf");
+  //const imgLogo = '<img src="../img/WeBridge_Logo_main.svg" alt="Your Logo">';
+ 
+  imgLogo.src = "../img/we_bridge_logo.png";
+  imgLogo.style = "padding:20px";
+  const htmlContent = document.getElementById('htmlRecord');
+  htmlContent.prepend(imgLogo);
+  //const htmlContent = document.getElementById('htmlProfile'); 
+  await generateAndDownloadPDF(htmlContent, "my-record");
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,6 +184,7 @@ async function shareLinkedinPost() {
 
 async function shareAsImage() {
     //const elementToCapture = document.documentElement;
+    
     const elementToCapture = document.getElementById('htmlRecord');    
 
     // Capture image with html2canvas
