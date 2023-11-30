@@ -338,8 +338,8 @@ function createPopupForApplication(eventId) {
         <textarea id="applicationReason" rows="4" required></textarea>
         <br>
         <div class="button-container">
-        <button id="submitApplication">Submit</button>
         <button id="closePopup">Close</button>
+        <button id="submitApplication">Submit</button>
         </div>
       </div>
     </div>

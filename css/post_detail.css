@@ -212,6 +212,7 @@ body {
 }
 
 .popup {
+    font-family: "Poppins", sans-serif;
     position: fixed;
     top: 50%; /* Align the top edge of the popup with the vertical center of the viewport */
     left: 50%; /* Align the left edge of the popup with the horizontal center of the viewport */
