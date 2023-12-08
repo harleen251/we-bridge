@@ -214,22 +214,24 @@ body {
 .popup {
     font-family: "Poppins", sans-serif;
     position: fixed;
-    top: 50%; /* Align the top edge of the popup with the vertical center of the viewport */
-    left: 50%; /* Align the left edge of the popup with the horizontal center of the viewport */
-    transform: translate(-50%, -50%); /* Center the popup by translating it */
-    background: #fff;
-    z-index: 1000;
-    padding: 20px;
-    width: 80vw;
-    max-width: 500px; /* Set the maximum width of the popup, adjust as needed */
-    border: 1px solid #6A6A6A;
-    border-radius: 15px;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.4); 
+    overflow: auto;
   }
   
   .popup-content {
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr; /* Place content in a single column */
+    background: #fff;
+    width: 70vw;
+    margin: 20% auto 15% auto;
+    padding: 20px;
+    border-radius: 15px;
   }
   
   .popup-content label {
@@ -323,5 +325,10 @@ body {
 
 #similar_opportunities h2{
     font-size: 1.3rem;
+}
+
+.popup-content {
+    width: 40vw;
+    margin-top: 15%;
 }
 }
