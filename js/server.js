@@ -17,8 +17,8 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: "50mb",extended: false }));
+app.use(bodyParser.json({ limit: "50mb" }));
 // app.use(express.static(resolve(__dirname, 'public')));
 
 let accessToken = '';
