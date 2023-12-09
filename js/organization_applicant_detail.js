@@ -297,7 +297,7 @@ function showLoading() {
     // Set a timeout to hide the loading popup
     setTimeout(function() {
       window.location.href = "organization_account.html"; 
-    }, 3000);
+    }, 1200);
   }
 
 async function handleApproveButtonEvent() {

@@ -128,6 +128,28 @@ button:hover {
     display: none;
 }
 
+.imgcontainer {
+    position: absolute;
+    right: 10px;
+    top:10px;
+}
+
+.close {
+    font-size: 40px;
+}
+
+#wrap_skill, #wrap_option_interest {
+    position: relative;
+}
+
+#wrap_option_interest {
+    background-color:var(--white);
+    padding: 20px;
+    padding-top: 40px;
+    margin: 5% auto 15% auto;
+    border: 1px solid var(--grey-middle-placeholdertext);
+    width: 80%;
+}
 
 #option_interest {
     display: none;
@@ -224,18 +246,6 @@ fieldset input {
     padding: 5px;
 }
 
-#wrap_option_interest {
-    background-color:var(--white);
-    padding: 20px;
-    margin: 5% auto 15% auto;
-    /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid var(--grey-middle-placeholdertext);
-    width: 80%;
-    /* Could be more or less, depending on screen size */
-}
-
-
-
 #option_skill {
     display: none;
     position: fixed;
@@ -248,13 +258,22 @@ fieldset input {
     /* Full width */
     height: 100%;
     /* Full height */
-    background-color:var(--white);
+    background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
     padding-top: 60px;
     overflow: auto;
 }
 
-#next_Info, #saveBtn, #choose_interest, #choose_skill{
+#wrap_skill {
+    background-color:var(--white);
+    padding: 20px;
+    padding-top: 40px;
+    margin: 5% auto 15% auto;
+    border: 1px solid var(--grey-middle-placeholdertext);
+    width: 80%;
+}
+
+#next_Info, #saveBtn, #choose_interest, #choose_skill, #save_skill{
     width: 100%;
     padding: 12px 10px;
     /* Adjust padding as needed */
